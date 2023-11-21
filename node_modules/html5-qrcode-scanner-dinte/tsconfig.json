@@ -1,0 +1,34 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "ES2015",
+        "sourceMap": true,
+        "moduleResolution": "Node",
+        "declaration": true,
+        "lib": ["DOM", "ES2017", "ES2018"],
+
+        // ^ Build the transpiled javascript to transpiled/ dir.
+        // Flags to ensure code quality.
+        "strict": true,
+        "noImplicitReturns": true,
+        "noUnusedParameters": true,
+        "experimentalDecorators": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "noImplicitAny": true,
+
+        // Allow javascript source to be built
+        "allowJs": true
+    },
+    "files": [
+        "src/index.ts"
+    ],
+    "paths": {
+        "@scanapp/html5-qrcode": [
+            "./dist"
+        ],
+        "@scanapp/html5-qrcode/*": [
+            "./dist/*"
+        ]
+    }
+}

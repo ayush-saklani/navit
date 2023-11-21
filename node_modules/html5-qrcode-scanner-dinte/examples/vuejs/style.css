@@ -1,0 +1,14 @@
+body {
+  margin: 0; /* no unit */
+  padding: 0; /* no unit */
+}
+
+.header {
+  padding: 10px;
+  background: black;
+  color: white;
+}
+
+.section {
+  padding: auto;
+}

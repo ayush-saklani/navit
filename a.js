@@ -8,23 +8,22 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // const geojsonLayer = L.geoJSON('og map.geojson').addTo(map);
 fetch('osminedit.geojson').then(response =>  response.json()).then(data => {
-                // Add GeoJSON layer to the map
-                L.geoJSON(data, {
-                    style: {
-                        color: 'cadetblue',
-                        weight: 1,
-                        opacity: 0.4,
-                    },
-                    onEachFeature: function (feature, layer) {
-                        if (feature.properties && feature.properties.label) {
-                            layer.bindPopup(feature.properties.label);
-                        }
-                    },
-                }).addTo(map);
-
-                // Fit the map to the bounds of the GeoJSON layer
-                map.fitBounds(L.geoJSON(data).getBounds());
-            }).catch(error => console.error('Error loading GeoJSON file:', error));
+    // Add GeoJSON layer to the map
+    L.geoJSON(data, {
+        style: {
+            color: 'cadetblue',
+            weight: 1,
+            opacity: 0.4,
+        },
+        onEachFeature: function (feature, layer) {
+            if (feature.properties && feature.properties.label) {
+                layer.bindPopup(feature.properties.label);
+            }
+        },
+    }).addTo(map);
+    // Fit the map to the bounds of the GeoJSON layer
+    map.fitBounds(L.geoJSON(data).getBounds());
+}).catch(error => console.error('Error loading GeoJSON file:', error));
 
 
 

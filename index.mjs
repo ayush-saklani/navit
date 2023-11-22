@@ -24,10 +24,8 @@ for(var v = 1; v < g.V; ++v){
             console.log(e.from() + ' => ' + e.to() + ': ' + e.weight);
             console.log(g.node(502).label);
             // console.log(g.node(e.from()).label);
-            // console.log(g.node(0  ).label  );
         }
         console.log(dijkstra.distanceTo(v));
-        
         console.log('distance from '+ src +' to '+ v +' => ' + dijkstra.distanceTo(v) );
     }
 }

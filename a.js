@@ -19,14 +19,12 @@ fetch('osminedit.geojson').then(response =>  response.json()).then(data => {
                         if (feature.properties && feature.properties.label) {
                             layer.bindPopup(feature.properties.label);
                         }
-                    }
-                    ,
+                    },
                 }).addTo(map);
 
                 // Fit the map to the bounds of the GeoJSON layer
                 map.fitBounds(L.geoJSON(data).getBounds());
-            })
-            .catch(error => console.error('Error loading GeoJSON file:', error));
+            }).catch(error => console.error('Error loading GeoJSON file:', error));
 
 
 

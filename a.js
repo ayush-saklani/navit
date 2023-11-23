@@ -11,10 +11,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let level=1;//front end se fetch karna level 
 if (level==-1) {
     fetch('./mapgeoJSON/underground.geojson').then(response =>  response.json()).then(data => {
-        // Add GeoJSON layer to the map
         L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 0.4,
-            },
+            style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
         map.fitBounds(L.geoJSON(data).getBounds());
     }).catch(error => console.error('Error loading GeoJSON file:', error));   
@@ -39,7 +37,38 @@ if(level == 1){//for ground floor
         map.fitBounds(L.geoJSON(data).getBounds());
     }).catch(error => console.error('Error loading GeoJSON file:', error));     
 }
-
+if (level==2) {
+    fetch('./mapgeoJSON/floor2.geojson').then(response =>  response.json()).then(data => {
+        L.geoJSON(data, {
+            style:{color: 'cadetblue',weight: 1,opacity: 0.4},
+        }).addTo(map);
+        map.fitBounds(L.geoJSON(data).getBounds());
+    }).catch(error => console.error('Error loading GeoJSON file:', error));   
+}
+if (level==3) {
+    fetch('./mapgeoJSON/floor3.geojson').then(response =>  response.json()).then(data => {
+        L.geoJSON(data, {
+            style:{color: 'cadetblue',weight: 1,opacity: 0.4},
+        }).addTo(map);
+        map.fitBounds(L.geoJSON(data).getBounds());
+    }).catch(error => console.error('Error loading GeoJSON file:', error));   
+}
+if (level==4) {
+    fetch('./mapgeoJSON/floor4.geojson').then(response =>  response.json()).then(data => {
+        L.geoJSON(data, {
+            style:{color: 'cadetblue',weight: 1,opacity: 0.4},
+        }).addTo(map);
+        map.fitBounds(L.geoJSON(data).getBounds());
+    }).catch(error => console.error('Error loading GeoJSON file:', error));   
+}
+if (level==5) {
+    fetch('./mapgeoJSON/floor5.geojson').then(response =>  response.json()).then(data => {
+        L.geoJSON(data, {
+            style:{color: 'cadetblue',weight: 1,opacity: 0.4},
+        }).addTo(map);
+        map.fitBounds(L.geoJSON(data).getBounds());
+    }).catch(error => console.error('Error loading GeoJSON file:', error));   
+}
     
     
     // const customRoute = L.polyline([

@@ -13,7 +13,14 @@ fetch('./mapgeoJSON/floor'+level+'.geojson').then(response =>  response.json()).
     }).addTo(map);
     map.fitBounds(L.geoJSON(data).getBounds());
 }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-
+let res = [ 
+    [30.2731289, 77.9997726],
+    [30.2732541, 77.9998359],
+    [30.2733582, 77.9999662],
+    [30.2734329, 78.0001123],
+];
+const customRoute = L.polyline(res,{ color: 'teal' }).addTo(map);
+// steelblue teal cadetblue
 
 //!!!!!!!!!!!!!!!!!!!!dont delete this segment!!!!!!!!!!!!!!!!!!!!
 

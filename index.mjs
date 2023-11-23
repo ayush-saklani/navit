@@ -36,9 +36,10 @@ let res='';
         for(var i = 0; i < path.length; ++i) {
             var e = path[i];
             console.log(e.from() + ' => ' + e.to() + ': ' + e.weight);
-            console.log(g.node(e.from()).label);
+            // console.log(g.node(e.from()).label);
             res=res+(g.node(e.from()).label)+',\n';
         }
+        res=res+(g.node(e.to()).label)+'\n';
         console.log(res);
         console.log('distance from '+ src +' to '+ des +' => ' + dijkstra.distanceTo(des) );
     }

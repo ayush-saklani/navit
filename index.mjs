@@ -1,6 +1,9 @@
 import pkg from 'js-graph-algorithms';
 const { Graph,WeightedGraph, Edge, Dijkstra } = pkg;
 import {g} from './map.mjs'
+import leaflet from 'leaflet';
+const {/*/xyz*/} = leaflet;
+
 
 // testing below
 g.node(0  ).label='[30.2731088, 77.9997088]';  

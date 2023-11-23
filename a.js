@@ -5,7 +5,7 @@ const map = L.map(('map'),{center: [30.2734504,77.9997427],maxZoom:20,minZoom:18
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
 
-let level=1;//front end se fetch karna level 
+let level=2;//front end se fetch karna level 
 
 fetch('./mapgeoJSON/floor'+level+'.geojson').then(response =>  response.json()).then(data => {
     L.geoJSON(data, {

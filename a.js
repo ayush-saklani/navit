@@ -5,7 +5,7 @@ const map = L.map(('map'),{center: [30.2734504,77.9997427],maxZoom:20,minZoom:18
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
 
-let level=0;//front end se fetch karna level 
+let level=1;//front end se fetch karna level 
 
 fetch('./mapgeoJSON/floor'+level+'.geojson').then(response =>  response.json()).then(data => {
     L.geoJSON(data, {
@@ -13,6 +13,9 @@ fetch('./mapgeoJSON/floor'+level+'.geojson').then(response =>  response.json()).
     }).addTo(map);
     map.fitBounds(L.geoJSON(data).getBounds());
 }).catch(error => console.error('out of service.. ~_~  @_@', error));   
+
+
+
 let res = [ 
     [30.2731289, 77.9997726],
     [30.2732541, 77.9998359],
@@ -20,6 +23,7 @@ let res = [
     [30.2734329, 78.0001123],
 ];
 const customRoute = L.polyline(res,{ color: 'teal' }).addTo(map);
+
 // steelblue teal cadetblue
 
 //!!!!!!!!!!!!!!!!!!!!dont delete this segment!!!!!!!!!!!!!!!!!!!!
@@ -78,12 +82,6 @@ const customRoute = L.polyline(res,{ color: 'teal' }).addTo(map);
 // }).addTo(map);
 // const allLayers = L.layerGroup([customRoute, customRoute2, control]);
 //         map.fitBounds(allLayers.getBounds());
-
-
-
-
-
-
 
 
 

@@ -1,77 +1,52 @@
 // Create a Leaflet map
-const map = L.map(('map'),{center: [30.2734185,77.9997714],
-    doubleClickZoom:true
-    ,maxZoom:20,minZoom:18});
+const map = L.map(('map'),{center: [30.2734504,77.9997427],maxZoom:20,minZoom:18});
 
-// Add a base map (e.g., Mapbox)
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    // attribution: '© OpenStreetMap contributors'
-}).addTo(map);
+// Add a base map (e.g., Mapbox) i have used openstreet map fpr this
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-let level=1;//front end se fetch karna level 
-if (level==-1) {
-    fetch('./mapgeoJSON/underground.geojson').then(response =>  response.json()).then(data => {
-        L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 0.4},
-        }).addTo(map);
-        map.fitBounds(L.geoJSON(data).getBounds());
-    }).catch(error => console.error('Error loading GeoJSON file:', error));   
-}
-if(level == 1){//for ground floor
-    // const geojsonLayer = L.geoJSON('og map.geojson').addTo(map);
-    fetch('./mapgeoJSON/og map.geojson').then(response =>  response.json()).then(data => {
-        // Add GeoJSON layer to the map
-        L.geoJSON(data, {
-            style:{
-                color: 'cadetblue',
-                weight: 1,
-                opacity: 0.4,
-            },
-            // onEachFeature: function (feature, layer) {
-            //     if (feature.properties && feature.properties.label) {
-            //         layer.bindPopup(feature.properties.label);
-            //     }
-            // }, 
-        }).addTo(map);
-        // Fit the map to the bounds of the GeoJSON layer
-        map.fitBounds(L.geoJSON(data).getBounds());
-    }).catch(error => console.error('Error loading GeoJSON file:', error));     
-}
-if (level==2) {
-    fetch('./mapgeoJSON/floor2.geojson').then(response =>  response.json()).then(data => {
-        L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 0.4},
-        }).addTo(map);
-        map.fitBounds(L.geoJSON(data).getBounds());
-    }).catch(error => console.error('Error loading GeoJSON file:', error));   
-}
-if (level==3) {
-    fetch('./mapgeoJSON/floor3.geojson').then(response =>  response.json()).then(data => {
-        L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 0.4},
-        }).addTo(map);
-        map.fitBounds(L.geoJSON(data).getBounds());
-    }).catch(error => console.error('Error loading GeoJSON file:', error));   
-}
-if (level==4) {
-    fetch('./mapgeoJSON/floor4.geojson').then(response =>  response.json()).then(data => {
-        L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 0.4},
-        }).addTo(map);
-        map.fitBounds(L.geoJSON(data).getBounds());
-    }).catch(error => console.error('Error loading GeoJSON file:', error));   
-}
-if (level==5) {
-    fetch('./mapgeoJSON/floor5.geojson').then(response =>  response.json()).then(data => {
-        L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 0.4},
-        }).addTo(map);
-        map.fitBounds(L.geoJSON(data).getBounds());
-    }).catch(error => console.error('Error loading GeoJSON file:', error));   
-}
+
+let level=0;//front end se fetch karna level 
+
+fetch('./mapgeoJSON/floor'+level+'.geojson').then(response =>  response.json()).then(data => {
+    L.geoJSON(data, {
+        style:{color: 'cadetblue',weight: 1,opacity: 0.4},
+    }).addTo(map);
+    map.fitBounds(L.geoJSON(data).getBounds());
+}).catch(error => console.error('out of service.. ~_~  @_@', error));   
+
+
+//!!!!!!!!!!!!!!!!!!!!dont delete this segment!!!!!!!!!!!!!!!!!!!!
+
+// if(level == 1){//for ground floor
+//     // const geojsonLayer = L.geoJSON('og map.geojson').addTo(map);
+//     fetch('./mapgeoJSON/og map.geojson').then(response =>  response.json()).then(data => {
+    //         // Add GeoJSON layer to the map
+    //         L.geoJSON(data, {
+//             style:{
+    //                 color: 'cadetblue',
+    //                 weight: 1,
+    //                 opacity: 0.4,
+    //             },
+    //             // onEachFeature: function (feature, layer) {
+        //             //     if (feature.properties && feature.properties.label) {
+            //             //         layer.bindPopup(feature.properties.label);
+//             //     }
+//             // }, 
+//         }).addTo(map);
+//         // Fit the map to the bounds of the GeoJSON layer
+//         map.fitBounds(L.geoJSON(data).getBounds());
+//     }).catch(error => console.error('Error loading GeoJSON file:', error));     
+// }
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     
-    
-    // const customRoute = L.polyline([
+
+
+
+
+
+
+// const customRoute = L.polyline([
         //         [30.2731289, 77.9997726],
 //         [30.2732541, 77.9998359],  // Add additional waypoints as needed
 //         [30.2733582, 77.9999662],  // Add additional waypoints as needed
@@ -96,6 +71,18 @@ if (level==5) {
 // }).addTo(map);
 // const allLayers = L.layerGroup([customRoute, customRoute2, control]);
 //         map.fitBounds(allLayers.getBounds());
+
+
+
+
+
+
+
+
+
+
+
+
 
 // const customPath = L.polyline([
 //     [30.2731289, 77.9997726],    [30.2732541, 77.9998359],

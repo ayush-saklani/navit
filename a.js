@@ -8,7 +8,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     // attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-let level=-1;//front end se fetch karna level 
+let level=1;//front end se fetch karna level 
 if (level==-1) {
     fetch('./mapgeoJSON/underground.geojson').then(response =>  response.json()).then(data => {
         // Add GeoJSON layer to the map

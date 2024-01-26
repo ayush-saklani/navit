@@ -1,6 +1,3 @@
-import pkg from 'js-graph-algorithms';
-const {WeightedGraph, Edge} = pkg;
-
 const map = L.map(('map'),{center: [30.2734504,77.9997427],maxZoom:20,minZoom:18});
 const tileurl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 const tile = L.tileLayer(tileurl).addTo(map);
@@ -9,23 +6,8 @@ const tile = L.tileLayer(tileurl).addTo(map);
 // const pathlayer = L.Path([[30.2731289, 77.9997726],[30.2732541, 77.9998359],[30.2733582, 77.9999662],[30.2734329, 78.0001123]]).addTo(map);
 
 const points = [[30.2731289, 77.9997726],[30.2732541, 77.9998359],[30.2733582, 77.9999662],[30.2734329, 78.0001123]];
+console.log(typeof(points))
 const polytile = L.polyline(points).addTo(map);
-
-
-var g = new WeightedGraph(550);
-
-g.addEdge(new Edge(1  , 2 , 2)); 
-g.addEdge(new Edge(1  , 4 , 2)); 
-g.addEdge(new Edge(2  , 3 , 2)); 
-g.addEdge(new Edge(4  , 3 , 2)); 
-
-g.node(1).label='[30.2731188, 77.9997188]';  
-g.node(2).label='[30.2731201, 77.9997201]';  
-g.node(3).label='[30.2731101, 77.9997101]';  
-g.node(4).label='[30.2731088, 77.9997088]';  
-
-
-
 
 
 

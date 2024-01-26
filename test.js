@@ -23,21 +23,19 @@ for(var v = 0; v < g.V; ++v){
             console.log(e.from() + ' => ' + e.to() + ': ' + e.weight);
             
             let temp = (g.node(e.from()).label).split(','); 
-            
-            console.log(temp);
             let temparr = []
             temparr.push(Number(temp[0]));
             temparr.push(Number(temp[1]));
             res.push(temparr)
-            // if(i==path.length -1){
-            //     res = res + g.node(e.to()).label;
-            // }
+            if(i==path.length -1){
+                let temp = (g.node(e.to()).label).split(','); 
+                let temparr = []
+                temparr.push(Number(temp[0]));
+                temparr.push(Number(temp[1]));
+                res.push(temparr)
+            }
         }
-        // const points = [[30.2731289, 77.9997726],[30.2732541, 77.9998359],[30.2733582, 77.9999662],[30.2734329, 78.0001123]];
-        // const polytile = L.polyline(arr).addTo(map);
         console.log(res);
-        // let arr = res.split("@");
-        // console.log(arr);
         console.log('distance: '  + dijkstra.distanceTo(v));
         console.log('===================================');
     }

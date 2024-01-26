@@ -29,5 +29,5 @@ let dijfunc = (src,des) =>{
     }
 }
 export {dijfunc};
-// let res = dijfunc(0,3);
-// console.log(res);
+let res = dijfunc(0,3);
+console.log(res);

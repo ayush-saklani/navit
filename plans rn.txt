@@ -1,0 +1,5 @@
+we can do one thing 
+we can make a array of floors for show the polylines floor wise
+7 floors so the length of array will be 7
+and each will contain that array containing the coordinates of that floor and we will make 
+the polyline according to the floor 

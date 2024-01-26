@@ -3,3 +3,7 @@ we can make a array of floors for show the polylines floor wise
 7 floors so the length of array will be 7
 and each will contain that array containing the coordinates of that floor and we will make 
 the polyline according to the floor 
+
+g.node(0).label='30.2731289,77.9997726';  this is the coordiante detail good for one floor 
+g.node(0).label='30.2731289,77.9997726,0'; this will be new type by this we will push the first two 
+values into array and third into the floor array   

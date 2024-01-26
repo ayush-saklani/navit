@@ -9,7 +9,7 @@ g.node(0).label='30.2731289,77.9997726,0';
 g.node(1).label='30.2732541,77.9998359,0';  
 g.node(2).label='30.2733582,77.9999662,0';  
 g.node(3).label='30.2734329,78.0001123,0'; 
-//lat long floor no 
+//lat, long, floor number 
 //23-11-2023    updated with new graph
 //26-01-2023    below graph is commented and will be uncommmented after nodes coordinates are  filled
 // till than new testing nodes are typed above do the same format for below files

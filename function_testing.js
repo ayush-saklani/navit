@@ -5,7 +5,7 @@ let dijfunc = (src,des) =>{
     var dijkstra = new jsgraphs.Dijkstra(g, src);
     let e;
     if(dijkstra.hasPathTo(des)){
-        let res = [];
+        let res = [[],[],[],[],[],[],[]];
         var path = dijkstra.pathTo(des);
         for(var i = 0; i < path.length; ++i) {
             e = path[i];
@@ -13,13 +13,13 @@ let dijfunc = (src,des) =>{
             let temparr = []
             temparr.push(Number(temp[0]));
             temparr.push(Number(temp[1]));
-            res.push(temparr)
+            res[temp[2]].push(temparr)
             if(i==path.length -1){
                 let temp = (g.node(e.to()).label).split(','); 
                 let temparr = []
                 temparr.push(Number(temp[0]));
                 temparr.push(Number(temp[1]));
-                res.push(temparr)
+                res[temp[2]].push(temparr)
             }
         }
         return res;

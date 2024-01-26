@@ -28,5 +28,6 @@ let dijfunc = (src,des) =>{
         console.log('error hai bhaisaab service down hai mijan');
     }
 }
-let res = dijfunc(0,3);
-console.log(res);
+export {dijfunc};
+// let res = dijfunc(0,3);
+// console.log(res);

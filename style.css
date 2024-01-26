@@ -5,8 +5,14 @@
     size: 100%;
 }
 #map{
-    height: 80vh;
-    width: 200vh;
+    height: 92vh;
+    width:auto;
+}
+#headin{
+    padding: 8px;
+    font-family: sans-serif;
+    text-align:center;
+    color: rgb(55, 127, 129);
 }
 /* #map{
     for use without heading 

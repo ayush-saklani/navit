@@ -16,5 +16,12 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
     <script src="a.js"></script>
+    <script src="map.mjs"></script>
+    <script src="function_testing.js"></script>
+    <script>
+        let res = dijfunc(0,3);
+        console.log(res);
+        const polytile = L.polyline(res[0]).addTo(map);
+    </script>
 </body>
 </html>

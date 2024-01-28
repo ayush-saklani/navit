@@ -30,4 +30,4 @@ let dijfunc = (src,des) =>{
 }
 export {dijfunc};
 let res = dijfunc(0,3);
-console.log(res);
+console.log(res[0]);

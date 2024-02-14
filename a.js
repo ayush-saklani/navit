@@ -3,7 +3,7 @@ const tileurl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 const tile = L.tileLayer(tileurl).addTo(map);
 //base map from open streetmap added 
 
-
+// testing
 // const points = [[30.2731289, 77.9997726],[30.2732541, 77.9998359],[30.2733582, 77.9999662],[30.2734329, 78.0001123]];
 // const polytile = L.polyline(points).addTo(map);
 

@@ -1,5 +1,9 @@
 import jsgraphs from 'js-graph-algorithms';
 import {g} from './map.mjs'
+import express from 'express'
+const app = express()
+const port = 5000
+
 // this funciton takes maps from map.mjs and returns the polyline coordinates
 let dijfunc = (src,des) =>{
     var dijkstra = new jsgraphs.Dijkstra(g, src);
@@ -31,3 +35,12 @@ let dijfunc = (src,des) =>{
 export {dijfunc};
 let res = dijfunc(0,3);
 console.log(res[0]);
+
+
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+  })
+  
+  app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+  })

@@ -11,7 +11,7 @@ g.node(2).label='30.2733582,77.9999662,0';
 g.node(3).label='30.2734329,78.0001123,0'; 
 //lat, long, floor number 
 //23-11-2023    updated with new graph
-//26-01-2023    below graph is commented and will be uncommmented after nodes coordinates are  filled
+//26-01-2024    below graph is commented and will be uncommmented after nodes coordinates are  filled
 // till than new testing nodes are typed above do the same format for below files
 // g.addEdge(new jsgraphs.Edge(0  , 1  , 4.5)); 
 // g.addEdge(new jsgraphs.Edge(1  , 26 , 2  )); 

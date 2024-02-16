@@ -1,19 +1,33 @@
 * {
-    padding: 0;
+    padding: 0px;
     margin: 0; 
     box-sizing: border-box;
     size: 100%;
 }
 #map{
-    height: 92vh;
+    /* height: 92vh; original */
+    height: 87vh;
     width:auto;
 }
-#headin{
+.header{
+    display:flex;
+    justify-content:center;
+    position:relative;
+    align-self: center;
     padding: 8px;
-    font-family: sans-serif;
-    text-align:center;
-    color: rgb(55, 127, 129);
 }
+#headin{
+    align-self: center;
+    padding: 8px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: xx-large;
+    text-align:center;
+    color: rgb(50, 113, 116);
+}
+#logo{
+    position: relative;
+    height: 65px;
+} 
 /* #map{
     for use without heading 
     height: 100vh; 

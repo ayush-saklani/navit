@@ -5,7 +5,7 @@ const tile = L.tileLayer(tileurl).addTo(map);
 
 // testing
 // const points = [[30.2731289, 77.9997726],[30.2732541, 77.9998359],[30.2733582, 77.9999662],[30.2734329, 78.0001123]];
-// const polytile = L.polyline(points).addTo(map);
+// const    polytile = L.polyline(points).addTo(map);
 
 
 
@@ -20,13 +20,13 @@ fetch('./mapgeoJSON/floor'+level+'.geojson').then(response =>  response.json()).
 
 
 
-// let res = [
-//     [30.2731289, 77.9997726],
-//     [30.2732541, 77.9998359],
-//     [30.2733582, 77.9999662],
-//     [30.2734329, 78.0001123],
-// ];
-// const customRoute = L.polyline(res,{ color: 'teal' }).addTo(map);
+let res = [
+    [30.2731289, 77.9997726],
+    [30.2732541, 77.9998359],
+    [30.2733582, 77.9999662],
+    [30.2734329, 78.0001123],
+];
+const customRoute = L.polyline(res,{ color: 'teal' }).addTo(map);
 
 // steelblue teal cadetblue
 

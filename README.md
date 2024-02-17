@@ -7,8 +7,8 @@
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" width="60" height="60"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" width="60" height="60"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" width="60" height="60"/>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" width="60" height="60"/>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" width="60" height="60"/>
+<img src="https://static-00.iconduck.com/assets.00/node-js-icon-454x512-nztofx17.png"height="60"/>
+<img src="https://adware-technologies.s3.amazonaws.com/uploads/technology/thumbnail/20/express-js.png" width="60" height="60"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/npm/npm-original-wordmark.svg" width="60" height="60"/>
 <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Openstreetmap_logo.svg"height="60"/> 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Leaflet_logo.svg/1280px-Leaflet_logo.svg.png" height="60"/>
@@ -18,23 +18,21 @@
 
 # **How to run this project ?** 
 
-1. Open Jupyter notebook and run the program.
-2. After running, you will have 2 pickle files.
-3. Run `apptest.py` using the command mentioned in the first line of code.
-4. Ensure all required libraries, especially Streamlit, are installed *(use the latest pip libraries from [here](https://pypi.org/)).*
+1. Run `function_testing.js` (server side).
+2. Now run the website and enjoy.
+3. Ensure all required modules and installed,*(use the latest npm Modules from [here](https://www.npmjs.com/)) or run commands below.*
 
 
 ```code
-pip install numpy
-pip install pandas
-pip install scikit-learn
-pip install nltk
-pip install pickle5
+npm install js-graph-algorithms
+npm install express --save
+npm install cors
 ```
+
 #
 
-
 # **Keep Coding, Keep Smiling!, Have Fun!** 💻🚀
+
 
 
 
@@ -50,7 +48,7 @@ pip install pickle5
 * package.JSON and package-lock.JSON are npm packages for index.mjs
 * test.js is for testing features (can be deleted)
 
-## resources
+## Resources
 * https://https//www.npmjs.com/package/leaflet?activeTab=readme%20%20%20
 * https://leafletjs.com/reference.html#polyline
 ## further plan

@@ -14,7 +14,24 @@ document.getElementById('go').addEventListener('click', () => {
     var destination = document.getElementById("destination").value;
     console.log(source);
     console.log(destination);
+    fetch('/getCoordinates', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ src: source, des: destination })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data); // Coordinates received from the server
+    })
+    .catch(error => console.error('Error hai bhaisaab:', error));
 });
+
+    
+
+
+
 
 // testing
 const points =  [[],[[ 30.2731289, 77.9997726 ],[ 30.2732541, 77.9998359 ],[ 30.2733582, 77.9999662 ],[ 30.2734329, 78.0001123 ]],

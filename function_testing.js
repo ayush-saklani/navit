@@ -1,8 +1,11 @@
 import jsgraphs from 'js-graph-algorithms';
 import {g} from './map.mjs'
-const express = require('express');
-const app = express();
-const port = 3000;
+import cors from 'cors'; // Import the cors middleware
+import express from 'express'
+const app = express()
+const port = 3000
+app.use(cors());
+
 
 // this funciton takes maps from map.mjs and returns the polyline coordinates
 let dijfunc = (src,des) =>{
@@ -58,11 +61,3 @@ app.post('/getCoordinates', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);
 });
-
-// app.get('/', (req, res) => {
-//     res.send('Hello World!')
-// })
-  
-// app.listen(port, () => {
-//   console.log(`Example app listening on port ${port}`)
-// })

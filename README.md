@@ -1,7 +1,7 @@
 # **Indoor Mapping Navit (Beta)**    <img src="media/logo.png" height="100" align="left"/>
 **Indoor mapping solution for University campus. *(currently in the proof of concept phase)***
  
-## **Coding Language and Tools Used**
+# **Coding Language and Tools Used**
 <p align="left">
 
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" width="60" height="60"/>

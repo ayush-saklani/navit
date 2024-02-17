@@ -1,10 +1,10 @@
 import jsgraphs from 'js-graph-algorithms';
 
-const g = new jsgraphs.WeightedDiGraph(550);
+const g = new jsgraphs.WeightedGraph(550);
 
-g.addEdge(new jsgraphs.Edge(0  , 1 , 2)); 
-g.addEdge(new jsgraphs.Edge(1  , 2 , 2)); 
-g.addEdge(new jsgraphs.Edge(2  , 3 , 2)); 
+g.addEdge(new jsgraphs.Edge(0, 1, 2)); g.addEdge(new jsgraphs.Edge(1, 0, 2)); 
+g.addEdge(new jsgraphs.Edge(1, 2, 2)); g.addEdge(new jsgraphs.Edge(2, 1, 2)); 
+g.addEdge(new jsgraphs.Edge(2, 3, 2)); g.addEdge(new jsgraphs.Edge(3, 2, 2));
 g.node(0).label='30.2731289,77.9997726,1';  
 g.node(1).label='30.2732541,77.9998359,1';  
 g.node(2).label='30.2733582,77.9999662,1';  

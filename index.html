@@ -3,15 +3,31 @@
 <head>
     <!-- <meta charset="UTF-8"> -->
     <title>Navit (campus navigator)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" /> -->
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="/media/icon.webp">
 </head>
 <body>
+    <!-- <button id="getCoordinatesBtn">Get Coordinates</button>
+    <p id="coordinates"></p> -->
+
     <div class="header">
         <img id ='logo' src="media/logo.png" alt="logo" height="100px">
         <h1 id='headin'>Indoor Mapping Navit</h1>
+    </div>
+    <div id="floorbutton">
+        <button class="levelbutton" id="-1">-1</button>
+        <button class="levelbutton" id="G">G</button>
+        <button class="levelbutton" id="1">1</button>
+        <button class="levelbutton" id="2">2</button>
+        <button class="levelbutton" id="3">3</button>
+        <button class="levelbutton" id="4">4</button>
+        <button class="levelbutton" id="5">5</button>
     </div>
     <div id='map' >
         <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>

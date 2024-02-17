@@ -1,4 +1,4 @@
-* {
+*{
     padding: 0px;
     margin: 0; 
     box-sizing: border-box;
@@ -12,22 +12,33 @@
 .header{
     display:flex;
     justify-content:center;
-    position:relative;
+    /* position:relative; */
     align-self: center;
     padding: 8px;
 }
 #headin{
+    color: rgb(50, 113, 116);
     align-self: center;
     padding: 8px;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:anta;
     font-size: xx-large;
     text-align:center;
-    color: rgb(50, 113, 116);
 }
 #logo{
-    position: relative;
     height: 65px;
-} 
+}
+.levelbutton {
+    background-color: rgb(50, 113, 116);
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    text-align: center;
+    font-family:"anta";
+    font-size:x-large;
+    height: 60px;
+    width:  60px;
+    margin: 4px ;
+    border-radius: 50%;
+  }
 /* #map{
     for use without heading 
     height: 100vh; 

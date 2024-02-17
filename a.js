@@ -28,7 +28,7 @@ document.getElementById('-1').addEventListener('click', () => {
         L.geoJSON(data, {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
-        map.fitBounds(L.geoJSON(data).getBounds());
+        // map.fitBounds(L.geoJSON(data).getBounds());
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
 });
 document.getElementById('G').addEventListener('click', () => {
@@ -39,7 +39,7 @@ document.getElementById('G').addEventListener('click', () => {
         L.geoJSON(data, {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
-        map.fitBounds(L.geoJSON(data).getBounds());
+        // map.fitBounds(L.geoJSON(data).getBounds());
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
 });
 document.getElementById('1').addEventListener('click', () => {
@@ -50,7 +50,7 @@ document.getElementById('1').addEventListener('click', () => {
         L.geoJSON(data, {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
-        map.fitBounds(L.geoJSON(data).getBounds());
+        // map.fitBounds(L.geoJSON(data).getBounds());
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
 });
 document.getElementById('2').addEventListener('click', () => {
@@ -61,7 +61,7 @@ document.getElementById('2').addEventListener('click', () => {
         L.geoJSON(data, {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
-        map.fitBounds(L.geoJSON(data).getBounds());
+        // map.fitBounds(L.geoJSON(data).getBounds());
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
 });
 document.getElementById('3').addEventListener('click', () => {
@@ -72,7 +72,7 @@ document.getElementById('3').addEventListener('click', () => {
         L.geoJSON(data, {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
-        map.fitBounds(L.geoJSON(data).getBounds());
+        // map.fitBounds(L.geoJSON(data).getBounds());
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
 });
 document.getElementById('4').addEventListener('click', () => {
@@ -83,7 +83,7 @@ document.getElementById('4').addEventListener('click', () => {
         L.geoJSON(data, {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
-        map.fitBounds(L.geoJSON(data).getBounds());
+        // map.fitBounds(L.geoJSON(data).getBounds());
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
 });
 document.getElementById('5').addEventListener('click', () => {
@@ -94,10 +94,20 @@ document.getElementById('5').addEventListener('click', () => {
         L.geoJSON(data, {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
+        // map.fitBounds(L.geoJSON(data).getBounds());
+    }).catch(error => console.error('out of service.. ~_~  @_@', error));   
+});
+document.getElementById('R').addEventListener('click', () => {
+    map.eachLayer(function(layer) {
+        if (!!layer.toGeoJSON){map.removeLayer(layer);}
+    });
+    fetch('./mapgeoJSON/floorG.geojson').then(response =>  response.json()).then(data => {
+        L.geoJSON(data, {
+            style:{color: 'cadetblue',weight: 1,opacity: 0.4},
+        }).addTo(map);
         map.fitBounds(L.geoJSON(data).getBounds());
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
 });
-
 
 
 

@@ -5,29 +5,35 @@
     size: 100%;
 }
 #map{
-    /* height: 92vh; original */
-    height: 87vh;
+    height: 100vh;
     width:auto;
+    position: relative;
+    z-index: 0;
 }
 .header{
     display:flex;
     justify-content:center;
-    /* position:relative; */
-    align-self: center;
     padding: 8px;
+    position: absolute;;
+    z-index: 1;
 }
-#headin{
+#heading{
     color: rgb(50, 113, 116);
     align-self: center;
     padding: 8px;
     font-family:anta;
     font-size: xx-large;
-    text-align:center;
+    text-align:center;    
 }
-#logo{
-    height: 65px;
+#circular_button_div{
+    position: absolute;
+    top: 120px;
+    left: 15px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
 }
-.levelbutton {
+.circular_button{
     background-color: rgb(50, 113, 116);
     color: rgb(255, 255, 255);
     padding: 10px;
@@ -38,8 +44,46 @@
     width:  60px;
     margin: 4px ;
     border-radius: 50%;
-  }
-/* #map{
-    for use without heading 
-    height: 100vh; 
-} */
+}
+.circular_button:hover{
+    background-color: rgb(33, 77, 79);
+}
+.optionbox{
+    background-color: rgb(50, 113, 116);
+    color: rgb(255, 255, 255);
+    padding: 2px;
+    text-align: center;
+    font-family:"anta";
+    font-size:medium;
+    height: 30px;
+    width:  150px;
+    margin: 4px ;
+    border-radius:9px;
+}
+.optionbox:hover{
+    background-color: rgb(33, 77, 79);
+}
+.labelmaker{
+    padding: 2px;
+    text-align: center;
+    font-family:"anta";
+    font-size:medium;
+    margin: 4px ;
+}
+#drop_option{
+    justify-content:center;
+    position: absolute;
+    display: flex;
+    right: 50vh;
+    left: 50vh;
+    bottom: 4vh;
+    flex-direction:row;
+    z-index: 1;
+}
+#go{
+    height: 30px;
+    width:  150px;
+    border-radius:15px;
+    padding: 5px;
+    white-space: nowrap;
+}

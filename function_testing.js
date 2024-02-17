@@ -1,8 +1,8 @@
 import jsgraphs from 'js-graph-algorithms';
 import {g} from './map.mjs'
-import express from 'express'
-const app = express()
-const port = 5000
+const express = require('express');
+const app = express();
+const port = 3000;
 
 // this funciton takes maps from map.mjs and returns the polyline coordinates
 let dijfunc = (src,des) =>{
@@ -29,18 +29,40 @@ let dijfunc = (src,des) =>{
         return res;
     }
     else{
-        console.log('error hai bhaisaab service down hai mijan');
+        console.log('error hai bhaisaab service down hai shayad');
     }
 }
 export {dijfunc};
 let res = dijfunc(0,3);
-console.log(res[0]);
+console.log(res);
 
+// Middleware to parse JSON bodies
+app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-  })
+// Route to handle POST requests from the HTML page
+app.post('/getCoordinates', (req, res) => {
+    const { src, des } = req.body;
+
+    // Execute the dijfunc function with the provided source and destination
+    const coordinates = dijfunc(src, des);
+
+    // Check if coordinates were found
+    if (coordinates) {
+        res.json(coordinates);
+    } else {
+        res.status(404).json({ error: 'No path found.' });
+    }
+});
+
+// Start the server
+app.listen(port, () => {
+    console.log(`Server is listening at http://localhost:${port}`);
+});
+
+// app.get('/', (req, res) => {
+//     res.send('Hello World!')
+// })
   
-  app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-  })
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`)
+// })

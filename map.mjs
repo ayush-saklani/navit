@@ -5,10 +5,10 @@ const g = new jsgraphs.WeightedDiGraph(550);
 g.addEdge(new jsgraphs.Edge(0  , 1 , 2)); 
 g.addEdge(new jsgraphs.Edge(1  , 2 , 2)); 
 g.addEdge(new jsgraphs.Edge(2  , 3 , 2)); 
-g.node(0).label='30.2731289,77.9997726,0';  
-g.node(1).label='30.2732541,77.9998359,0';  
-g.node(2).label='30.2733582,77.9999662,0';  
-g.node(3).label='30.2734329,78.0001123,0'; 
+g.node(0).label='30.2731289,77.9997726,1';  
+g.node(1).label='30.2732541,77.9998359,1';  
+g.node(2).label='30.2733582,77.9999662,1';  
+g.node(3).label='30.2734329,78.0001123,1'; 
 //lat, long, floor number 
 //23-11-2023    updated with new graph
 //26-01-2024    below graph is commented and will be uncommmented after nodes coordinates are  filled

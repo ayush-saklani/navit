@@ -1,7 +1,7 @@
-# **Indoor Mapping Navit**    <img src="media/logo.png" height="100" align="left"/>
-**Indoor mapping solution for University campus.**
+# **Indoor Mapping Navit (Beta)**    <img src="media/logo.png" height="100" align="left"/>
+**Indoor mapping solution for University campus. *(currently in the proof of concept phase)***
 
-# **Coding Language and Tools Used**
+## **Coding Language and Tools Used**
 <p align="left">
 
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" width="60" height="60"/>
@@ -13,8 +13,6 @@
 <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Openstreetmap_logo.svg"height="60"/> 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Leaflet_logo.svg/1280px-Leaflet_logo.svg.png" height="60"/>
 </p>
-          
-
 
 # **How to run this project ?** 
 
@@ -29,32 +27,21 @@ npm install express --save
 npm install cors
 ```
 
-#
+# File Structure
+* `index.js` Backend file for web page 
+* `index.html` Webpage
+* `ogmap.geoJSON` is ground floor campus map 
+* `qr_testing.xlsx` For QR codes making and distance calculation testing using lattitude and longitude 
+* `map.js` Contains the map 
+* `package.JSON` and `package-lock.JSON` has npm packages for this project
+* `test.js` is for testing (can be deleted)
+
+# Future plan
+* Make it dynamic to add coordinate to center use last coordinate to center
+* Add routes using geojson and calculate the shortest path using djkastra data structure typed modules
+* Use leaflet library for drawing route on map using polylines dynamically using coordinates as array of strings input
+* Introduce database to store timetables and current cooordinates to center
+* Add timetables to database to automate the direction finding and to find idle class rooms and labs
+* Add authencation for students to verify the actual user and possibally Lock the mapping part within campus for safety concern
 
 # **Keep Coding, Keep Smiling!, Have Fun!** 💻🚀
-
-
-
-
-* a.js is main file backend for web page 
-* index.html is for webpage
-* og map.geoJSON is ground floor campus map
-* mapgg.geoJSON is copy of og map.geoJSON for experimentaion 
-##
-* excel is for qr codes
-* index.mjs is containing map backend 
-* map.js has map nodes
-##
-* package.JSON and package-lock.JSON are npm packages for index.mjs
-* test.js is for testing features (can be deleted)
-
-## Resources
-* https://https//www.npmjs.com/package/leaflet?activeTab=readme%20%20%20
-* https://leafletjs.com/reference.html#polyline
-## further plan
-* make it dynamic to add coordinate to center use last coordinate to center
-* add routes using geojason and calcute the shortest path using djkastra data structure typed modules
-* use leaflet library for drawing route on map using polylines dynamically using coordinates as array of strings input
-* introduce database to store timetables and current cooordinates to center
-* add timetables to database to automate the direction finding and to find idol class rooms
-* add authencation for students to verify the actual user and possibally geotag the mapping part for safety concern

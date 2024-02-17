@@ -24,21 +24,19 @@ document.getElementById('go').addEventListener('click', () => {
     })
     .then(response => response.json())
     .then(data => {
-        // let points =  [[],[],[],[],[],[],[]]
         points = data;
         console.log(points); // Coordinates received from the server
+            map.eachLayer(function(layer){if (layer.toGeoJSON){map.removeLayer(layer);}});
+            fetch('./mapgeoJSON/floorG.geojson').then(response =>  response.json()).then(data => {
+            L.geoJSON(data,{style:{color: 'cadetblue',weight: 1,opacity: 0.4}}).addTo(map);
+            map.fitBounds(L.geoJSON(data).getBounds());
+            }).catch(error => console.error('out of service.. ~_~  @_@', error));
+            const polytile = L.polyline(points[1]).addTo(map);
     })
     .catch(error => console.error('Error hai bhaisaab:', error));
 });
 
 
-
-
-
-
-// // testing
-// const points =  [[],[[ 30.2731289, 77.9997726 ],[ 30.2732541, 77.9998359 ],[ 30.2733582, 77.9999662 ],[ 30.2734329, 78.0001123 ]],
-//                 [],[],[],[],[]]
 
 
 fetch('./mapgeoJSON/floorG.geojson').then(response =>  response.json()).then(data => {

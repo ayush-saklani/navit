@@ -1,0 +1,3361 @@
+{
+    "type": "FeatureCollection",
+    "generator": "JOSM",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99983478172,
+                    30.27324192858
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "relations": "[]",
+                "highway": "service",
+                "type": "way",
+                "oneway": "yes",
+                "motor_vehicle": "no",
+                "id": "1120990361"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        78.00102210000,
+                        30.27222460000
+                    ],
+                    [
+                        78.00094294783,
+                        30.27230541150
+                    ],
+                    [
+                        78.00061440000,
+                        30.27265290000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99971899825,
+                    30.27305431189
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99959243450,
+                    30.27358215324
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    78.00004373804,
+                    30.27332391270
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99975787320,
+                        30.27312751843
+                    ],
+                    [
+                        77.99974442792,
+                        30.27306238983
+                    ],
+                    [
+                        77.99971899825,
+                        30.27305431189
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99945681656,
+                    30.27356190216
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99944979452,
+                    30.27372982713
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        78.00004947433,
+                        30.27332863008
+                    ],
+                    [
+                        78.00005376764,
+                        30.27333233753
+                    ],
+                    [
+                        77.99998790940,
+                        30.27338374000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99956877024,
+                    30.27378208442
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99961429201,
+                    30.27360191911
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99969795301,
+                    30.27319062700
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99926192189,
+                    30.27358795922
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99961429201,
+                        30.27360191911
+                    ],
+                    [
+                        77.99959418827,
+                        30.27362001836
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99930452389,
+                    30.27359805659
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99930598536,
+                    30.27355186113
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99944979452,
+                        30.27372982713
+                    ],
+                    [
+                        77.99948058784,
+                        30.27370425476
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99969002702,
+                    30.27349556675
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99936575970,
+                    30.27360348392
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99961231057,
+                        30.27382070327
+                    ],
+                    [
+                        77.99962086142,
+                        30.27382822228
+                    ],
+                    [
+                        77.99962838679,
+                        30.27383483955
+                    ],
+                    [
+                        77.99958965792,
+                        30.27386910721
+                    ],
+                    [
+                        77.99958242340,
+                        30.27386311210
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99970006559,
+                    30.27324168155
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    78.00009138184,
+                    30.27337894374
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99982334729,
+                        30.27338323513
+                    ],
+                    [
+                        77.99991104779,
+                        30.27331422562
+                    ],
+                    [
+                        77.99995897248,
+                        30.27327494033
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    78.00005376764,
+                    30.27333233753
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99969269170,
+                    30.27329715460
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "relations": "[]",
+                "id": "1225013405",
+                "highway": "service",
+                "type": "way"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99934790000,
+                        30.27323110000
+                    ],
+                    [
+                        77.99938410000,
+                        30.27325370000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99946996288,
+                        30.27374724507
+                    ],
+                    [
+                        77.99949998111,
+                        30.27372134417
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99982685512,
+                    30.27354378323
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "relations": "[]",
+                "highway": "service",
+                "id": "1120990365",
+                "type": "way"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        78.00046860000,
+                        30.27328800000
+                    ],
+                    [
+                        78.00046500000,
+                        30.27337880000
+                    ],
+                    [
+                        78.00044140000,
+                        30.27344760000
+                    ],
+                    [
+                        78.00040810000,
+                        30.27351610000
+                    ],
+                    [
+                        78.00034210000,
+                        30.27358780000
+                    ],
+                    [
+                        78.00023760000,
+                        30.27367460000
+                    ],
+                    [
+                        78.00012950000,
+                        30.27373320000
+                    ],
+                    [
+                        77.99957690000,
+                        30.27399570000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99930452389,
+                        30.27359805659
+                    ],
+                    [
+                        77.99933170733,
+                        30.27357407534
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99954683648,
+                    30.27358038620
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99987391463,
+                    30.27356195850
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99980772567,
+                    30.27320516314
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "relations": "[]",
+                "highway": "service",
+                "type": "way",
+                "oneway": "yes",
+                "id": "1120990362",
+                "motor_vehicle": "no"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        78.00069610000,
+                        30.27274080000
+                    ],
+                    [
+                        78.00105799654,
+                        30.27238851037
+                    ],
+                    [
+                        78.00113500000,
+                        30.27231380000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    78.00006682935,
+                    30.27350818999
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99991104779,
+                    30.27331422562
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "relations": "[]",
+                "id": "1120990364",
+                "highway": "service",
+                "type": "way"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99990650000,
+                        30.27254650000
+                    ],
+                    [
+                        77.99995340000,
+                        30.27258200000
+                    ],
+                    [
+                        78.00000690000,
+                        30.27263770000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99967866154,
+                    30.27319012213
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99956711085,
+                    30.27356135734
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99961939894,
+                    30.27336966632
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99970006559,
+                        30.27324168155
+                    ],
+                    [
+                        77.99969795301,
+                        30.27319062700
+                    ],
+                    [
+                        77.99967866154,
+                        30.27319012213
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99954888254,
+                    30.27376466300
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99948058784,
+                    30.27370425476
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99938870486,
+                        30.27358089106
+                    ],
+                    [
+                        77.99936575970,
+                        30.27360348392
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99964504732,
+                    30.27358619244
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99959874655,
+                    30.27358786126
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99972192120,
+                    30.27319012213
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99989561753,
+                        30.27318892306
+                    ],
+                    [
+                        77.99989905214,
+                        30.27319188905
+                    ],
+                    [
+                        77.99983478172,
+                        30.27324192858
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99925395707,
+                    30.27358152196
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99988297548,
+                    30.27348521871
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99969254555,
+                    30.27329431471
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99931373118,
+                    30.27355855063
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99930598536,
+                        30.27355186113
+                    ],
+                    [
+                        77.99932819979,
+                        30.27353116151
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99938943560,
+                    30.27362393109
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99991761244,
+                        30.27348452451
+                    ],
+                    [
+                        77.99994793856,
+                        30.27348382987
+                    ],
+                    [
+                        77.99994901129,
+                        30.27351792775
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99988882167,
+                    30.27318355882
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99965750757,
+                    30.27337516305
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99965829050,
+                    30.27332138933
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99958464087,
+                        30.27357575307
+                    ],
+                    [
+                        77.99955209779,
+                        30.27360461988
+                    ],
+                    [
+                        77.99955882072,
+                        30.27361055195
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99938870486,
+                    30.27358089106
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99946996288,
+                    30.27374724507
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        78.00018287019,
+                        30.27343826589
+                    ],
+                    [
+                        78.00029277312,
+                        30.27343624641
+                    ],
+                    [
+                        78.00029277312,
+                        30.27342665389
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99985286938,
+                    30.27317346141
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99961396788,
+                    30.27370726324
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99962086142,
+                        30.27382822228
+                    ],
+                    [
+                        77.99964533990,
+                        30.27380833402
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99983270102,
+                    30.27355564764
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99962086142,
+                    30.27382822228
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99969254555,
+                        30.27329431471
+                    ],
+                    [
+                        77.99969327629,
+                        30.27326623132
+                    ],
+                    [
+                        77.99965908821,
+                        30.27326660056
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "relations": "[]",
+                "id": "1225013404",
+                "highway": "service",
+                "type": "way"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99920600000,
+                        30.27320460000
+                    ],
+                    [
+                        77.99929460000,
+                        30.27328950000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    78.00006829083,
+                    30.27348572332
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99982627024,
+                    30.27323404610
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "relations": "[]",
+                "id": "1224954798",
+                "highway": "service",
+                "type": "way",
+                "level": "0"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99995340000,
+                        30.27258200000
+                    ],
+                    [
+                        77.99974968515,
+                        30.27279370431
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99989561753,
+                    30.27318892306
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    78.00018287019,
+                    30.27343826589
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99996140527,
+                    30.27335919456
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "relations": "[]",
+                "highway": "service",
+                "id": "1224954805",
+                "type": "way",
+                "level": "0"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        78.00061440000,
+                        30.27265290000
+                    ],
+                    [
+                        78.00069610000,
+                        30.27274080000
+                    ],
+                    [
+                        78.00075080000,
+                        30.27282460000
+                    ],
+                    [
+                        78.00079470000,
+                        30.27288820000
+                    ],
+                    [
+                        78.00083170000,
+                        30.27295630000
+                    ],
+                    [
+                        78.00084970000,
+                        30.27300840000
+                    ],
+                    [
+                        78.00085320000,
+                        30.27308710000
+                    ],
+                    [
+                        78.00082610000,
+                        30.27313210000
+                    ],
+                    [
+                        78.00078620000,
+                        30.27318160000
+                    ],
+                    [
+                        78.00073780000,
+                        30.27322560000
+                    ],
+                    [
+                        78.00067830000,
+                        30.27325320000
+                    ],
+                    [
+                        78.00061270000,
+                        30.27327470000
+                    ],
+                    [
+                        78.00053120000,
+                        30.27328580000
+                    ],
+                    [
+                        78.00046860000,
+                        30.27328800000
+                    ],
+                    [
+                        78.00037540000,
+                        30.27327000000
+                    ],
+                    [
+                        78.00031180000,
+                        30.27324910000
+                    ],
+                    [
+                        78.00021352331,
+                        30.27319546576
+                    ],
+                    [
+                        78.00016360000,
+                        30.27314930000
+                    ],
+                    [
+                        78.00011260000,
+                        30.27309490000
+                    ],
+                    [
+                        78.00003040000,
+                        30.27299900000
+                    ],
+                    [
+                        77.99999270000,
+                        30.27293830000
+                    ],
+                    [
+                        77.99996330000,
+                        30.27288350000
+                    ],
+                    [
+                        77.99994990000,
+                        30.27282360000
+                    ],
+                    [
+                        77.99994590000,
+                        30.27275250000
+                    ],
+                    [
+                        77.99996430000,
+                        30.27269090000
+                    ],
+                    [
+                        78.00000690000,
+                        30.27263770000
+                    ],
+                    [
+                        78.00008999729,
+                        30.27258593714
+                    ],
+                    [
+                        78.00017210000,
+                        30.27254470000
+                    ],
+                    [
+                        78.00024700000,
+                        30.27252370000
+                    ],
+                    [
+                        78.00030210000,
+                        30.27251660000
+                    ],
+                    [
+                        78.00037580000,
+                        30.27253060000
+                    ],
+                    [
+                        78.00043640000,
+                        30.27255340000
+                    ],
+                    [
+                        78.00054340000,
+                        30.27260800000
+                    ],
+                    [
+                        78.00061440000,
+                        30.27265290000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99956576280,
+                    30.27361686274
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99961830276,
+                    30.27336455458
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99959874655,
+                        30.27358786126
+                    ],
+                    [
+                        77.99956576280,
+                        30.27361686274
+                    ],
+                    [
+                        77.99955991668,
+                        30.27361149871
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99967310793,
+                    30.27365510669
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99941881096,
+                    30.27352964716
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99961636728,
+                    30.27356091949
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99961231057,
+                    30.27382070327
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99936064454,
+                        30.27364778611
+                    ],
+                    [
+                        77.99938943560,
+                        30.27362393109
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99991374008,
+                    30.27348455559
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99969327629,
+                    30.27326623132
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "1225008206",
+                "relations": "[{\"role\":\"to\",\"rel\":\"16713150\",\"reltags\":{\"restriction\":\"only_straight_on\",\"type\":\"restriction\"}}]",
+                "highway": "service",
+                "type": "way",
+                "level": "0"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99974968515,
+                        30.27279370431
+                    ],
+                    [
+                        77.99951679399,
+                        30.27304704319
+                    ],
+                    [
+                        77.99934790000,
+                        30.27323110000
+                    ],
+                    [
+                        77.99929460000,
+                        30.27328950000
+                    ],
+                    [
+                        77.99918611218,
+                        30.27345799937
+                    ],
+                    [
+                        77.99909650000,
+                        30.27357820000
+                    ],
+                    [
+                        77.99919125019,
+                        30.27366054444
+                    ],
+                    [
+                        77.99950739585,
+                        30.27393529631
+                    ],
+                    [
+                        77.99957690000,
+                        30.27399570000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99933170733,
+                    30.27357407534
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99985264823,
+                    30.27325847475
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": null,
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99951679399,
+                        30.27304704319
+                    ],
+                    [
+                        77.99962575584,
+                        30.27312272216
+                    ],
+                    [
+                        77.99975787320,
+                        30.27312751843
+                    ],
+                    [
+                        77.99980772567,
+                        30.27320516314
+                    ],
+                    [
+                        77.99982627024,
+                        30.27323404610
+                    ],
+                    [
+                        77.99983478172,
+                        30.27324192858
+                    ],
+                    [
+                        77.99985264823,
+                        30.27325847475
+                    ],
+                    [
+                        77.99991104779,
+                        30.27331422562
+                    ],
+                    [
+                        77.99996140527,
+                        30.27335919456
+                    ],
+                    [
+                        77.99997864116,
+                        30.27337515670
+                    ],
+                    [
+                        77.99998790940,
+                        30.27338374000
+                    ],
+                    [
+                        78.00007092119,
+                        30.27341807112
+                    ],
+                    [
+                        78.00009138184,
+                        30.27337894374
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99988354732,
+                    30.27351892703
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": null,
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99927112940,
+                        30.27359565828
+                    ],
+                    [
+                        77.99919125019,
+                        30.27366054444
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99963306351,
+                    30.27337540940
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99952199140,
+                    30.27378738203
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99969239941,
+                    30.27332189323
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99926192189,
+                        30.27358795922
+                    ],
+                    [
+                        77.99925395707,
+                        30.27358152196
+                    ],
+                    [
+                        77.99929663192,
+                        30.27354378323
+                    ],
+                    [
+                        77.99930598536,
+                        30.27355186113
+                    ],
+                    [
+                        77.99931373118,
+                        30.27355855063
+                    ],
+                    [
+                        77.99933170733,
+                        30.27357407534
+                    ],
+                    [
+                        77.99936575970,
+                        30.27360348392
+                    ],
+                    [
+                        77.99938943560,
+                        30.27362393109
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99949998111,
+                    30.27372134417
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99959243450,
+                        30.27358215324
+                    ],
+                    [
+                        77.99958464087,
+                        30.27357575307
+                    ],
+                    [
+                        77.99956711085,
+                        30.27356135734
+                    ],
+                    [
+                        77.99950913042,
+                        30.27351374354
+                    ],
+                    [
+                        77.99945681656,
+                        30.27356190216
+                    ],
+                    [
+                        77.99938943560,
+                        30.27362393109
+                    ],
+                    [
+                        77.99948058784,
+                        30.27370425476
+                    ],
+                    [
+                        77.99949998111,
+                        30.27372134417
+                    ],
+                    [
+                        77.99954888254,
+                        30.27376466300
+                    ],
+                    [
+                        77.99961396788,
+                        30.27370726324
+                    ],
+                    [
+                        77.99967310793,
+                        30.27365510669
+                    ],
+                    [
+                        77.99961429201,
+                        30.27360191911
+                    ],
+                    [
+                        77.99959874655,
+                        30.27358786126
+                    ],
+                    [
+                        77.99959243450,
+                        30.27358215324
+                    ],
+                    [
+                        77.99961636728,
+                        30.27356091949
+                    ],
+                    [
+                        77.99969002702,
+                        30.27349556675
+                    ],
+                    [
+                        77.99971929055,
+                        30.27351929710
+                    ],
+                    [
+                        77.99972045973,
+                        30.27355867685
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99927112940,
+                    30.27359565828
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99965293958,
+                    30.27374017692
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99980772567,
+                        30.27320516314
+                    ],
+                    [
+                        77.99985286938,
+                        30.27317346141
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99962838679,
+                    30.27383483955
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "relations": "[]",
+                "id": "1225012390",
+                "highway": "service",
+                "type": "way"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99938410000,
+                        30.27325370000
+                    ],
+                    [
+                        77.99929650000,
+                        30.27339790000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99956711085,
+                        30.27356135734
+                    ],
+                    [
+                        77.99954683648,
+                        30.27358038620
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    78.00000486280,
+                    30.27332694192
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    78.00006946001,
+                    30.27346729561
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99991761244,
+                    30.27348452451
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99996140527,
+                        30.27335919456
+                    ],
+                    [
+                        78.00000486280,
+                        30.27332694192
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99989905214,
+                    30.27319188905
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    78.00029277312,
+                    30.27343624641
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99998790940,
+                    30.27338374000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99952199140,
+                        30.27378738203
+                    ],
+                    [
+                        77.99954888254,
+                        30.27376466300
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99961757188,
+                    30.27332315540
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99945681656,
+                        30.27356190216
+                    ],
+                    [
+                        77.99941881096,
+                        30.27352964716
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99958308077,
+                    30.27353318124
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99989401006,
+                    30.27318778698
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99974442792,
+                    30.27306238983
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99972045973,
+                    30.27355867685
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    78.00004888989,
+                    30.27332814086
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "relations": "[]",
+                "id": "1225008204",
+                "highway": "service",
+                "type": "way"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99974968515,
+                        30.27279370431
+                    ],
+                    [
+                        77.99951679399,
+                        30.27304704319
+                    ],
+                    [
+                        77.99934790000,
+                        30.27323110000
+                    ],
+                    [
+                        77.99929460000,
+                        30.27328950000
+                    ],
+                    [
+                        77.99918611218,
+                        30.27345799937
+                    ],
+                    [
+                        77.99909650000,
+                        30.27357820000
+                    ],
+                    [
+                        77.99919125019,
+                        30.27366054444
+                    ],
+                    [
+                        77.99950739585,
+                        30.27393529631
+                    ],
+                    [
+                        77.99957690000,
+                        30.27399570000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "relations": "[]",
+                "id": "11360608430",
+                "barrier": "gate",
+                "type": "node",
+                "access": "customers"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    78.00094294783,
+                    30.27230541150
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99961727958,
+                    30.27346931508
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99965908821,
+                    30.27326660056
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99955209779,
+                    30.27360461988
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99926382180,
+                        30.27358953694
+                    ],
+                    [
+                        77.99927112940,
+                        30.27359565828
+                    ],
+                    [
+                        77.99931373118,
+                        30.27355855063
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99957270481,
+                    30.27385522337
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99997875974,
+                    30.27347892218
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "relations": "[]",
+                "id": "1225013237",
+                "highway": "service",
+                "type": "way"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99999270000,
+                        30.27293830000
+                    ],
+                    [
+                        77.99988580000,
+                        30.27290410000
+                    ],
+                    [
+                        77.99974968515,
+                        30.27279370431
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99981516332,
+                    30.27328680477
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99982569771,
+                    30.27351981007
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99961396788,
+                        30.27370726324
+                    ],
+                    [
+                        77.99965293958,
+                        30.27374017692
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99962707168,
+                    30.27337509367
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99965703171,
+                    30.27346881021
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99985264823,
+                        30.27325847475
+                    ],
+                    [
+                        77.99981516332,
+                        30.27328680477
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99964533990,
+                    30.27380833402
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99988354732,
+                        30.27351892703
+                    ],
+                    [
+                        77.99988297548,
+                        30.27348521871
+                    ],
+                    [
+                        77.99991374008,
+                        30.27348455559
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99955991668,
+                    30.27361149871
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99982569771,
+                        30.27351981007
+                    ],
+                    [
+                        77.99982685512,
+                        30.27354378323
+                    ],
+                    [
+                        77.99983270102,
+                        30.27355564764
+                    ],
+                    [
+                        77.99984410053,
+                        30.27356019146
+                    ],
+                    [
+                        77.99987391463,
+                        30.27356195850
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99958464087,
+                    30.27357575307
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99958965792,
+                    30.27386910721
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99998790940,
+                        30.27338374000
+                    ],
+                    [
+                        77.99997875974,
+                        30.27347892218
+                    ],
+                    [
+                        77.99997504842,
+                        30.27351753031
+                    ],
+                    [
+                        77.99994901129,
+                        30.27351792775
+                    ],
+                    [
+                        77.99988354732,
+                        30.27351892703
+                    ],
+                    [
+                        77.99982569771,
+                        30.27351981007
+                    ],
+                    [
+                        77.99971929055,
+                        30.27351929710
+                    ],
+                    [
+                        77.99969002702,
+                        30.27349556675
+                    ],
+                    [
+                        77.99965703171,
+                        30.27346881021
+                    ],
+                    [
+                        77.99965750757,
+                        30.27337516305
+                    ],
+                    [
+                        77.99965829050,
+                        30.27332138933
+                    ],
+                    [
+                        77.99965908821,
+                        30.27326660056
+                    ],
+                    [
+                        77.99965941522,
+                        30.27324414092
+                    ],
+                    [
+                        77.99970006559,
+                        30.27324168155
+                    ],
+                    [
+                        77.99982627024,
+                        30.27323404610
+                    ],
+                    [
+                        77.99988882167,
+                        30.27318355882
+                    ],
+                    [
+                        77.99989401006,
+                        30.27318778698
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99995897248,
+                    30.27327494033
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99994793856,
+                    30.27348382987
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": null,
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99958965792,
+                        30.27386910721
+                    ],
+                    [
+                        77.99950739585,
+                        30.27393529631
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99936064454,
+                    30.27364778611
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    78.00029277312,
+                    30.27342665389
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99962575584,
+                    30.27312272216
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "indoor": "room",
+                "level": "0"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        78.00083470376,
+                        30.27232881644
+                    ],
+                    [
+                        78.00104358657,
+                        30.27248185787
+                    ],
+                    [
+                        78.00109453889,
+                        30.27242519810
+                    ],
+                    [
+                        78.00088925089,
+                        30.27227330644
+                    ],
+                    [
+                        78.00083470376,
+                        30.27232881644
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99959448057,
+                    30.27376062406
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99974442792,
+                        30.27306238983
+                    ],
+                    [
+                        77.99976898071,
+                        30.27305405946
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99959418827,
+                    30.27362001836
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "relations": "[]",
+                "name": "Gate 2",
+                "type": "node",
+                "barrier": "lift_gate",
+                "id": "10253059502",
+                "access": "customers"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99990650000,
+                    30.27254650000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99997864116,
+                    30.27337515670
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": null,
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99929663192,
+                        30.27354378323
+                    ],
+                    [
+                        77.99918611218,
+                        30.27345799937
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99976898071,
+                    30.27305405946
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99950913042,
+                    30.27351374354
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "11360608431",
+                "relations": "[]",
+                "barrier": "gate",
+                "type": "node",
+                "access": "customers"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    78.00105799654,
+                    30.27238851037
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99959448057,
+                        30.27376062406
+                    ],
+                    [
+                        77.99956877024,
+                        30.27378208442
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99982334729,
+                    30.27338323513
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99932819979,
+                    30.27353116151
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99955882072,
+                    30.27361055195
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99997875974,
+                        30.27347892218
+                    ],
+                    [
+                        78.00006829083,
+                        30.27348572332
+                    ],
+                    [
+                        78.00006682935,
+                        30.27350818999
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99958045041,
+                    30.27386166061
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99997504842,
+                    30.27351753031
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99997864116,
+                        30.27337515670
+                    ],
+                    [
+                        78.00004373804,
+                        30.27332391270
+                    ],
+                    [
+                        78.00004888989,
+                        30.27332814086
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99929663192,
+                    30.27354378323
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99971929055,
+                    30.27351929710
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99969795301,
+                        30.27319062700
+                    ],
+                    [
+                        77.99972192120,
+                        30.27319012213
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99962232189,
+                    30.27337345285
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99965941522,
+                    30.27324414092
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99965750757,
+                        30.27337516305
+                    ],
+                    [
+                        77.99963306351,
+                        30.27337540940
+                    ],
+                    [
+                        77.99962707168,
+                        30.27337509367
+                    ],
+                    [
+                        77.99962232189,
+                        30.27337345285
+                    ],
+                    [
+                        77.99961939894,
+                        30.27336966632
+                    ],
+                    [
+                        77.99961830276,
+                        30.27336455458
+                    ],
+                    [
+                        77.99961757188,
+                        30.27332315540
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    78.00007092119,
+                    30.27341807112
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99965703171,
+                        30.27346881021
+                    ],
+                    [
+                        77.99961727958,
+                        30.27346931508
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    78.00004947433,
+                    30.27332863008
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        78.00006829083,
+                        30.27348572332
+                    ],
+                    [
+                        78.00006946001,
+                        30.27346729561
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99965829050,
+                        30.27332138933
+                    ],
+                    [
+                        77.99969239941,
+                        30.27332189323
+                    ],
+                    [
+                        77.99969269170,
+                        30.27329715460
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99958242340,
+                    30.27386311210
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "relations": "[]",
+                "name": "Gate 1",
+                "type": "node",
+                "locked": "no",
+                "id": "10773688977",
+                "barrier": "lift_gate",
+                "access": "customers"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99920600000,
+                    30.27320460000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99994901129,
+                    30.27351792775
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99954888254,
+                        30.27376466300
+                    ],
+                    [
+                        77.99956877024,
+                        30.27378208442
+                    ],
+                    [
+                        77.99961231057,
+                        30.27382070327
+                    ],
+                    [
+                        77.99957270481,
+                        30.27385522337
+                    ],
+                    [
+                        77.99958045041,
+                        30.27386166061
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99984410053,
+                    30.27356019146
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99975787320,
+                    30.27312751843
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99958308077,
+                        30.27353318124
+                    ],
+                    [
+                        77.99961636728,
+                        30.27356091949
+                    ],
+                    [
+                        77.99964504732,
+                        30.27358619244
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "typeTY": "INNERNODE"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99926382180,
+                    30.27358953694
+                ]
+            }
+        }
+    ]
+}

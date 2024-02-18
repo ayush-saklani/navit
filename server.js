@@ -1,5 +1,5 @@
 import jsgraphs from 'js-graph-algorithms';
-import {g} from './map.mjs'
+import {g} from './newmap.js'
 import cors from 'cors'; // Import the cors middleware
 import express from 'express'
 const app = express()
@@ -36,7 +36,7 @@ let dijfunc = (src,des) =>{
     }
 }
 export {dijfunc};
-let res = dijfunc(0,3);
+let res = dijfunc(1,3);
 console.log(res);
 
 // Middleware to parse JSON bodies

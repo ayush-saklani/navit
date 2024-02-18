@@ -6,11 +6,11 @@ const map = L.map(('map'),{
     minZoom:17
 });
 const tileurl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-const tile = L.tileLayer(tileurl).addTo(map);
+const tile = L.tileLayer(tileurl,{
+    attribution: '&copy; <a href="https://github.com/ayush-saklani">Tempest</a>'
+}).addTo(map);
+
 //base map from open streetmap added 
-
-
-
 
 
 let points =  [[],[],[],[],[],[],[]]
@@ -32,10 +32,16 @@ document.getElementById('go').addEventListener('click', () => {
         console.log(points); // Coordinates received from the server
             map.eachLayer(function(layer){if (layer.toGeoJSON){map.removeLayer(layer);}});
             fetch('./mapgeoJSON/floorG.geojson').then(response =>  response.json()).then(data => {
-            L.geoJSON(data,{style:{color: 'cadetblue',weight: 1,opacity: 0.4}}).addTo(map);
+            L.geoJSON(data,{style:{color: 'cadetblue',weight: 1,opacity: 1}}).addTo(map);
             // map.fitBounds(L.geoJSON(data).getBounds());
             }).catch(error => console.error('out of service.. ~_~  @_@', error));
-            const polytile = L.polyline(points[1]).addTo(map);
+            L.polyline.antPath(points[1],{
+                "delay": 600,
+                "dashArray": [1,46],
+                "weight": 5,
+                "color": '#327174',
+                "pulseColor": "#000000",
+              }).addTo(map);
     })
     .catch(error => console.error('Error hai bhaisaab:', error));
 });
@@ -59,8 +65,10 @@ document.getElementById('-1').addEventListener('click', () => {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    const polytile = L.polyline(points[0]).addTo(map);
+    const polytile = L.polyline.antPath(points[0]).addTo(map);
 });
+
+
 document.getElementById('G').addEventListener('click', () => {
     map.eachLayer(function(layer) {
         if (!!layer.toGeoJSON){map.removeLayer(layer);}
@@ -70,8 +78,17 @@ document.getElementById('G').addEventListener('click', () => {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    const polytile = L.polyline(points[1]).addTo(map);
+    // const polytile = L.polyline(points[1]).addTo(map);
+    L.polyline.antPath(points[1],{
+        "delay": 600,
+        "dashArray": [1,46],
+        "weight": 5,
+        "color": '#327174',
+        "pulseColor": "#000000",
+      }).addTo(map);
 });
+
+
 document.getElementById('1').addEventListener('click', () => {
     map.eachLayer(function(layer) {
         if (!!layer.toGeoJSON){map.removeLayer(layer);}
@@ -81,7 +98,13 @@ document.getElementById('1').addEventListener('click', () => {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    const polytile = L.polyline(points[2]).addTo(map);
+    L.polyline.antPath(points[2],{
+        "delay": 600,
+        "dashArray": [1,46],
+        "weight": 5,
+        "color": '#327174',
+        "pulseColor": "#000000",
+      }).addTo(map);
 });
 document.getElementById('2').addEventListener('click', () => {
     map.eachLayer(function(layer) {
@@ -92,7 +115,13 @@ document.getElementById('2').addEventListener('click', () => {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    const polytile = L.polyline(points[3]).addTo(map);
+    L.polyline.antPath(points[3],{
+        "delay": 600,
+        "dashArray": [1,46],
+        "weight": 5,
+        "color": '#327174',
+        "pulseColor": "#000000",
+      }).addTo(map);
 });
 document.getElementById('3').addEventListener('click', () => {
     map.eachLayer(function(layer) {
@@ -103,7 +132,13 @@ document.getElementById('3').addEventListener('click', () => {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    const polytile = L.polyline(points[4]).addTo(map);
+    L.polyline.antPath(points[4],{
+        "delay": 600,
+        "dashArray": [1,46],
+        "weight": 5,
+        "color": '#327174',
+        "pulseColor": "#000000",
+      }).addTo(map);
 });
 document.getElementById('4').addEventListener('click', () => {
     map.eachLayer(function(layer) {
@@ -114,7 +149,13 @@ document.getElementById('4').addEventListener('click', () => {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    const polytile = L.polyline(points[5]).addTo(map);
+    L.polyline.antPath(points[5],{
+        "delay": 600,
+        "dashArray": [1,46],
+        "weight": 5,
+        "color": '#327174',
+        "pulseColor": "#000000",
+      }).addTo(map);
 });
 document.getElementById('5').addEventListener('click', () => {
     map.eachLayer(function(layer) {
@@ -125,7 +166,13 @@ document.getElementById('5').addEventListener('click', () => {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    const polytile = L.polyline(points[6]).addTo(map);
+    L.polyline.antPath(points[6],{
+        "delay": 600,
+        "dashArray": [1,46],
+        "weight": 5,
+        "color": '#327174',
+        "pulseColor": "#000000",
+      }).addTo(map);
 });
 document.getElementById('R').addEventListener('click', () => {
     map.eachLayer(function(layer) {

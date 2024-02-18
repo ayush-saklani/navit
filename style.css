@@ -52,11 +52,11 @@
     background-color: rgb(50, 113, 116);
     color: rgb(255, 255, 255);
     padding: 2px;
-    text-align: center;
+    /* text-align: center; */
     font-family:"anta";
     font-size:medium;
     height: 30px;
-    width:  150px;
+    width:  200px;
     margin: 4px ;
     border-radius:9px;
 }
@@ -74,16 +74,16 @@
     justify-content:center;
     position: absolute;
     display: flex;
-    right: 50vh;
-    left: 50vh;
-    bottom: 4vh;
+    right: 25%;
+    left:  25%;
+    bottom: 5%;
     flex-direction:row;
     z-index: 1;
 }
 #go{
     height: 30px;
     width:  150px;
-    border-radius:15px;
+    border-radius:20px;
     padding: 5px;
     white-space: nowrap;
 }

@@ -190,6 +190,7 @@ document.getElementById('R').addEventListener('click', () => {
         }).addTo(map);
         map.fitBounds(L.geoJSON(data).getBounds());
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
+    points =  [[],[],[],[],[],[],[]]
 });
 
 

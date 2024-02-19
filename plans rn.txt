@@ -13,3 +13,8 @@ this is done but floor plan is a bit changed 0 means basement floor 1 means grou
 g.node(0).label='30.2731289,77.9997726';  this is the coordiante detail good for one floor 
 g.node(0).label='30.2731289,77.9997726, 1 '; this will be new type by this we will push the first two 
 values into array and third into the floor array   
+
+
+
+
+shove all the fetch request in the server.js side for privacy

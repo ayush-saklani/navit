@@ -30,24 +30,21 @@ document.getElementById('go').addEventListener('click', () => {
     .then(data => {
         points = data;
         console.log(points); // Coordinates received from the server
-            map.eachLayer(function(layer){if (layer.toGeoJSON){map.removeLayer(layer);}});
-            fetch('./mapgeoJSON/floorG.geojson').then(response =>  response.json()).then(data => {
-            L.geoJSON(data,{style:{color: 'cadetblue',weight: 1,opacity: 1}}).addTo(map);
+        map.eachLayer(function(layer){if (layer.toGeoJSON){map.removeLayer(layer);}});
+        fetch('./mapgeoJSON/floorG.geojson').then(response =>  response.json()).then(data => {
+            L.geoJSON(data,{style:{color: 'cadetblue',weight: 1,opacity: 0.4}}).addTo(map);
             // map.fitBounds(L.geoJSON(data).getBounds());
-            }).catch(error => console.error('out of service.. ~_~  @_@', error));
-            L.polyline.antPath(points[1],{
-                "delay": 600,
-                "dashArray": [1,46],
-                "weight": 5,
-                "color": '#327174',
-                "pulseColor": "#000000",
-              }).addTo(map);
+        }).catch(error => console.error('out of service.. ~_~  @_@', error));
+        L.polyline.antPath(points[0],{
+            "delay": 600,
+            "dashArray": [1,46],
+            "weight": 5,
+            "color": '#327174',
+            "pulseColor": "#000000",
+          }).addTo(map);
     })
     .catch(error => console.error('Error hai bhaisaab:', error));
 });
-
-
-
 
 fetch('./mapgeoJSON/floorG.geojson').then(response =>  response.json()).then(data => {
     L.geoJSON(data, {
@@ -55,6 +52,9 @@ fetch('./mapgeoJSON/floorG.geojson').then(response =>  response.json()).then(dat
     }).addTo(map);
     map.fitBounds(L.geoJSON(data).getBounds());
 }).catch(error => console.error('out of service.. ~_~  @_@', error));  
+
+
+
 
 document.getElementById('-1').addEventListener('click', () => {
     map.eachLayer(function(layer) {
@@ -65,7 +65,13 @@ document.getElementById('-1').addEventListener('click', () => {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    const polytile = L.polyline.antPath(points[0]).addTo(map);
+    L.polyline.antPath(points[6],{
+        "delay": 600,
+        "dashArray": [1,46],
+        "weight": 5,
+        "color": '#327174',
+        "pulseColor": "#000000",
+      }).addTo(map);
 });
 
 
@@ -79,7 +85,7 @@ document.getElementById('G').addEventListener('click', () => {
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
     // const polytile = L.polyline(points[1]).addTo(map);
-    L.polyline.antPath(points[1],{
+    L.polyline.antPath(points[0],{
         "delay": 600,
         "dashArray": [1,46],
         "weight": 5,
@@ -98,7 +104,7 @@ document.getElementById('1').addEventListener('click', () => {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    L.polyline.antPath(points[2],{
+    L.polyline.antPath(points[1],{
         "delay": 600,
         "dashArray": [1,46],
         "weight": 5,
@@ -115,7 +121,7 @@ document.getElementById('2').addEventListener('click', () => {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    L.polyline.antPath(points[3],{
+    L.polyline.antPath(points[2],{
         "delay": 600,
         "dashArray": [1,46],
         "weight": 5,
@@ -132,7 +138,7 @@ document.getElementById('3').addEventListener('click', () => {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    L.polyline.antPath(points[4],{
+    L.polyline.antPath(points[3],{
         "delay": 600,
         "dashArray": [1,46],
         "weight": 5,
@@ -149,7 +155,7 @@ document.getElementById('4').addEventListener('click', () => {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    L.polyline.antPath(points[5],{
+    L.polyline.antPath(points[4],{
         "delay": 600,
         "dashArray": [1,46],
         "weight": 5,
@@ -166,7 +172,7 @@ document.getElementById('5').addEventListener('click', () => {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    L.polyline.antPath(points[6],{
+    L.polyline.antPath(points[5],{
         "delay": 600,
         "dashArray": [1,46],
         "weight": 5,

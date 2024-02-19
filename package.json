@@ -1,8 +1,8 @@
 {
-  "name": "class-finder",
+  "name": "navit",
   "version": "1.0.0",
-  "description": "class finder",
-  "main": "index.js",
+  "description": "navit",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

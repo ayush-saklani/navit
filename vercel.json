@@ -1,15 +1,6 @@
 {
-    "version": 2,
-    "builds": [
-    {
-    "src": "server.js",
-    "use": "@now/node"
-    }
-    ],
-    "routes":[
-    {
-    "src": "/(.*)",
-    "dest": "server.js"
-    }
+    "routes": [
+      { "handle": "filesystem" },
+      { "src": "/getCoordinates", "dest": "/server.js" }
     ]
-}
+  }

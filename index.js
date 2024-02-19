@@ -19,7 +19,7 @@ document.getElementById('go').addEventListener('click', () => {
     var destination = document.getElementById("destination").value;
     console.log(source);
     console.log(destination);
-    fetch('http://localhost:3000/getCoordinates', {
+    fetch('http://127.0.0.1:3000/getCoordinates', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

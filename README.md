@@ -44,4 +44,18 @@ npm install cors
 * Add timetables to database to automate the direction finding and to find idle class rooms and labs
 * Add authencation for students to verify the actual user and possibally Lock the mapping part within campus for safety concern
 
+
+#
+* we can do one thing 
+* we can make a array of floors for show the polylines floor wise
+* 7 floors so the length of array will be 7
+* and each will contain that array containing the coordinates of that floor and we will make 
+* the polyline according to the floor 
+#
+* this is done but floor plan is a bit changed 0 means basement floor 1 means ground floor 
+* g.node(0).label='30.2731289,77.9997726';  this is the coordiante detail good for one floor 
+* g.node(0).label='30.2731289,77.9997726, 1 '; this will be new type by this we will push the first two 
+* values into array and third into the floor array   
+* shove all the fetch request in the server.js side for privacy
+
 # **Keep Coding, Keep Smiling!, Have Fun!** 💻🚀

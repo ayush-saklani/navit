@@ -52,28 +52,34 @@
     background-color: rgb(50, 113, 116);
     color: rgb(255, 255, 255);
     padding: 2px;
-    /* text-align: center; */
     font-family:"anta";
-    font-size:medium;
-    height: 30px;
-    width:  200px;
+    font-size:larger;
+    height: max-content;
+    width:  200px ;
     margin: 4px ;
     border-radius:9px;
+    margin-top:   auto;
+    margin-bottom:auto ;
 }
 .optionbox:hover{
     background-color: rgb(33, 77, 79);
 }
 .labelmaker{
+    align-items: center;
     padding: 2px;
     text-align: center;
     font-family:"anta";
-    font-size:medium;
+    font-size:larger;
     margin: 4px ;
+    margin-top:   auto;
+    margin-bottom:auto ;
 }
 #drop_option{
     justify-content:center;
     position: absolute;
     display: flex;
+    height: auto;
+    width: auto;
     right: 25%;
     left:  25%;
     bottom: 5%;
@@ -81,7 +87,8 @@
     z-index: 1;
 }
 #go{
-    height: 30px;
+    height: max-content;
+    align-items: center;
     width:  150px;
     border-radius:20px;
     padding: 5px;

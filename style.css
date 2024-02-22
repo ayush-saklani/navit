@@ -4,31 +4,36 @@
     box-sizing: border-box;
     size: 100%;
 }
+#logo{
+    justify-content: center;
+}
 #map{
     height: 100vh;
-    width:auto;
     position: relative;
     z-index: 0;
 }
 .header{
     display:flex;
     justify-content:center;
-    padding: 8px;
+    /* padding: 8px; */
     position: absolute;;
     z-index: 1;
+    margin: 5px;
 }
 #heading{
     color: rgb(50, 113, 116);
     align-self: center;
     padding: 8px;
+    margin: 0px;
     font-family:anta;
     font-size: xx-large;
     text-align:center;    
 }
 #circular_button_div{
     position: absolute;
-    top: 120px;
-    left: 15px;
+    margin: 5px;
+    margin-top: 110px;
+    /* left: 15px; */
     display: flex;
     flex-direction: column;
     z-index: 1;
@@ -78,12 +83,13 @@
     justify-content:center;
     position: absolute;
     display: flex;
-    height: auto;
-    width: auto;
-    right: 25%;
-    left:  25%;
+    /* height: auto;
+    width: auto; */
+    /* right: 25%;
+    left:  25%; */
     bottom: 5%;
     flex-direction:row;
+    white-space: wrap;
     z-index: 1;
 }
 #go{

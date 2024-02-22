@@ -30,85 +30,194 @@
         <button class="circular_button" id="5">5</button>
         <button class="circular_button" id="R"> <img src="media/reset2white.png" alt="R" height="35px";/></button>
     </div>
-    <div id="drop_option">
-        <div>
-            <label class="labelmaker">Start:</label>
-            <select name="Start" id="Start" class="optionbox">
-                <optgroup label="Ground floor">
-                    <option value="1">Ubuntu lab 1</option>
-                    <option value="3">Ubuntu lab 2 </option>
-                    <option value="33">Bosch Lab</option>
-                    <option value="6">Mac lab</option>
-                    <option value="15">Reception</option>
-                    <option value="25">Office</option>
-                    <option value="29">medical Room</option>
-                    <option value="31">LT102</option>
-                    <option value="36">CR101</option>
-                    <option value="41">LT101</option>
-                    <option value="52">Teacher office</option>
-                    <option value="54">Open Auditorium</option>
-                    <option value="57">Staff room 01</option>
-                    <option value="56">Staff room 02</option>
-                    <option value="69">Lab1</option>
-                    <option value="101">Lab8</option>
-                    <!-- <option value="83">Gents Washroom</option> -->
-                    <option value="73">Teacher office</option>
-                    <option value="75">CR102</option>
-                    <option value="71">CR103</option>
-                    <option value="85">CR104</option>
-                    <option value="87">CR105</option>
-                    <option value="89">CR106</option>
-                    <option value="91">HOD office</option>
-                    <option value="155">workshop</option>
-                    <option value="148">Gate no 1</option>
-                    <option value="127">Gate no 2</option>
-                    <option value="165">Gate no 3</option>
+    <div class="drop_option">
+        <div class="arrange">
+            <div class="arrange">
+                <label class="labelmaker">Start:</label>
+                <select name="Start" id="Start" class="optionbox">
+                    <optgroup label="Ground floor">
+                            <option value="1">Ubuntu lab 1</option>
+                            <option value="3">Ubuntu lab 2 </option>
+                            <option value="33">Bosch Lab</option>
+                            <option value="6">Mac lab</option>
+                            <option value="15">Reception</option>
+                            <option value="25">Office</option>
+                            <option value="29">medical Room</option>
+                            <option value="31">LT102</option>
+                            <option value="36">CR101</option>
+                            <option value="41">LT101</option>
+                            <option value="52">Teacher office</option>
+                            <option value="54">Open Auditorium</option>
+                            <option value="57">Staff room 01</option>
+                            <option value="56">Staff room 02</option>
+                            <option value="69">Lab1</option>
+                            <option value="101">Lab8</option>
+                            <!-- <option value="83">Gents Washroom</option> -->
+                            <option value="73">Teacher office</option>
+                            <option value="75">CR102</option>
+                            <option value="71">CR103</option>
+                            <option value="85">CR104</option>
+                            <option value="87">CR105</option>
+                            <option value="89">CR106</option>
+                            <option value="91">HOD office</option>
+                            <option value="155">workshop</option>
+                            <option value="148">Gate no 1</option>
+                            <option value="127">Gate no 2</option>
+                            <option value="165">Gate no 3</option>
                     <!-- <option value="99">Ladies Washroom</option> -->
-                </optgroup>
-                <optgroup label="1st floor">
-                    <option value="1119">Library</option>
-                    <option value="1001">Round Room R</option>
-                    <option value="1003">Round Room L</option>
-                    <option value="1006">CR208</option>
-                    <option value="1122">CR209</option>
-                    <option value="1015">CR210</option>
-                    <option value="1017">CR211</option>
-                    <option value="1025">CR212</option>
-                    <!-- <option value="1028">Ladies Washroom</option> -->
-                    <option value="1029">medical Room</option>
-                    <option value="1031">LT202</option>
-                    <option value="1033">CR201</option>
-                    <option value="1036">CR202</option>
-                    <option value="1041">LT201</option>
-                    <!-- <option value="1051">Gents Washroom</option> -->
-                    <option value="1052">Teacher office</option>
-                    <option value="1057">Staff room 01</option>
-                    <option value="1056">Staff room 02</option>
-                    <option value="1069">Lab2</option>
-                    <option value="1101">Lab7</option>
-                    <!-- <option value="1083">Gents Washroom</option> -->
-                    <option value="1073">Teacher office</option>
-                    <option value="1075">CR203</option>
-                    <option value="1071">CR204</option>
-                    <option value="1085">CR205</option>
-                    <option value="1087">CR206</option>
-                    <option value="1089">CR207</option>
-                    <option value="1091">HOD office</option>
-                    <option value="1127">Gate no 3 ke upar</option>
-                    <option value="171">GEHU bus stop</option>
-                    <!-- <option value="1099">Ladies Washroom</option>    -->
-                </optgroup>
-            </select>
-        </div>
-        <div>
-            <label class="labelmaker">Destination:</label>
-            <select name="destination" id="destination" class="optionbox">
-                <optgroup label="amenities">
+                    </optgroup>
+                    <optgroup label="1st floor">
+                            <option value="1119">Library</option>
+                            <option value="1001">Round Room R</option>
+                            <option value="1003">Round Room L</option>
+                            <option value="1006">CR208</option>
+                            <option value="1122">CR209</option>
+                            <option value="1015">CR210</option>
+                            <option value="1017">CR211</option>
+                            <option value="1025">CR212</option>
+                            <!-- <option value="1028">Ladies Washroom</option> -->
+                            <option value="1029">medical Room</option>
+                            <option value="1031">LT202</option>
+                            <option value="1033">CR201</option>
+                            <option value="1036">CR202</option>
+                            <option value="1041">LT201</option>
+                            <!-- <option value="1051">Gents Washroom</option> -->
+                            <option value="1052">Teacher office</option>
+                            <option value="1057">Staff room 01</option>
+                            <option value="1056">Staff room 02</option>
+                            <option value="1069">Lab2</option>
+                            <option value="1101">Lab7</option>
+                            <!-- <option value="1083">Gents Washroom</option> -->
+                            <option value="1073">Teacher office</option>
+                            <option value="1075">CR203</option>
+                            <option value="1071">CR204</option>
+                            <option value="1085">CR205</option>
+                            <option value="1087">CR206</option>
+                            <option value="1089">CR207</option>
+                            <option value="1091">HOD office</option>
+                            <option value="1127">Gate no 3 ke upar</option>
+                            <option value="171">GEHU bus stop</option>
+                            <!-- <option value="1099">Ladies Washroom</option>    -->
+                    </optgroup>
+                    <optgroup label="2nd floor">
+                            <option value="2119">Library</option>
+                            <option value="2001">Round Room 2R</option>
+                            <option value="2003">Round Room 2L</option>
+                            <option value="2006">CR308</option>
+                            <option value="2122">CR309</option>
+                            <option value="2015">CR310</option>
+                            <option value="2017">CR311</option>
+                            <option value="2025">CR312</option>
+                            <option value="2029">medical Room</option>
+                            <option value="2031">LT302</option>
+                            <option value="2033">CR301</option>
+                            <option value="2036">CR302</option>
+                            <option value="2041">LT301</option>
+                            <option value="2052">Teacher office</option>
+                            <option value="2057">Staff room 03</option>
+                            <option value="2056">Staff room 04</option>
+                            <option value="2069">Lab3</option>
+                            <option value="2101">Lab6</option>
+                            <option value="2073">Teacher office</option>
+                            <option value="2075">CR303</option>
+                            <option value="2071">CR304</option>
+                            <option value="2085">CR305</option>
+                            <option value="2087">CR306</option>
+                            <option value="2089">CR307</option>
+                            <option value="2091">2nd HOD office</option>
+                    </optgroup>
+                    <optgroup label="3rd floor">
+                            <option value="3119">Library</option>
+                            <option value="3001">Round Room 2R</option>
+                            <option value="3003">Round Room 2L</option>
+                            <option value="3006">CR408</option>
+                            <option value="3122">CR409</option>
+                            <option value="3015">CR410</option>
+                            <option value="3017">CR411</option>
+                            <option value="3025">CR412</option>
+                            <option value="3029">medical Room</option>
+                            <option value="3031">LT402</option>
+                            <option value="3033">CR401</option>
+                            <option value="3036">CR402</option>
+                            <option value="3041">LT401</option>
+                            <option value="3052">Teacher office</option>
+                            <option value="3057">Staff room 03</option>
+                            <option value="3056">Staff room 04</option>
+                            <option value="3069">Lab4</option>
+                            <option value="3101">Lab5</option>
+                            <option value="3073">Teacher office</option>
+                            <option value="3075">CR403</option>
+                            <option value="3071">CR404</option>
+                            <option value="3085">CR405</option>
+                            <option value="3087">CR406</option>
+                            <option value="3089">CR407</option>
+                            <option value="3091">3rd HOD office</option>
+                    </optgroup>
+                    <optgroup label="4th floor">
+                            <option value="4119">Library</option>
+                            <option value="4001">Round Room 2R</option>
+                            <option value="4003">Round Room 2L</option>
+                            <option value="4029">medical Room</option>
+                            <option value="4052">Teacher office</option>
+                            <option value="4006">CR508</option>
+                            <option value="4122">CR509</option>
+                            <option value="4015">CR510</option>
+                            <option value="4017">CR511</option>
+                            <option value="4025">CR512</option>
+                            <option value="4031">LT502</option>
+                            <option value="4033">CR501</option>
+                            <option value="4036">CR502</option>
+                            <option value="4041">LT501</option>
+                            <option value="4075">CR503</option>
+                            <option value="4071">CR504</option>
+                            <option value="4085">CR505</option>
+                            <option value="4087">CR506</option>
+                            <option value="4089">CR507</option>
+                            <option value="4069">Lab4</option>
+                            <option value="4101">Lab5</option>
+                            <option value="4057">Staff room 05</option>
+                            <option value="4056">Staff room 06</option>
+                            <option value="4073">Teacher office</option>
+                            <option value="4091">3rd HOD office</option>
+                    </optgroup>
+                    <optgroup label="5th floor">
+                            <option value="5119">Library</option>
+                            <option value="5001">Round Room 2R</option>
+                            <option value="5003">Round Room 2L</option>
+                            <option value="5029">medical Room</option>
+                            <option value="5052">Teacher office</option>
+                            <option value="5006">CR608</option>
+                            <option value="5122">CR609</option>
+                            <option value="5015">CR610</option>
+                            <option value="5017">CR611</option>
+                            <option value="5025">CR612</option>
+                            <option value="5031">LT602</option>
+                            <option value="5033">CR601</option>
+                            <option value="5036">CR602</option>
+                            <option value="5041">LT601</option>
+                            <option value="5075">CR603</option>
+                            <option value="5071">CR604</option>
+                            <option value="5085">CR605</option>
+                            <option value="5087">CR606</option>
+                            <option value="5089">CR607</option>
+                            <option value="5069">Lab44</option>
+                            <option value="5101">Lab55</option>
+                            <option value="5057">Staff room 05</option>
+                            <option value="5056">Staff room 06</option>
+                            <option value="5073">Teacher office</option>
+                            <option value="5091">3rd HOD office</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="arrange">
+                <label class="labelmaker">Destination:</label>
+                <select name="destination" id="destination" class="optionbox">
+                    <optgroup label="amenities">
                     <option value="999">Gents Washroom</option>
                     <option value="998">Ladies Washroom</option>
                     <option value="171">GEHU bus stop</option>
-                </optgroup>
-                <optgroup label="Ground floor">
+                    </optgroup>
+                    <optgroup label="Ground floor">
                     <option value="33">Bosch Lab</option>
                     <option value="1">Ubuntu lab 1</option>
                     <option value="3">Ubuntu lab 2 </option>
@@ -139,8 +248,8 @@
                     <option value="165">Gate no 3</option>
                     <option value="171">GEHU bus stop</option>
                     <!-- <option value="99">Ladies Washroom</option> -->
-                </optgroup>
-                <optgroup label="1st floor">
+                    </optgroup>
+                    <optgroup label="1st floor">
                     <option value="1119">Library</option>
                     <option value="1001">Round Room R</option>
                     <option value="1003">Round Room L</option>
@@ -171,16 +280,126 @@
                     <option value="1091">HOD office</option>
                     <option value="1127">Gate no 3 ke upar</option>
                     <!-- <option value="1099">Ladies Washroom</option>    -->
+                    </optgroup>
+                    <optgroup label="2nd floor">
+                        <option value="2119">Library</option>
+                        <option value="2001">Round Room 2R</option>
+                        <option value="2003">Round Room 2L</option>
+                        <option value="2006">CR308</option>
+                        <option value="2122">CR309</option>
+                        <option value="2015">CR310</option>
+                        <option value="2017">CR311</option>
+                        <option value="2025">CR312</option>
+                        <option value="2029">medical Room</option>
+                        <option value="2031">LT302</option>
+                        <option value="2033">CR301</option>
+                        <option value="2036">CR302</option>
+                        <option value="2041">LT301</option>
+                        <option value="2052">Teacher office</option>
+                        <option value="2057">Staff room 03</option>
+                        <option value="2056">Staff room 04</option>
+                        <option value="2069">Lab3</option>
+                        <option value="2101">Lab6</option>
+                        <option value="2073">Teacher office</option>
+                        <option value="2075">CR303</option>
+                        <option value="2071">CR304</option>
+                        <option value="2085">CR305</option>
+                        <option value="2087">CR306</option>
+                        <option value="2089">CR307</option>
+                        <option value="2091">2nd HOD office</option>
                 </optgroup>
-            </select>
+                <optgroup label="3rd floor">
+                        <option value="3119">Library</option>
+                        <option value="3001">Round Room 2R</option>
+                        <option value="3003">Round Room 2L</option>
+                        <option value="3006">CR408</option>
+                        <option value="3122">CR409</option>
+                        <option value="3015">CR410</option>
+                        <option value="3017">CR411</option>
+                        <option value="3025">CR412</option>
+                        <option value="3029">medical Room</option>
+                        <option value="3031">LT402</option>
+                        <option value="3033">CR401</option>
+                        <option value="3036">CR402</option>
+                        <option value="3041">LT401</option>
+                        <option value="3052">Teacher office</option>
+                        <option value="3057">Staff room 03</option>
+                        <option value="3056">Staff room 04</option>
+                        <option value="3069">Lab4</option>
+                        <option value="3101">Lab5</option>
+                        <option value="3073">Teacher office</option>
+                        <option value="3075">CR403</option>
+                        <option value="3071">CR404</option>
+                        <option value="3085">CR405</option>
+                        <option value="3087">CR406</option>
+                        <option value="3089">CR407</option>
+                        <option value="3091">3rd HOD office</option>
+                </optgroup>
+                <optgroup label="4th floor">
+                        <option value="4119">Library</option>
+                        <option value="4001">Round Room 2R</option>
+                        <option value="4003">Round Room 2L</option>
+                        <option value="4029">medical Room</option>
+                        <option value="4052">Teacher office</option>
+                        <option value="4006">CR508</option>
+                        <option value="4122">CR509</option>
+                        <option value="4015">CR510</option>
+                        <option value="4017">CR511</option>
+                        <option value="4025">CR512</option>
+                        <option value="4031">LT502</option>
+                        <option value="4033">CR501</option>
+                        <option value="4036">CR502</option>
+                        <option value="4041">LT501</option>
+                        <option value="4075">CR503</option>
+                        <option value="4071">CR504</option>
+                        <option value="4085">CR505</option>
+                        <option value="4087">CR506</option>
+                        <option value="4089">CR507</option>
+                        <option value="4069">Lab4</option>
+                        <option value="4101">Lab5</option>
+                        <option value="4057">Staff room 05</option>
+                        <option value="4056">Staff room 06</option>
+                        <option value="4073">Teacher office</option>
+                        <option value="4091">3rd HOD office</option>
+                </optgroup>
+                <optgroup label="5th floor">
+                        <option value="5119">Library</option>
+                        <option value="5001">Round Room 2R</option>
+                        <option value="5003">Round Room 2L</option>
+                        <option value="5029">medical Room</option>
+                        <option value="5052">Teacher office</option>
+                        <option value="5006">CR608</option>
+                        <option value="5122">CR609</option>
+                        <option value="5015">CR610</option>
+                        <option value="5017">CR611</option>
+                        <option value="5025">CR612</option>
+                        <option value="5031">LT602</option>
+                        <option value="5033">CR601</option>
+                        <option value="5036">CR602</option>
+                        <option value="5041">LT601</option>
+                        <option value="5075">CR603</option>
+                        <option value="5071">CR604</option>
+                        <option value="5085">CR605</option>
+                        <option value="5087">CR606</option>
+                        <option value="5089">CR607</option>
+                        <option value="5069">Lab44</option>
+                        <option value="5101">Lab55</option>
+                        <option value="5057">Staff room 05</option>
+                        <option value="5056">Staff room 06</option>
+                        <option value="5073">Teacher office</option>
+                        <option value="5091">3rd HOD office</option>
+                </optgroup>
+                </select>
+            </div>
         </div>
-        <div>
+        <div class="arrange">
+            <label class="labelmaker" style="visibility: hidden;">.</label>
             <button class="optionbox" id="go">Lets Go Boi</button>
         </div>
     </div>
         
-    
-    <div id='map' >
+
+<div id='map' >
         <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
         <script src="https://unpkg.com/leaflet" type="text/javascript"></script>
         <script src="https://unpkg.com/leaflet-ant-path" type="text/javascript"></script>

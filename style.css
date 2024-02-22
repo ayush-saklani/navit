@@ -53,50 +53,57 @@
 .circular_button:hover{
     background-color: rgb(33, 77, 79);
 }
+.labelmaker{
+    align-items: center;
+    padding: 2px;
+    text-align: center;
+    font-family:"anta";
+    font-size:large;
+    margin: 4px ;
+    margin-top:   auto;
+    margin-bottom:auto ;
+}
 .optionbox{
     background-color: rgb(50, 113, 116);
     color: rgb(255, 255, 255);
     padding: 2px;
     font-family:"anta";
-    font-size:larger;
+    font-size:large;
     height: max-content;
-    width:  200px ;
+    width:  250px ;
     margin: 4px ;
-    border-radius:9px;
+    border-radius:12px;
     margin-top:   auto;
     margin-bottom:auto ;
 }
 .optionbox:hover{
     background-color: rgb(33, 77, 79);
 }
-.labelmaker{
-    align-items: center;
-    padding: 2px;
-    text-align: center;
-    font-family:"anta";
-    font-size:larger;
-    margin: 4px ;
-    margin-top:   auto;
-    margin-bottom:auto ;
+#go{
+    align-items:center;
+    width:  150px;
+    border-radius:20px;
+    padding: 5px;
+    white-space: nowrap;
 }
-#drop_option{
+.drop_option{
     justify-content:center;
     position: absolute;
     display: flex;
     /* height: auto;
     width: auto; */
-    /* right: 25%;
-    left:  25%; */
-    bottom: 5%;
+    right: 30%;
+    left:  30%;
+    /* margin-right: 10%; */
+    /* margin-left:  10%; */
+    bottom: 2.5%;
     flex-direction:row;
-    white-space: wrap;
+    /* white-space: wrap; */
     z-index: 1;
 }
-#go{
-    height: max-content;
-    align-items: center;
-    width:  150px;
-    border-radius:20px;
-    padding: 5px;
-    white-space: nowrap;
+.arrange{
+    display: flex;
+    justify-content: center;
+    /* flex-direction: row; */
+    margin: 5px;
 }

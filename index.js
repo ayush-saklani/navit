@@ -11,11 +11,33 @@ const tile = L.tileLayer(tileurl,{
 
 //base map from open streetmap added 
 
-
+let floor = 0;let temp_point=0;
 let points =  [[],[],[],[],[],[],[]]
 document.getElementById('go').addEventListener('click', () => {
     var source = document.getElementById("Start").value;
     var destination = document.getElementById("destination").value;
+    
+    if(source>0 && source<1000){
+        floor=0;
+    }
+    else if(source>=1000 && source<2000){
+        floor=1;
+    }
+    else if(source>=2000 && source<3000){
+        floor=2;
+    }
+    else if(source>=3000 && source<4000){
+        floor=3;
+    }
+    else if(source>=4000 && source<5000){
+        floor=4;
+    }
+    else if(source>=5000 && source<6000){
+        floor=5;
+    }
+    else if(source>=6000 && source<7000){
+        floor=-1;
+    }
     console.log(source);
     console.log(destination);
     fetch('http://127.0.0.1:3000/getCoordinates', {
@@ -30,11 +52,17 @@ document.getElementById('go').addEventListener('click', () => {
         points = data;
         console.log(points); // Coordinates received from the server
         map.eachLayer(function(layer){if (layer.toGeoJSON){map.removeLayer(layer);}});
-        fetch('./mapgeoJSON/floorG.geojson').then(response =>  response.json()).then(data => {
+        fetch(`./mapgeoJSON/floor${floor}.geojson`).then(response =>  response.json()).then(data => {
             L.geoJSON(data,{style:{color: 'cadetblue',weight: 1,opacity: 0.4}}).addTo(map);
             // map.fitBounds(L.geoJSON(data).getBounds());
         }).catch(error => console.error('out of service.. ~_~  @_@', error));
-        L.polyline.antPath(points[0],{
+        if(floor==-1){
+            temp_point = points[6];
+        }
+        else{
+            temp_point = points[floor];
+        }
+        L.polyline.antPath(temp_point,{
             "delay": 600,
             "dashArray": [1,46],
             "weight": 5,
@@ -45,7 +73,7 @@ document.getElementById('go').addEventListener('click', () => {
     .catch(error => console.error('Error hai bhaisaab:', error));
 });
 
-fetch('./mapgeoJSON/floorG.geojson').then(response =>  response.json()).then(data => {
+fetch('./mapgeoJSON/floor0.geojson').then(response =>  response.json()).then(data => {
     L.geoJSON(data, {
         style:{color: 'cadetblue',weight: 1,opacity: 0.4},
     }).addTo(map);
@@ -78,7 +106,7 @@ document.getElementById('G').addEventListener('click', () => {
     map.eachLayer(function(layer) {
         if (!!layer.toGeoJSON){map.removeLayer(layer);}
     });
-    fetch('./mapgeoJSON/floorG.geojson').then(response =>  response.json()).then(data => {
+    fetch('./mapgeoJSON/floor0.geojson').then(response =>  response.json()).then(data => {
         L.geoJSON(data, {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);

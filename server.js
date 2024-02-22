@@ -50,7 +50,7 @@ let nearest_amenity = (src,keyword) =>{
 }
 let segregate_aminity = (src,keyword) =>{
     if(keyword==999){
-        if(src>0 && src<1000){
+        if(src>0 && src<1000 || src>=6000 && src<7000){
             return[83,51];
         }
         else if(src>=1000 && src<2000){
@@ -68,12 +68,9 @@ let segregate_aminity = (src,keyword) =>{
         else if(src>=5000 && src<6000){
             return[5083,5051];   
         }
-        else if(src>=6000 && src<7000){
-            return[83,51];
-        }
     }
     else if(keyword==998){
-        if(src>0 && src<1000){
+        if(src>0 && src<1000 || src>=6000 && src<7000){
             return[99,29];
         }
         else if(src>=1000 && src<2000){
@@ -90,10 +87,7 @@ let segregate_aminity = (src,keyword) =>{
         }
         else if(src>=5000 && src<6000){
             return[5099,5029];   
-        }
-        else if(src>=6000 && src<7000){
-            return[99,29];
-        }        
+        }      
     }
     else{
         console.log('second service me error hai bhaisaab service down hai shayad');

@@ -38,15 +38,15 @@ let dijfunc = (src,des) =>{
 let nearest_amenity = (src,keyword) =>{
     let des = segregate_aminity(src,keyword);
     var dijkstra = new jsgraphs.Dijkstra(g, src);
-    if(dijkstra.hasPathTo(des[0]) && !dijkstra.hasPathTo(des[1]))
-        return des[0];
-    else if(dijkstra.hasPathTo(des[0]) && !dijkstra.hasPathTo(des[1]))
-        return des[1];
-    else if(dijkstra.hasPathTo(des[0]) && dijkstra.hasPathTo(des[1]))
-        return dijkstra.distanceTo(des[0])<dijkstra.distanceTo(des[1])? des[0] : des[1] ;
-    else{
-        console.log('second service me error hai bhaisaab service down hai shayad');
+    let distance = 9999;
+    let distance_index=null;
+    for (let i = 0; i < des.length; i++) {
+        if(dijkstra.distanceTo(des[i])<distance){
+            distance_index = des[i];
+            distance = dijkstra.distanceTo(des[i]);
+        }
     }
+    return distance_index;
 }
 let segregate_aminity = (src,keyword) =>{
     if(keyword==999){

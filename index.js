@@ -211,7 +211,7 @@ document.getElementById('R').addEventListener('click', () => {
     map.eachLayer(function(layer) {
         if (!!layer.toGeoJSON){map.removeLayer(layer);}
     });
-    fetch('./mapgeoJSON/floorG.geojson').then(response =>  response.json()).then(data => {
+    fetch('./mapgeoJSON/floor0.geojson').then(response =>  response.json()).then(data => {
         L.geoJSON(data, {
             style:{color: 'cadetblue',weight: 1,opacity: 0.4},
         }).addTo(map);

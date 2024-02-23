@@ -7,34 +7,6 @@ const port = 3000
 app.use(cors());
 
 
-// this funciton takes maps from map.mjs and returns the polyline coordinates
-// let dijfunc = (src,des) =>{
-//     var dijkstra = new jsgraphs.Dijkstra(g, src);
-//     let e;
-//     if(dijkstra.hasPathTo(des)){
-//         let res = [[],[],[],[],[],[],[]];
-//         var path = dijkstra.pathTo(des);
-//         for(var i = 0; i < path.length; ++i) {
-//             e = path[i];
-//             let temp = (g.node(e.from()).label).split(','); 
-//             let temparr = []
-//             temparr.push(Number(temp[0]));
-//             temparr.push(Number(temp[1]));
-//             res[temp[2]].push(temparr)
-//             if(i==path.length -1){
-//                 let temp = (g.node(e.to()).label).split(','); 
-//                 let temparr = []
-//                 temparr.push(Number(temp[0]));
-//                 temparr.push(Number(temp[1]));
-//                 res[temp[2]].push(temparr)
-//             }
-//         }
-//         return res;
-//     }
-//     else{
-//         console.log('error hai bhaisaab service down hai shayad');
-//     }
-// }
 let dijfunc2 = (src,des) =>{
     var dijkstra = new jsgraphs.Dijkstra(g, src);
     let e;
@@ -42,7 +14,7 @@ let dijfunc2 = (src,des) =>{
         let res = [[],[],[],[],[],[],[]];
         var path = dijkstra.pathTo(des);
         let floor = (g.node(path[0].from()).label).split(',')[2];
-        let temparr =[];
+        let temparr2 =[];
         let tempo;
         for(var i = 0; i < path.length; ++i) {
             e = path[i];
@@ -51,6 +23,9 @@ let dijfunc2 = (src,des) =>{
             temparr.push(Number(temp[0]));
             temparr.push(Number(temp[1]));
             res[temp[2]].push(temparr)
+            if(floor-temp[2]!= 0){
+                
+            }
             if(i==path.length -1){
                 let temp = (g.node(e.to()).label).split(','); 
                 let temparr = []

@@ -3,22 +3,21 @@
  
 # **Coding Language and Tools Used**
 <p align="left">
-
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" width="60" height="60"/>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" width="60" height="60"/>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" width="60" height="60"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" height="60"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" height="60"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" height="60"/>
 <img src="https://static-00.iconduck.com/assets.00/node-js-icon-454x512-nztofx17.png"height="60"/>
-<img src="https://adware-technologies.s3.amazonaws.com/uploads/technology/thumbnail/20/express-js.png" width="60" height="60"/>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/npm/npm-original-wordmark.svg" width="60" height="60"/>
+<img src="https://adware-technologies.s3.amazonaws.com/uploads/technology/thumbnail/20/express-js.png" height="60"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/npm/npm-original-wordmark.svg" height="60"/>
 <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Openstreetmap_logo.svg"height="60"/> 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Leaflet_logo.svg/1280px-Leaflet_logo.svg.png" height="60"/>
 </p>
 
 # **How to run this project ?** 
 
-1. Run `function_testing.js` (server side).
+1. Run `server.js` (server side).
 2. Now run the website and enjoy.
-3. Ensure all required modules and installed,*(use the latest npm Modules from [here](https://www.npmjs.com/)) or run commands below.*
+3. Ensure all required modules and installed, *(use the latest npm Modules from [here](https://www.npmjs.com/)) or using the commands below.*
 
 
 ```code
@@ -28,13 +27,15 @@ npm install cors
 ```
 
 # File Structure
-* `index.js` Backend file for web page 
-* `index.html` Webpage
-* `ogmap.geoJSON` is ground floor campus map 
-* `qr_testing.xlsx` For QR codes making and distance calculation testing using lattitude and longitude 
-* `map.js` Contains the map 
+* `index.js` Backend file for web page.
+* `server.js` Server file for serving post request. 
+* `index.html` Webpage HTML page.
+* `ogmap.geoJSON` is ground floor campus map. 
+* `qr_testing.xlsx` For QR codes making and distance calculation testing using lattitude and longitude. 
+* `map.js` Contains the map. 
 * `package.JSON` and `package-lock.JSON` has npm packages for this project
-* `test.js` is for testing (can be deleted)
+* `test.js` is for testing *(can be deleted)*.
+* `tester.js` is for testing *(can be deleted)*.
 
 # Future plan
 * Make it dynamic to add coordinate to center use last coordinate to center
@@ -46,16 +47,15 @@ npm install cors
 
 
 #
+### *(done)*
 * we can do one thing 
 * we can make a array of floors for show the polylines floor wise
 * 7 floors so the length of array will be 7
 * and each will contain that array containing the coordinates of that floor and we will make 
 * the polyline according to the floor 
 #
-* this is done but floor plan is a bit changed 0 means basement floor 1 means ground floor 
-* g.node(0).label='30.2731289,77.9997726';  this is the coordiante detail good for one floor 
-* g.node(0).label='30.2731289,77.9997726, 1 '; this will be new type by this we will push the first two 
-* values into array and third into the floor array   
+* 0 means ground floor and 7 means underground 
+* g.node(0).label='30.2731289,77.9997726,1'; this will be new type of node label, by this we will  get the latitude ,longitude and floors from this
 * shove all the fetch request in the server.js side for privacy
-
+#
 # **Keep Coding, Keep Smiling!, Have Fun!** 💻🚀

@@ -75,7 +75,7 @@ document.getElementById('go').addEventListener('click', () => {
 
 fetch('./mapgeoJSON/floor0.geojson').then(response =>  response.json()).then(data => {
     L.geoJSON(data, {
-        style:{color: 'cadetblue',weight: 1,opacity: 0.4},
+        style:{color: 'cadetblue',weight: 1,opacity: 1},
     }).addTo(map);
     map.fitBounds(L.geoJSON(data).getBounds());
 }).catch(error => console.error('out of service.. ~_~  @_@', error));  

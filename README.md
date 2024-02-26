@@ -59,3 +59,23 @@ npm install cors
 * shove all the fetch request in the server.js side for privacy
 #
 # **Keep Coding, Keep Smiling!, Have Fun!** 💻🚀
+
+* `server.js`
+* `style.css`
+* `test.js`
+* `tester.js`
+* `.vscode`
+* `api`
+* `cache`
+* `mapgeoJSON`
+* `media`
+* `node_modules`
+* `.gitignore`
+* `index.html`
+* `index.js`
+* `newmap.js`
+* `oneness.js`
+* `package.json`
+* `package-lock.json`
+* `qr_testing.xlsx`
+* `README.md`

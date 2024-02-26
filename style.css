@@ -15,7 +15,6 @@
 .header{
     display:flex;
     justify-content:center;
-    /* padding: 8px; */
     position: absolute;;
     z-index: 1;
     margin: 5px;
@@ -90,12 +89,8 @@
     justify-content:center;
     position: absolute;
     display: flex;
-    /* height: auto;
-    width: auto; */
     right: 30%;
     left:  30%;
-    /* margin-right: 10%; */
-    /* margin-left:  10%; */
     bottom: 2.5%;
     flex-direction:row;
     /* white-space: wrap; */
@@ -104,12 +99,8 @@
 .arrange{
     display: flex;
     justify-content: center;
-    /* flex-direction: row; */
     margin: 5px;
 }
-/* #letsgo{
-    margin: 0px;
-} */
 .arrage2{
     display: flex;
     flex-direction: column;
@@ -151,10 +142,8 @@
     #go{
         width:  50%;
         padding: 5px;
-        /* margin-left: 0px; */
         margin-left: 25%;
         margin-right: 25%;
-        /* margin-right: 50%; */
         justify-content: center;
     }
 }

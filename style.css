@@ -107,3 +107,50 @@
     /* flex-direction: row; */
     margin: 5px;
 }
+#letsgo{
+    display: flex;
+}
+@media only screen and (max-width: 600px) {
+    #circular_button_div{
+        position: absolute;
+        margin: 5px;
+        margin-top: 25%;
+    }
+    .circular_button{
+        font-family:"anta";
+        font-size:medium;
+        height: 40px;
+        width:  40px;
+    }
+    #reset{
+        height: 18px;
+    }
+    .drop_option{
+        justify-content:center;
+        position: absolute;
+        display: flex;
+        right: 0%;
+        left:  0%;
+    }
+    .labelmaker{
+        align-items: center;
+        font-size:medium;
+    }
+    .optionbox{
+        font-size:medium;
+        height: max-content;
+        width:  150px ;
+    }
+    .arrange{
+        display:block;
+        justify-content: center;
+        /* flex-direction: row; */
+        margin: 5px;
+    }
+    
+    #go{
+        width:  150px;
+        padding: 5px;
+        margin-left: 0px;
+    }
+}

@@ -66,7 +66,7 @@
 .optionbox{
     background-color: rgb(50, 113, 116);
     color: rgb(255, 255, 255);
-    padding: 2px;
+    padding: 4px;
     font-family:"anta";
     font-size:large;
     height: max-content;
@@ -107,8 +107,12 @@
     /* flex-direction: row; */
     margin: 5px;
 }
-#letsgo{
+/* #letsgo{
+    margin: 0px;
+} */
+.arrage2{
     display: flex;
+    flex-direction: column;
 }
 @media only screen and (max-width: 600px) {
     #circular_button_div{
@@ -128,7 +132,8 @@
     .drop_option{
         justify-content:center;
         position: absolute;
-        display: flex;
+        display: block;
+        margin: 0px;
         right: 0%;
         left:  0%;
     }
@@ -139,18 +144,17 @@
     .optionbox{
         font-size:medium;
         height: max-content;
-        width:  150px ;
+        margin-left:  5%;
+        margin-right: 5%;
+        width:  90% ;
     }
-    .arrange{
-        display:block;
-        justify-content: center;
-        /* flex-direction: row; */
-        margin: 5px;
-    }
-    
     #go{
-        width:  150px;
+        width:  50%;
         padding: 5px;
-        margin-left: 0px;
+        /* margin-left: 0px; */
+        margin-left: 25%;
+        margin-right: 25%;
+        /* margin-right: 50%; */
+        justify-content: center;
     }
 }

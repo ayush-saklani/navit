@@ -1,5 +1,5 @@
-# **Indoor Mapping Navit (Beta)**    <img src="media/logo.png" height="100" align="left"/>
-**Indoor mapping solution for University campus. *(currently in the proof of concept phase)***
+# **Indoor Mapping Navit (Alpha(α))**    <img src="media/logo.png" height="100" align="left"/>
+**Indoor mapping solution for University campus. *(currently more than proof of concept phase)***
  
 # **Coding Language and Tools Used**
 <p align="left">

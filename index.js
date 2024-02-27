@@ -53,7 +53,7 @@ document.getElementById('go').addEventListener('click', () => {
         console.log(points); // Coordinates received from the server
         map.eachLayer(function(layer){if (layer.toGeoJSON){map.removeLayer(layer);}});
         fetch(`./mapgeoJSON/floor${floor}.geojson`).then(response =>  response.json()).then(data => {
-            L.geoJSON(data,{style:{color: 'cadetblue',weight: 1,opacity: 0.4}}).addTo(map);
+            L.geoJSON(data,{style:{color: 'cadetblue',weight: 1,opacity: 1}}).addTo(map);
             // map.fitBounds(L.geoJSON(data).getBounds());
         }).catch(error => console.error('out of service.. ~_~  @_@', error));
         if(floor==-1){
@@ -89,7 +89,7 @@ document.getElementById('-1').addEventListener('click', () => {
     });
     fetch('./mapgeoJSON/floor-1.geojson').then(response =>  response.json()).then(data => {
         L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 0.4},
+            style:{color: 'cadetblue',weight: 1,opacity: 1},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
     L.polyline.antPath(points[6],{
@@ -108,7 +108,7 @@ document.getElementById('G').addEventListener('click', () => {
     });
     fetch('./mapgeoJSON/floor0.geojson').then(response =>  response.json()).then(data => {
         L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 0.4},
+            style:{color: 'cadetblue',weight: 1,opacity: 1},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
     // const polytile = L.polyline(points[1]).addTo(map);
@@ -128,7 +128,7 @@ document.getElementById('1').addEventListener('click', () => {
     });
     fetch('./mapgeoJSON/floor1.geojson').then(response =>  response.json()).then(data => {
         L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 0.4},
+            style:{color: 'cadetblue',weight: 1,opacity: 1},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
     L.polyline.antPath(points[1],{
@@ -145,7 +145,7 @@ document.getElementById('2').addEventListener('click', () => {
     });
     fetch('./mapgeoJSON/floor2.geojson').then(response =>  response.json()).then(data => {
         L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 0.4},
+            style:{color: 'cadetblue',weight: 1,opacity: 1},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
     L.polyline.antPath(points[2],{
@@ -162,7 +162,7 @@ document.getElementById('3').addEventListener('click', () => {
     });
     fetch('./mapgeoJSON/floor3.geojson').then(response =>  response.json()).then(data => {
         L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 0.4},
+            style:{color: 'cadetblue',weight: 1,opacity: 1},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
     L.polyline.antPath(points[3],{
@@ -179,7 +179,7 @@ document.getElementById('4').addEventListener('click', () => {
     });
     fetch('./mapgeoJSON/floor4.geojson').then(response =>  response.json()).then(data => {
         L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 0.4},
+            style:{color: 'cadetblue',weight: 1,opacity: 1},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
     L.polyline.antPath(points[4],{
@@ -196,7 +196,7 @@ document.getElementById('5').addEventListener('click', () => {
     });
     fetch('./mapgeoJSON/floor5.geojson').then(response =>  response.json()).then(data => {
         L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 0.4},
+            style:{color: 'cadetblue',weight: 1,opacity: 1},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
     L.polyline.antPath(points[5],{
@@ -213,7 +213,7 @@ document.getElementById('R').addEventListener('click', () => {
     });
     fetch('./mapgeoJSON/floor0.geojson').then(response =>  response.json()).then(data => {
         L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 0.4},
+            style:{color: 'cadetblue',weight: 1,opacity: 1},
         }).addTo(map);
         map.fitBounds(L.geoJSON(data).getBounds());
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   

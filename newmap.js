@@ -153,7 +153,8 @@ g.addEdge(new jsgraphs.Edge(154   ,155 ,16.8  ));   g.addEdge(new jsgraphs.Edge(
 g.addEdge(new jsgraphs.Edge(153   ,156 ,16.22 ));   g.addEdge(new jsgraphs.Edge(156  ,153 ,16.22)); 
 g.addEdge(new jsgraphs.Edge(157   ,156 ,10.19 ));   g.addEdge(new jsgraphs.Edge(156  ,157 ,10.19)); 
 g.addEdge(new jsgraphs.Edge(157   ,158 ,13.92 ));   g.addEdge(new jsgraphs.Edge(158  ,157 ,13.92)); 
-g.addEdge(new jsgraphs.Edge(159   ,158 ,72.8  ));   g.addEdge(new jsgraphs.Edge(158  ,159 ,72.8 )); 
+g.addEdge(new jsgraphs.Edge(159   ,181 ,25.61 ));   g.addEdge(new jsgraphs.Edge(181  ,159 ,25.61)); 
+g.addEdge(new jsgraphs.Edge(158   ,181 ,47.28 ));   g.addEdge(new jsgraphs.Edge(181  ,158 ,47.28)); 
 g.addEdge(new jsgraphs.Edge(159   ,160 ,9.47  ));   g.addEdge(new jsgraphs.Edge(160  ,159 ,9.47 )); 
 g.addEdge(new jsgraphs.Edge(161   ,160 ,43.07 ));   g.addEdge(new jsgraphs.Edge(160  ,161 ,43.07)); 
 g.addEdge(new jsgraphs.Edge(161   ,162 ,12.91 ));   g.addEdge(new jsgraphs.Edge(162  ,161 ,12.91)); 
@@ -162,7 +163,7 @@ g.addEdge(new jsgraphs.Edge(163   ,164 ,21.44 ));   g.addEdge(new jsgraphs.Edge(
 g.addEdge(new jsgraphs.Edge(165   ,164 ,12.71 ));   g.addEdge(new jsgraphs.Edge(164  ,165 ,12.71)); 
 g.addEdge(new jsgraphs.Edge(166   ,164 ,8.27  ));   g.addEdge(new jsgraphs.Edge(164  ,166 ,8.27 )); 
 g.addEdge(new jsgraphs.Edge(166   ,167 ,4.29  ));   g.addEdge(new jsgraphs.Edge(167  ,166 ,4.29 )); 
-g.addEdge(new jsgraphs.Edge(168   ,167 ,18.11 ));   g.addEdge(new jsgraphs.Edge(167  ,168 ,18.11)); 
+g.addEdge(new jsgraphs.Edge(168   ,167 ,10    ));   g.addEdge(new jsgraphs.Edge(167  ,168 ,10   )); 
 g.addEdge(new jsgraphs.Edge(166   ,124 ,26.11 ));   g.addEdge(new jsgraphs.Edge(124  ,166 ,26.11)); 
 g.addEdge(new jsgraphs.Edge(81    ,163 ,14.27 ));   g.addEdge(new jsgraphs.Edge(163  ,81  ,14.27)); 
 g.addEdge(new jsgraphs.Edge(161   ,77  ,10.55 ));   g.addEdge(new jsgraphs.Edge(77   ,161 ,10.55)); 
@@ -179,7 +180,7 @@ g.addEdge(new jsgraphs.Edge(171   ,170  ,23.52));   g.addEdge(new jsgraphs.Edge(
 g.addEdge(new jsgraphs.Edge(165   ,170  ,403  ));   g.addEdge(new jsgraphs.Edge(170  ,165 ,403  ));
 
 
-
+g.node(181).label='30.27388190042,77.99980832860,6'
 g.node(32 ).label='30.27351929710,77.99971929055,0';
 g.node(45 ).label='30.27329431585,77.99969283701,0';
 g.node(67 ).label='30.27351374354,77.99950913042,0';
@@ -619,12 +620,8 @@ g.node(1125).label='30.27248677654,78.00102062456,1';
 g.node(1126).label='30.27243291890,78.00107024543,1';
 g.node(1127).label='30.27238729495,78.00100553270,1';
 
-
-
-
-
 // second floor
-// connecting the stairs from ground to second floor 
+// connecting the stairs 
 g.addEdge(new jsgraphs.Edge(1010, 2009,   10    ));      g.addEdge(new jsgraphs.Edge(2009,   1010,   10    ));
 g.addEdge(new jsgraphs.Edge(1021, 2020,   10    ));      g.addEdge(new jsgraphs.Edge(2020,   1021,   10    ));
 g.addEdge(new jsgraphs.Edge(1112, 2111,   10    ));      g.addEdge(new jsgraphs.Edge(2111,   1112,   10    ));
@@ -754,8 +751,6 @@ g.addEdge(new jsgraphs.Edge(2024, 2118,   8.17  ));      g.addEdge(new jsgraphs.
 g.addEdge(new jsgraphs.Edge(2119, 2118,   7     ));      g.addEdge(new jsgraphs.Edge(2118,   2119,   7     ));
 g.addEdge(new jsgraphs.Edge(2122, 2013,   5.5   ));      g.addEdge(new jsgraphs.Edge(2013  , 2122,   5.5   ));
 
-// above nodes are form library
-
 g.node(2001).label='30.27305431189,77.99971899825,2';  	
 g.node(2002).label='30.27306238983,77.99974442792,2';  	
 g.node(2003).label='30.27305405946,77.99976898071,2';  	
@@ -877,10 +872,8 @@ g.node(2118).label='30.27343056748,78.00015467068,2';
 g.node(2119).label='30.27341844489,78.00022711349,2'; 
 g.node(2120).label='30.27341816621,78.00029261856,2'; 
 
-
-
 // third floor
-// connecting the stairs from ground to second floor 
+// connecting the stairs 
 g.addEdge(new jsgraphs.Edge(2010, 3009,   10    ));      g.addEdge(new jsgraphs.Edge(3009,   2010,   10    ));
 g.addEdge(new jsgraphs.Edge(2021, 3020,   10    ));      g.addEdge(new jsgraphs.Edge(3020,   2021,   10    ));
 g.addEdge(new jsgraphs.Edge(2112, 3111,   10    ));      g.addEdge(new jsgraphs.Edge(3111,   2112,   10    ));
@@ -1010,8 +1003,6 @@ g.addEdge(new jsgraphs.Edge(3024, 3118,   8.17  ));      g.addEdge(new jsgraphs.
 g.addEdge(new jsgraphs.Edge(3119, 3118,   7     ));      g.addEdge(new jsgraphs.Edge(3118,   3119,   7     ));
 g.addEdge(new jsgraphs.Edge(3122, 3013,   5.5   ));      g.addEdge(new jsgraphs.Edge(3013  , 2122,   5.5   ));
 
-// above nodes are form library
-
 g.node(3001).label='30.27305431189,77.99971899825,3';  	
 g.node(3002).label='30.27306238983,77.99974442792,3';  	
 g.node(3003).label='30.27305405946,77.99976898071,3';  	
@@ -1133,10 +1124,8 @@ g.node(3118).label='30.27343056748,78.00015467068,3';
 g.node(3119).label='30.27341844489,78.00022711349,3'; 
 g.node(3120).label='30.27341816621,78.00029261856,3'; 
 
-
-
 // fourth floor
-// connecting the stairs from ground to second floor 
+// connecting the stairs 
 g.addEdge(new jsgraphs.Edge(3010, 4009,   10    ));      g.addEdge(new jsgraphs.Edge(4009,   3010,   10    ));
 g.addEdge(new jsgraphs.Edge(3021, 4020,   10    ));      g.addEdge(new jsgraphs.Edge(4020,   3021,   10    ));
 g.addEdge(new jsgraphs.Edge(3112, 4111,   10    ));      g.addEdge(new jsgraphs.Edge(4111,   3112,   10    ));
@@ -1266,8 +1255,6 @@ g.addEdge(new jsgraphs.Edge(4024, 4118,   8.17  ));      g.addEdge(new jsgraphs.
 g.addEdge(new jsgraphs.Edge(4119, 4118,   7     ));      g.addEdge(new jsgraphs.Edge(4118,   4119,   7     ));
 g.addEdge(new jsgraphs.Edge(4122, 4013,   5.5   ));      g.addEdge(new jsgraphs.Edge(4013,   4122,   5.5   ));
 
-// above nodes are form library
-
 g.node(4001).label='30.27305431189,77.99971899825,4';  	
 g.node(4002).label='30.27306238983,77.99974442792,4';  	
 g.node(4003).label='30.27305405946,77.99976898071,4';  	
@@ -1389,11 +1376,8 @@ g.node(4118).label='30.27343056748,78.00015467068,4';
 g.node(4119).label='30.27341844489,78.00022711349,4'; 
 g.node(4120).label='30.27341816621,78.00029261856,4'; 
 
-
-
-
 // 5th floor
-// connecting the stairs from ground to second floor 
+// connecting the stairs
 g.addEdge(new jsgraphs.Edge(4010, 5009,   10    ));      g.addEdge(new jsgraphs.Edge(5009,   4010,   10    ));
 g.addEdge(new jsgraphs.Edge(4021, 5020,   10    ));      g.addEdge(new jsgraphs.Edge(5020,   4021,   10    ));
 g.addEdge(new jsgraphs.Edge(4112, 5111,   10    ));      g.addEdge(new jsgraphs.Edge(5111,   4112,   10    ));
@@ -1523,8 +1507,6 @@ g.addEdge(new jsgraphs.Edge(5024, 5118,   8.17  ));      g.addEdge(new jsgraphs.
 g.addEdge(new jsgraphs.Edge(5119, 5118,   7     ));      g.addEdge(new jsgraphs.Edge(5118,   5119,   7     ));
 g.addEdge(new jsgraphs.Edge(5122, 5013,   5.5   ));      g.addEdge(new jsgraphs.Edge(5013,   5122,   5.5   ));
 
-// above nodes are form library
-
 g.node(5001).label='30.27305431189,77.99971899825,5';  	
 g.node(5002).label='30.27306238983,77.99974442792,5';  	
 g.node(5003).label='30.27305405946,77.99976898071,5';  	
@@ -1647,263 +1629,176 @@ g.node(5119).label='30.27341844489,78.00022711349,5';
 g.node(5120).label='30.27341816621,78.00029261856,5'; 
 
 
-
-
 // underground floor
-// connecting the stairs from ground to second floor 
-// g.addEdge(new jsgraphs.Edge(5010, 6009,   10    ));      g.addEdge(new jsgraphs.Edge(6009,   5010,   10    ));
-// g.addEdge(new jsgraphs.Edge(5021, 6020,   10    ));      g.addEdge(new jsgraphs.Edge(6020,   5021,   10    ));
-// g.addEdge(new jsgraphs.Edge(5112, 6111,   10    ));      g.addEdge(new jsgraphs.Edge(6111,   5112,   10    ));
-// g.addEdge(new jsgraphs.Edge(5044, 6045,   10    ));      g.addEdge(new jsgraphs.Edge(6045,   5044,   10    ));
-// g.addEdge(new jsgraphs.Edge(5061, 6062,   10    ));      g.addEdge(new jsgraphs.Edge(6062,   5061,   10    ));
-// g.addEdge(new jsgraphs.Edge(5079, 6078,   10    ));      g.addEdge(new jsgraphs.Edge(6078,   5079,   10    ));
-// g.addEdge(new jsgraphs.Edge(5094, 6095,   10    ));      g.addEdge(new jsgraphs.Edge(6095,   5094,   10    ));
+// connecting the stairs from ground to underground 
+g.addEdge(new jsgraphs.Edge(6010, 9   ,   10    ));      g.addEdge(new jsgraphs.Edge(9  ,   6010,   10    ));
+g.addEdge(new jsgraphs.Edge(6021, 20  ,   10    ));      g.addEdge(new jsgraphs.Edge(20 ,   6021,   10    ));
+g.addEdge(new jsgraphs.Edge(6061, 62  ,   10    ));      g.addEdge(new jsgraphs.Edge(62 ,   6061,   10    ));
+g.addEdge(new jsgraphs.Edge(6079, 78  ,   10    ));      g.addEdge(new jsgraphs.Edge(78 ,   6079,   10    ));
+g.addEdge(new jsgraphs.Edge(6094, 95  ,   10    ));      g.addEdge(new jsgraphs.Edge(95 ,   6094,   10    ));
+g.addEdge(new jsgraphs.Edge(6181, 81  ,   0     ));      g.addEdge(new jsgraphs.Edge(81 ,   6081,   0     ));
+g.addEdge(new jsgraphs.Edge(6155, 155 ,   10    ));      g.addEdge(new jsgraphs.Edge(155,   6155,   10    ));
 
-// g.addEdge(new jsgraphs.Edge(6001, 6002,   2.6   ));      g.addEdge(new jsgraphs.Edge(6002,   6001,   2.6   ));
-// g.addEdge(new jsgraphs.Edge(6002, 6003,   2.53  ));      g.addEdge(new jsgraphs.Edge(6003,   6002,   2.53  ));
-// g.addEdge(new jsgraphs.Edge(6002, 6004,   7.36  ));      g.addEdge(new jsgraphs.Edge(6004,   6002,   7.36  ));
-// g.addEdge(new jsgraphs.Edge(6004, 6005,   9.87  ));      g.addEdge(new jsgraphs.Edge(6005,   6004,   9.87  ));
-// g.addEdge(new jsgraphs.Edge(6005, 6006,   5.59  ));      g.addEdge(new jsgraphs.Edge(6006,   6005,   5.59  ));
-// g.addEdge(new jsgraphs.Edge(6005, 6007,   3.67  ));      g.addEdge(new jsgraphs.Edge(6007,   6005,   3.67  ));
-// g.addEdge(new jsgraphs.Edge(6007, 6008,   10    ));      g.addEdge(new jsgraphs.Edge(6008,   6007,   10    ));
-// g.addEdge(new jsgraphs.Edge(6008, 6009,   10    ));      g.addEdge(new jsgraphs.Edge(6009,   6008,   10    ));
-// g.addEdge(new jsgraphs.Edge(6007, 6012,   10    ));      g.addEdge(new jsgraphs.Edge(6012,   6007,   10    ));
-// g.addEdge(new jsgraphs.Edge(6012, 6011,   10    ));      g.addEdge(new jsgraphs.Edge(6011,   6012,   10    ));
-// g.addEdge(new jsgraphs.Edge(6011, 6010,   10    ));      g.addEdge(new jsgraphs.Edge(6010,   6011,   10    ));
-// g.addEdge(new jsgraphs.Edge(6012, 6013,   3.7   ));      g.addEdge(new jsgraphs.Edge(6013,   6012,   3.7   ));
-// g.addEdge(new jsgraphs.Edge(6053, 6013,   4.78  ));      g.addEdge(new jsgraphs.Edge(6013,   6053,   4.78  ));
-// g.addEdge(new jsgraphs.Edge(6013, 6014,   8.36  ));      g.addEdge(new jsgraphs.Edge(6014,   6013,   8.36  ));
-// g.addEdge(new jsgraphs.Edge(6015, 6014,   6.35  ));      g.addEdge(new jsgraphs.Edge(6014,   6015,   6.35  ));
-// g.addEdge(new jsgraphs.Edge(6054, 6014,   11.39 ));      g.addEdge(new jsgraphs.Edge(6014,   6054,   11.39 ));
-// g.addEdge(new jsgraphs.Edge(6016, 6014,   6.96  ));      g.addEdge(new jsgraphs.Edge(6014,   6016,   6.96  ));
-// g.addEdge(new jsgraphs.Edge(6016, 6017,   5.5   ));      g.addEdge(new jsgraphs.Edge(6017,   6016,   5.5   ));
-// g.addEdge(new jsgraphs.Edge(6016, 6018,   3.7   ));      g.addEdge(new jsgraphs.Edge(6018,   6016,   3.7   ));
-// g.addEdge(new jsgraphs.Edge(6019, 6018,   10    ));      g.addEdge(new jsgraphs.Edge(6018,   6019,   10    ));
-// g.addEdge(new jsgraphs.Edge(6019, 6020,   10    ));      g.addEdge(new jsgraphs.Edge(6020,   6019,   10    ));
-// g.addEdge(new jsgraphs.Edge(6018, 6023,   10    ));      g.addEdge(new jsgraphs.Edge(6023,   6018,   10    ));
-// g.addEdge(new jsgraphs.Edge(6022, 6023,   10    ));      g.addEdge(new jsgraphs.Edge(6023,   6022,   10    ));
-// g.addEdge(new jsgraphs.Edge(6022, 6021,   10    ));      g.addEdge(new jsgraphs.Edge(6021,   6022,   10    ));
-// g.addEdge(new jsgraphs.Edge(6023, 6024,   8.82  ));      g.addEdge(new jsgraphs.Edge(6024,   6023,   8.82  ));
-// g.addEdge(new jsgraphs.Edge(6025, 6024,   4.77  ));      g.addEdge(new jsgraphs.Edge(6024,   6025,   4.77  ));
-// g.addEdge(new jsgraphs.Edge(6023, 6026,   10.61 ));      g.addEdge(new jsgraphs.Edge(6026,   6023,   10.61 ));
-// g.addEdge(new jsgraphs.Edge(6027, 6026,   8.63  ));      g.addEdge(new jsgraphs.Edge(6026,   6027,   8.63  ));
-// g.addEdge(new jsgraphs.Edge(6027, 6029,   2.5   ));      g.addEdge(new jsgraphs.Edge(6029,   6027,   2.5   ));
-// g.addEdge(new jsgraphs.Edge(6027, 6028,   2.08  ));      g.addEdge(new jsgraphs.Edge(6028,   6027,   2.08  ));
-// g.addEdge(new jsgraphs.Edge(6026, 6108,   4.31  ));      g.addEdge(new jsgraphs.Edge(6108,   6026,   4.31  ));
-// g.addEdge(new jsgraphs.Edge(6109, 6108,   2.5   ));      g.addEdge(new jsgraphs.Edge(6108,   6109,   2.5   ));
-// g.addEdge(new jsgraphs.Edge(6109, 6114,   6.27  ));      g.addEdge(new jsgraphs.Edge(6114,   6109,   6.27  ));
-// g.addEdge(new jsgraphs.Edge(6109, 6110,   10    ));      g.addEdge(new jsgraphs.Edge(6110,   6109,   10    ));
-// g.addEdge(new jsgraphs.Edge(6111, 6110,   10    ));      g.addEdge(new jsgraphs.Edge(6110,   6111,   10    ));
-// g.addEdge(new jsgraphs.Edge(6113, 6114,   10    ));      g.addEdge(new jsgraphs.Edge(6114,   6113,   10    ));
-// g.addEdge(new jsgraphs.Edge(6113, 6112,   10    ));      g.addEdge(new jsgraphs.Edge(6112,   6113,   10    ));
-// g.addEdge(new jsgraphs.Edge(6114, 6115,   5.58  ));      g.addEdge(new jsgraphs.Edge(6115,   6114,   5.58  ));
-// g.addEdge(new jsgraphs.Edge(6116, 6115,   2.67  ));      g.addEdge(new jsgraphs.Edge(6115,   6116,   2.67  ));
-// g.addEdge(new jsgraphs.Edge(6116, 6117,   1.43  ));      g.addEdge(new jsgraphs.Edge(6117,   6116,   1.43  ));
-// g.addEdge(new jsgraphs.Edge(6030, 6117,   1.21  ));      g.addEdge(new jsgraphs.Edge(6117,   6030,   1.21  ));
-// g.addEdge(new jsgraphs.Edge(6030, 6031,   2.89  ));      g.addEdge(new jsgraphs.Edge(6031,   6030,   2.89  ));
-// g.addEdge(new jsgraphs.Edge(6115, 6032,   10.22 ));      g.addEdge(new jsgraphs.Edge(6032,   6115,   10.22 ));
-// g.addEdge(new jsgraphs.Edge(6033, 6032,   4.38  ));      g.addEdge(new jsgraphs.Edge(6032,   6033,   4.38  ));
-// g.addEdge(new jsgraphs.Edge(6034, 6032,   3.85  ));      g.addEdge(new jsgraphs.Edge(6032,   6034,   3.85  ));
-// g.addEdge(new jsgraphs.Edge(6034, 6035,   4.35  ));      g.addEdge(new jsgraphs.Edge(6035,   6034,   4.35  ));
-// g.addEdge(new jsgraphs.Edge(6036, 6035,   3.82  ));      g.addEdge(new jsgraphs.Edge(6035,   6036,   3.82  ));
-// g.addEdge(new jsgraphs.Edge(6037, 6035,   10.41 ));      g.addEdge(new jsgraphs.Edge(6035,   6037,   10.41 ));
-// g.addEdge(new jsgraphs.Edge(6037, 6038,   2.35  ));      g.addEdge(new jsgraphs.Edge(6038,   6037,   2.35  ));
-// g.addEdge(new jsgraphs.Edge(6039, 6038,   1.06  ));      g.addEdge(new jsgraphs.Edge(6038,   6039,   1.06  ));
-// g.addEdge(new jsgraphs.Edge(6039, 6040,   0.97  ));      g.addEdge(new jsgraphs.Edge(6040,   6039,   0.97  ));
-// g.addEdge(new jsgraphs.Edge(6041, 6040,   4.6   ));      g.addEdge(new jsgraphs.Edge(6040,   6041,   4.6   ));
-// g.addEdge(new jsgraphs.Edge(6037, 6042,   5.97  ));      g.addEdge(new jsgraphs.Edge(6042,   6037,   5.97  ));
-// g.addEdge(new jsgraphs.Edge(6042, 6047,   6.13  ));      g.addEdge(new jsgraphs.Edge(6047,   6042,   6.13  ));
-// g.addEdge(new jsgraphs.Edge(6042, 6043,   10    ));      g.addEdge(new jsgraphs.Edge(6043,   6042,   10    ));
-// g.addEdge(new jsgraphs.Edge(6044, 6043,   10    ));      g.addEdge(new jsgraphs.Edge(6043,   6044,   10    ));
-// g.addEdge(new jsgraphs.Edge(6046, 6047,   10    ));      g.addEdge(new jsgraphs.Edge(6047,   6046,   10    ));
-// g.addEdge(new jsgraphs.Edge(6046, 6045,   10    ));      g.addEdge(new jsgraphs.Edge(6045,   6046,   10    ));
-// g.addEdge(new jsgraphs.Edge(6047, 6048,   2.47  ));      g.addEdge(new jsgraphs.Edge(6048,   6047,   2.47  ));
-// g.addEdge(new jsgraphs.Edge(6049, 6048,   3.87  ));      g.addEdge(new jsgraphs.Edge(6048,   6049,   3.87  ));
-// g.addEdge(new jsgraphs.Edge(6049, 6050,   5.73  ));      g.addEdge(new jsgraphs.Edge(6050,   6049,   5.73  ));
-// g.addEdge(new jsgraphs.Edge(6051, 6050,   1.9   ));      g.addEdge(new jsgraphs.Edge(6050,   6051,   1.9   ));
-// g.addEdge(new jsgraphs.Edge(6052, 6050,   2.26  ));      g.addEdge(new jsgraphs.Edge(6050,   6052,   2.26  ));
-// g.addEdge(new jsgraphs.Edge(6049, 6007,   12.2  ));      g.addEdge(new jsgraphs.Edge(6007,   6049,   12.2  ));
-// g.addEdge(new jsgraphs.Edge(6034, 6055,   10.14 ));      g.addEdge(new jsgraphs.Edge(6055,   6034,   10.14 ));
-// g.addEdge(new jsgraphs.Edge(6057, 6055,   4.44  ));      g.addEdge(new jsgraphs.Edge(6055,   6057,   4.44  ));
-// g.addEdge(new jsgraphs.Edge(6056, 6055,   3.93  ));      g.addEdge(new jsgraphs.Edge(6055,   6056,   3.93  ));
-// g.addEdge(new jsgraphs.Edge(6058, 6055,   3.29  ));      g.addEdge(new jsgraphs.Edge(6055,   6058,   3.29  ));
-// g.addEdge(new jsgraphs.Edge(6058, 6059,   1.02  ));      g.addEdge(new jsgraphs.Edge(6059,   6058,   1.02  ));
-// g.addEdge(new jsgraphs.Edge(6060, 6059,   10    ));      g.addEdge(new jsgraphs.Edge(6059,   6060,   10    ));
-// g.addEdge(new jsgraphs.Edge(6060, 6061,   10    ));      g.addEdge(new jsgraphs.Edge(6061,   6060,   10    ));
-// g.addEdge(new jsgraphs.Edge(6062, 6063,   10    ));      g.addEdge(new jsgraphs.Edge(6063,   6062,   10    ));
-// g.addEdge(new jsgraphs.Edge(6064, 6063,   10    ));      g.addEdge(new jsgraphs.Edge(6063,   6064,   10    ));
-// g.addEdge(new jsgraphs.Edge(6058, 6064,   0.89  ));      g.addEdge(new jsgraphs.Edge(6064,   6058,   0.89  ));
-// g.addEdge(new jsgraphs.Edge(6103, 6064,   2.15  ));      g.addEdge(new jsgraphs.Edge(6064,   6103,   2.15  ));
-// g.addEdge(new jsgraphs.Edge(6103, 6104,   2.79  ));      g.addEdge(new jsgraphs.Edge(6104,   6103,   2.79  ));
-// g.addEdge(new jsgraphs.Edge(6103, 6102,   8.18  ));      g.addEdge(new jsgraphs.Edge(6102,   6103,   8.18  ));
-// g.addEdge(new jsgraphs.Edge(6100, 6102,   8.12  ));      g.addEdge(new jsgraphs.Edge(6102,   6100,   8.12  ));
-// g.addEdge(new jsgraphs.Edge(6100, 6101,   5.23  ));      g.addEdge(new jsgraphs.Edge(6101,   6100,   5.23  ));
-// g.addEdge(new jsgraphs.Edge(6100, 6088,   8.98  ));      g.addEdge(new jsgraphs.Edge(6088,   6100,   8.98  ));
-// g.addEdge(new jsgraphs.Edge(6089, 6088,   3.56  ));      g.addEdge(new jsgraphs.Edge(6088,   6089,   3.56  ));
-// g.addEdge(new jsgraphs.Edge(6090, 6088,   2.72  ));      g.addEdge(new jsgraphs.Edge(6088,   6090,   2.72  ));
-// g.addEdge(new jsgraphs.Edge(6090, 6091,   3.47  ));      g.addEdge(new jsgraphs.Edge(6091,   6090,   3.47  ));
-// g.addEdge(new jsgraphs.Edge(6090, 6092,   6.02  ));      g.addEdge(new jsgraphs.Edge(6092,   6090,   6.02  ));
-// g.addEdge(new jsgraphs.Edge(6098, 6092,   1.14  ));      g.addEdge(new jsgraphs.Edge(6092,   6098,   1.14  ));
-// g.addEdge(new jsgraphs.Edge(6098, 6099,   3.2   ));      g.addEdge(new jsgraphs.Edge(6099,   6098,   3.2   ));
-// g.addEdge(new jsgraphs.Edge(6098, 6097,   1.07  ));      g.addEdge(new jsgraphs.Edge(6097,   6098,   1.07  ));
-// g.addEdge(new jsgraphs.Edge(6096, 6097,   10    ));      g.addEdge(new jsgraphs.Edge(6097,   6096,   10    ));
-// g.addEdge(new jsgraphs.Edge(6096, 6095,   10    ));      g.addEdge(new jsgraphs.Edge(6095,   6096,   10    ));
-// g.addEdge(new jsgraphs.Edge(6092, 6093,   10    ));      g.addEdge(new jsgraphs.Edge(6093,   6092,   10    ));
-// g.addEdge(new jsgraphs.Edge(6094, 6093,   10    ));      g.addEdge(new jsgraphs.Edge(6093,   6094,   10    ));
-// g.addEdge(new jsgraphs.Edge(6088, 6086,   6.73  ));      g.addEdge(new jsgraphs.Edge(6086,   6088,   6.73  ));
-// g.addEdge(new jsgraphs.Edge(6087, 6086,   4.07  ));      g.addEdge(new jsgraphs.Edge(6086,   6087,   4.07  ));
-// g.addEdge(new jsgraphs.Edge(6084, 6086,   2.66  ));      g.addEdge(new jsgraphs.Edge(6086,   6084,   2.66  ));
-// g.addEdge(new jsgraphs.Edge(6084, 6085,   4.1   ));      g.addEdge(new jsgraphs.Edge(6085,   6084,   4.1   ));
-// g.addEdge(new jsgraphs.Edge(6084, 6070,   12.51 ));      g.addEdge(new jsgraphs.Edge(6070,   6084,   12.51 ));
-// g.addEdge(new jsgraphs.Edge(6071, 6070,   3.87  ));      g.addEdge(new jsgraphs.Edge(6070,   6071,   3.87  ));
-// g.addEdge(new jsgraphs.Edge(6072, 6070,   3.22  ));      g.addEdge(new jsgraphs.Edge(6070,   6072,   3.22  ));
-// g.addEdge(new jsgraphs.Edge(6072, 6073,   3.32  ));      g.addEdge(new jsgraphs.Edge(6073,   6072,   3.32  ));
-// g.addEdge(new jsgraphs.Edge(6072, 6074,   4.62  ));      g.addEdge(new jsgraphs.Edge(6074,   6072,   4.62  ));
-// g.addEdge(new jsgraphs.Edge(6075, 6074,   3.73  ));      g.addEdge(new jsgraphs.Edge(6074,   6075,   3.73  ));
-// g.addEdge(new jsgraphs.Edge(6076, 6074,   2.45  ));      g.addEdge(new jsgraphs.Edge(6074,   6076,   2.45  ));
-// g.addEdge(new jsgraphs.Edge(6076, 6082,   1.05  ));      g.addEdge(new jsgraphs.Edge(6082,   6076,   1.05  ));
-// g.addEdge(new jsgraphs.Edge(6083, 6082,   3.16  ));      g.addEdge(new jsgraphs.Edge(6082,   6083,   3.16  ));
-// g.addEdge(new jsgraphs.Edge(6081, 6082,   1.25  ));      g.addEdge(new jsgraphs.Edge(6082,   6081,   1.25  ));
-// g.addEdge(new jsgraphs.Edge(6076, 6077,   10    ));      g.addEdge(new jsgraphs.Edge(6077,   6076,   10    ));
-// g.addEdge(new jsgraphs.Edge(6078, 6077,   10    ));      g.addEdge(new jsgraphs.Edge(6077,   6078,   10    ));
-// g.addEdge(new jsgraphs.Edge(6081, 6080,   10    ));      g.addEdge(new jsgraphs.Edge(6080,   6081,   10    ));
-// g.addEdge(new jsgraphs.Edge(6079, 6080,   10    ));      g.addEdge(new jsgraphs.Edge(6080,   6079,   10    ));
-// g.addEdge(new jsgraphs.Edge(6070, 6068,   9.42  ));      g.addEdge(new jsgraphs.Edge(6068,   6070,   9.42  ));
-// g.addEdge(new jsgraphs.Edge(6069, 6068,   5.12  ));      g.addEdge(new jsgraphs.Edge(6068,   6069,   5.12  ));
-// g.addEdge(new jsgraphs.Edge(6067, 6068,   7.34  ));      g.addEdge(new jsgraphs.Edge(6068,   6067,   7.34  ));
-// g.addEdge(new jsgraphs.Edge(6067, 6065,   7.68  ));      g.addEdge(new jsgraphs.Edge(6065,   6067,   7.68  ));
-// g.addEdge(new jsgraphs.Edge(6066, 6065,   2.88  ));      g.addEdge(new jsgraphs.Edge(6065,   6066,   2.88  ));
-// g.addEdge(new jsgraphs.Edge(6059, 6065,   2.33  ));      g.addEdge(new jsgraphs.Edge(6065,   6059,   2.33  ));
-// g.addEdge(new jsgraphs.Edge(6105, 6106,   10.57 ));      g.addEdge(new jsgraphs.Edge(6106,   6105,   10.57 ));
-// g.addEdge(new jsgraphs.Edge(6107, 6106,   1.08  ));      g.addEdge(new jsgraphs.Edge(6106,   6107,   1.08  ));
-// g.addEdge(new jsgraphs.Edge(6024, 6118,   8.17  ));      g.addEdge(new jsgraphs.Edge(6118,   6024,   8.17  ));
-// g.addEdge(new jsgraphs.Edge(6119, 6118,   7     ));      g.addEdge(new jsgraphs.Edge(6118,   6119,   7     ));
-// g.addEdge(new jsgraphs.Edge(6122, 6013,   5.5   ));      g.addEdge(new jsgraphs.Edge(6013,   6122,   5.5   ));
+g.addEdge(new jsgraphs.Edge(6004, 6005,   9.87  ));     g.addEdge(new jsgraphs.Edge(6005, 6004,   9.87  ));  
+g.addEdge(new jsgraphs.Edge(6005, 6006,   5.59  ));     g.addEdge(new jsgraphs.Edge(6006, 6005,   5.59  ));  
+g.addEdge(new jsgraphs.Edge(6005, 6007,   3.67  ));     g.addEdge(new jsgraphs.Edge(6007, 6005,   3.67  ));  
+g.addEdge(new jsgraphs.Edge(6007, 6012,   10    ));     g.addEdge(new jsgraphs.Edge(6012, 6007,   10    ));  
+g.addEdge(new jsgraphs.Edge(6012, 6011,   10    ));     g.addEdge(new jsgraphs.Edge(6011, 6012,   10    ));  
+g.addEdge(new jsgraphs.Edge(6011, 6010,   10    ));     g.addEdge(new jsgraphs.Edge(6010, 6011,   10    ));  
+g.addEdge(new jsgraphs.Edge(6012, 6013,   2.5   ));     g.addEdge(new jsgraphs.Edge(6013, 6012,   2.5   ));  
+g.addEdge(new jsgraphs.Edge(6053, 6013,   4.78  ));     g.addEdge(new jsgraphs.Edge(6013, 6053,   4.78  ));  
+g.addEdge(new jsgraphs.Edge(6122, 6013,   5.82  ));     g.addEdge(new jsgraphs.Edge(6013, 6122,   5.82  ));  
+g.addEdge(new jsgraphs.Edge(6013, 6014,   8.36  ));     g.addEdge(new jsgraphs.Edge(6014, 6013,   8.36  ));  
+g.addEdge(new jsgraphs.Edge(6015, 6014,   6.35  ));     g.addEdge(new jsgraphs.Edge(6014, 6015,   6.35  ));  
+g.addEdge(new jsgraphs.Edge(6016, 6014,   6.96  ));     g.addEdge(new jsgraphs.Edge(6014, 6016,   6.96  ));  
+g.addEdge(new jsgraphs.Edge(6016, 6017,   5.5   ));     g.addEdge(new jsgraphs.Edge(6017, 6016,   5.5   ));  
+g.addEdge(new jsgraphs.Edge(6016, 6018,   2.45  ));     g.addEdge(new jsgraphs.Edge(6018, 6016,   2.45  ));  
+g.addEdge(new jsgraphs.Edge(6018, 6023,   10    ));     g.addEdge(new jsgraphs.Edge(6023, 6018,   10    ));  
+g.addEdge(new jsgraphs.Edge(6022, 6023,   10    ));     g.addEdge(new jsgraphs.Edge(6023, 6022,   10    ));  
+g.addEdge(new jsgraphs.Edge(6022, 6021,   10    ));     g.addEdge(new jsgraphs.Edge(6021, 6022,   10    ));  
+g.addEdge(new jsgraphs.Edge(6023, 6185,   3.94  ));     g.addEdge(new jsgraphs.Edge(6185, 6023,   3.94  ));  
+g.addEdge(new jsgraphs.Edge(6186, 6185,   24.45 ));     g.addEdge(new jsgraphs.Edge(6185, 6186,   24.45 ));  
+g.addEdge(new jsgraphs.Edge(6186, 6187,   10.58 ));     g.addEdge(new jsgraphs.Edge(6187, 6186,   10.58 ));  
+g.addEdge(new jsgraphs.Edge(6188, 6187,   32.95 ));     g.addEdge(new jsgraphs.Edge(6187, 6188,   32.95 ));  
+g.addEdge(new jsgraphs.Edge(6188, 6189,   9.36  ));     g.addEdge(new jsgraphs.Edge(6189, 6188,   9.36  ));  
+g.addEdge(new jsgraphs.Edge(6190, 6189,   5.36  ));     g.addEdge(new jsgraphs.Edge(6189, 6190,   5.36  ));  
+g.addEdge(new jsgraphs.Edge(6191, 6188,   14.09 ));     g.addEdge(new jsgraphs.Edge(6188, 6191,   14.09 ));  
+g.addEdge(new jsgraphs.Edge(6191, 6192,   17.75 ));     g.addEdge(new jsgraphs.Edge(6192, 6191,   17.75 ));  
+g.addEdge(new jsgraphs.Edge(6155, 6192,   13.29 ));     g.addEdge(new jsgraphs.Edge(6192, 6155,   13.29 ));  
+g.addEdge(new jsgraphs.Edge(6185, 6183,   4.92  ));     g.addEdge(new jsgraphs.Edge(6183, 6185,   4.92  ));  
+g.addEdge(new jsgraphs.Edge(6184, 6183,   9.32  ));     g.addEdge(new jsgraphs.Edge(6183, 6184,   9.32  ));  
+g.addEdge(new jsgraphs.Edge(6184, 6118,   7.28  ));     g.addEdge(new jsgraphs.Edge(6118, 6184,   7.28  ));  
+g.addEdge(new jsgraphs.Edge(6182, 6183,   24.6  ));     g.addEdge(new jsgraphs.Edge(6183, 6182,   24.6  ));  
+g.addEdge(new jsgraphs.Edge(6182, 6177,   19.8  ));     g.addEdge(new jsgraphs.Edge(6177, 6182,   19.8  ));  
+g.addEdge(new jsgraphs.Edge(6176, 6177,   3.55  ));     g.addEdge(new jsgraphs.Edge(6177, 6176,   3.55  ));  
+g.addEdge(new jsgraphs.Edge(6057, 6177,   2.55  ));     g.addEdge(new jsgraphs.Edge(6177, 6057,   2.55  ));  
+g.addEdge(new jsgraphs.Edge(6057, 6055,   4.44  ));     g.addEdge(new jsgraphs.Edge(6055, 6057,   4.44  ));  
+g.addEdge(new jsgraphs.Edge(6178, 6055,   5.69  ));     g.addEdge(new jsgraphs.Edge(6055, 6178,   5.69  ));  
+g.addEdge(new jsgraphs.Edge(6178, 6179,   3.35  ));     g.addEdge(new jsgraphs.Edge(6179, 6178,   3.35  ));  
+g.addEdge(new jsgraphs.Edge(6102, 6179,   5.42  ));     g.addEdge(new jsgraphs.Edge(6179, 6102,   5.42  ));  
+g.addEdge(new jsgraphs.Edge(6102, 6100,   8.12  ));     g.addEdge(new jsgraphs.Edge(6100, 6102,   8.12  ));  
+g.addEdge(new jsgraphs.Edge(6101, 6100,   5.23  ));     g.addEdge(new jsgraphs.Edge(6100, 6101,   5.23  ));  
+g.addEdge(new jsgraphs.Edge(6101, 6180,   10.89 ));     g.addEdge(new jsgraphs.Edge(6180, 6101,   10.89 ));  
+g.addEdge(new jsgraphs.Edge(6181, 6180,   10.8  ));     g.addEdge(new jsgraphs.Edge(6180, 6181,   10.8  ));  
+g.addEdge(new jsgraphs.Edge(6176, 6065,   3.77  ));     g.addEdge(new jsgraphs.Edge(6065, 6176,   3.77  ));  
+g.addEdge(new jsgraphs.Edge(6066, 6065,   2.88  ));     g.addEdge(new jsgraphs.Edge(6065, 6066,   2.88  ));  
+g.addEdge(new jsgraphs.Edge(6059, 6065,   2.33  ));     g.addEdge(new jsgraphs.Edge(6065, 6059,   2.33  ));  
+g.addEdge(new jsgraphs.Edge(6058, 6059,   1.02  ));     g.addEdge(new jsgraphs.Edge(6059, 6058,   1.02  ));  
+g.addEdge(new jsgraphs.Edge(6060, 6059,   10    ));     g.addEdge(new jsgraphs.Edge(6059, 6060,   10    ));  
+g.addEdge(new jsgraphs.Edge(6060, 6061,   10    ));     g.addEdge(new jsgraphs.Edge(6061, 6060,   10    ));  
+g.addEdge(new jsgraphs.Edge(6062, 6063,   10    ));     g.addEdge(new jsgraphs.Edge(6063, 6062,   10    ));  
+g.addEdge(new jsgraphs.Edge(6064, 6063,   10    ));     g.addEdge(new jsgraphs.Edge(6063, 6064,   10    ));  
+g.addEdge(new jsgraphs.Edge(6058, 6064,   0.89  ));     g.addEdge(new jsgraphs.Edge(6064, 6058,   0.89  ));  
+g.addEdge(new jsgraphs.Edge(6103, 6064,   2.15  ));     g.addEdge(new jsgraphs.Edge(6064, 6103,   2.15  ));  
+g.addEdge(new jsgraphs.Edge(6103, 6104,   2.79  ));     g.addEdge(new jsgraphs.Edge(6104, 6103,   2.79  ));  
+g.addEdge(new jsgraphs.Edge(6103, 6179,   2.76  ));     g.addEdge(new jsgraphs.Edge(6179, 6103,   2.76  ));  
+g.addEdge(new jsgraphs.Edge(6174, 6069,   10.26 ));     g.addEdge(new jsgraphs.Edge(6069, 6174,   10.26 ));  
+g.addEdge(new jsgraphs.Edge(6068, 6069,   5.12  ));     g.addEdge(new jsgraphs.Edge(6069, 6068,   5.12  ));  
+g.addEdge(new jsgraphs.Edge(6068, 6175,   3.53  ));     g.addEdge(new jsgraphs.Edge(6175, 6068,   3.53  ));  
+g.addEdge(new jsgraphs.Edge(6176, 6175,   7.27  ));     g.addEdge(new jsgraphs.Edge(6175, 6176,   7.27  ));  
+g.addEdge(new jsgraphs.Edge(6089, 6088,   3.56  ));     g.addEdge(new jsgraphs.Edge(6088, 6089,   3.56  ));  
+g.addEdge(new jsgraphs.Edge(6090, 6088,   2.72  ));     g.addEdge(new jsgraphs.Edge(6088, 6090,   2.72  ));  
+g.addEdge(new jsgraphs.Edge(6090, 6091,   3.47  ));     g.addEdge(new jsgraphs.Edge(6091, 6090,   3.47  ));  
+g.addEdge(new jsgraphs.Edge(6090, 6092,   6.02  ));     g.addEdge(new jsgraphs.Edge(6092, 6090,   6.02  ));  
+g.addEdge(new jsgraphs.Edge(6092, 6093,   10    ));     g.addEdge(new jsgraphs.Edge(6093, 6092,   10    ));  
+g.addEdge(new jsgraphs.Edge(6094, 6093,   10    ));     g.addEdge(new jsgraphs.Edge(6093, 6094,   10    ));  
+g.addEdge(new jsgraphs.Edge(6088, 6086,   6.73  ));     g.addEdge(new jsgraphs.Edge(6086, 6088,   6.73  ));  
+g.addEdge(new jsgraphs.Edge(6084, 6086,   2.66  ));     g.addEdge(new jsgraphs.Edge(6086, 6084,   2.66  ));  
+g.addEdge(new jsgraphs.Edge(6084, 6085,   4.1   ));     g.addEdge(new jsgraphs.Edge(6085, 6084,   4.1   ));  
+g.addEdge(new jsgraphs.Edge(6084, 6172,   6.43  ));     g.addEdge(new jsgraphs.Edge(6172, 6084,   6.43  ));  
+g.addEdge(new jsgraphs.Edge(6173, 6172,   4.31  ));     g.addEdge(new jsgraphs.Edge(6172, 6173,   4.31  ));  
+g.addEdge(new jsgraphs.Edge(6070, 6172,   6.08  ));     g.addEdge(new jsgraphs.Edge(6172, 6070,   6.08  ));  
+g.addEdge(new jsgraphs.Edge(6070, 6072,   3.22  ));     g.addEdge(new jsgraphs.Edge(6072, 6070,   3.22  ));  
+g.addEdge(new jsgraphs.Edge(6073, 6072,   3.32  ));     g.addEdge(new jsgraphs.Edge(6072, 6073,   3.32  ));  
+g.addEdge(new jsgraphs.Edge(6074, 6072,   4.62  ));     g.addEdge(new jsgraphs.Edge(6072, 6074,   4.62  ));  
+g.addEdge(new jsgraphs.Edge(6074, 6082,   3.49  ));     g.addEdge(new jsgraphs.Edge(6082, 6074,   3.49  ));  
+g.addEdge(new jsgraphs.Edge(6081, 6082,   1.25  ));     g.addEdge(new jsgraphs.Edge(6082, 6081,   1.25  ));  
+g.addEdge(new jsgraphs.Edge(6081, 6080,   10    ));     g.addEdge(new jsgraphs.Edge(6080, 6081,   10    ));  
+g.addEdge(new jsgraphs.Edge(6079, 6080,   10    ));     g.addEdge(new jsgraphs.Edge(6080, 6079,   10    ));  
+g.addEdge(new jsgraphs.Edge(6174, 6168,   0     ));     g.addEdge(new jsgraphs.Edge(6168, 6174,   0     ));  
+g.addEdge(new jsgraphs.Edge(168 , 6168,   0     ));     g.addEdge(new jsgraphs.Edge(6168, 168 ,   0     ));  
 
-// // above nodes are form library
-
-// g.node(6001).label='30.27305431189,77.99971899825,6';  	
-// g.node(6002).label='30.27306238983,77.99974442792,6';  	
-// g.node(6003).label='30.27305405946,77.99976898071,6';  	
-// g.node(6004).label='30.27312751843,77.99975787320,6';  	
-// g.node(6005).label='30.27320516314,77.99980772567,6';  	
-// g.node(6006).label='30.27317346141,77.99985286938,6';  	
-// g.node(6007).label='30.27323404610,77.99982627024,6';  	
-// g.node(6008).label='30.27318355882,77.99988882167,6';  	
-// g.node(6009).label='30.27318778698,77.99989401006,6';  	
-// g.node(6010).label='30.27318885401,77.99989570572,6';  	
-// g.node(6011).label='30.27319188193,77.99989888400,6';  	
-// g.node(6012).label='30.27324200475,77.99983486167,6';  	
-// g.node(6013).label='30.27325847475,77.99985264823,6';  	
-// g.node(6014).label='30.27331422562,77.99991104779,6';  	
-// g.node(6015).label='30.27327494033,77.99995897248,6';  	
-// g.node(6016).label='30.27335919456,77.99996140527,6';  	
-// g.node(6017).label='30.27332694192,78.00000486280,6';  	
-// g.node(6018).label='30.27337530644,77.99997880091,6';  	
-// g.node(6019).label='30.27332362500,78.00004375168,6';  	
-// g.node(6020).label='30.27332827882,78.00004871651,6';  	
-// g.node(6021).label='30.27332877874,78.00004927470,6';  	
-// g.node(6022).label='30.27333257033,78.00005327199,6';  	
-// g.node(6023).label='30.27338386376,77.99998803985,6';  	
-// g.node(6024).label='30.27341807112,78.00007092119,6';  	
-// g.node(6025).label='30.27337894374,78.00009138184,6';  	
-// g.node(6026).label='30.27347892218,77.99997875974,6';  	
-// g.node(6027).label='30.27348572332,78.00006829083,6';  	
-// g.node(6028).label='30.27346701687,78.00006962139,6';  	
-// g.node(6029).label='30.27350818999,78.00006682935,6';  	
-// g.node(6030).label='30.27356019146,77.99984410053,6';  	
-// g.node(6031).label='30.27356000729,77.99987423739,6';  	
-// g.node(6032).label='30.27351929710,77.99971929055,6';  	
-// g.node(6033).label='30.27355867685,77.99972045973,6';  	
-// g.node(6034).label='30.27349556675,77.99969002702,6';  	
-// g.node(6035).label='30.27346881021,77.99965703171,6';  	
-// g.node(6036).label='30.27346931508,77.99961727958,6';  	
-// g.node(6037).label='30.27337516305,77.99965750757,6';  	
-// g.node(6038).label='30.27337540940,77.99963306351,6';  	
-// g.node(6039).label='30.27337247724,77.99962256396,6';  	
-// g.node(6040).label='30.27336455458,77.99961830276,6';  	
-// g.node(6041).label='30.27332315540,77.99961757188,6';  	
-// g.node(6042).label='30.27332143572,77.99965828975,6';  	
-// g.node(6043).label='30.27332184619,77.99969234644,6';  	
-// g.node(6044).label='30.27329715525,77.99969274542,6';  	
-// g.node(6045).label='30.27329431585,77.99969283701,6';  	
-// g.node(6046).label='30.27326648189,77.99969298350,6';  	
-// g.node(6047).label='30.27326634884,77.99965908953,6';  	
-// g.node(6048).label='30.27324414092,77.99965941522,6';  	
-// g.node(6049).label='30.27324168963,77.99969958550,6';  	
-// g.node(6050).label='30.27319020430,77.99969842374,6';  	
-// g.node(6051).label='30.27319053675,77.99967867090,6';  	
-// g.node(6052).label='30.27319012213,77.99972192120,6';  	
-// g.node(6053).label='30.27328680477,77.99981516332,6';  	
-// g.node(6054).label='30.27338323513,77.99982334729,6';  	
-// g.node(6055).label='30.27356091949,77.99961636728,6';  	
-// g.node(6056).label='30.27358619244,77.99964504732,6';  	
-// g.node(6057).label='30.27353318124,77.99958308077,6';  	
-// g.node(6058).label='30.27358215324,77.99959243450,6';  	
-// g.node(6059).label='30.27357581116,77.99958470939,6';  	
-// g.node(6060).label='30.27360462097,77.99955196200,6';  	
-// g.node(6061).label='30.27361049277,77.99955888799,6';  	
-// g.node(6062).label='30.27361158545,77.99955981684,6';  	
-// g.node(6063).label='30.27361668978,77.99956576221,6';  	
-// g.node(6064).label='30.27358794749,77.99959884698,6';  	
-// g.node(6065).label='30.27356135734,77.99956711085,6';  	
-// g.node(6066).label='30.27358038620,77.99954683648,6';  	
-// g.node(6067).label='30.27351374354,77.99950913042,6';  	
-// g.node(6068).label='30.27356190216,77.99945681656,6';  	
-// g.node(6069).label='30.27352964716,77.99941881096,6';  	
-// g.node(6070).label='30.27362367360,77.99938973058,6';  	
-// g.node(6071).label='30.27364778611,77.99936064454,6';  	
-// g.node(6072).label='30.27360333616,77.99936592898,6';  	
-// g.node(6073).label='30.27358089106,77.99938870486,6';  	
-// g.node(6074).label='30.27357408539,77.99933169582,6';  	
-// g.node(6075).label='30.27359805659,77.99930452389,6';  	
-// g.node(6076).label='30.27355861491,77.99931359019,6';  	
-// g.node(6077).label='30.27359571675,77.99927112980,6';  	
-// g.node(6078).label='30.27358950753,77.99926385545,6';  	
-// g.node(6079).label='30.27358805229,77.99926181527,6';  	
-// g.node(6080).label='30.27358130821,77.99925392245,6';  	
-// g.node(6081).label='30.27354407652,77.99929657542,6';  	
-// g.node(6082).label='30.27355199038,77.99930583729,6';  	
-// g.node(6083).label='30.27353116151,77.99932819979,6';  	
-// g.node(6084).label='30.27370425476,77.99948058784,6';  	
-// g.node(6085).label='30.27372982713,77.99944979452,6';  	
-// g.node(6086).label='30.27372134417,77.99949998111,6';  	
-// g.node(6087).label='30.27374724507,77.99946996288,6';  	
-// g.node(6088).label='30.27376497396,77.99954851982,6';  	
-// g.node(6089).label='30.27378738203,77.99952199140,6';  	
-// g.node(6090).label='30.27378232719,77.99956848660,6';  	
-// g.node(6091).label='30.27376062406,77.99959448057,6';  	
-// g.node(6092).label='30.27382074673,77.99961269246,6';  	
-// g.node(6093).label='30.27385476558,77.99957305183,6';  	
-// g.node(6094).label='30.27386141101,77.99958069812,6';  	
-// g.node(6095).label='30.27386303961,77.99958250710,6';  	
-// g.node(6096).label='30.27386892053,77.99958927375,6';  	
-// g.node(6097).label='30.27383487366,77.99962894703,6';  	
-// g.node(6098).label='30.27382803489,77.99962107828,6';  	
-// g.node(6099).label='30.27380833402,77.99964533990,6';  	
-// g.node(6100).label='30.27370726324,77.99961396788,6';  	
-// g.node(6101).label='30.27374017692,77.99965293958,6';  	
-// g.node(6102).label='30.27365510669,77.99967310793,6';  	
-// g.node(6103).label='30.27360191911,77.99961429201,6';  	
-// g.node(6104).label='30.27362001836,77.99959418827,6';  	
-// g.node(6105).label='30.27343817324,78.00018286812,6';  	
-// g.node(6106).label='30.27343633727,78.00029288247,6';  	
-// g.node(6107).label='30.27342665568,78.00029266584,6';  	
-// g.node(6108).label='30.27351753031,77.99997504842,6';  	
-// g.node(6109).label='30.27351792788,77.99994900574,6';  	
-// g.node(6110).label='30.27348382495,77.99994794396,6';  	
-// g.node(6111).label='30.27348452930,77.99991761259,6';  	
-// g.node(6112).label='30.27348433132,77.99991366464,6';  	
-// g.node(6113).label='30.27348502940,77.99988274578,6';  	
-// g.node(6114).label='30.27351892249,77.99988377177,6';  	
-// g.node(6115).label='30.27351981007,77.99982569771,6';  	
-// g.node(6116).label='30.27354378323,77.99982685512,6';  	
-// g.node(6117).label='30.27355564764,77.99983270102,6';  	
-// g.node(6118).label='30.27343056748,78.00015467068,6'; 
-// g.node(6119).label='30.27341844489,78.00022711349,6'; 
-// g.node(6120).label='30.27341816621,78.00029261856,6'; 
-
-
+g.node(6186).label='30.27324671758,78.00020877382,6'
+g.node(6079).label='30.27358810750,77.99926205245,6'
+g.node(6172).label='30.27366290306,77.99943413770,6'
+g.node(6015).label='30.27327499554,77.99995920966,6'
+g.node(6072).label='30.27360339137,77.99936616616,6'
+g.node(6190).label='30.27303866050,78.00066813614,6'
+g.node(6059).label='30.27357586637,77.99958494657,6'
+g.node(6118).label='30.27343062269,78.00015490786,6'
+g.node(6092).label='30.27382080194,77.99961292964,6'
+g.node(6012).label='30.27324205995,77.99983509824,6'
+g.node(6062).label='30.27361164066,77.99956005402,6'
+g.node(6101).label='30.27374023213,77.99965317676,6'
+g.node(6187).label='30.27327185538,78.00031504224,6'
+g.node(6086).label='30.27372139938,77.99950021829,6'
+g.node(6179).label='30.27361991652,77.99963437004,6'
+g.node(6175).label='30.27358394302,77.99948356741,6'
+g.node(6081).label='30.27354413216,77.99929681177,6'
+g.node(6011).label='30.27319193713,77.99989912057,6'
+g.node(6057).label='30.27353323645,77.99958331795,6'
+g.node(6122).label='30.27322384166,77.99989821187,6'
+g.node(6182).label='30.27341393734,77.99973331592,6'
+g.node(6073).label='30.27358094627,77.99938894204,6'
+g.node(6061).label='30.27361054798,77.99955912517,6'
+g.node(6154).label='30.27345105277,78.00055080394,6'
+g.node(6058).label='30.27358220845,77.99959267168,6'
+g.node(6102).label='30.27365516190,77.99967334511,6'
+g.node(6004).label='30.27312757364,77.99975811038,6'
+g.node(6177).label='30.27351664993,77.99956494926,6'
+g.node(6017).label='30.27332699713,78.00000509998,6'
+g.node(6006).label='30.27317351662,77.99985310656,6'
+g.node(6084).label='30.27370430997,77.99948082502,6'
+g.node(6069).label='30.27352970237,77.99941904814,6'
+g.node(6185).label='30.27339921509,78.00002533815,6'
+g.node(6065).label='30.27356141255,77.99956734803,6'
+g.node(6173).label='30.27363682707,77.99946736629,6'
+g.node(6066).label='30.27358044141,77.99954707366,6'
+g.node(6074).label='30.27357414060,77.99933193300,6'
+g.node(6189).label='30.27300458829,78.00062862989,6'
+g.node(6056).label='30.27358624765,77.99964528450,6'
+g.node(6060).label='30.27360467618,77.99955219918,6'
+g.node(6021).label='30.27332883394,78.00004951127,6'
+g.node(6005).label='30.27320521835,77.99980796285,6'
+g.node(6053).label='30.27328685998,77.99981540050,6'
+g.node(6016).label='30.27335924977,77.99996164245,6'
+g.node(6018).label='30.27337536165,77.99997903809,6'
+g.node(6013).label='30.27325852996,77.99985288541,6'
+g.node(6090).label='30.27378238240,77.99956872378,6'
+g.node(6091).label='30.27376067927,77.99959471775,6'
+g.node(6088).label='30.27376502917,77.99954875700,6'
+g.node(6155).label='30.27335260427,78.00068357329,6'
+g.node(6080).label='30.27358136342,77.99925415963,6'
+g.node(6010).label='30.27318890921,77.99989594229,6'
+g.node(6023).label='30.27338391896,77.99998827642,6'
+g.node(6070).label='30.27362372881,77.99938996776,6'
+g.node(6094).label='30.27386146622,77.99958093530,6'
+g.node(6176).label='30.27353866634,77.99953819135,6'
+g.node(6184).label='30.27345078734,78.00008281389,6'
+g.node(6064).label='30.27358800270,77.99959908416,6'
+g.node(6100).label='30.27370731845,77.99961420506,6'
+g.node(6063).label='30.27361674499,77.99956599939,6'
+g.node(6180).label='30.27381117711,77.99973127825,6'
+g.node(6022).label='30.27333262553,78.00005350856,6'
+g.node(6085).label='30.27372988234,77.99945003170,6'
+g.node(6174).label='30.27346596526,77.99934175215,6'
+g.node(6191).label='30.27315968406,78.00065773700,6'
+g.node(6103).label='30.27360197432,77.99961452919,6'
+g.node(6023).label='30.27338391897,77.99998827703,6'
+g.node(6183).label='30.27343020664,77.99998877469,6'
+g.node(6082).label='30.27355204559,77.99930607447,6'
+g.node(6055).label='30.27356097470,77.99961660446,6'
+g.node(6188).label='30.27306482430,78.00056053024,6'
+g.node(6178).label='30.27359764760,77.99965789364,6'
+g.node(6068).label='30.27356195737,77.99945705374,6'
+g.node(6192).label='30.27327351567,78.00078734603,6'
+g.node(6089).label='30.27378743724,77.99952222858,6'
+g.node(6014).label='30.27331428083,77.99991128497,6'
+g.node(6093).label='30.27385482079,77.99957328901,6'
+g.node(6104).label='30.27362007357,77.99959442545,6'
+g.node(6181).label='30.27388190042,77.99980832860,6'
+g.node(6007).label='30.27323410131,77.99982650742,6'
+g.node(6168).label='30.27339819372,77.99929644267,6';   
 
 //lat, long, floor number 
 export {g};

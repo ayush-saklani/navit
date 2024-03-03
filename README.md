@@ -36,46 +36,46 @@ npm install cors
 * `package.JSON` and `package-lock.JSON` has npm packages for this project
 * `test.js` is for testing *(can be deleted)*.
 * `tester.js` is for testing *(can be deleted)*.
-
-# Future plan
-* Make it dynamic to add coordinate to center use last coordinate to center
-* Add routes using geojson and calculate the shortest path using djkastra data structure typed modules
-* Use leaflet library for drawing route on map using polylines dynamically using coordinates as array of strings input
-* Introduce database to store timetables and current cooordinates to center
-* Add timetables to database to automate the direction finding and to find idle class rooms and labs
-* Add authencation for students to verify the actual user and possibally Lock the mapping part within campus for safety concern
-
-
-#
-### *(done)*
-* we can do one thing 
-* we can make a array of floors for show the polylines floor wise
-* 7 floors so the length of array will be 7
-* and each will contain that array containing the coordinates of that floor and we will make 
-* the polyline according to the floor 
-#
-* 0 means ground floor and 7 means underground 
-* g.node(0).label='30.2731289,77.9997726,1'; this will be new type of node label, by this we will  get the latitude ,longitude and floors from this
-* shove all the fetch request in the server.js side for privacy
-#
-# **Keep Coding, Keep Smiling!, Have Fun!** 💻🚀
-
-* `server.js`
-* `style.css`
-* `test.js`
-* `tester.js`
-* `.vscode`
-* `api`
-* `cache`
-* `mapgeoJSON`
-* `media`
-* `node_modules`
-* `.gitignore`
-* `index.html`
-* `index.js`
-* `newmap.js`
-* `oneness.js`
-* `package.json`
-* `package-lock.json`
-* `qr_testing.xlsx`
-* `README.md`
+<!--  -->
+<!-- # Future plan -->
+<!-- * Make it dynamic to add coordinate to center use last coordinate to center -->
+<!-- * Add routes using geojson and calculate the shortest path using djkastra data structure typed modules -->
+<!-- * Use leaflet library for drawing route on map using polylines dynamically using coordinates as array of strings input -->
+<!-- * Introduce database to store timetables and current cooordinates to center -->
+<!-- * Add timetables to database to automate the direction finding and to find idle class rooms and labs -->
+<!-- * Add authencation for students to verify the actual user and possibally Lock the mapping part within campus for safety concern -->
+<!--  -->
+<!--  -->
+<!-- # -->
+<!-- ### *(done)* -->
+<!-- * we can do one thing  -->
+<!-- * we can make a array of floors for show the polylines floor wise -->
+<!-- * 7 floors so the length of array will be 7 -->
+<!-- * and each will contain that array containing the coordinates of that floor and we will make  -->
+<!-- * the polyline according to the floor  -->
+<!-- # -->
+<!-- * 0 means ground floor and 7 means underground  -->
+<!-- * g.node(0).label='30.2731289,77.9997726,1'; this will be new type of node label, by this we will  get the latitude ,longitude and floors from this -->
+<!-- * shove all the fetch request in the server.js side for privacy -->
+<!-- # -->
+<!-- # **Keep Coding, Keep Smiling!, Have Fun!** 💻🚀 -->
+<!--  -->
+<!-- * `server.js` -->
+<!-- * `style.css` -->
+<!-- * `test.js` -->
+<!-- * `tester.js` -->
+<!-- * `.vscode` -->
+<!-- * `api` -->
+<!-- * `cache` -->
+<!-- * `mapgeoJSON` -->
+<!-- * `media` -->
+<!-- * `node_modules` -->
+<!-- * `.gitignore` -->
+<!-- * `index.html` -->
+<!-- * `index.js` -->
+<!-- * `newmap.js` -->
+<!-- * `oneness.js` -->
+<!-- * `package.json` -->
+<!-- * `package-lock.json` -->
+<!-- * `qr_testing.xlsx` -->
+<!-- * `README.md` -->

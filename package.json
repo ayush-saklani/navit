@@ -26,6 +26,7 @@
     "passport-local": "^1.0.0",
     "qr-code-scanner": "^1.0.8",
     "qrcode-reader": "^1.0.4",
-    "react-simple-qr-code-scanner": "^2.5.5"
+    "react-simple-qr-code-scanner": "^2.5.5",
+    "xml-js": "^1.6.11"
   }
 }

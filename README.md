@@ -36,6 +36,12 @@ npm install cors
 * `package.JSON` and `package-lock.JSON` has npm packages for this project
 * `test.js` is for testing *(can be deleted)*.
 * `tester.js` is for testing *(can be deleted)*.
+
+
+# updates
+* Basement floor updated version added with workshop.
+* All floor updated acuurately.
+
 <!--  -->
 <!-- # Future plan -->
 <!-- * Make it dynamic to add coordinate to center use last coordinate to center -->

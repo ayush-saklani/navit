@@ -24,13 +24,11 @@ let edit_kardo = () =>{
         else{
             let map_coordinates = JSON.parse(data);
             map_coordinates.forEach(obj => {
-                // mapmap[obj.start].lat = obj;
-                if(obj.len>=10){
+                if (obj.len>=10) {
                     reconstructedClassData.push({ "start": obj.start, "end": obj.end, "len": obj.len });
-                    // console.log("================================xx==============================")
-                }else{
-                    console.log(obj.start,obj.end,obj.len,haversine(mapmap[obj.start].lat,mapmap[obj.start].long,mapmap[obj.end].lat,mapmap[obj.end].long));
-                    obj.len = haversine(mapmap[obj.start].lat,mapmap[obj.start].long,mapmap[obj.end].lat,mapmap[obj.end].long)
+                } else {
+                    console.log(obj.start,obj.end,obj.len,haversine_distance(mapmap[obj.start].lat,mapmap[obj.start].long,mapmap[obj.end].lat,mapmap[obj.end].long));
+                    obj.len = haversine_distance(mapmap[obj.start].lat,mapmap[obj.start].long,mapmap[obj.end].lat,mapmap[obj.end].long);
                     reconstructedClassData.push({ "start": obj.start, "end": obj.end, "len": obj.len });
                 }
             });
@@ -39,10 +37,6 @@ let edit_kardo = () =>{
     });
 }
 function save_JSON(){
-    // reconstructedClassData = [];
-    // for (const forg in mapmap) {
-    //     reconstructedClassData.push({ "start": 6070, "end": 6172, "len": 6.08 });
-    // }
     const reconstructedJson = JSON.stringify(reconstructedClassData, null, 2);
     writeFile('map_coordinates_edit.json', reconstructedJson, 'utf8', err => {
         if (err){
@@ -53,7 +47,7 @@ function save_JSON(){
         }
     });
 }
-let haversine = (lat1, lon1, lat2, lon2) =>{
+let haversine_distance = (lat1, lon1, lat2, lon2) =>{
     lat1 = lat1 * (Math.PI / 180);
     lon1 = lon1 * (Math.PI / 180);
     lat2 = lat2 * (Math.PI / 180);

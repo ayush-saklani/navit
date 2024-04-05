@@ -1,147 +1,114 @@
 import jsgraphs from 'js-graph-algorithms';
-// import {g} from './newmap.js'
 import cors from 'cors'; // Import the cors middleware
 import express from 'express'
-import { readFile, writeFile, readFileSync } from 'fs';
+import {readFile} from 'fs';
 
 const app = express()
 const port = 3000
 app.use(cors());
 
-
-let g = new jsgraphs.WeightedGraph(7000);
-function load_map(){
-    readFile('map_coordinates.json', 'utf8', (err, data)=>{
-        if(err){
-            console.error("Error reading file:", err);
-            return;
-        }
-        try{
-            console.error("doing 1");
-            let coordinates_par = JSON.parse(data);
-            coordinates_par.forEach(classObj => {
-                const start = classObj.start;
-                const end = classObj.end;
-                const len = classObj.len;
-                console.error(start +" "+ end +" "+ len);
-                g.addEdge(new jsgraphs.Edge(start,end,len));
-            });
-            console.error(g);
-            console.error("doing 1");
-        }catch (error) {
-            console.error("Error parsing JSON:", error);
-        }
-    });
-    readFile('map_coordinates_label.json', 'utf8', (err, data)=>{
-        if(err){
-            console.error("Error reading file:", err);
-            return;
-        }
-        try{
-            let label_par = JSON.parse(data);
-            label_par.forEach(classObj => {
-                const node = classObj.node;
-                const label = classObj.label;
-                g.node(node).label=label;
-            });
-            console.error("doing 2");
-        }catch (error) {
-            console.error("Error parsing JSON:", error);
-        }
-        app.listen(port, () => {
-            console.log(`Server is listening at http://localhost:${port}`);
+const g = new jsgraphs.WeightedGraph(7000);
+// Function to load map coordinates
+function loadMap() {
+    return new Promise((resolve, reject) => {
+        readFile('map_coordinates.json', 'utf8', (err, data) => {
+            if (err) {
+                reject(err);
+            } else {
+                let edges = JSON.parse(data);
+                edges.forEach(edgeObj => {
+                    g.addEdge(new jsgraphs.Edge(edgeObj.start, edgeObj.end, edgeObj.len));
+                    g.addEdge(new jsgraphs.Edge(edgeObj.end, edgeObj.start, edgeObj.len));
+                });
+                resolve();
+            }
         });
-    });    
+    });
+}
+
+// Function to load map labels
+function loadLabels() {
+    return new Promise((resolve, reject) => {
+        readFile('map_coordinates_label.json', 'utf8', (err, data) => {
+            if (err) {
+                reject(err);
+            } else {
+                let labels = JSON.parse(data);
+                labels.forEach(classObj => {
+                    let node = classObj.node;
+                    let label = classObj.label;
+                    g.node(node).label = label;
+                });
+                resolve();
+            }
+        });
+    });
 }
 // this funciton takes maps from map.mjs and returns the polyline coordinates
-let dijfunc__version_1 = (src,des) =>{ 
+let dijfunc = (src, des) => {
     var dijkstra = new jsgraphs.Dijkstra(g, src);
     let e;
-    if(dijkstra.hasPathTo(des)){
+    if (dijkstra.hasPathTo(des)) {
         let res = [[],[],[],[],[],[],[]];
         var path = dijkstra.pathTo(des);
-        for(var i = 0; i < path.length; ++i){
+        let curr_floor = 0;
+        let temp_con = [];
+        for (var i = 0; i < path.length; ++i) {
             e = path[i];
-            let temp = (g.node(e.from()).label).split(','); 
-            let temparr = []
-            temparr.push(Number(temp[0]));
-            temparr.push(Number(temp[1]));
-            res[temp[2]].push(temparr)
-            if(i==path.length -1){
-                let temp = (g.node(e.to()).label).split(','); 
-                let temparr = []
-                temparr.push(Number(temp[0]));
-                temparr.push(Number(temp[1]));
-                res[temp[2]].push(temparr)
-            }
-        }
-        return res;
-    }
-    else{
-        console.log('error hai bhaisaab service down hai shayad');
-    }
-}
-let dijfunc2 = (src,des) =>{
-    var dijkstra = new jsgraphs.Dijkstra(g, src);
-    let e;
-    if(dijkstra.hasPathTo(des)){
-        let res = [[],[],[],[],[],[],[]];
-        var path = dijkstra.pathTo(des);
-        let curr_floor =0;
-        let temp_con=[];
-        for(var i = 0; i < path.length; ++i){
-            e = path[i];
-            let temp = (g.node(e.from()).label).split(','); 
-            if(i==0){
+            let temp = (g.node(e.from()).label).split(',');
+            if (i == 0) {
                 curr_floor = temp[2];
             }
-            let temparr = []
-            if(i!=path.length -1){
+            let temparr = [];
+            if (i != path.length - 1) {
                 temparr.push(Number(temp[0]));
                 temparr.push(Number(temp[1]));
-                if(temp[2]==curr_floor){
-                    temp_con.push(temparr)
-                }
-                else{
+                if (temp[2] == curr_floor) {
+                    temp_con.push(temparr);
+                } else {
                     res[curr_floor].push(temp_con);
-                    temp_con=[]
-                    temp_con.push(temparr)
-                    curr_floor=temp[2];
+                    temp_con = [];
+                    temp_con.push(temparr);
+                    curr_floor = temp[2];
                 }
-            }
-            else if(i==path.length -1){
-                let temp = (g.node(e.from()).label).split(','); 
-                let temparr = []
+            } else if (i == path.length - 1) {
+                let temp = (g.node(e.from()).label).split(',');
+                let temparr = [];
                 temparr.push(Number(temp[0]));
                 temparr.push(Number(temp[1]));
-                temp_con.push(temparr)
-                temp = (g.node(e.to()).label).split(','); 
-                temparr = []
+                temp_con.push(temparr);
+                temp = (g.node(e.to()).label).split(',');
+                temparr = [];
                 temparr.push(Number(temp[0]));
                 temparr.push(Number(temp[1]));
-                temp_con.push(temparr)
+                temp_con.push(temparr);
                 res[curr_floor].push(temp_con);
             }
         }
         return res;
+    } else {
+        console.log('Error: Destination is unreachable from the source.');
+        return null; // or throw an error
     }
-    else{
-        console.log('error hai bhaisaab service down hai shayad');
-    }
-}
-let nearest_amenity = (src,keyword) =>{
-    let des = segregate_aminity(src,keyword);
-    var dijkstra = new jsgraphs.Dijkstra(g, src);
-    let distance = 9999;
-    let distance_index=null;
-    for (let i = 0; i < des.length; i++) {
-        if(dijkstra.distanceTo(des[i])<distance){
-            distance_index = des[i];
-            distance = dijkstra.distanceTo(des[i]);
+};
+let nearest_amenity = (src, keyword) => {
+    let des = segregate_aminity(src, keyword);
+    if (des !== null) {
+        var dijkstra = new jsgraphs.Dijkstra(g, src);
+        let distance = 9999;
+        let distance_index = null;
+        for (let i = 0; i < des.length; i++) {
+            if (dijkstra.distanceTo(des[i]) < distance) {
+                distance_index = des[i];
+                distance = dijkstra.distanceTo(des[i]);
+            }
         }
+        return distance_index;
+    } else {
+        console.log('Error: Could not find suitable destination.');
+        return null; // or handle the error appropriately
     }
-    return distance_index;
-}
+};
 let segregate_aminity = (src,keyword) =>{
     if(keyword==999){
         if(src>0 && src<1000 || src>=6000 && src<7000)  return[83,51];
@@ -162,7 +129,7 @@ let segregate_aminity = (src,keyword) =>{
     else{
         console.log('second service me error hai bhaisaab service down hai shayad');
     }
-}
+};
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -170,18 +137,17 @@ app.use(express.json());
 // Route to handle POST requests from the HTML page
 app.post('/getCoordinates', (req, res) => {
     const { src, des } = req.body;
-    
+    console.log(src,des);
     // Execute the dijfunc function with the provided source and destination
     let coordinates;
     if (des==999 || des==998 ) {
         console.log(src);
         console.log(des);
         let temp_des = nearest_amenity(src, des);
-        coordinates = dijfunc2(src, temp_des);
+        coordinates = dijfunc(src, temp_des);
     }else{
-        coordinates = dijfunc2(src, des);
+        coordinates = dijfunc(src, des);
     }
-
     // Check if coordinates were found
     if (coordinates) {
         res.json(coordinates);
@@ -190,5 +156,15 @@ app.post('/getCoordinates', (req, res) => {
     }
 });
 
-// Start the server
-load_map();
+Promise.all([loadMap(), loadLabels()])
+    .then(() => {
+        console.log("Map data loaded successfully.");
+        // console.log(dijfunc(1,41));
+        // Start the server
+        app.listen(port, () => {
+            console.log(`Server is listening at http://localhost:${port}`);
+        });
+    })
+    .catch(err => {
+        console.error("Error loading map data:", err);
+    });

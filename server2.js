@@ -1,4 +1,4 @@
-//  Server.js version 2.0
+//  Server.js version 2.1
 import jsgraphs from 'js-graph-algorithms';
 import cors from 'cors'; // Import the cors middleware
 import express from 'express'
@@ -23,7 +23,7 @@ let loadMap = () =>{
                 resolve();
             }
         });
-        readFile('map_coordinates_label.json', 'utf8', (err, data) => {
+        readFile('map_coordinates_label_updated.json', 'utf8', (err, data) => {
             if (err) {
                 reject(err);
             } else {
@@ -31,7 +31,7 @@ let loadMap = () =>{
                 labels.forEach(classObj => {
                     let node = classObj.node;
                     let label = classObj.label;
-                    g.node(node).label = label;
+                    g.node(node).label = classObj.lat+","+classObj.long+","+classObj.floor;
                 });
                 resolve();
             }

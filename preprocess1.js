@@ -1,4 +1,4 @@
-import {readFile} from 'fs';
+import {readFile,writeFile} from 'fs';
 let mapmap={};
 const reconstructedClassData = [];
 let loadMap = () =>{
@@ -44,7 +44,7 @@ function save_JSON(){
     //     reconstructedClassData.push({ "start": 6070, "end": 6172, "len": 6.08 });
     // }
     const reconstructedJson = JSON.stringify(reconstructedClassData, null, 2);
-    fs.writeFile('map_coordinates_edit.json', reconstructedJson, 'utf8', err => {
+    writeFile('map_coordinates_edit.json', reconstructedJson, 'utf8', err => {
         if (err){
             console.error("Error writing file:", err);
             return;

@@ -1,3 +1,4 @@
+//  Server.js version 2.0
 import jsgraphs from 'js-graph-algorithms';
 import cors from 'cors'; // Import the cors middleware
 import express from 'express'
@@ -8,8 +9,7 @@ const port = 3000
 app.use(cors());
 
 const g = new jsgraphs.WeightedGraph(7000);
-// Function to load map coordinates
-function loadMap() {
+let loadMap = () =>{
     return new Promise((resolve, reject) => {
         readFile('map_coordinates.json', 'utf8', (err, data) => {
             if (err) {
@@ -23,12 +23,6 @@ function loadMap() {
                 resolve();
             }
         });
-    });
-}
-
-// Function to load map labels
-function loadLabels() {
-    return new Promise((resolve, reject) => {
         readFile('map_coordinates_label.json', 'utf8', (err, data) => {
             if (err) {
                 reject(err);
@@ -44,7 +38,6 @@ function loadLabels() {
         });
     });
 }
-// this funciton takes maps from map.mjs and returns the polyline coordinates
 let dijfunc = (src, des) => {
     var dijkstra = new jsgraphs.Dijkstra(g, src);
     let e;
@@ -88,7 +81,7 @@ let dijfunc = (src, des) => {
         return res;
     } else {
         console.log('Error: Destination is unreachable from the source.');
-        return null; // or throw an error
+        return null;
     }
 };
 let nearest_amenity = (src, keyword) => {
@@ -103,14 +96,14 @@ let nearest_amenity = (src, keyword) => {
                 distance = dijkstra.distanceTo(des[i]);
             }
         }
-        return distance_index;
+        return dijfunc(src,distance_index);
     } else {
         console.log('Error: Could not find suitable destination.');
-        return null; // or handle the error appropriately
+        return null; 
     }
 };
 let segregate_aminity = (src,keyword) =>{
-    if(keyword==999){
+    if(keyword==999){ // gents washroom
         if(src>0 && src<1000 || src>=6000 && src<7000)  return[83,51];
         else if(src>=1000 && src<2000)  return[1083,1051];
         else if(src>=2000 && src<3000)  return[2083,2051];
@@ -118,7 +111,7 @@ let segregate_aminity = (src,keyword) =>{
         else if(src>=4000 && src<5000)  return[4083,4051];
         else if(src>=5000 && src<6000)  return[5083,5051];
     }
-    else if(keyword==998){
+    else if(keyword==998){// ladies washroom
         if(src>0 && src<1000 || src>=6000 && src<7000)  return[99,29];
         else if(src>=1000 && src<2000)  return[1099,1029];
         else if(src>=2000 && src<3000)  return[2099,2029];
@@ -127,7 +120,7 @@ let segregate_aminity = (src,keyword) =>{
         else if(src>=5000 && src<6000)  return[5099,5029];   
     }
     else{
-        console.log('second service me error hai bhaisaab service down hai shayad');
+        console.log('Error: Arey Bhaisab kis line me aa gaye aap.');
     }
 };
 
@@ -138,17 +131,12 @@ app.use(express.json());
 app.post('/getCoordinates', (req, res) => {
     const { src, des } = req.body;
     console.log(src,des);
-    // Execute the dijfunc function with the provided source and destination
     let coordinates;
     if (des==999 || des==998 ) {
-        console.log(src);
-        console.log(des);
-        let temp_des = nearest_amenity(src, des);
-        coordinates = dijfunc(src, temp_des);
+        coordinates = nearest_amenity(src, des);
     }else{
         coordinates = dijfunc(src, des);
     }
-    // Check if coordinates were found
     if (coordinates) {
         res.json(coordinates);
     } else {
@@ -156,7 +144,7 @@ app.post('/getCoordinates', (req, res) => {
     }
 });
 
-Promise.all([loadMap(), loadLabels()])
+Promise.all([loadMap()])
     .then(() => {
         console.log("Map data loaded successfully.");
         // console.log(dijfunc(1,41));

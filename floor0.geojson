@@ -1,0 +1,66 @@
+{
+    "type": "FeatureCollection",
+    "generator": "JOSM",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "1"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99972688993,
+                    30.27308384710
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99981150934,
+                    30.27322899740
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "ayush"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.99998469357,
+                    30.27339181842
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": null,
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        77.99972688993,
+                        30.27308384710
+                    ],
+                    [
+                        77.99981150934,
+                        30.27322899740
+                    ],
+                    [
+                        77.99998469357,
+                        30.27339181842
+                    ]
+                ]
+            }
+        }
+    ]
+}

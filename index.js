@@ -2,7 +2,8 @@ const map = L.map(('map'),{
     center: [30.2734504,77.9997427],
     zoomAnimation:true,
     maxZoom: 22,
-    minZoom:19
+    minZoom:19,
+    zoomControl: false 
 });
 const tileurl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 const tile = L.tileLayer(tileurl,{

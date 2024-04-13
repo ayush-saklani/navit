@@ -1,20 +1,5 @@
 import {readFile,readFileSync,write,writeFile} from 'fs';
-import { stringify } from 'querystring';
-let mapmap={};
-const reconstructedClassData = [];
-let loadMap = () =>{
-    readFile('Ground floor test_plan.geoJSON', 'utf8',(err,data)=>{
-        if(err){
-            console.log(err);
-        }
-        else{
-            let map_coordinates_label = JSON.parse(data).features;
-            map_coordinates_label.forEach(element => {
-                console.log(element.geometry)
-            });
-        }
-    });
-}
+
 let currnode = 1 ;
 let node =  [];
 let edges = [];
@@ -53,7 +38,7 @@ let assignnode = () => {
     save();
 }
 
-readFile('Ground floor test_plan.geoJSON', 'utf8',(err,data,floor=0,note="")=>{
+readFile('preprocessing/Ground floor test_plan.geojson', 'utf8',(err,data,floor=0,note="")=>{
     if(err){
         console.log(err);
     }
@@ -78,7 +63,7 @@ readFile('Ground floor test_plan.geoJSON', 'utf8',(err,data,floor=0,note="")=>{
 });
 function save(){
     const reconstructedJson = JSON.stringify(ans, null, 2);
-    writeFile('aaaaaaaaaaaaaaaaaaaaaa.json', reconstructedJson, 'utf8', err => {
+    writeFile('preprocessing/aaaaaaaaaaaaaaaaaaaaaa.json', reconstructedJson, 'utf8', err => {
         if (err){
             console.error("Error writing file:", err);
             return;
@@ -87,7 +72,7 @@ function save(){
         }
     });
     const reconstructedJson2 = JSON.stringify(node, null, 2);
-    writeFile('aaaaaaaaaaaaaaaaaaaaaa2.json', reconstructedJson2, 'utf8', err => {
+    writeFile('preprocessing/aaaaaaaaaaaaaaaaaaaaaa2.json', reconstructedJson2, 'utf8', err => {
         if (err){
             console.error("Error writing file:", err);
             return;

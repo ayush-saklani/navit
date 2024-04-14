@@ -14,22 +14,42 @@ let addEventListenertobutton = () => {
 }
 addEventListenertobutton();
 
+let change = 1;
 
-let change = 1
 const getLocation = () => {
     if (navigator.geolocation) {
         navigator.geolocation.watchPosition((position) => {
             change++;
-            document.getElementById('demo').innerHTML = ([position.coords.latitude, position.coords.longitude] + "x" + change);
-            let latling = [position.coords.latitude, position.coords.longitude];
-            // let latling = [30.27358215324, 77.99959243450];
-            L.marker(latling).addTo(map);
-            // L.map.setView(latling, 18);
-        });
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            const latlng = [latitude, longitude];
+            let changea ;
+            let a;
+            // Update the content of the 'demo' element
+            document.getElementById('demo').innerHTML = `${latitude}, ${longitude} x ${change}`;
+            if(!changea || latlng !=changea){
+                a = L.marker(latlng).addTo(map);
+            }
+            else{
+                a.setLatlng(latlng)
+            }
+            // Create a Leaflet marker at the updated position
+            // if (!mapMarker) {
+            //     mapMarker = L.marker(latlng).addTo(map);
+            // } else {
+            //     mapMarker.setLatLng(latlng);
+            // }
+
+            // Set the map view to the updated position
+
+            map.setView(latlng, 18);
+        },console.error,{maximumAge: 1000,timeout: 1000,enableHighAccuracy: true});
     } else {
         console.log("Geolocation is not supported by this browser");
     }
 };
+
+// Call the getLocation function to start tracking the user's position
 getLocation();
 
 // var myIcon = L.icon({

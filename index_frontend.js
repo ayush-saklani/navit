@@ -21,9 +21,10 @@ const getLocation = () => {
         navigator.geolocation.watchPosition((position) => {
             change++;
             document.getElementById('demo').innerHTML = ([position.coords.latitude, position.coords.longitude] + "x" + change);
-            // let latling = [position.coords.latitude, position.coords.longitude];
-            let latling = [30.27358215324, 77.99959243450];
+            let latling = [position.coords.latitude, position.coords.longitude];
+            // let latling = [30.27358215324, 77.99959243450];
             L.marker(latling).addTo(map);
+            // L.map.setView(latling, 18);
         });
     } else {
         console.log("Geolocation is not supported by this browser");

@@ -24,21 +24,27 @@ const getLocation = () => {
             const longitude = position.coords.longitude;
             const latlng = [latitude, longitude];
             let changea ;
-            let a;
+            let marker;
             // Update the content of the 'demo' element
             document.getElementById('demo').innerHTML = `${latitude}, ${longitude} x ${change}`;
-            if(!changea){
-                a = L.marker(latlng).addTo(map);
-                changea = latlng
+            // marker = L.marker(latlng).addTo(map);
+            if(marker){
+                map.removeLayer(marker)
             }
-            else if(latlng !=changea){
-                a.remove()
-                a = L.marker(latlng).addTo(map);
-                changea = latlng
-            }
-            else{
-                changea = latlng
-            }
+            marker = L.marker(latlng).addTo(map);
+            
+            // if(!changea){
+                // a = L.marker(latlng).addTo(map);
+                // changea = latlng
+            // }
+            // else if(latlng !=changea){
+                // map.removeLayer(a)
+                // a = L.marker(latlng).addTo(map);
+                // changea = latlng
+            // }
+            // else{
+                // changea = latlng
+            // }
             // Create a Leaflet marker at the updated position
             // if (!mapMarker) {
             //     mapMarker = L.marker(latlng).addTo(map);

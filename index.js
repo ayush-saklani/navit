@@ -70,135 +70,171 @@ fetch('./mapgeoJSON/floor0.geojson').then(response =>  response.json()).then(dat
 }).catch(error => console.error('out of service.. ~_~  @_@', error));  
 
 
-
-
-
-document.getElementById('-1').addEventListener('click', () => {
+const geoJSONEvent =  (mapfloor,pathfloor) => {
     map.eachLayer(function(layer) {
         if (!!layer.toGeoJSON){map.removeLayer(layer);}
     });
-    fetch('./mapgeoJSON/floor-1.geojson').then(response =>  response.json()).then(data => {
+    fetch(`./mapgeoJSON/floor${mapfloor}.geojson`).then(response =>  response.json()).then(data => {
         L.geoJSON(data, {
             style:{color: 'cadetblue',weight: 1,opacity: 1},
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    L.polyline.antPath(points[6],{
+    L.polyline.antPath(points[pathfloor],{
         "delay": 600,
         "dashArray": [1,46],
         "weight": 5,
         "color": '#327174',
         "pulseColor": "#000000",
       }).addTo(map);
-});
-
-document.getElementById('G').addEventListener('click', () => {
-    map.eachLayer(function(layer) {
-        if (!!layer.toGeoJSON){map.removeLayer(layer);}
+};
+let geoJSONEventListener = () => {
+    let circular_buttons = document.querySelectorAll(".circular_button");
+    circular_buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            let mapfloor;
+            let pathfloor;
+            if(btn.id === 'G'){
+                mapfloor = pathfloor = 0
+            }
+            else if(btn.id == '-1'){
+                mapfloor=-1;pathfloor = 6;
+            }
+            else {
+                mapfloor = pathfloor = btn.id;
+            }
+            geoJSONEvent(mapfloor,pathfloor);
+        });
     });
-    fetch('./mapgeoJSON/floor0.geojson').then(response =>  response.json()).then(data => {
-        L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 1},
-        }).addTo(map);
-    }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    // const polytile = L.polyline(points[1]).addTo(map);
-    L.polyline.antPath(points[0],{
-        "delay": 600,
-        "dashArray": [1,46],
-        "weight": 5,
-        "color": '#327174',
-        "pulseColor": "#000000",
-      }).addTo(map);
-});
+}
+geoJSONEventListener();
 
-document.getElementById('1').addEventListener('click', () => {
-    map.eachLayer(function(layer) {
-        if (!!layer.toGeoJSON){map.removeLayer(layer);}
-    });
-    fetch('./mapgeoJSON/floor1.geojson').then(response =>  response.json()).then(data => {
-        L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 1},
-        }).addTo(map);
-    }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    L.polyline.antPath(points[1],{
-        "delay": 600,
-        "dashArray": [1,46],
-        "weight": 5,
-        "color": '#327174',
-        "pulseColor": "#000000",
-      }).addTo(map);
-});
 
-document.getElementById('2').addEventListener('click', () => {
-    map.eachLayer(function(layer) {
-        if (!!layer.toGeoJSON){map.removeLayer(layer);}
-    });
-    fetch('./mapgeoJSON/floor2.geojson').then(response =>  response.json()).then(data => {
-        L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 1},
-        }).addTo(map);
-    }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    L.polyline.antPath(points[2],{
-        "delay": 600,
-        "dashArray": [1,46],
-        "weight": 5,
-        "color": '#327174',
-        "pulseColor": "#000000",
-      }).addTo(map);
-});
 
-document.getElementById('3').addEventListener('click', () => {
-    map.eachLayer(function(layer) {
-        if (!!layer.toGeoJSON){map.removeLayer(layer);}
-    });
-    fetch('./mapgeoJSON/floor3.geojson').then(response =>  response.json()).then(data => {
-        L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 1},
-        }).addTo(map);
-    }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    L.polyline.antPath(points[3],{
-        "delay": 600,
-        "dashArray": [1,46],
-        "weight": 5,
-        "color": '#327174',
-        "pulseColor": "#000000",
-      }).addTo(map);
-});
+// document.getElementById('-1').addEventListener('click', () => {
+    // map.eachLayer(function(layer) {
+        // if (!!layer.toGeoJSON){map.removeLayer(layer);}
+    // });
+    // fetch('./mapgeoJSON/floor-1.geojson').then(response =>  response.json()).then(data => {
+        // L.geoJSON(data, {
+            // style:{color: 'cadetblue',weight: 1,opacity: 1},
+        // }).addTo(map);
+    // }).catch(error => console.error('out of service.. ~_~  @_@', error));   
+    // L.polyline.antPath(points[6],{
+        // "delay": 600,
+        // "dashArray": [1,46],
+        // "weight": 5,
+        // "color": '#327174',
+        // "pulseColor": "#000000",
+    //   }).addTo(map);
+// });
 
-document.getElementById('4').addEventListener('click', () => {
-    map.eachLayer(function(layer) {
-        if (!!layer.toGeoJSON){map.removeLayer(layer);}
-    });
-    fetch('./mapgeoJSON/floor4.geojson').then(response =>  response.json()).then(data => {
-        L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 1},
-        }).addTo(map);
-    }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    L.polyline.antPath(points[4],{
-        "delay": 600,
-        "dashArray": [1,46],
-        "weight": 5,
-        "color": '#327174',
-        "pulseColor": "#000000",
-      }).addTo(map);
-});
+// document.getElementById('G').addEventListener('click', () => {
+    // map.eachLayer(function(layer) {
+        // if (!!layer.toGeoJSON){map.removeLayer(layer);}
+    // });
+    // fetch('./mapgeoJSON/floor0.geojson').then(response =>  response.json()).then(data => {
+        // L.geoJSON(data, {
+            // style:{color: 'cadetblue',weight: 1,opacity: 1},
+        // }).addTo(map);
+    // }).catch(error => console.error('out of service.. ~_~  @_@', error));   
+    // L.polyline.antPath(points[0],{
+        // "delay": 600,
+        // "dashArray": [1,46],
+        // "weight": 5,
+        // "color": '#327174',
+        // "pulseColor": "#000000",
+    //   }).addTo(map);
+// });
 
-document.getElementById('5').addEventListener('click', () => {
-    map.eachLayer(function(layer) {
-        if (!!layer.toGeoJSON){map.removeLayer(layer);}
-    });
-    fetch('./mapgeoJSON/floor5.geojson').then(response =>  response.json()).then(data => {
-        L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 1},
-        }).addTo(map);
-    }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    L.polyline.antPath(points[5],{
-        "delay": 600,
-        "dashArray": [1,46],
-        "weight": 5,
-        "color": '#327174',
-        "pulseColor": "#000000",
-      }).addTo(map);
-});
+// document.getElementById('1').addEventListener('click', () => {
+    // map.eachLayer(function(layer) {
+        // if (!!layer.toGeoJSON){map.removeLayer(layer);}
+    // });
+    // fetch('./mapgeoJSON/floor1.geojson').then(response =>  response.json()).then(data => {
+        // L.geoJSON(data, {
+            // style:{color: 'cadetblue',weight: 1,opacity: 1},
+        // }).addTo(map);
+    // }).catch(error => console.error('out of service.. ~_~  @_@', error));   
+    // L.polyline.antPath(points[1],{
+        // "delay": 600,
+        // "dashArray": [1,46],
+        // "weight": 5,
+        // "color": '#327174',
+        // "pulseColor": "#000000",
+    //   }).addTo(map);
+// });
+
+// document.getElementById('2').addEventListener('click', () => {
+    // map.eachLayer(function(layer) {
+        // if (!!layer.toGeoJSON){map.removeLayer(layer);}
+    // });
+    // fetch('./mapgeoJSON/floor2.geojson').then(response =>  response.json()).then(data => {
+        // L.geoJSON(data, {
+            // style:{color: 'cadetblue',weight: 1,opacity: 1},
+        // }).addTo(map);
+    // }).catch(error => console.error('out of service.. ~_~  @_@', error));   
+    // L.polyline.antPath(points[2],{
+        // "delay": 600,
+        // "dashArray": [1,46],
+        // "weight": 5,
+        // "color": '#327174',
+        // "pulseColor": "#000000",
+    //   }).addTo(map);
+// });
+
+// document.getElementById('3').addEventListener('click', () => {
+    // map.eachLayer(function(layer) {
+        // if (!!layer.toGeoJSON){map.removeLayer(layer);}
+    // });
+    // fetch('./mapgeoJSON/floor3.geojson').then(response =>  response.json()).then(data => {
+        // L.geoJSON(data, {
+            // style:{color: 'cadetblue',weight: 1,opacity: 1},
+        // }).addTo(map);
+    // }).catch(error => console.error('out of service.. ~_~  @_@', error));   
+    // L.polyline.antPath(points[3],{
+        // "delay": 600,
+        // "dashArray": [1,46],
+        // "weight": 5,
+        // "color": '#327174',
+        // "pulseColor": "#000000",
+    //   }).addTo(map);
+// });
+
+// document.getElementById('4').addEventListener('click', () => {
+    // map.eachLayer(function(layer) {
+        // if (!!layer.toGeoJSON){map.removeLayer(layer);}
+    // });
+    // fetch('./mapgeoJSON/floor4.geojson').then(response =>  response.json()).then(data => {
+        // L.geoJSON(data, {
+            // style:{color: 'cadetblue',weight: 1,opacity: 1},
+        // }).addTo(map);
+    // }).catch(error => console.error('out of service.. ~_~  @_@', error));   
+    // L.polyline.antPath(points[4],{
+        // "delay": 600,
+        // "dashArray": [1,46],
+        // "weight": 5,
+        // "color": '#327174',
+        // "pulseColor": "#000000",
+    //   }).addTo(map);
+// });
+
+// document.getElementById('5').addEventListener('click', () => {
+    // map.eachLayer(function(layer) {
+        // if (!!layer.toGeoJSON){map.removeLayer(layer);}
+    // });
+    // fetch('./mapgeoJSON/floor5.geojson').then(response =>  response.json()).then(data => {
+        // L.geoJSON(data, {
+            // style:{color: 'cadetblue',weight: 1,opacity: 1},
+        // }).addTo(map);
+    // }).catch(error => console.error('out of service.. ~_~  @_@', error));   
+    // L.polyline.antPath(points[5],{
+        // "delay": 600,
+        // "dashArray": [1,46],
+        // "weight": 5,
+        // "color": '#327174',
+        // "pulseColor": "#000000",
+    //   }).addTo(map);
+// });
 
 // document.getElementById('R').addEventListener('click', () => {
     // map.eachLayer(function(layer) {

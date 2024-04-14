@@ -15,6 +15,7 @@ let addEventListenertobutton = () => {
 addEventListenertobutton();
 
 let change = 1;
+let marker;
 
 const getLocation = () => {
     if (navigator.geolocation) {
@@ -24,7 +25,6 @@ const getLocation = () => {
             const longitude = position.coords.longitude;
             const latlng = [latitude, longitude];
             let changea ;
-            let marker;
             // Update the content of the 'demo' element
             document.getElementById('demo').innerHTML = `${latitude}, ${longitude} x ${change}`;
             // marker = L.marker(latlng).addTo(map);

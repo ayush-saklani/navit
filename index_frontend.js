@@ -32,7 +32,8 @@ const getLocation = () => {
                 changea = latlng
             }
             else if(latlng !=changea){
-                a.setLatlng(latlng)
+                a.remove()
+                a = L.marker(latlng).addTo(map);
                 changea = latlng
             }
             else{

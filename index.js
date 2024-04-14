@@ -5,6 +5,7 @@ const map = L.map(('map'),{
     minZoom:19,
     zoomControl: false 
 });
+// let map = L.map(('map'), {}).setView(latling, 18);
 const tileurl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 const tile = L.tileLayer(tileurl,{
     attribution: '&copy; <a href="https://github.com/ayush-saklani">Tempest</a>'

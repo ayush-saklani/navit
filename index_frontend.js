@@ -27,11 +27,16 @@ const getLocation = () => {
             let a;
             // Update the content of the 'demo' element
             document.getElementById('demo').innerHTML = `${latitude}, ${longitude} x ${change}`;
-            if(!changea || latlng !=changea){
+            if(!changea){
                 a = L.marker(latlng).addTo(map);
+                changea = latlng
+            }
+            else if(latlng !=changea){
+                a.setLatlng(latlng)
+                changea = latlng
             }
             else{
-                a.setLatlng(latlng)
+                changea = latlng
             }
             // Create a Leaflet marker at the updated position
             // if (!mapMarker) {

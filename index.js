@@ -2,7 +2,7 @@ const map = L.map(('map'),{
     center: [30.2734504,77.9997427],
     zoomAnimation:true,
     maxZoom: 22,
-    minZoom:19,
+    minZoom:15,
     zoomControl: false 
 });
 // let map = L.map(('map'), {}).setView(latling, 18);

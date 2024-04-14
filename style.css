@@ -1,11 +1,14 @@
+.text-heading{
+    font-family: anta;
+}
+.coloring{
+    background-color: #055160;
+}
 *{
     padding: 0px;
     margin: 0; 
     box-sizing: border-box;
     size: 100%;
-}
-#logo{
-    justify-content: center;
 }
 #map{
     height: 100vh;
@@ -19,131 +22,47 @@
     z-index: 1;
     margin: 5px;
 }
-#heading{
-    color: rgb(50, 113, 116);
-    align-self: center;
-    padding: 8px;
-    margin: 0px;
-    font-family:anta;
-    font-size: xx-large;
-    text-align:center;    
-}
-#circular_button_div{
-    position: absolute;
-    margin: 5px;
-    margin-top: 110px;
-    /* left: 15px; */
-    display: flex;
-    flex-direction: column;
-    z-index: 1;
+
+.circular_button_div{
+    padding-bottom: 40px;
+    margin-left: 50px;
 }
 .circular_button{
     background-color: rgb(50, 113, 116);
     color: rgb(255, 255, 255);
-    padding: 10px;
-    text-align: center;
     font-family:"anta";
     font-size:x-large;
     height: 60px;
     width:  60px;
-    margin: 4px ;
     border-radius: 50%;
+    z-index: 10;
+    margin-bottom: 5px;
+    transition: ease-in-out 0.5s;
 }
 .circular_button:hover{
-    background-color: rgb(33, 77, 79);
+    background-color: #055160;
+    transition: ease-in-out 0.5s;
 }
-.labelmaker{
-    align-items: center;
-    padding: 2px;
-    text-align: center;
-    font-family:"anta";
-    font-size:large;
-    margin: 4px ;
-    margin-top:   auto;
-    margin-bottom:auto ;
-}
-.optionbox{
-    background-color: rgb(50, 113, 116);
-    color: rgb(255, 255, 255);
-    padding: 4px;
-    font-family:"anta";
-    font-size:large;
-    height: max-content;
-    width:  250px ;
-    margin: 4px ;
-    border-radius:12px;
-    margin-top:   auto;
-    margin-bottom:auto ;
-}
-.optionbox:hover{
-    background-color: rgb(33, 77, 79);
-}
-#go{
-    align-items:center;
-    width:  150px;
-    border-radius:20px;
-    padding: 5px;
-    white-space: nowrap;
-}
-.drop_option{
-    justify-content:center;
-    position: absolute;
-    display: flex;
-    right: 30%;
-    left:  30%;
-    bottom: 2.5%;
-    flex-direction:row;
-    /* white-space: wrap; */
-    z-index: 1;
-}
-.arrange{
+.bottom-bar {
     display: flex;
     justify-content: center;
-    margin: 5px;
-}
-.arrage2{
-    display: flex;
-    flex-direction: column;
-}
-@media only screen and (max-width: 600px) {
-    #circular_button_div{
-        position: absolute;
-        margin: 5px;
-        margin-top: 25%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure it's above other content */
+  }
+@media only screen and (max-width: 650px) {
+    .circular_button_div{
+        padding-bottom: 110px;
+        margin-left: 40px;
+        transition: ease-in-out 1s;
     }
     .circular_button{
-        font-family:"anta";
-        font-size:medium;
-        height: 40px;
-        width:  40px;
-    }
-    #reset{
-        height: 18px;
-    }
-    .drop_option{
-        justify-content:center;
-        position: absolute;
-        display: block;
-        margin: 0px;
-        right: 0%;
-        left:  0%;
-    }
-    .labelmaker{
-        align-items: center;
-        font-size:medium;
-    }
-    .optionbox{
-        font-size:medium;
-        height: max-content;
-        margin-left:  5%;
-        margin-right: 5%;
-        width:  90% ;
-    }
-    #go{
-        width:  50%;
-        padding: 5px;
-        margin-left: 25%;
-        margin-right: 25%;
-        justify-content: center;
+        font-size:larger;
+        height: 50px;
+        width:  50px;
+        margin-bottom: 4px;
+        transition: ease-in-out 1s;
     }
 }

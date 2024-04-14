@@ -1,391 +1,408 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <!-- <meta charset="UTF-8"> -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navit (campus navigator)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anta&display=swap">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="/media/icon.webp">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="bootstrap_style.css" />
+    <title>Navit | Campus Navigator</title>
+    <link rel="icon" href="/media/icon.png">
 </head>
+
 <body>
-    <div class="header">
-        <img id ='logo' src="media/logo.png" alt="logo" height="75px">
-        <h1 id='heading'>Indoor Mapping Navit</h1>
+    <div id='map' class="z-0"></div>
+    <div class="position-absolute top-0 start-0 m-1 header">
+        <div class="container-fluid my-1 d-flex align-items-center">
+            <a href="index_bootstrap.html"><img class="" src="media/logo.png" height="80px"></a>
+            <h1 class="text-heading text-info-emphasis me-auto ms-2"><b>Indoor Mapping Navit</b></h1>
+        </div>
     </div>
-    <div id="circular_button_div" >
-        <button class="circular_button" id="-1">-1</button>
-        <button class="circular_button" id="G">G</button>
-        <button class="circular_button" id="1">1</button>
-        <button class="circular_button" id="2">2</button>
-        <button class="circular_button" id="3">3</button>
-        <button class="circular_button" id="4">4</button>
-        <button class="circular_button" id="5">5</button>
-        <button class="circular_button" id="R"> <img id="reset" src="media/reset2white.png" alt="R" height="35px";/></button>
+    <div>
+        <div class="btn-group-vertical position-absolute top-50 start-0 translate-middle circular_button_div" role="group"
+            aria-label="Vertical button group">
+            <button class="circular_button" id="-1"><b>-1</b></button>
+            <button class="circular_button" id="G"><b>G</b></button>
+            <button class="circular_button" id="1"><b>1</b></button>
+            <button class="circular_button" id="2"><b>2</b></button>
+            <button class="circular_button" id="3"><b>3</b></button>
+            <button class="circular_button" id="4"><b>4</b></button>
+            <button class="circular_button" id="5"><b>5</b></button>
+            <!-- <button class="circular_button m-1" id="R"><i class="bi bi-arrow-counterclockwise h2"></i></button> -->
+        </div>
     </div>
-    <div class="drop_option">
-        <div class="arrange">
-            <div class="arrage2">
-                <label class="labelmaker">Start:</label>
-                <select name="Start" id="Start" class="optionbox">
-                    <optgroup label="Ground floor (checking pending)"> 
-                            <option value="1">Ubuntu lab 1</option>
-                            <option value="3">Ubuntu lab 2 </option>
-                            <option value="33">Bosch Lab</option>
-                            <option value="6">Mac lab</option>
-                            <option value="15">Reception</option>
-                            <option value="25">Main Office</option>
-                            <option value="29">medical Room(check)</option>
-                            <option value="31">Seminar Hall</option>
-                            <option value="36">CR101</option>
-                            <option value="41">meeting hall</option>
-                            <option value="54">Open Auditorium</option>
-                            <option value="57">Staff room G1</option>
-                            <option value="56">Staff room G2</option>
-                            <option value="69">Lab 1</option>
-                            <option value="101">Lab 9</option>
-                            <!-- <option value="83">Gents Washroom</option> -->
-                            <option value="73">Teacher office(Teacher name)</option>
-                            <option value="75">CR102</option>
-                            <option value="71">CR103</option>
-                            <option value="85">CR104</option>
-                            <option value="87">CR105</option>
-                            <option value="89">CR106</option>
-                            <option value="91">HOD office</option>
-                            <option value="6191">workshop</option>
-                            <option value="148">Gate no 1</option>
-                            <option value="127">Gate no 2</option>
-                            <option value="165">Gate no 3</option>
-			                <option value="166">Canteen</option>
-                            <option value="171">GEHU bus stop</option>
-                    <!-- <option value="99">Ladies Washroom</option> -->
+    <div class="bottom-bar">
+
+
+        <div class=" container row align-items-center mb-2">
+            <div class="form-floating col-md-5 col-sm-12 pb-1">
+                <select class="form-select" name="Start" id="Start" aria-label="Floating label select example">
+                    <optgroup label="Ground floor (checking pending)">
+                        <option value="1">Ubuntu lab 1</option>
+                        <option value="3">Ubuntu lab 2 </option>
+                        <option value="33">Bosch Lab</option>
+                        <option value="6">Mac lab</option>
+                        <option value="15">Reception</option>
+                        <option value="25">Main Office</option>
+                        <option value="29">medical Room(check)</option>
+                        <option value="31">Seminar Hall</option>
+                        <option value="36">CR101</option>
+                        <option value="41">meeting hall</option>
+                        <option value="54">Open Auditorium</option>
+                        <option value="57">Staff room G1</option>
+                        <option value="56">Staff room G2</option>
+                        <option value="69">Lab 1</option>
+                        <option value="101">Lab 9</option>
+                        <!-- <option value="83">Gents Washroom</option> -->
+                        <option value="73">Teacher office(Teacher name)</option>
+                        <option value="75">CR102</option>
+                        <option value="71">CR103</option>
+                        <option value="85">CR104</option>
+                        <option value="87">CR105</option>
+                        <option value="89">CR106</option>
+                        <option value="91">HOD office</option>
+                        <option value="6191">workshop</option>
+                        <option value="148">Gate no 1</option>
+                        <option value="127">Gate no 2</option>
+                        <option value="165">Gate no 3</option>
+                        <option value="166">Canteen</option>
+                        <option value="171">GEHU bus stop</option>
+                        <option value="105">Library</option>
+                        <!-- <option value="99">Ladies Washroom</option> -->
                     </optgroup>
                     <optgroup label="1st floor">
-                            <option value="1119">Main Library</option>
-                            <option value="1001">Round Room R</option>
-                            <option value="1003">Round Room L</option>
-                            <option value="1006">Dr Sanjay Jasola(vice chancellor)</option>
-                            <option value="1122">CR209</option>
-                            <option value="1017">CR211</option>
-                            <option value="1025">Dr Kamal Ghanshala(President)</option>
-                            <!-- <option value="1028">Ladies Washroom</option> -->
-                            <option value="1031">LT202</option>
-                            <option value="1033">CR206</option>
-                            <option value="1036">CR207</option>
-                            <option value="1041">LT201</option>
-                            <!-- <option value="1051">Gents Washroom</option> -->
-                            <option value="1052">Teacher office</option>
-                            <option value="1057">Server Room</option>
-                            <option value="1056">Staff room 21</option>
-                            <option value="1069">Lab 2</option>
-                            <option value="1101">Lab 8</option>
-                            <!-- <option value="1083">Gents Washroom</option> -->
-                            <option value="1073">Faculty of School of Pharmacy</option>
-                            <option value="1075">CR201</option>
-                            <option value="1071">CR202</option>
-                            <option value="1085">CR203</option>
-                            <option value="1087">CR204</option>
-                            <option value="1089">CR205</option>
-                            <option value="1091">Erp Cell</option>
-                            <option value="1127">Gate no 3 ke upar</option>
-                            <!-- <option value="1099">Ladies Washroom</option>    -->
+                        <option value="1119">Main Library</option>
+                        <option value="1001">Round Room R</option>
+                        <option value="1003">Round Room L</option>
+                        <option value="1006">Dr Sanjay Jasola(vice chancellor)</option>
+                        <option value="1122">CR209</option>
+                        <option value="1017">CR211</option>
+                        <option value="1025">Dr Kamal Ghanshala(President)</option>
+                        <!-- <option value="1028">Ladies Washroom</option> -->
+                        <option value="1031">LT202</option>
+                        <option value="1033">CR206</option>
+                        <option value="1036">CR207</option>
+                        <option value="1041">LT201</option>
+                        <!-- <option value="1051">Gents Washroom</option> -->
+                        <option value="1052">Teacher office</option>
+                        <option value="1057">Server Room</option>
+                        <option value="1056">Staff room 21</option>
+                        <option value="1069">Lab 2</option>
+                        <option value="1101">Lab 8</option>
+                        <!-- <option value="1083">Gents Washroom</option> -->
+                        <option value="1073">Faculty of School of Pharmacy</option>
+                        <option value="1075">CR201</option>
+                        <option value="1071">CR202</option>
+                        <option value="1085">CR203</option>
+                        <option value="1087">CR204</option>
+                        <option value="1089">CR205</option>
+                        <option value="1091">Erp Cell</option>
+                        <option value="1127">Gate no 3 ke upar</option>
+                        <!-- <option value="1099">Ladies Washroom</option>    -->
                     </optgroup>
                     <optgroup label="2nd floor">
-                            <option value="2119">Department of Fine Arts</option>
-                            <option value="2001">Department of visual Art</option>
-                            <option value="2006">CR304</option>
-                            <option value="2017">CR302</option>
-                            <option value="2122">New Hall</option>
-                            <option value="2025">CR303</option>
-                            <option value="2031">LT302</option>
-                            <option value="2033">CR301</option>
-                            <option value="2036">CR305</option>
-                            <option value="2041">LT301</option>
-                            <option value="2052">Dr Mahesh Manchanda</option>
-                            <option value="2057">Staff room 31</option>
-                            <option value="2056">Staff room 32</option>
-                            <option value="2069">Lab 3</option>
-                            <option value="2101">Lab 7</option>
-                            <option value="2073">Teacher office</option>
-                            <option value="2075">Pharmaceutical Analysis Lab</option>
-                            <option value="2071">Pharmaceutical chemistry I Lab</option>
-                            <option value="2085">Pharmaceutics I Lab</option>
-                            <option value="2087">Pharmaceutics I Lab</option>
-                            <option value="2089">Pharmacognosy I Lab</option>
-                            <!-- <option value="2091">2nd HOD office</option> -->
+                        <option value="2119">Department of Fine Arts</option>
+                        <option value="2001">Department of visual Art</option>
+                        <option value="2006">CR304</option>
+                        <option value="2017">CR302</option>
+                        <option value="2122">New Hall</option>
+                        <option value="2025">CR303</option>
+                        <option value="2031">LT302</option>
+                        <option value="2033">CR301</option>
+                        <option value="2036">CR305</option>
+                        <option value="2041">LT301</option>
+                        <option value="2052">Dr Mahesh Manchanda</option>
+                        <option value="2057">Staff room 31</option>
+                        <option value="2056">Staff room 32</option>
+                        <option value="2069">Lab 3</option>
+                        <option value="2101">Lab 7</option>
+                        <option value="2073">Teacher office</option>
+                        <option value="2075">Pharmaceutical Analysis Lab</option>
+                        <option value="2071">Pharmaceutical chemistry I Lab</option>
+                        <option value="2085">Pharmaceutics I Lab</option>
+                        <option value="2087">Pharmaceutics I Lab</option>
+                        <option value="2089">Pharmacognosy I Lab</option>
+                        <!-- <option value="2091">2nd HOD office</option> -->
                     </optgroup>
                     <optgroup label="3rd floor">
-                            <option value="3002">Department of english</option>
-                            <option value="3006">CR405</option>
-                            <option value="3025">CR404</option>
-                            <option value="3033">CR403</option>
-                            <option value="3036">CR406</option>
-                            <option value="3031">LT401</option>
-                            <option value="3041">LT402</option>
-                            <!-- <option value="3052">Teacher office</option> -->
-                            <option value="3122">Conference Hall</option>
-                            <option value="3057">Staff room 41</option>
-                            <option value="3056">Staff room 42</option>
-                            <option value="3119">Staff room 43(CSE RR)</option>
-                            <option value="3069">Lab 4</option>
-                            <option value="3101">IOT Lab</option>
-                            <option value="3073">Department of Mathematics</option>
-                            <option value="3075">CR401</option>
-                            <option value="3071">Electronic engg Lab I</option>
-                            <option value="3085">Logic Design Microprocessor Lab</option>
-                            <option value="3087">Electronic engg Lab II</option>
-                            <option value="3089">CR402</option>
-                            <option value="3091">Dean Acadamics</option>
+                        <option value="3002">Department of english</option>
+                        <option value="3006">CR405</option>
+                        <option value="3025">CR404</option>
+                        <option value="3033">CR403</option>
+                        <option value="3036">CR406</option>
+                        <option value="3031">LT401</option>
+                        <option value="3041">LT402</option>
+                        <!-- <option value="3052">Teacher office</option> -->
+                        <option value="3122">Conference Hall</option>
+                        <option value="3057">Staff room 41</option>
+                        <option value="3056">Staff room 42</option>
+                        <option value="3119">Staff room 43(CSE RR)</option>
+                        <option value="3069">Lab 4</option>
+                        <option value="3101">IOT Lab</option>
+                        <option value="3073">Department of Mathematics</option>
+                        <option value="3075">CR401</option>
+                        <option value="3071">Electronic engg Lab I</option>
+                        <option value="3085">Logic Design Microprocessor Lab</option>
+                        <option value="3087">Electronic engg Lab II</option>
+                        <option value="3089">CR402</option>
+                        <option value="3091">Dean Acadamics</option>
                     </optgroup>
                     <optgroup label="4th floor">
-                            <option value="4052">Teacher office</option>
-                            <option value="4006">Fashion class I</option>
-                            <option value="4025">Fashion class II</option>
-                            <option value="4017">Fashion Studio</option>
-                            <option value="4031">LT501</option>
-                            <option value="4041">LT502</option>
-                            <option value="4033">CR503</option>
-                            <option value="4036">CR504</option>
-                            <option value="4075">CR501</option>
-                            <option value="4085">Physics Lab</option>
-                            <option value="4087">IAPT asian physics olypiyad lab</option>
-                            <option value="4089">CR502</option>
-                            <option value="4069">Lab 5</option>
-                            <option value="4101">chemistry Lab</option>
-                            <option value="4057">Staff room 51</option>
-                            <option value="4056">Staff room 52</option>
-                            <!-- <option value="4073">Teacher office</option> -->
-                            <!-- <option value="4091">3rd HOD office</option> -->
+                        <option value="4052">Teacher office</option>
+                        <option value="4006">Fashion class I</option>
+                        <option value="4025">Fashion class II</option>
+                        <option value="4017">Fashion Studio</option>
+                        <option value="4031">LT501</option>
+                        <option value="4041">LT502</option>
+                        <option value="4033">CR503</option>
+                        <option value="4036">CR504</option>
+                        <option value="4075">CR501</option>
+                        <option value="4085">Physics Lab</option>
+                        <option value="4087">IAPT asian physics olypiyad lab</option>
+                        <option value="4089">CR502</option>
+                        <option value="4069">Lab 5</option>
+                        <option value="4101">chemistry Lab</option>
+                        <option value="4057">Staff room 51</option>
+                        <option value="4056">Staff room 52</option>
+                        <!-- <option value="4073">Teacher office</option> -->
+                        <!-- <option value="4091">3rd HOD office</option> -->
                     </optgroup>
                     <optgroup label="5th floor">
-                            <option value="5119">Manual Drawing lab</option>
-                            <option value="5003">Dr K P Nautiyal Auditorium</option>
-                            <option value="5006">reachers scholer room (room beside audi)</option>
-                            <!-- <option value="5052">Teacher office</option> -->
-                            <option value="5017">moot court</option>
-                            <option value="5025">Nss Unit Office</option>
-                            <option value="5031">LT601</option>
-                            <option value="5041">LT602</option>
-                            <option value="5033">CR605</option>
-                            <option value="5075">CR601</option>
-                            <option value="5071">CR602</option>
-                            <option value="5085">CR603</option>
-                            <option value="5087">Fashion Design (studio and theory room)</option>
-                            <option value="5089">CR604</option>
-                            <option value="5069">Lab 6</option>
-                            <option value="5101">Library II(Top floor)</option>
-                            <option value="5057">Staff room 61</option>
-                            <option value="5056">Staff room 62</option>
-                            <option value="5036">Staff room 63</option>
-                            <option value="5073">Teacher office</option>
+                        <option value="5119">Manual Drawing lab</option>
+                        <option value="5003">Dr K P Nautiyal Auditorium</option>
+                        <option value="5006">reachers scholer room (room beside audi)</option>
+                        <!-- <option value="5052">Teacher office</option> -->
+                        <option value="5017">moot court</option>
+                        <option value="5025">Nss Unit Office</option>
+                        <option value="5031">LT601</option>
+                        <option value="5041">LT602</option>
+                        <option value="5033">CR605</option>
+                        <option value="5075">CR601</option>
+                        <option value="5071">CR602</option>
+                        <option value="5085">CR603</option>
+                        <option value="5087">Fashion Design (studio and theory room)</option>
+                        <option value="5089">CR604</option>
+                        <option value="5069">Lab 6</option>
+                        <option value="5101">Library II(Top floor)</option>
+                        <option value="5057">Staff room 61</option>
+                        <option value="5056">Staff room 62</option>
+                        <option value="5036">Staff room 63</option>
+                        <option value="5073">Teacher office</option>
                     </optgroup>
                     <optgroup label="Underground floor">
-                        	<option value="6004">Exam Controller</option>
-                        	<option value="6006">CCTV Room</option>
-                        	<option value="6122">Degree and Certficates</option>
-                        	<option value="6015">Registerar Office</option>
-                        	<option value="6017">Fee Cell</option>
-                        	<option value="6118">Basement Class</option>
-                        	<option value="6191">workshop</option>
-                        	<option value="6190">Civil Engineering Lab</option>
-                        	<option value="6073">Teacher Dining Area</option>
-                        	<option value="6173">Tuck Shop</option>
-                        	<option value="6091">Mess</option>
-                        	<option value="6085">Cafeteria</option>
-                        	<option value="6177">Parking</option>
+                        <option value="6004">Exam Controller</option>
+                        <option value="6006">CCTV Room</option>
+                        <option value="6122">Degree and Certficates</option>
+                        <option value="6015">Registerar Office</option>
+                        <option value="6017">Fee Cell</option>
+                        <option value="6118">Basement Class</option>
+                        <option value="6191">workshop</option>
+                        <option value="6190">Civil Engineering Lab</option>
+                        <option value="6073">Teacher Dining Area</option>
+                        <option value="6173">Tuck Shop</option>
+                        <option value="6091">Mess</option>
+                        <option value="6085">Cafeteria</option>
+                        <option value="6177">Parking</option>
                     </optgroup>
                 </select>
+                <label for="Start" class="ms-2 text-heading text-info-emphasis"><b>Start</b></label>
             </div>
-            <div class="arrage2">
-                <label class="labelmaker">Destination:</label>
-                <select name="destination" id="destination" class="optionbox">
+
+            <div class="form-floating col-md-5 col-sm-12 pb-1">
+                <select class="form-select" name="destination" id="destination"
+                    aria-label="Floating label select example">
                     <optgroup label="amenities">
-                    <option value="999">Gents Washroom</option>
-                    <option value="998">Ladies Washroom</option>
-                    <option value="171">GEHU bus stop</option>
+                        <option value="999">Gents Washroom</option>
+                        <option value="998">Ladies Washroom</option>
+                        <option value="171">GEHU bus stop</option>
                     </optgroup>
-                    <optgroup label="Ground floor (checking pending)"> 
-                            <option value="1">Ubuntu lab 1</option>
-                            <option value="3">Ubuntu lab 2 </option>
-                            <option value="33">Bosch Lab</option>
-                            <option value="6">Mac lab</option>
-                            <option value="15">Reception</option>
-                            <option value="25">Main Office</option>
-                            <option value="29">medical Room(check)</option>
-                            <option value="31">Seminar Hall</option>
-                            <option value="36">CR101</option>
-                            <option value="41">meeting hall</option>
-                            <option value="54">Open Auditorium</option>
-                            <option value="57">Staff room G1</option>
-                            <option value="56">Staff room G2</option>
-                            <option value="69">Lab 1</option>
-                            <option value="101">Lab 9</option>
-                            <!-- <option value="83">Gents Washroom</option> -->
-                            <option value="73">Teacher office(Teacher name)</option>
-                            <option value="75">CR102</option>
-                            <option value="71">CR103</option>
-                            <option value="85">CR104</option>
-                            <option value="87">CR105</option>
-                            <option value="89">CR106</option>
-                            <option value="91">HOD office</option>
-                            <option value="6191">workshop</option>
-                            <option value="148">Gate no 1</option>
-                            <option value="127">Gate no 2</option>
-                            <option value="165">Gate no 3</option>
-                            <option value="166">Canteen</option>
-                    <!-- <option value="99">Ladies Washroom</option> -->
+                    <optgroup label="Ground floor (checking pending)">
+                        <option value="1">Ubuntu lab 1</option>
+                        <option value="3">Ubuntu lab 2 </option>
+                        <option value="33">Bosch Lab</option>
+                        <option value="6">Mac lab</option>
+                        <option value="15">Reception</option>
+                        <option value="25">Main Office</option>
+                        <option value="29">medical Room(check)</option>
+                        <option value="31">Seminar Hall</option>
+                        <option value="36">CR101</option>
+                        <option value="41">meeting hall</option>
+                        <option value="54">Open Auditorium</option>
+                        <option value="57">Staff room G1</option>
+                        <option value="56">Staff room G2</option>
+                        <option value="69">Lab 1</option>
+                        <option value="101">Lab 9</option>
+                        <!-- <option value="83">Gents Washroom</option> -->
+                        <option value="73">Teacher office(Teacher name)</option>
+                        <option value="75">CR102</option>
+                        <option value="71">CR103</option>
+                        <option value="85">CR104</option>
+                        <option value="87">CR105</option>
+                        <option value="89">CR106</option>
+                        <option value="91">HOD office</option>
+                        <option value="6191">workshop</option>
+                        <option value="148">Gate no 1</option>
+                        <option value="127">Gate no 2</option>
+                        <option value="165">Gate no 3</option>
+                        <option value="166">Canteen</option>
+                        <option value="105">Library</option>
+                        <!-- <option value="99">Ladies Washroom</option> -->
                     </optgroup>
                     <optgroup label="1st floor">
-                            <option value="1119">Main Library</option>
-                            <option value="1001">Round Room R</option>
-                            <option value="1003">Round Room L</option>
-                            <option value="1006">Dr Sanjay Jasola(vice chancellor)</option>
-                            <option value="1122">CR209</option>
-                            <option value="1017">CR211</option>
-                            <option value="1025">Dr Kamal Ghanshala(President)</option>
-                            <!-- <option value="1028">Ladies Washroom</option> -->
-                            <option value="1031">LT202</option>
-                            <option value="1033">CR206</option>
-                            <option value="1036">CR207</option>
-                            <option value="1041">LT201</option>
-                            <!-- <option value="1051">Gents Washroom</option> -->
-                            <option value="1052">Teacher office</option>
-                            <option value="1057">Server Room</option>
-                            <option value="1056">Staff room 21</option>
-                            <option value="1069">Lab 2</option>
-                            <option value="1101">Lab 8</option>
-                            <!-- <option value="1083">Gents Washroom</option> -->
-                            <option value="1073">Faculty of School of Pharmacy</option>
-                            <option value="1075">CR201</option>
-                            <option value="1071">CR202</option>
-                            <option value="1085">CR203</option>
-                            <option value="1087">CR204</option>
-                            <option value="1089">CR205</option>
-                            <option value="1091">Erp Cell</option>
-                            <option value="1127">Gate no 3 ke upar</option>
-                            <!-- <option value="1099">Ladies Washroom</option>    -->
+                        <option value="1119">Main Library</option>
+                        <option value="1001">Round Room R</option>
+                        <option value="1003">Round Room L</option>
+                        <option value="1006">Dr Sanjay Jasola(vice chancellor)</option>
+                        <option value="1122">CR209</option>
+                        <option value="1017">CR211</option>
+                        <option value="1025">Dr Kamal Ghanshala(President)</option>
+                        <!-- <option value="1028">Ladies Washroom</option> -->
+                        <option value="1031">LT202</option>
+                        <option value="1033">CR206</option>
+                        <option value="1036">CR207</option>
+                        <option value="1041">LT201</option>
+                        <!-- <option value="1051">Gents Washroom</option> -->
+                        <option value="1052">Teacher office</option>
+                        <option value="1057">Server Room</option>
+                        <option value="1056">Staff room 21</option>
+                        <option value="1069">Lab 2</option>
+                        <option value="1101">Lab 8</option>
+                        <!-- <option value="1083">Gents Washroom</option> -->
+                        <option value="1073">Faculty of School of Pharmacy</option>
+                        <option value="1075">CR201</option>
+                        <option value="1071">CR202</option>
+                        <option value="1085">CR203</option>
+                        <option value="1087">CR204</option>
+                        <option value="1089">CR205</option>
+                        <option value="1091">Erp Cell</option>
+                        <option value="1127">Gate no 3 ke upar</option>
+                        <!-- <option value="1099">Ladies Washroom</option>    -->
                     </optgroup>
                     <optgroup label="2nd floor">
-                            <option value="2119">Department of Fine Arts</option>
-                            <option value="2001">Department of visual Art</option>
-                            <option value="2006">CR304</option>
-                            <option value="2017">CR302</option>
-                            <option value="2122">New Hall</option>
-                            <option value="2025">CR303</option>
-                            <option value="2031">LT302</option>
-                            <option value="2033">CR301</option>
-                            <option value="2036">CR305</option>
-                            <option value="2041">LT301</option>
-                            <option value="2052">Dr Mahesh Manchanda</option>
-                            <option value="2057">Staff room 31</option>
-                            <option value="2056">Staff room 32</option>
-                            <option value="2069">Lab 3</option>
-                            <option value="2101">Lab 7</option>
-                            <option value="2073">Teacher office</option>
-                            <option value="2075">Pharmaceutical Analysis Lab</option>
-                            <option value="2071">Pharmaceutical chemistry I Lab</option>
-                            <option value="2085">Pharmaceutics I Lab</option>
-                            <option value="2087">Pharmaceutics I Lab</option>
-                            <option value="2089">Pharmacognosy I Lab</option>
-                            <!-- <option value="2091">2nd HOD office</option> -->
+                        <option value="2119">Department of Fine Arts</option>
+                        <option value="2001">Department of visual Art</option>
+                        <option value="2006">CR304</option>
+                        <option value="2017">CR302</option>
+                        <option value="2122">New Hall</option>
+                        <option value="2025">CR303</option>
+                        <option value="2031">LT302</option>
+                        <option value="2033">CR301</option>
+                        <option value="2036">CR305</option>
+                        <option value="2041">LT301</option>
+                        <option value="2052">Dr Mahesh Manchanda</option>
+                        <option value="2057">Staff room 31</option>
+                        <option value="2056">Staff room 32</option>
+                        <option value="2069">Lab 3</option>
+                        <option value="2101">Lab 7</option>
+                        <option value="2073">Teacher office</option>
+                        <option value="2075">Pharmaceutical Analysis Lab</option>
+                        <option value="2071">Pharmaceutical chemistry I Lab</option>
+                        <option value="2085">Pharmaceutics I Lab</option>
+                        <option value="2087">Pharmaceutics I Lab</option>
+                        <option value="2089">Pharmacognosy I Lab</option>
+                        <!-- <option value="2091">2nd HOD office</option> -->
                     </optgroup>
                     <optgroup label="3rd floor">
-                            <option value="3001">Department of english</option>
-                            <option value="3006">CR405</option>
-                            <option value="3025">CR404</option>
-                            <option value="3033">CR403</option>
-                            <option value="3036">CR406</option>
-                            <option value="3031">LT401</option>
-                            <option value="3041">LT402</option>
-                            <!-- <option value="3052">Teacher office</option> -->
-                            <option value="3122">Conference Hall</option>
-                            <option value="3057">Staff room 41</option>
-                            <option value="3056">Staff room 42</option>
-                            <option value="3119">Staff room 33(CSE)</option>
-                            <option value="3069">Lab 4</option>
-                            <option value="3101">IOT Lab</option>
-                            <option value="3073">Department of Mathematics</option>
-                            <option value="3075">CR401</option>
-                            <option value="3071">Electronic engg Lab I</option>
-                            <option value="3085">Logic Design Microprocessor Lab</option>
-                            <option value="3087">Electronic engg Lab II</option>
-                            <option value="3089">CR402</option>
-                            <option value="3091">Dean Acadamics</option>
+                        <option value="3001">Department of english</option>
+                        <option value="3006">CR405</option>
+                        <option value="3025">CR404</option>
+                        <option value="3033">CR403</option>
+                        <option value="3036">CR406</option>
+                        <option value="3031">LT401</option>
+                        <option value="3041">LT402</option>
+                        <!-- <option value="3052">Teacher office</option> -->
+                        <option value="3122">Conference Hall</option>
+                        <option value="3057">Staff room 41</option>
+                        <option value="3056">Staff room 42</option>
+                        <option value="3119">Staff room 33(CSE)</option>
+                        <option value="3069">Lab 4</option>
+                        <option value="3101">IOT Lab</option>
+                        <option value="3073">Department of Mathematics</option>
+                        <option value="3075">CR401</option>
+                        <option value="3071">Electronic engg Lab I</option>
+                        <option value="3085">Logic Design Microprocessor Lab</option>
+                        <option value="3087">Electronic engg Lab II</option>
+                        <option value="3089">CR402</option>
+                        <option value="3091">Dean Acadamics</option>
                     </optgroup>
                     <optgroup label="4th floor">
-                            <option value="4052">Teacher office</option>
-                            <option value="4006">Fashion class I</option>
-                            <option value="4025">Fashion class II</option>
-                            <option value="4017">Fashion Studio</option>
-                            <option value="4031">LT501</option>
-                            <option value="4041">LT502</option>
-                            <option value="4033">CR503</option>
-                            <option value="4036">CR504</option>
-                            <option value="4075">CR501</option>
-                            <option value="4085">Physics Lab</option>
-                            <option value="4087">IAPT asian physics olypiyad lab</option>
-                            <option value="4089">CR502</option>
-                            <option value="4069">Lab 5</option>
-                            <option value="4101">chemistry Lab</option>
-                            <option value="4057">Staff room 51</option>
-                            <option value="4056">Staff room 52</option>
-                            <!-- <option value="4073">Teacher office</option> -->
-                            <!-- <option value="4091">3rd HOD office</option> -->
+                        <option value="4052">Teacher office</option>
+                        <option value="4006">Fashion class I</option>
+                        <option value="4025">Fashion class II</option>
+                        <option value="4017">Fashion Studio</option>
+                        <option value="4031">LT501</option>
+                        <option value="4041">LT502</option>
+                        <option value="4033">CR503</option>
+                        <option value="4036">CR504</option>
+                        <option value="4075">CR501</option>
+                        <option value="4085">Physics Lab</option>
+                        <option value="4087">IAPT asian physics olypiyad lab</option>
+                        <option value="4089">CR502</option>
+                        <option value="4069">Lab 5</option>
+                        <option value="4101">chemistry Lab</option>
+                        <option value="4057">Staff room 51</option>
+                        <option value="4056">Staff room 52</option>
+                        <!-- <option value="4073">Teacher office</option> -->
+                        <!-- <option value="4091">3rd HOD office</option> -->
                     </optgroup>
                     <optgroup label="5th floor">
-                            <option value="5119">Manual Drawing lab</option>
-                            <option value="5003">Dr K P Nautiyal Auditorium</option>
-                            <option value="5006">reachers scholer room (room beside audi)</option>
-                            <!-- <option value="5052">Teacher office</option> -->
-                            <option value="5017">moot court</option>
-                            <option value="5025">Nss Unit Office</option>
-                            <option value="5031">LT601</option>
-                            <option value="5041">LT602</option>
-                            <option value="5033">CR605</option>
-                            <option value="5075">CR601</option>
-                            <option value="5071">CR602</option>
-                            <option value="5085">CR603</option>
-                            <option value="5087">Fashion Design (studio and theory room)</option>
-                            <option value="5089">CR604</option>
-                            <option value="5069">Lab 6</option>
-                            <option value="5101">Library II(Top floor)</option>
-                            <option value="5057">Staff room 61</option>
-                            <option value="5056">Staff room 62</option>
-                            <option value="5036">Staff room 63</option>
-                            <option value="5073">Teacher office</option>
+                        <option value="5119">Manual Drawing lab</option>
+                        <option value="5003">Dr K P Nautiyal Auditorium</option>
+                        <option value="5006">reachers scholer room (room beside audi)</option>
+                        <!-- <option value="5052">Teacher office</option> -->
+                        <option value="5017">moot court</option>
+                        <option value="5025">Nss Unit Office</option>
+                        <option value="5031">LT601</option>
+                        <option value="5041">LT602</option>
+                        <option value="5033">CR605</option>
+                        <option value="5075">CR601</option>
+                        <option value="5071">CR602</option>
+                        <option value="5085">CR603</option>
+                        <option value="5087">Fashion Design (studio and theory room)</option>
+                        <option value="5089">CR604</option>
+                        <option value="5069">Lab 6</option>
+                        <option value="5101">Library II(Top floor)</option>
+                        <option value="5057">Staff room 61</option>
+                        <option value="5056">Staff room 62</option>
+                        <option value="5036">Staff room 63</option>
+                        <option value="5073">Teacher office</option>
                     </optgroup>
-					<optgroup label="Underground floor">
-                     		<option value="6004">Exam Controller</option>
-                     		<option value="6006">CCTV Room</option>
-                     		<option value="6122">Degree and Certficates</option>
-                     		<option value="6015">Registerar Office</option>
-                     		<option value="6017">Fee Cell</option>
-                     		<option value="6118">Basement Class</option>
-                     		<option value="6191">workshop</option>
-                     		<option value="6190">Civil Engineering Lab</option>
-                     		<option value="6073">Teacher Dining Area</option>
-                     		<option value="6173">Tuck Shop</option>
-                     		<option value="6091">Mess</option>
-                     		<option value="6085">Cafeteria</option>
-							<option value="6177">Parking</option>
+                    <optgroup label="Underground floor">
+                        <option value="6004">Exam Controller</option>
+                        <option value="6006">CCTV Room</option>
+                        <option value="6122">Degree and Certficates</option>
+                        <option value="6015">Registerar Office</option>
+                        <option value="6017">Fee Cell</option>
+                        <option value="6118">Basement Class</option>
+                        <option value="6191">workshop</option>
+                        <option value="6190">Civil Engineering Lab</option>
+                        <option value="6073">Teacher Dining Area</option>
+                        <option value="6173">Tuck Shop</option>
+                        <option value="6091">Mess</option>
+                        <option value="6085">Cafeteria</option>
+                        <option value="6177">Parking</option>
                     </optgroup>
                 </select>
+                <label for="destination" class="ms-2 text-heading text-info-emphasis"><b>Destination</b></label>
+            </div>
+            <div class=" col-lg-1 col-md-2 col-sm-12 pb-1">
+                <!-- <button class="btn brn-primary">go</button> -->
+                <button type="button" class="btn btn-light text-heading text-info-emphasis form-floating col-12 p-3"
+                    id="go"><b>Go</b></button>
             </div>
         </div>
-        <div class="arrage2" id="mobgo">
-                <label style="visibility: hidden; font-size: x-large;">.</label>
-                <button class="optionbox" id="go">Lets Go Boi</button>
-        </div>
     </div>
-    <div id='map' >
-        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-        <script src="https://unpkg.com/leaflet" type="text/javascript"></script>
-        <script src="https://unpkg.com/leaflet-ant-path" type="text/javascript"></script>
-    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet" type="text/javascript"></script>
+    <script src="https://unpkg.com/leaflet-ant-path" type="text/javascript"></script>
     <script src="index.js"></script>
 </body>
+
 </html>

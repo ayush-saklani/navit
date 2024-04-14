@@ -66,3 +66,18 @@
         transition: ease-in-out 1s;
     }
 }
+.social-links{
+    background-color: #ffffff60;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.social-links>a{
+    text-decoration: none;
+    padding: 5px;
+    color:#055160;
+    transition: ease-in-out 0.5s;
+}
+.social-links>a>i:hover{
+    color: #043a45;
+    transition: ease-in-out 0.5s;
+}

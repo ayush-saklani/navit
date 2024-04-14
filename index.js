@@ -200,15 +200,15 @@ document.getElementById('5').addEventListener('click', () => {
       }).addTo(map);
 });
 
-document.getElementById('R').addEventListener('click', () => {
-    map.eachLayer(function(layer) {
-        if (!!layer.toGeoJSON){map.removeLayer(layer);}
-    });
-    fetch('./mapgeoJSON/floor0.geojson').then(response =>  response.json()).then(data => {
-        L.geoJSON(data, {
-            style:{color: 'cadetblue',weight: 1,opacity: 1},
-        }).addTo(map);
-        map.fitBounds(L.geoJSON(data).getBounds());
-    }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-    points =  [[],[],[],[],[],[],[]]
-});
+// document.getElementById('R').addEventListener('click', () => {
+    // map.eachLayer(function(layer) {
+        // if (!!layer.toGeoJSON){map.removeLayer(layer);}
+    // });
+    // fetch('./mapgeoJSON/floor0.geojson').then(response =>  response.json()).then(data => {
+        // L.geoJSON(data, {
+            // style:{color: 'cadetblue',weight: 1,opacity: 1},
+        // }).addTo(map);
+        // map.fitBounds(L.geoJSON(data).getBounds());
+    // }).catch(error => console.error('out of service.. ~_~  @_@', error));   
+    // points =  [[],[],[],[],[],[],[]]
+// });

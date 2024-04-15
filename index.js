@@ -2,7 +2,7 @@ const map = L.map(('map'),{
     center: [30.2734504,77.9997427],
     zoomAnimation:true,
     maxZoom: 22,
-    minZoom:15,
+    minZoom:19,
     zoomControl: false 
 });
 // let map = L.map(('map'), {}).setView(latling, 18);
@@ -59,7 +59,7 @@ fetch(`./mapgeoJSON/floor${floor}.geojson`).then(response =>  response.json()).t
     L.geoJSON(data, {
         style:{color: 'cadetblue',weight: 1,opacity: 1},
     }).addTo(map);
-    map.fitBounds(L.geoJSON(data).getBounds());
+    map.fitBounds(L.geoJSON(data).getBounds()).setView( [30.27332,77.99979], 18);
 }).catch(error => console.error('out of service.. ~_~  @_@', error));  
 
 

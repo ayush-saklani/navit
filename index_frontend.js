@@ -32,27 +32,6 @@ const getLocation = () => {
                 map.removeLayer(marker)
             }
             marker = L.marker(latlng).addTo(map);
-            
-            // if(!changea){
-                // a = L.marker(latlng).addTo(map);
-                // changea = latlng
-            // }
-            // else if(latlng !=changea){
-                // map.removeLayer(a)
-                // a = L.marker(latlng).addTo(map);
-                // changea = latlng
-            // }
-            // else{
-                // changea = latlng
-            // }
-            // Create a Leaflet marker at the updated position
-            // if (!mapMarker) {
-            //     mapMarker = L.marker(latlng).addTo(map);
-            // } else {
-            //     mapMarker.setLatLng(latlng);
-            // }
-
-            // Set the map view to the updated position
 
             map.setView(latlng, 18);
         },console.error,{maximumAge: 1000,timeout: 1000,enableHighAccuracy: true});
@@ -60,9 +39,20 @@ const getLocation = () => {
         console.log("Geolocation is not supported by this browser");
     }
 };
-
-// Call the getLocation function to start tracking the user's position
 getLocation();
+
+const fetch_curr_slot_details = () => {
+    let today = new Date();
+    const weekdays = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+    let day_slot = weekdays[today.getDay()];
+    let hours = today.getHours();
+    let houre = hours + 1;
+    hours = (hours > 12) ? String(hours - 12).padStart(2, "0") : String(hours).padStart(2, "0");
+    houre = (houre > 12) ? String(houre - 12).padStart(2, "0") : String(houre).padStart(2, "0");
+    let time_slot = hours + "-" + houre;
+    return [time_slot, day_slot]
+};
+setInterval(() => { fetch_curr_slot_details(); }, 60000);
 
 // var myIcon = L.icon({
 //     iconUrl: 'media/logo.png',

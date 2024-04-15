@@ -19,7 +19,7 @@ document.getElementById('go').addEventListener('click', () => {
     var source = document.getElementById("Start").value;
     var destination = document.getElementById("destination").value;
     
-    if(source>0 && source<1000)     floor=0;
+    if(source>0 && source<1000)        floor=0;
     else if(source>=1000 && source<2000)    floor=1;
     else if(source>=2000 && source<3000)    floor=2;
     else if(source>=3000 && source<4000)    floor=3;
@@ -38,31 +38,24 @@ document.getElementById('go').addEventListener('click', () => {
     .then(response => response.json())
     .then(data => {
         points = data;
-        console.log(points); // Coordinates received from the server
-        map.eachLayer(function(layer){if (layer.toGeoJSON){map.removeLayer(layer);}});
-        fetch(`./mapgeoJSON/floor${floor}.geojson`).then(response =>  response.json()).then(data => {
-            L.geoJSON(data,{style:{color: 'cadetblue',weight: 1,opacity: 1}}).addTo(map);
-        }).catch(error => console.error('out of service.. ~_~  @_@', error));
+
+        temp_point = floor;
         if(floor==-1){
-            temp_point = points[6];
+            temp_point = 6;
         }
-        else{
-            temp_point = points[floor];
-        }
-        L.polyline.antPath(temp_point,{
-            "delay": 600,
-            "dashArray": [1,46],
-            "weight": 5,
-            "color": '#327174',
-            "pulseColor": "#000000",
-          }).addTo(map);
+        geoJSONEvent(floor,temp_point);
+        let go_active_id = floor;
+        if(floor==0){
+            go_active_id="G";
+        }           
+        active(document.getElementById(go_active_id));
     })
     .catch(error => console.error('Error hai bhaisaab:', error));
 });
 
 
 // intitialize  the map with default view and zoom level
-fetch('./mapgeoJSON/floor0.geojson').then(response =>  response.json()).then(data => {
+fetch(`./mapgeoJSON/floor${floor}.geojson`).then(response =>  response.json()).then(data => {
     L.geoJSON(data, {
         style:{color: 'cadetblue',weight: 1,opacity: 1},
     }).addTo(map);
@@ -71,7 +64,7 @@ fetch('./mapgeoJSON/floor0.geojson').then(response =>  response.json()).then(dat
 
 
 const geoJSONEvent =  (mapfloor,pathfloor) => {
-    map.eachLayer(function(layer) {
+    map.eachLayer((layer) => {
         if (!!layer.toGeoJSON){map.removeLayer(layer);}
     });
     fetch(`./mapgeoJSON/floor${mapfloor}.geojson`).then(response =>  response.json()).then(data => {
@@ -87,7 +80,7 @@ const geoJSONEvent =  (mapfloor,pathfloor) => {
         "pulseColor": "#000000",
       }).addTo(map);
 };
-let geoJSONEventListener = () => {
+let add_GeoJSON_EventListener = () => {
     let circular_buttons = document.querySelectorAll(".circular_button");
     circular_buttons.forEach(btn => {
         btn.addEventListener("click", () => {
@@ -106,7 +99,7 @@ let geoJSONEventListener = () => {
         });
     });
 }
-geoJSONEventListener();
+add_GeoJSON_EventListener();
 
 
 

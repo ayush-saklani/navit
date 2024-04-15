@@ -12,7 +12,7 @@ const tile = L.tileLayer(tileurl, {
 }).addTo(map);
 //base map from open streetmap added 
 
-let floor = 0, temp_point = 0;
+let floor = 0, temp_point = 0, pathfloorindex = 0;
 
 // intitialize  the map with default view and zoom level
 fetch(`./mapgeoJSON/floor${floor}.geojson`).then(response => response.json()).then(data => {
@@ -75,7 +75,9 @@ const geoJSONEvent = (mapfloor, pathfloor) => {
         "color": '#327174',
         "pulseColor": "#000000",
     }).addTo(map);
-    highlightroom(destination);
+    setTimeout(() => {
+        render_slot_detail();
+    }, 500);
 };
 const add_GeoJSON_EventListener = () => {
     let circular_buttons = document.querySelectorAll(".circular_button");
@@ -84,13 +86,13 @@ const add_GeoJSON_EventListener = () => {
             let mapfloor;
             let pathfloor;
             if (btn.id === 'G') {
-                mapfloor = pathfloor = 0
+                mapfloor = pathfloor = pathfloorindex = 0
             }
             else if (btn.id == '-1') {
-                mapfloor = -1; pathfloor = 6;
+                mapfloor = -1; pathfloor = pathfloorindex = 6;
             }
             else {
-                mapfloor = pathfloor = btn.id;
+                mapfloor = pathfloor = pathfloorindex = btn.id;
             }
             floor = mapfloor;
             geoJSONEvent(mapfloor, pathfloor);
@@ -99,175 +101,12 @@ const add_GeoJSON_EventListener = () => {
 };
 add_GeoJSON_EventListener();
 
-// document.getElementById('-1').addEventListener('click', () => {
-// map.eachLayer(function(layer) {
-// if (!!layer.toGeoJSON){map.removeLayer(layer);}
-// });
-// fetch('./mapgeoJSON/floor-1.geojson').then(response =>  response.json()).then(data => {
-// L.geoJSON(data, {
-// style:{color: 'cadetblue',weight: 1,opacity: 1},
-// }).addTo(map);
-// }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-// L.polyline.antPath(points[6],{
-// "delay": 600,
-// "dashArray": [1,46],
-// "weight": 5,
-// "color": '#327174',
-// "pulseColor": "#000000",
-//   }).addTo(map);
-// });
-
-// document.getElementById('G').addEventListener('click', () => {
-// map.eachLayer(function(layer) {
-// if (!!layer.toGeoJSON){map.removeLayer(layer);}
-// });
-// fetch('./mapgeoJSON/floor0.geojson').then(response =>  response.json()).then(data => {
-// L.geoJSON(data, {
-// style:{color: 'cadetblue',weight: 1,opacity: 1},
-// }).addTo(map);
-// }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-// L.polyline.antPath(points[0],{
-// "delay": 600,
-// "dashArray": [1,46],
-// "weight": 5,
-// "color": '#327174',
-// "pulseColor": "#000000",
-//   }).addTo(map);
-// });
-
-// document.getElementById('1').addEventListener('click', () => {
-// map.eachLayer(function(layer) {
-// if (!!layer.toGeoJSON){map.removeLayer(layer);}
-// });
-// fetch('./mapgeoJSON/floor1.geojson').then(response =>  response.json()).then(data => {
-// L.geoJSON(data, {
-// style:{color: 'cadetblue',weight: 1,opacity: 1},
-// }).addTo(map);
-// }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-// L.polyline.antPath(points[1],{
-// "delay": 600,
-// "dashArray": [1,46],
-// "weight": 5,
-// "color": '#327174',
-// "pulseColor": "#000000",
-//   }).addTo(map);
-// });
-
-// document.getElementById('2').addEventListener('click', () => {
-// map.eachLayer(function(layer) {
-// if (!!layer.toGeoJSON){map.removeLayer(layer);}
-// });
-// fetch('./mapgeoJSON/floor2.geojson').then(response =>  response.json()).then(data => {
-// L.geoJSON(data, {
-// style:{color: 'cadetblue',weight: 1,opacity: 1},
-// }).addTo(map);
-// }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-// L.polyline.antPath(points[2],{
-// "delay": 600,
-// "dashArray": [1,46],
-// "weight": 5,
-// "color": '#327174',
-// "pulseColor": "#000000",
-//   }).addTo(map);
-// });
-
-// document.getElementById('3').addEventListener('click', () => {
-// map.eachLayer(function(layer) {
-// if (!!layer.toGeoJSON){map.removeLayer(layer);}
-// });
-// fetch('./mapgeoJSON/floor3.geojson').then(response =>  response.json()).then(data => {
-// L.geoJSON(data, {
-// style:{color: 'cadetblue',weight: 1,opacity: 1},
-// }).addTo(map);
-// }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-// L.polyline.antPath(points[3],{
-// "delay": 600,
-// "dashArray": [1,46],
-// "weight": 5,
-// "color": '#327174',
-// "pulseColor": "#000000",
-//   }).addTo(map);
-// });
-
-// document.getElementById('4').addEventListener('click', () => {
-// map.eachLayer(function(layer) {
-// if (!!layer.toGeoJSON){map.removeLayer(layer);}
-// });
-// fetch('./mapgeoJSON/floor4.geojson').then(response =>  response.json()).then(data => {
-// L.geoJSON(data, {
-// style:{color: 'cadetblue',weight: 1,opacity: 1},
-// }).addTo(map);
-// }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-// L.polyline.antPath(points[4],{
-// "delay": 600,
-// "dashArray": [1,46],
-// "weight": 5,
-// "color": '#327174',
-// "pulseColor": "#000000",
-//   }).addTo(map);
-// });
-
-// document.getElementById('5').addEventListener('click', () => {
-// map.eachLayer(function(layer) {
-// if (!!layer.toGeoJSON){map.removeLayer(layer);}
-// });
-// fetch('./mapgeoJSON/floor5.geojson').then(response =>  response.json()).then(data => {
-// L.geoJSON(data, {
-// style:{color: 'cadetblue',weight: 1,opacity: 1},
-// }).addTo(map);
-// }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-// L.polyline.antPath(points[5],{
-// "delay": 600,
-// "dashArray": [1,46],
-// "weight": 5,
-// "color": '#327174',
-// "pulseColor": "#000000",
-//   }).addTo(map);
-// });
-
-// document.getElementById('R').addEventListener('click', () => {
-// map.eachLayer(function(layer) {
-// if (!!layer.toGeoJSON){map.removeLayer(layer);}
-// });
-// fetch('./mapgeoJSON/floor0.geojson').then(response =>  response.json()).then(data => {
-// L.geoJSON(data, {
-// style:{color: 'cadetblue',weight: 1,opacity: 1},
-// }).addTo(map);
-// map.fitBounds(L.geoJSON(data).getBounds());
-// }).catch(error => console.error('out of service.. ~_~  @_@', error));   
-// points =  [[],[],[],[],[],[],[]]
-// });
 
 
 let curr_slot_data = [];
 let curr_floor_geojson = {};
 
-const fetch_curr_slot_details = () => {
-    let today = new Date();
-    const weekdays = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
-    let day_slot = weekdays[today.getDay()];
-    let hours = today.getHours();
-    let houre = hours + 1;
-    hours = (hours > 12) ? String(hours - 12).padStart(2, "0") : String(hours).padStart(2, "0");
-    houre = (houre > 12) ? String(houre - 12).padStart(2, "0") : String(houre).padStart(2, "0");
-    let time_slot = hours + "-" + houre;
-    // return [time_slot, day_slot]
-    let requestBody = { floor: floor }; // not needed for now 
-    fetch('http://127.0.0.1:3000/getstatus', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(requestBody) // Convert the object to JSON string not needed for now but it can break ;
-    })
-        .then(response => response.json())
-        .then(data => {
-            curr_slot_data = data.curr_slot_data;
-        })
-        .catch(error => console.error('Data about Classes unavailable:', error));
-};
-fetch_curr_slot_details();
-setInterval(() => { fetch_curr_slot_details(); }, 60000);
+
 
 
 let getcustommarkings = (room_id) => {
@@ -295,12 +134,12 @@ const highlightroom = (req_room_id) => {
 }
 const preloadFloorGeoJSON = async () => {
     try {
-        for (let floor = 0; floor <= 5; floor++) {
-            const response = await fetch(`./mapgeoJSON/floor${floor}.geojson`);
+        for (let i = -1; i <= 5; i++) {
+            const response = await fetch(`./mapgeoJSON/floor${i}.geojson`);
             const data = await response.json();
-            curr_floor_geojson[floor] = data;
+            curr_floor_geojson[i] = data;
         }
-        console.log("=========================asdasl;jdklasjdksajldk=================")
+        console.log("=================== all map reading finish successfully =================")
         console.log(curr_floor_geojson)
     } catch (error) {
         console.error('Error preloading floor GeoJSON data:', error);
@@ -308,3 +147,68 @@ const preloadFloorGeoJSON = async () => {
 };
 preloadFloorGeoJSON();
 
+
+
+const render_slot_detail = () => {
+    try {
+        let today = new Date();
+        const weekdays = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+        let day_slot = weekdays[today.getDay()];
+        let hours = today.getHours();
+        let houre = hours + 1;
+        hours = (hours > 12) ? String(hours - 12).padStart(2, "0") : String(hours).padStart(2, "0");
+        houre = (houre > 12) ? String(houre - 12).padStart(2, "0") : String(houre).padStart(2, "0");
+        let time_slot = hours + "-" + houre;
+        time_slot = (time_slot).toString();
+        // return [time_slot, day_slot]
+        fetch('http://127.0.0.1:3000/getstatus', {method: 'POST',headers: {'Content-Type': 'application/json'}})
+        .then(response => response.json()).then(data => {
+            curr_slot_data = data;
+        })
+        .catch(error => console.error('Data about Classes unavailable:', error));
+
+        // console.log(time_slot)
+        time_slot = "11-12"                     //for tesing purpose should be deleted lator 
+        curr_slot_data.forEach(slot => {
+            if (slot.schedule[day_slot][time_slot].teacher_ID != null) {
+                curr_floor_geojson[floor].features.forEach(feature => {
+                    if (feature.properties && feature.properties.room_id && feature.properties.room_id == slot.room_id) {
+                        let cc = getcustommarkings(slot.room_id);
+                        L.polygon(cc, { "color": 'green', weight: 1, opacity: 0.5 }).addTo(map);
+                    }
+                });
+            }
+            else if (slot.schedule[day_slot][time_slot].teacher_ID == null){
+                console.log("asdas")
+                curr_floor_geojson[floor].features.forEach(feature => {
+                    if (feature.properties && feature.properties.room_id && feature.properties.room_id == slot.room_id) {
+                        let cc = getcustommarkings(slot.room_id);
+                        L.polygon(cc, { "color": 'red', weight: 0.5, opacity: 0.5 }).addTo(map);
+                    }
+                });
+            }
+        });
+    } catch (error) {
+        console.error('Error rendering slot details:', error);
+    }
+};
+
+const fetch_curr_slot_details = () => {
+    let requestBody = { floor: floor }; // not needed for now 
+    fetch('http://127.0.0.1:3000/getstatus', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody) // Convert the object to JSON string not needed for now but it can break ;
+    })
+        .then(response => response.json())
+        .then(data => {
+            curr_slot_data = data;
+        })
+        .catch(error => console.error('Data about Classes unavailable:', error));
+        geoJSONEvent(floor, pathfloorindex)
+        console.log("updated");
+};
+fetch_curr_slot_details();
+setInterval(() => { fetch_curr_slot_details(); }, 60000);

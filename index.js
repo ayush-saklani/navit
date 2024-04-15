@@ -50,7 +50,7 @@ const calculate_antpath = () => {
             if (floor == -1) {
                 temp_point = 6;
             }
-            geoJSONEvent(floor, temp_point);
+            Load_geoJSON_Event(floor, temp_point);
             let go_active_id = floor;
             if (floor == 0) {
                 go_active_id = "G";
@@ -59,7 +59,7 @@ const calculate_antpath = () => {
         })
         .catch(error => console.error('Error hai bhaisaab:', error));
 };
-const geoJSONEvent = (mapfloor, pathfloor) => {
+const Load_geoJSON_Event = (mapfloor, pathfloor) => {
     map.eachLayer((layer) => {
         if (!!layer.toGeoJSON) { map.removeLayer(layer); }
     });
@@ -95,7 +95,7 @@ const add_GeoJSON_EventListener = () => {
                 mapfloor = pathfloor = pathfloorindex = btn.id;
             }
             floor = mapfloor;
-            geoJSONEvent(mapfloor, pathfloor);
+            Load_geoJSON_Event(mapfloor, pathfloor);
         });
     });
 };
@@ -161,11 +161,11 @@ const render_slot_detail = () => {
         let time_slot = hours + "-" + houre;
         time_slot = (time_slot).toString();
         // return [time_slot, day_slot]
-        fetch('http://127.0.0.1:3000/getstatus', {method: 'POST',headers: {'Content-Type': 'application/json'}})
-        .then(response => response.json()).then(data => {
-            curr_slot_data = data;
-        })
-        .catch(error => console.error('Data about Classes unavailable:', error));
+        fetch('http://127.0.0.1:3000/getstatus', { method: 'POST', headers: { 'Content-Type': 'application/json' } })
+            .then(response => response.json()).then(data => {
+                curr_slot_data = data;
+            })
+            .catch(error => console.error('Data about Classes unavailable:', error));
 
         // console.log(time_slot)
         time_slot = "11-12"                     //for tesing purpose should be deleted lator 
@@ -178,7 +178,7 @@ const render_slot_detail = () => {
                     }
                 });
             }
-            else if (slot.schedule[day_slot][time_slot].teacher_ID == null){
+            else if (slot.schedule[day_slot][time_slot].teacher_ID == null) {
                 console.log("asdas")
                 curr_floor_geojson[floor].features.forEach(feature => {
                     if (feature.properties && feature.properties.room_id && feature.properties.room_id == slot.room_id) {
@@ -207,8 +207,8 @@ const fetch_curr_slot_details = () => {
             curr_slot_data = data;
         })
         .catch(error => console.error('Data about Classes unavailable:', error));
-        geoJSONEvent(floor, pathfloorindex)
-        console.log("updated");
+    Load_geoJSON_Event(floor, pathfloorindex)
+    console.log("updated");
 };
 fetch_curr_slot_details();
 setInterval(() => { fetch_curr_slot_details(); }, 60000);

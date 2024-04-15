@@ -13,6 +13,7 @@ let addEventListenertobutton = () => {
     });
 }
 addEventListenertobutton();
+document.getElementById('go').addEventListener('click', () => { calculate_antpath();});
 
 let change = 1;
 let marker;
@@ -41,18 +42,36 @@ const getLocation = () => {
 };
 getLocation();
 
-const fetch_curr_slot_details = () => {
-    let today = new Date();
-    const weekdays = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
-    let day_slot = weekdays[today.getDay()];
-    let hours = today.getHours();
-    let houre = hours + 1;
-    hours = (hours > 12) ? String(hours - 12).padStart(2, "0") : String(hours).padStart(2, "0");
-    houre = (houre > 12) ? String(houre - 12).padStart(2, "0") : String(houre).padStart(2, "0");
-    let time_slot = hours + "-" + houre;
-    return [time_slot, day_slot]
-};
-setInterval(() => { fetch_curr_slot_details(); }, 60000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // var myIcon = L.icon({
 //     iconUrl: 'media/logo.png',

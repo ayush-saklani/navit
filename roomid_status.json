@@ -1,0 +1,181 @@
+[
+    {
+      "room_id": "22",
+      "schedule": {
+        "mon": {
+          "08-09": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "09-10": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "10-11": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "11-12": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "12-01": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "01-02": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "02-03": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "03-04": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "04-05": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "05-06": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  }
+        },
+        "tue": {
+          "08-09": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "09-10": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "10-11": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "11-12": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "12-01": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "01-02": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "02-03": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "03-04": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "04-05": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "05-06": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  }
+        },
+        "wed": {
+          "08-09": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "09-10": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "10-11": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "11-12": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "12-01": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "01-02": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "02-03": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "03-04": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "04-05": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "05-06": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  }
+        },
+        "thu": {
+          "08-09": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "09-10": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "10-11": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "11-12": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "12-01": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "01-02": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "02-03": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "03-04": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "04-05": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "05-06": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  }
+        },
+        "fri": {
+          "08-09": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "09-10": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "10-11": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "11-12": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "12-01": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "01-02": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "02-03": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "03-04": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "04-05": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "05-06": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  }
+        },
+        "sat": {
+          "08-09": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "09-10": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "10-11": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "11-12": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "12-01": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "01-02": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "02-03": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "03-04": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "04-05": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "05-06": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  }
+        },
+        "sun": {
+          "08-09": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "09-10": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "10-11": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "11-12": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "12-01": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "01-02": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "02-03": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "03-04": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "04-05": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "05-06": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  }
+        }
+      }
+    },
+    {
+      "room_id": "B202",
+      "schedule": {
+        "mon": {
+          "08-09": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "09-10": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "10-11": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "11-12": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "12-01": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "01-02": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "02-03": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "03-04": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "04-05": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "05-06": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  }
+        },
+        "tue": {
+          "08-09": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "09-10": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "10-11": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "11-12": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "12-01": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "01-02": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "02-03": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "03-04": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "04-05": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "05-06": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  }
+        },
+        "wed": {
+          "08-09": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "09-10": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "10-11": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "11-12": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "12-01": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "01-02": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "02-03": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "03-04": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "04-05": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "05-06": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  }
+        },
+        "thu": {
+          "08-09": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "09-10": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "10-11": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "11-12": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "12-01": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "01-02": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "02-03": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "03-04": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "04-05": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "05-06": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  }
+        },
+        "fri": {
+          "08-09": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "09-10": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "10-11": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "11-12": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "12-01": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "01-02": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "02-03": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "03-04": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "04-05": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "05-06": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  }
+        },
+        "sat": {
+          "08-09": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "09-10": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "10-11": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "11-12": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "12-01": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "01-02": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "02-03": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "03-04": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "04-05": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "05-06": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  }
+        },
+        "sun": {
+          "08-09": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "09-10": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "10-11": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "11-12": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "12-01": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "01-02": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "02-03": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "03-04": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "04-05": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  },
+          "05-06": { "course":"","section":"","semester":null,"slotdata":"","teacher_ID":null  }
+        }
+      }
+    }
+  ]
+  

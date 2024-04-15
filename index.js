@@ -8,7 +8,7 @@ const map = L.map(('map'),{
 // let map = L.map(('map'), {}).setView(latling, 18);
 const tileurl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 const tile = L.tileLayer(tileurl,{
-    attribution: '&copy; <a href="https://github.com/ayush-saklani">Tempest</a>'
+    attribution: '&copy; <p><a href="https://github.com/ayush-saklani"><img src="https://flagcdn.com/in.svg" width="15" alt="India"> Tempest</a></p>'
 }).addTo(map);
 
 //base map from open streetmap added 

@@ -81,3 +81,13 @@
     color: #043a45;
     transition: ease-in-out 0.5s;
 }
+.leaflet-control-attribution>a,.leaflet-control-attribution>span{
+    display: none;
+}
+.leaflet-control-attribution{
+    display: flex;
+}
+.leaflet-control-attribution>p{
+    margin-bottom: 2px;
+    padding-left: 6px;
+}

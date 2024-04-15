@@ -13,7 +13,7 @@ let addEventListenertobutton = () => {
     });
 }
 addEventListenertobutton();
-document.getElementById('go').addEventListener('click', () => { calculate_antpath();});
+document.getElementById('go').addEventListener('click', () => { calculate_antpath(); });
 
 let change = 1;
 let marker;
@@ -25,17 +25,17 @@ const getLocation = () => {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
             const latlng = [latitude, longitude];
-            let changea ;
+            let changea;
             // Update the content of the 'demo' element
             document.getElementById('demo').innerHTML = `${latitude}, ${longitude} x ${change}`;
             // marker = L.marker(latlng).addTo(map);
-            if(marker){
+            if (marker) {
                 map.removeLayer(marker)
             }
             marker = L.marker(latlng).addTo(map);
 
             map.setView(latlng, 18);
-        },console.error,{maximumAge: 1000,timeout: 1000,enableHighAccuracy: true});
+        }, console.error, { maximumAge: 1000, timeout: 1000, enableHighAccuracy: true });
     } else {
         console.log("Geolocation is not supported by this browser");
     }

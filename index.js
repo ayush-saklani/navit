@@ -2,7 +2,7 @@ const map = L.map(('map'), {
     center: [30.2734504, 77.9997427],
     zoomAnimation: true,
     maxZoom: 22,
-    minZoom: 19,
+    minZoom: 18,
     zoomControl: false
 });
 // let map = L.map(('map'), {}).setView(latling, 18);
@@ -168,7 +168,7 @@ const render_slot_detail = () => {
             .catch(error => console.error('Data about Classes unavailable:', error));
 
         // console.log(time_slot)
-        time_slot = "11-12"                     //for tesing purpose should be deleted lator 
+        // time_slot = "11-12"                     //for tesing purpose should be deleted lator 
         curr_slot_data.forEach(slot => {
             if (slot.schedule[day_slot][time_slot].teacher_ID != null) {
                 curr_floor_geojson[floor].features.forEach(feature => {

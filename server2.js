@@ -21,7 +21,7 @@ let loadMap = () => {
                     g.addEdge(new jsgraphs.Edge(edgeObj.start, edgeObj.end, edgeObj.len));
                     g.addEdge(new jsgraphs.Edge(edgeObj.end, edgeObj.start, edgeObj.len));
                 });
-                resolve();
+                // resolve();
             }
         });
         readFile('map_coordinates_label_updated.json', 'utf8', (err, data) => {

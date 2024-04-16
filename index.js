@@ -15,7 +15,7 @@ const tile = L.tileLayer(tileurl, {
 let floor = 0, temp_point = 0, pathfloorindex = 0;
 
 // intitialize  the map with default view and zoom level
-fetch(`./mapgeoJSON/floor${floor}.geojson`).then(response => response.json()).then(data => {
+fetch(`./assets/mapgeoJSON/floor${floor}.geojson`).then(response => response.json()).then(data => {
     L.geoJSON(data, {
         style: { color: 'cadetblue', weight: 1, opacity: 1 },
     }).addTo(map);
@@ -63,7 +63,7 @@ const Load_geoJSON_Event = (mapfloor, pathfloor) => {
     map.eachLayer((layer) => {
         if (!!layer.toGeoJSON) { map.removeLayer(layer); }
     });
-    fetch(`./mapgeoJSON/floor${mapfloor}.geojson`).then(response => response.json()).then(data => {
+    fetch(`./assets/mapgeoJSON/floor${mapfloor}.geojson`).then(response => response.json()).then(data => {
         L.geoJSON(data, {
             style: { color: 'cadetblue', weight: 1, opacity: 1 },
         }).addTo(map);
@@ -135,7 +135,7 @@ const highlightroom = (req_room_id) => {
 const preloadFloorGeoJSON = async () => {
     try {
         for (let i = -1; i <= 5; i++) {
-            const response = await fetch(`./mapgeoJSON/floor${i}.geojson`);
+            const response = await fetch(`./assets/mapgeoJSON/floor${i}.geojson`);
             const data = await response.json();
             curr_floor_geojson[i] = data;
         }

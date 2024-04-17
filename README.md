@@ -33,20 +33,20 @@ npm install cors
 
 # **File Structure**
 
-- **_[package.json](package.json)_** **- npm packages**
-- **_[package-lock.json](package-lock.json)_** **- npm packages**
 - **_[README.md](README.md)_** **- Readme.md file**
-- **_[roomid_status.json](roomid_status.json)_**
-- **_[server2.js](server2.js)_** **- Node-express-server that act as backend and fetch data**
-- **_[style.css](style.css)_** **- Cascading style sheets for frontend**
-- **_[assets](assets)_** **- Images and GeoJSON related to project**
-- **_[misc](misc)- Miscellanous files and functions testing files**
-- **_[node_modules](node_modules)_** **- Node Modules installed here in this folder [ some are non necessary but are for testing purposes ]**
 - **_[index.html](index.html)_** **- Front end [ HTML ]**
 - **_[index.js](index.js)_** **- Front end [ JS ]**
 - **_[index_frontend.js](index_frontend.js)_** **- Front end [ JS ]**
+- **_[style.css](style.css)_** **- Front end [ CSS ]**
+- **_[server2.js](server2.js)_** **- NodeJS-express-server [ Backend for fetching data ]**
 - **_[map_coordinates.json](map_coordinates.json)_** **- Master Map Nodes stored here**
 - **_[map_coordinates_label_updated.json](map_coordinates_label_updated.json)_** **- Master Map Labels stored here**
+- **_[assets](assets)_** **- Images and GeoJSON related to project**
+- **_[misc](misc)_** **- Miscellanous files and functions testing files**
+- **_[package.json](package.json)_** **- npm packages**
+- **_[package-lock.json](package-lock.json)_** **- npm packages**
+- **_[node_modules](node_modules)_** **- Node Modules installed here in this folder [ some are non necessary but are for testing purposes ]**
+- **_[roomid_status.json](roomid_status.json)_** **- realtime classes occupancy updation data obtained from [classsync](https://github.com/ayush-saklani/classsync) [it will be fetched directly from mongoDB after completion]**
 
 <!--  -->
 <!-- # Future plan -->

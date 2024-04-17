@@ -1,6 +1,6 @@
 # **Indoor Mapping Navit ( Gamma γ )** <img src="assets/images/logo.png" height="105" align="left"/>
 
-**Indoor mapping solution for University campus. _(currently more than proof of concept phase a little less than completed)_**
+**Indoor mapping solution for University campus. _(currently, more than proof of concept but a little less than completed)_**
 
 # **Coding Language and Tools**
 

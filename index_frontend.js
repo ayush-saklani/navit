@@ -14,6 +14,22 @@ let addEventListenertobutton = () => {
 }
 addEventListenertobutton();
 document.getElementById('go').addEventListener('click', () => { calculate_antpath(); });
+let down = false;
+
+document.getElementById('foldup').addEventListener('click', () => {
+    let bottombar = document.getElementsByClassName('bottom-bar')[0];
+    let icon = document.getElementById('foldup-icon');
+
+    if (down == false) {
+        down = true;
+        icon.setAttribute('class', 'bi bi-caret-up-fill h3');
+        bottombar.classList.add('bottom-bar-down');
+    } else {
+        down = false;
+        icon.setAttribute('class', 'bi bi-caret-down-fill h3');
+        bottombar.classList.remove('bottom-bar-down');
+    }
+});
 
 
 

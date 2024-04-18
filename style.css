@@ -62,6 +62,7 @@
     transition: 0.5s ease-in;
 }
 .countboxi{
+    color: rgb(50, 113, 116);
     position: absolute;
     top: -35px;
     left: 50%;
@@ -69,10 +70,14 @@
     background-color: #61616100;
     height: 50px;
     width:  50px;
-    color: white;
     border-radius: 50%;
     line-height: 0;
     border: none;
+    transition: ease-in-out 1s;
+}
+.countboxi:hover{
+    color: #043a45;
+    transition: ease-in-out 1s;
 }
 @media only screen and (max-width: 768px) {
     .circular_button_div{

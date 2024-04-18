@@ -57,8 +57,8 @@
     transition: 0.5s ease-out; 
 }
 .bottom-bar-down {
-    padding: 0;
-    height: 0;
+    padding: 0px;
+    height: 0px;
     transition: 0.5s ease-in;
 }
 .countboxi{
@@ -89,6 +89,9 @@
     }
     .bottom-bar{
         height: 30%; /* Set the default height of the bottom bar */
+    }
+    .bottom-bar-down {
+        height: 0px;
     }
 }
 .social-links{

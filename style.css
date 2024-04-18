@@ -56,7 +56,7 @@
     height: 12%; 
     transition: 0.5s ease-out; 
 }
-.bottom-bar.bottom-bar-down {
+.bottom-bar-down {
     padding: 0;
     height: 0;
     transition: 0.5s ease-in;

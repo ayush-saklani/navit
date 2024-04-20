@@ -65,7 +65,7 @@ const Load_geoJSON_Event = (mapfloor, pathfloor) => {
     });
     fetch(`./assets/mapgeoJSON/floor${mapfloor}.geojson`).then(response => response.json()).then(data => {
         L.geoJSON(data, {
-            style: { color: 'cadetblue', weight: 1, opacity: 1 },
+            style: { color: 'cadetblue', weight: 1, opacity: 1 }, //  ,fillOpacity: 0.5 // fill : bool
         }).addTo(map);
     }).catch(error => console.error('out of service.. ~_~  @_@', error));
     L.polyline.antPath(points[pathfloor], {

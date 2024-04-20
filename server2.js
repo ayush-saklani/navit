@@ -1,16 +1,19 @@
 //  Server.js version 2.1
 import jsgraphs from 'js-graph-algorithms';
 import cors from 'cors'; // Import the cors middleware
-import express from 'express'
+import express, { json } from 'express'
 import { readFile } from 'fs';
+import { error } from 'console';
 
 const app = express()
-const port = 3000
+const port = 4000
 app.use(cors());
+app.use(express.json());
+// Middleware to parse JSON bodies
 
 let curr_slot_data = [];
 const g = new jsgraphs.WeightedGraph(7000);
-let loadMap = () => {
+const loadMap = () => {
     return new Promise((resolve, reject) => {
         readFile('map_coordinates.json', 'utf8', (err, data) => {
             if (err) {
@@ -38,7 +41,7 @@ let loadMap = () => {
             }
         });
     });
-}
+};
 let load_slot = () => {
     return new Promise((resolve, reject) => {
         readFile('roomid_status.json', 'utf8', (err, data) => {
@@ -56,8 +59,7 @@ let load_slot = () => {
         });
     });
 };
-
-let dijfunc = (src, des) => {
+const dijfunc = (src, des) => {
     var dijkstra = new jsgraphs.Dijkstra(g, src);
     let e;
     if (dijkstra.hasPathTo(des)) {
@@ -103,7 +105,7 @@ let dijfunc = (src, des) => {
         return null;
     }
 };
-let nearest_amenity = (src, keyword) => {
+const nearest_amenity = (src, keyword) => {
     let des = segregate_aminity(src, keyword);
     if (des !== null) {
         var dijkstra = new jsgraphs.Dijkstra(g, src);
@@ -121,7 +123,7 @@ let nearest_amenity = (src, keyword) => {
         return null;
     }
 };
-let segregate_aminity = (src, keyword) => {
+const segregate_aminity = (src, keyword) => {
     if (keyword == 999) { // gents washroom
         if (src > 0 && src < 1000 || src >= 6000 && src < 7000) return [83, 51];
         else if (src >= 1000 && src < 2000) return [1083, 1051];
@@ -142,9 +144,31 @@ let segregate_aminity = (src, keyword) => {
         console.log('Error: Arey Bhaisab kis line me aa gaye aap.');
     }
 };
-
-// Middleware to parse JSON bodies
-app.use(express.json());
+let  mapGeoJSON = [];
+const fetchGeoJSON = async () => {
+    return new Promise((resolve, reject) => {
+        readFile('roomid_status.json', 'utf8', (err, data) => {
+            for (let i = -1; i < 6; i++) {
+                const data = readFile(`./assets/mapgeoJSON/floor${i}.geojson`).JSON.parse(data);
+                mapGeoJSON.push(data);
+            }
+            console.log("=================== All map reading finish successfully =================");
+            // return mapGeoJSON;
+        });
+    });
+    // let mapGeoJSON = [];
+    // try {
+        // for (let i = -1; i < 6; i++) {
+            // const data = await readFile(`./assets/mapgeoJSON/floor${i}.geojson`).JSON.parse(data);
+            // mapGeoJSON.push(data);
+        // }
+        // console.log("=================== All map reading finish successfully =================");
+        // return mapGeoJSON;
+    // } catch (error) {
+        // console.error('Error preloading floor GeoJSON data:', error);
+        // return error;
+    // }
+};
 
 // Route to handle POST requests from the HTML page
 app.post('/getCoordinates', (req, res) => {
@@ -176,7 +200,21 @@ app.post('/getstatus', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
-
+app.get('/fetch',async (req, res) => {
+    try {
+        let map = await fetchGeoJSON();
+        if (map) {
+            res.json(map);
+        }
+        else {
+            res.status(404).json({ error: 'mapGeoJSON :: [not sent] data unavailable.' });
+        }
+    }
+    catch (err) {
+        console.error("Error:", err);
+        res.status(500).json({ error: 'Internal Server Eroor' });
+    }
+});
 Promise.all([loadMap(), load_slot()]).then(() => {
     console.log(":: Map data loaded successfully ::");
     console.log(":: Slot data loaded successfully ::");

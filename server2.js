@@ -6,7 +6,7 @@ import { readFile } from 'fs';
 import { error } from 'console';
 
 const app = express()
-const port = 4000
+const port = 3000
 app.use(cors());
 app.use(express.json());
 // Middleware to parse JSON bodies

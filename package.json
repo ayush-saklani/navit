@@ -4,7 +4,7 @@
   "description": "navit",
   "main": "server2.js",
   "scripts": {
-    "start": "nodemon server2.js",
+    "start": "node server2.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "tempest",
@@ -18,10 +18,16 @@
     "html5-qrcode-scanner-dinte": "^2.3.8",
     "jimp": "^0.22.10",
     "js-graph-algorithms": "^1.0.18",
+    "jsqr": "^1.4.0",
     "leaflet": "^1.9.4",
     "leaflet-ant-path": "^1.3.0",
+    "node-camera-qr-reader": "^1.0.2",
     "nodemon": "^3.0.3",
     "passport": "^0.6.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "qr-code-scanner": "^1.0.8",
+    "qrcode-reader": "^1.0.4",
+    "react-simple-qr-code-scanner": "^2.5.5",
+    "xml-js": "^1.6.11"
   }
 }

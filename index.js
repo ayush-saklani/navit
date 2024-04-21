@@ -101,13 +101,8 @@ const add_GeoJSON_EventListener = () => {
 };
 add_GeoJSON_EventListener();
 
-
-
 let curr_slot_data = [];
 let curr_floor_geojson = {};
-
-
-
 
 let getcustommarkings = (room_id) => {
     let coordinates = [];
@@ -146,8 +141,6 @@ const preloadFloorGeoJSON = async () => {
     }
 };
 preloadFloorGeoJSON();
-
-
 
 const render_slot_detail = () => {
     try {
@@ -192,7 +185,6 @@ const render_slot_detail = () => {
         console.error('Error rendering slot details:', error);
     }
 };
-
 const fetch_curr_slot_details = () => {
     let requestBody = { floor: floor }; // not needed for now 
     fetch('http://127.0.0.1:3000/getstatus', {

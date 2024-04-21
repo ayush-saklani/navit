@@ -86,13 +86,14 @@ const add_GeoJSON_EventListener = () => {
             let mapfloor;
             let pathfloor;
             if (btn.id === 'G') {
-                mapfloor = pathfloor = pathfloorindex = 0
+                mapfloor = temp_point = pathfloor = pathfloorindex = 0
             }
             else if (btn.id == '-1') {
-                mapfloor = -1; pathfloor = pathfloorindex = 6;
+                mapfloor = -1;
+                temp_point = pathfloor = pathfloorindex = 6;
             }
             else {
-                mapfloor = pathfloor = pathfloorindex = btn.id;
+                mapfloor = temp_point = pathfloor = pathfloorindex = btn.id;
             }
             floor = mapfloor;
             Load_geoJSON_Event(mapfloor, pathfloor);
@@ -106,9 +107,14 @@ let curr_floor_geojson = {};
 
 let getcustommarkings = (room_id) => {
     let coordinates = [];
-    curr_floor_geojson[floor].features.forEach(feature => {
+    curr_floor_geojson[temp_point].features.forEach(feature => {
         if (feature.properties && feature.properties.room_id && feature.properties.room_id === room_id) {
-            coordinates.push(feature.geometry.coordinates);
+            if(feature.geometry.type === "Polygon"){
+                coordinates.push(feature.geometry.coordinates[0]);
+            }
+            else{
+                coordinates.push(feature.geometry.coordinates);
+            }
         }
     });
     let latLngs = [];
@@ -120,7 +126,7 @@ let getcustommarkings = (room_id) => {
     return latLngs;
 }
 const highlightroom = (req_room_id) => {
-    curr_floor_geojson[floor].features.forEach(feature => {
+    curr_floor_geojson[btn.id].features.forEach(feature => {
         if (feature.properties && feature.properties.room_id && feature.properties.room_id == req_room_id) {
             let cc = getcustommarkings(feature.properties.room_id);
             L.polygon(cc, { "color": 'green', weight: 2, opacity: 0.5 }).addTo(map);
@@ -129,10 +135,17 @@ const highlightroom = (req_room_id) => {
 }
 const preloadFloorGeoJSON = async () => {
     try {
-        for (let i = -1; i <= 5; i++) {
-            const response = await fetch(`./assets/mapgeoJSON/floor${i}.geojson`);
-            const data = await response.json();
-            curr_floor_geojson[i] = data;
+        for (let i = 0; i <= 6; i++) {
+            if(i < 6){
+                const response = await fetch(`./assets/mapgeoJSON/floor${i}.geojson`);
+                const data = await response.json();
+                curr_floor_geojson[i] = data;
+            }
+            else if(i===6){
+                const response = await fetch('./assets/mapgeoJSON/floor-1.geojson');
+                const data = await response.json();
+                curr_floor_geojson[i] = data;
+            }
         }
         console.log("=================== all map reading finish successfully =================")
         console.log(curr_floor_geojson)
@@ -160,20 +173,23 @@ const render_slot_detail = () => {
             })
             .catch(error => console.error('Data about Classes unavailable:', error));
 
-        // console.log(time_slot)
-        time_slot = "11-12"                     //for tesing purpose should be deleted lator 
+        console.log(time_slot)
+        L.polygon(getcustommarkings('29'), { "color": 'blue', weight: 0.5, opacity: 0.5 }).addTo(map); //seperate funciton will be used for aminities
+        L.polygon(getcustommarkings('51'), { "color": 'blue', weight: 0.5, opacity: 0.5 }).addTo(map); //seperate funciton will be used for aminities
+        time_slot = "08-09"
+        day_slot = 'mon'                     //for tesing purpose should be deleted lator 
         curr_slot_data.forEach(slot => {
             if (slot.schedule[day_slot][time_slot].teacher_ID != null) {
-                curr_floor_geojson[floor].features.forEach(feature => {
+                curr_floor_geojson[temp_point].features.forEach(feature => {
                     if (feature.properties && feature.properties.room_id && feature.properties.room_id == slot.room_id) {
                         let cc = getcustommarkings(slot.room_id);
                         L.polygon(cc, { "color": 'green', weight: 1, opacity: 0.5 }).addTo(map);
-                    }
+                    } 
                 });
             }
             else if (slot.schedule[day_slot][time_slot].teacher_ID == null) {
                 console.log("asdas")
-                curr_floor_geojson[floor].features.forEach(feature => {
+                curr_floor_geojson[temp_point].features.forEach(feature => {
                     if (feature.properties && feature.properties.room_id && feature.properties.room_id == slot.room_id) {
                         let cc = getcustommarkings(slot.room_id);
                         L.polygon(cc, { "color": 'red', weight: 0.5, opacity: 0.5 }).addTo(map);

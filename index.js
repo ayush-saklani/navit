@@ -194,7 +194,7 @@ const render_slot_detail = () => {
                 curr_floor_geojson[temp_point].features.forEach(feature => {
                     if (feature.properties && feature.properties.room_id && feature.properties.room_id == slot.room_id) {
                         let cc = getcustommarkings(slot.room_id);
-                        L.polygon(cc, { "color": 'green', weight: 1, opacity: 0.5 }).addTo(map);
+                        L.polygon(cc, { "color": 'red', weight: 1, opacity: 0.5 }).addTo(map);
                     } 
                 });
             }
@@ -203,7 +203,7 @@ const render_slot_detail = () => {
                 curr_floor_geojson[temp_point].features.forEach(feature => {
                     if (feature.properties && feature.properties.room_id && feature.properties.room_id == slot.room_id) {
                         let cc = getcustommarkings(slot.room_id);
-                        L.polygon(cc, { "color": 'red', weight: 0.5, opacity: 0.5 }).addTo(map);
+                        L.polygon(cc, { "color": 'green', weight: 0.5, opacity: 0.5 }).addTo(map);
                     }
                 });
             }

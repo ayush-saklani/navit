@@ -154,7 +154,19 @@ const preloadFloorGeoJSON = async () => {
     }
 };
 preloadFloorGeoJSON();
-
+const render_aminities = () => {
+    const aminities = [ "51",  "29",  "99",  "83",
+                        "1051","1029","1099","1083",
+                        "2051","2029","2099","2083",
+                        "3051","3029","3099","3083",
+                        "4051","4029","4099","4083",
+                        "5051","5029","5099","5083"
+                    ];
+    aminities.forEach(element => {
+        let latLng = getcustommarkings(element);
+        L.polygon(latLng, { "color": 'blue', weight: 0.5, opacity: 0.5 }).addTo(map);
+    });
+}
 const render_slot_detail = () => {
     try {
         let today = new Date();
@@ -174,8 +186,7 @@ const render_slot_detail = () => {
             .catch(error => console.error('Data about Classes unavailable:', error));
 
         console.log(time_slot)
-        L.polygon(getcustommarkings('29'), { "color": 'blue', weight: 0.5, opacity: 0.5 }).addTo(map); //seperate funciton will be used for aminities
-        L.polygon(getcustommarkings('51'), { "color": 'blue', weight: 0.5, opacity: 0.5 }).addTo(map); //seperate funciton will be used for aminities
+        render_aminities();
         time_slot = "08-09"
         day_slot = 'mon'                     //for tesing purpose should be deleted lator 
         curr_slot_data.forEach(slot => {

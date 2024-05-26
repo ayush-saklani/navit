@@ -3,7 +3,8 @@ import jsgraphs from 'js-graph-algorithms';
 import cors from 'cors'; // Import the cors middleware
 import express, { json } from 'express'
 import { readFile } from 'fs';
-import { error } from 'console';
+import mongoose from 'mongoose';
+// import navitmodel from 'model/navit-models.model.js';
 
 const app = express()
 const port = 3000
@@ -144,30 +145,14 @@ const segregate_aminity = (src, keyword) => {
         console.log('Error: Arey Bhaisab kis line me aa gaye aap.');
     }
 };
-let  mapGeoJSON = [];
 const fetchGeoJSON = async () => {
-    return new Promise((resolve, reject) => {
-        readFile('roomid_status.json', 'utf8', (err, data) => {
-            for (let i = -1; i < 6; i++) {
-                const data = readFile(`./assets/mapgeoJSON/floor${i}.geojson`).JSON.parse(data);
-                mapGeoJSON.push(data);
-            }
-            console.log("=================== All map reading finish successfully =================");
-            // return mapGeoJSON;
-        });
-    });
-    // let mapGeoJSON = [];
-    // try {
-        // for (let i = -1; i < 6; i++) {
-            // const data = await readFile(`./assets/mapgeoJSON/floor${i}.geojson`).JSON.parse(data);
-            // mapGeoJSON.push(data);
-        // }
-        // console.log("=================== All map reading finish successfully =================");
-        // return mapGeoJSON;
-    // } catch (error) {
-        // console.error('Error preloading floor GeoJSON data:', error);
-        // return error;
-    // }
+    let mapGeoJSON = [];
+    for (let i = -1; i < 6; i++) {
+        const data = readFile(`assets/mapgeoJSON/floor${i}.geojson`).JSON.parse(data);
+        mapGeoJSON.push(data);
+    }
+    console.log("=================== All map reading finish successfully =================");
+    return mapGeoJSON;
 };
 
 // Route to handle POST requests from the HTML page
@@ -200,27 +185,33 @@ app.post('/getstatus', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
-app.get('/fetch',async (req, res) => {
+app.get('/fetch', async (req, res) => {
     try {
-        let map = await fetchGeoJSON();
-        if (map) {
-            res.json(map);
-        }
-        else {
-            res.status(404).json({ error: 'mapGeoJSON :: [not sent] data unavailable.' });
-        }
+        // let map = 
+        res.json(await fetchGeoJSON());
+        // if (map) {
+        //     console.log(resolve6)
+        //     res.json(map);
+        // }
+        // else {
+        //     res.status(404).json({ error: 'mapGeoJSON :: [not sent] data unavailable.' });
+        // }
     }
     catch (err) {
         console.error("Error:", err);
         res.status(500).json({ error: 'Internal Server Eroor' });
     }
 });
-Promise.all([loadMap(), load_slot()]).then(() => {
-    console.log(":: Map data loaded successfully ::");
-    console.log(":: Slot data loaded successfully ::");
-    app.listen(port, () => {
-        console.log(`Server is listening at ::  http://localhost:${port}`);
+mongoose.connect(DBURL)
+    .then(() => {
+        console.log('Mongo_DB Connected!')
+        Promise.all([loadMap(), load_slot()]).then(() => {
+            console.log(":: Map data loaded successfully ::");
+            console.log(":: Slot data loaded successfully ::");
+            app.listen(port, () => {
+                console.log(`Server is listening at ::  http://localhost:${port}`);
+            });
+        }).catch(err => {
+            console.error("Error loading Map Data or Slot Data :: ", err);
+        });
     });
-}).catch(err => {
-    console.error("Error loading Map Data or Slot Data :: ", err);
-});

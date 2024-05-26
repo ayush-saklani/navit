@@ -1,31 +1,13 @@
-.text-heading{
+.text{
     font-family: anta;
 }
 .coloring{
-    background-color: #055160;
-}
-*{
-    padding: 0px;
-    margin: 0; 
-    box-sizing: border-box;
-    size: 100%;
+    color: #055160 !important;
 }
 #map{
     height: 100vh;
     position: relative;
     z-index: 0;
-}
-.header{
-    display:flex;
-    justify-content:center;
-    position: absolute;;
-    z-index: 1;
-    margin: 5px;
-}
-
-.circular_button_div{
-    padding-bottom: 40px;
-    margin-left: 50px;
 }
 .circular_button{
     background-color: rgb(50, 113, 116);
@@ -80,17 +62,14 @@
     transition: ease-in-out 1s;
 }
 @media only screen and (max-width: 768px) {
-    .circular_button_div{
-        padding-bottom: 110px;
-        margin-left: 40px;
-        transition: ease-in-out 1s;
-    }
     .circular_button{
         font-size:larger;
         height: 50px;
         width:  50px;
-        margin-bottom: 4px;
         transition: ease-in-out 1s;
+    }
+    .leveldiv{
+        margin-bottom: 140px !important;
     }
     .bottom-bar{
         height: 30%; /* Set the default height of the bottom bar */
@@ -100,20 +79,21 @@
     }
 }
 .social-links{
-    background-color: #ffffff60;
+    background-color: #0551606b;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
 }
 .social-links>a{
     text-decoration: none;
     padding: 5px;
-    color:#055160;
+    color:#ffffff;
     transition: ease-in-out 0.5s;
 }
 .social-links>a>i:hover{
     color: #043a45;
     transition: ease-in-out 0.5s;
 }
+/* leaflet logo removed from bottom right*/
 .leaflet-control-attribution>a,.leaflet-control-attribution>span{
     display: none;
 }
@@ -124,3 +104,4 @@
     margin-bottom: 2px;
     padding-left: 6px;
 }
+/* leaflet logo removed from bottom right*/

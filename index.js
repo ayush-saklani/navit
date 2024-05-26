@@ -12,18 +12,25 @@ const tile = L.tileLayer(tileurl, {
 }).addTo(map);
 //base map from open streetmap added 
 
-let floor = 0, temp_point = 0, pathfloorindex = 0;
-
-// intitialize  the map with default view and zoom level
-fetch(`./assets/mapgeoJSON/floor${floor}.geojson`).then(response => response.json()).then(data => {
-    L.geoJSON(data, {
-        style: { color: 'cadetblue', weight: 1, opacity: 1 },
-    }).addTo(map);
-    map.fitBounds(L.geoJSON(data).getBounds()).setView([30.27332, 77.99979], 18);
-}).catch(error => console.error('out of service.. ~_~  @_@', error));
-
 let source, destination;
 let points = [[], [], [], [], [], [], []]
+let floor = 0, temp_point = 0, pathfloorindex = 0;
+let curr_slot_data = [];
+let curr_floor_geojson = {};
+
+// intitialize  the map with default view and zoom level
+const Load_geoJSON = () => {
+    fetch(`./assets/mapgeoJSON/floor${floor}.geojson`)
+        .then(response => response.json())
+        .then(data => {
+            L.geoJSON(data, {
+                style: { color: 'cadetblue', weight: 1, opacity: 1 },
+            }).addTo(map);
+            map.fitBounds(L.geoJSON(data).getBounds()).setView([30.27332, 77.99979], 18);
+        })
+        .catch(error => console.error('out of service.. ~_~  @_@', error));
+}
+Load_geoJSON()
 
 const calculate_antpath = () => {
     source = document.getElementById("Start").value;
@@ -101,9 +108,6 @@ const add_GeoJSON_EventListener = () => {
     });
 };
 add_GeoJSON_EventListener();
-
-let curr_slot_data = [];
-let curr_floor_geojson = {};
 
 let getcustommarkings = (room_id) => {
     let coordinates = [];

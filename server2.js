@@ -187,15 +187,8 @@ app.post('/getstatus', async (req, res) => {
 });
 app.get('/fetch', async (req, res) => {
     try {
-        // let map = 
         res.json(await fetchGeoJSON());
-        // if (map) {
-        //     console.log(resolve6)
-        //     res.json(map);
-        // }
-        // else {
-        //     res.status(404).json({ error: 'mapGeoJSON :: [not sent] data unavailable.' });
-        // }
+        
     }
     catch (err) {
         console.error("Error:", err);

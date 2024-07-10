@@ -1,4 +1,4 @@
-//  Server.js version 2.1
+//  Server.js version 3.0
 import jsgraphs from 'js-graph-algorithms'; // Import the graph library
 import cors from 'cors';                    // Import the cors middleware
 import express from 'express'               // Import the express library
@@ -53,8 +53,8 @@ const loadMap2 = () => {                        // Load the labels of the nodes 
 const dijfunc = (src, des) => {                 // Dijkstra's Algorithm :: findS the shortest path RETURNS: Array of Arrays of Coordinates
     var dijkstra = new jsgraphs.Dijkstra(g, src);
     let e;
-    console.log("src, des :: ", src, des);
-    console.log("dijkstra.hasPathTo(des) :: ", dijkstra.hasPathTo(des));
+    // console.log("src, des :: ", src, des);
+    // console.log("dijkstra.hasPathTo(des) :: ", dijkstra.hasPathTo(des));
     if (dijkstra.hasPathTo(des)) {
         let res = [[], [], [], [], [], [], []];
         var path = dijkstra.pathTo(des);
@@ -117,7 +117,7 @@ const segregate_aminity = (src, keyword) => {   // Segregate the washrooms based
         return des;
     }
     catch(err){
-        console.log("Error: Could not find suitable destination.");
+        // console.log("Error: Could not find suitable destination.");
         return null;
     }
 };
@@ -143,14 +143,20 @@ const nearest_amenity = (src, keyword) => {     // Find the nearest washroom bas
 app.get('/getCoordinates', (req, res) => {      // Get the coordinates of the any path RETURNS: Array of Arrays of Coordinates for antpaths
     let src = req.query.src;
     let des = req.query.des;
-    console.log(`:::: Source:${src} => Destination:${des} ::::`);
+    // console.log(`:::: Source:${src} => Destination:${des} ::::`);
     let AmenityArr = ["1999", "1998"];
     let coordinates;
     if (AmenityArr.includes(des)) {
         des = nearest_amenity(src, des);
+        if(des == null){
+            res.status(404).json({
+                "status" : 'error', 
+                "error": 'No path found.'
+            });
+        }
     }
     coordinates = dijfunc(src, des);
-    console.log("coordinates :: ", coordinates);    
+    // console.log("coordinates :: ", coordinates);    
     if (coordinates) {
         res.status(200).json({
             "status": 'success',
@@ -158,13 +164,14 @@ app.get('/getCoordinates', (req, res) => {      // Get the coordinates of the an
         });
     } else {
         res.status(404).json({
+            "status" : 'error',
             "error": 'No path found.'
         });
     }
 });
 app.get('/getmap', async (req, res) => {        // Return an array of objects(document) representing floor of the map data
     try {
-        const data = await readFile('mapAllInOne.json', 'utf-8');
+        const data = await readFile('./assets/mapAllInOne.json', 'utf-8');
         let mapdata = JSON.parse(data);
         console.log(":::: map sent ::::");
         res.status(200).json({
@@ -179,7 +186,6 @@ app.get('/getmap', async (req, res) => {        // Return an array of objects(do
 
 await loadMap1()
 await loadMap2()
-// console.log(dijfunc(1,41))
 app.listen(port, () => {
     console.log(`:::: Server listening http://localhost:${port} ::::`)
 });

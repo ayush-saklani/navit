@@ -1,8 +1,14 @@
+:root{
+    --brand-primary: #043a45;
+    --brand-primary-light: #327174;
+    --brand-primary-dark: #032f3a;
+    --brand-primary-transparent: #055160ab;
+}
 .text{
     font-family: anta;
 }
 .coloring{
-    color: #055160 !important;
+    color: var(--brand-primary-dark) !important;
 }
 #map{
     height: 100vh;
@@ -10,7 +16,7 @@
     z-index: 0;
 }
 .circular_button{
-    background-color: rgb(50, 113, 116);
+    background-color: var(--brand-primary-light);
     color: rgb(255, 255, 255);
     font-family:"anta";
     font-size:x-large;
@@ -22,7 +28,7 @@
     transition: ease-in-out 0.5s;
 }
 .circular_button:hover , .active{
-    background-color: #043a45;
+    background-color: var(--brand-primary-dark);
     transition: ease-in-out 0.5s;
 }
 .bottom-bar {
@@ -44,7 +50,7 @@
     transition: 0.5s ease-in;
 }
 .countboxi{
-    color: rgb(50, 113, 116);
+    color: var(--brand-primary-light);
     position: absolute;
     top: -35px;
     left: 50%;
@@ -58,7 +64,7 @@
     transition: ease-in-out 1s;
 }
 .countboxi:hover{
-    color: #043a45;
+    color: var(--brand-primary-dark);
     transition: ease-in-out 1s;
 }
 @media only screen and (max-width: 768px) {
@@ -79,18 +85,20 @@
     }
 }
 .social-links{
-    background-color: #0551606b;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
+    background-color: var(--brand-primary-transparent);
+    transition: ease-in-out 0.5s;
 }
 .social-links>a{
     text-decoration: none;
-    padding: 5px;
-    color:#ffffff;
+    color:#f0efef;
+    transition: ease-in-out 0.5s;
+}
+.social-links:hover{
+    background-color: var(--brand-primary-dark);
     transition: ease-in-out 0.5s;
 }
 .social-links>a>i:hover{
-    color: #043a45;
+    color: white;
     transition: ease-in-out 0.5s;
 }
 /* leaflet logo removed from bottom right*/

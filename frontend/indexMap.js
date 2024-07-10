@@ -1,6 +1,6 @@
 const map = L.map(('map'), {
     center: [30.2734504, 77.9997427],
-    zoom: 19,
+    zoom: 20,
     zoomAnimation: true,
     maxZoom: 22,
     minZoom: 18,
@@ -170,7 +170,16 @@ const render_slot_detail = (floordata) => {
             floordata.features.forEach(feature => {
                 if (feature.properties && feature.properties.room_id && feature.properties.room_id == room_status_data[room].roomid) {
                     let cc = getcustommarkings(floordata,room_status_data[room].roomid);      // returns the coordinates of the room RETURNS: [lat,lng] format of the room (helper function)
-                    L.polygon(cc, { "color": "#cc2412", weight: 0.8, opacity: 10 }).addTo(map);
+                    let polygon = L.polygon(cc, { "color": "#cc2412", weight: 0.8, opacity: 10 }).addTo(map);
+                    let center = polygon.getBounds().getCenter();
+                    let textIcon = L.divIcon({
+                        className: 'text-icon',
+                        html: room_status_data[room].name,
+                        iconSize: [0, 0],
+                        iconAnchor: [0, 0]
+                    });
+                    L.marker(center, { icon: textIcon }).addTo(map);    
+                    // Add a marker with the text icon at the center of the polygon
                 } 
             });
         }
@@ -179,7 +188,16 @@ const render_slot_detail = (floordata) => {
                 // console.log("asdas");
                 if (feature.properties && feature.properties.room_id && feature.properties.room_id == room_status_data[room].roomid) {
                     let cc = getcustommarkings(floordata,room_status_data[room].roomid);      // returns the coordinates of the room RETURNS: [lat,lng] format of the room (helper function)
-                    L.polygon(cc, { "color": "#457c46", weight: 0.8, opacity: 10 }).addTo(map);
+                    let polygon = L.polygon(cc, { "color": "#457c46", weight: 0.8, opacity: 10 }).addTo(map);
+                    let center = polygon.getBounds().getCenter();
+                    let textIcon = L.divIcon({
+                        className: 'text-icon',
+                        html: room_status_data[room].name,
+                        iconSize: [0, 0],
+                        iconAnchor: [0, 0]
+                    });
+                    L.marker(center, { icon: textIcon }).addTo(map);    
+                    // Add a marker with the text icon at the center of the polygon
                 }
             });
         }
@@ -195,7 +213,16 @@ const render_slot_detail = (floordata) => {
         ]
         if (feature.properties && feature.properties.room_id && aminities.includes(feature.properties.room_id)) {
             let cc = getcustommarkings(floordata,feature.properties.room_id);      
-            L.polygon(cc, { "color": 'blue', weight: 0.8, opacity: 10 }).addTo(map);   
+            let polygon = L.polygon(cc, { "color": 'blue', weight: 0.8, opacity: 10 }).addTo(map);  
+            let center = polygon.getBounds().getCenter();
+            let textIcon = L.divIcon({
+                className: 'text-icon',
+                html: "WC",
+                iconSize: [0, 0],
+                iconAnchor: [0, 0]
+            });
+            L.marker(center, { icon: textIcon }).addTo(map);    
+            // Add a marker with the text icon at the center of the polygon 
         }        
     });
 };

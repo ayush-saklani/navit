@@ -13,7 +13,7 @@ const tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //base map from open streetmap added 
 
 let floorMap;
-let points = [[], [], [], [], [], [], []]
+let pathPoints = [[], [], [], [], [], [], []] // defined because it looks for floors o n start 
 let source, destination;
 let floor = 0, temp_point = 0, pathfloorindex = 0;
 let curr_slot_data = [];
@@ -30,6 +30,7 @@ const fetchGeoJSON = () => {
         .then(data => {
             console.log(data.data);
             floorMap = data.data;
+            document.getElementById(0).click();         // auto click on the ground floor
             resolve(data);
         }).catch(error => {
             console.error('out of service.. ~_~  @_@', error);
@@ -42,6 +43,7 @@ const calculate_antpath = () => {
         source = document.getElementById("Start").value;
         destination = document.getElementById("destination").value;
         console.log(`source:${source} => destination:${destination}`);
+        let floor = Math.floor(source/1000)-1 ; 
         
         fetch(`http://localhost:3000/getCoordinates?src=${source}&des=${destination}`, {
             method: 'GET',
@@ -51,8 +53,8 @@ const calculate_antpath = () => {
         }).then(response => response.json())
         .then(data => {
             console.log(data.data);
-            points = data.data;
-            document.getElementById(0).click();
+            pathPoints = data.data;
+            document.getElementById(floor).click();
             resolve();
         }).catch(error => {
             console.error('Error fetching path coordinates:', error);
@@ -68,8 +70,8 @@ const Load_geoJSON_Event = (currFloorData,floor) => {
         style: { color: 'cadetblue', weight: 1, opacity: 1 }, //  ,fillOpacity: 0.5 // fill : bool
     }).addTo(map);
     console.log(floor)
-    console.log(points[floor]);
-    L.polyline.antPath(points[floor], {
+    console.log(pathPoints[floor]);
+    L.polyline.antPath(pathPoints[floor], {
         "delay": 600,
         "dashArray": [1, 46],
         "weight": 5,
@@ -83,15 +85,16 @@ const circularButtonEventListener = () => {
         btn.addEventListener("click", () => {
             let currfloormap;
             for(ele in floorMap){
-                // console.log(floorMap[ele].floor);
                 if(floorMap[ele].floor === btn.id){
                     currfloormap = floorMap[ele]
                     console.log(currfloormap);
                 }
             }
-            Load_geoJSON_Event(currfloormap,eval(btn.id)+1);
+            Load_geoJSON_Event(currfloormap,eval(btn.id)+1); // +1 because floor starts from 1 UG = 0 ,G = 1 ...
         });
     });
 };
-circularButtonEventListener();
-fetchGeoJSON()
+document.addEventListener("DOMContentLoaded",()=>{
+    fetchGeoJSON();
+    circularButtonEventListener();
+})

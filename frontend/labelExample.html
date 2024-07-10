@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Leaflet Polygon with Text</title>
+
+	<!-- Leaflet CSS -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+	<style>
+		#map {
+			height: 400px;
+			width: 100%;
+		}
+
+		.text-icon {
+			background: none;
+			border: none;
+		}
+
+		.text-icon div {
+			font-size: 16px;
+			font-weight: bold;
+			color: black;
+			text-shadow: 1px 1px 1px white;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Leaflet Polygon with Text</h1>
+
+	<!-- The div that will contain the map -->
+	<div id="map"></div>
+
+	<!-- Leaflet JavaScript -->
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+	<!-- Your custom JavaScript -->
+	<script>
+		// Create a map centered at a specific location
+		var map = L.map('map').setView([51.505, -0.09], 13);
+
+		// Add a tile layer (e.g., OpenStreetMap)
+		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			attribution: '© OpenStreetMap contributors'
+		}).addTo(map);
+
+		// Define polygon coordinates
+		var polygonCoords = [
+			[51.509, -0.08],
+			[51.503, -0.06],
+			[51.51, -0.047]
+			,[51.52, -0.08]
+		];
+
+		// Create and add the polygon to the map
+		var polygon = L.polygon(polygonCoords, { color: 'red' }).addTo(map);
+
+		// Calculate the center of the polygon
+		var center = polygon.getBounds().getCenter();
+
+		// Create a custom icon with text
+		var textIcon = L.divIcon({
+			className: 'text-icon',
+			html: '<div>Your Text Here</div>',
+			iconSize: [100, 100],
+			iconAnchor: [50, 20]
+		});
+
+		// Add a marker with the text icon at the center of the polygon
+		L.marker(center, { icon: textIcon }).addTo(map);
+	</script>
+</body>
+
+</html>

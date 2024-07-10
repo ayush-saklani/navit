@@ -1,43 +1,28 @@
 //  Server.js version 2.1
-import jsgraphs from 'js-graph-algorithms';
-import cors from 'cors'; // Import the cors middleware
-import express from 'express'
-import { readFile } from 'fs/promises';
-import fs from 'fs';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import { ok } from 'assert';
+import jsgraphs from 'js-graph-algorithms'; // Import the graph library
+import cors from 'cors';                    // Import the cors middleware
+import express from 'express'               // Import the express library
+import { readFile } from 'fs/promises';     // Import the fs promises library
+import fs from 'fs';                        // Import the fs library
+import mongoose from 'mongoose';            // Import the mongoose library
+import dotenv from 'dotenv';                // Import the dotenv library
 // import navitmodel from 'model/navit-models.model.js';
 
-dotenv.config();
+dotenv.config();                            // Configure the dotenv library     ######### not done yet        
 
-const app = express();   // Create an express app (handler function)
-const port = process.env.PORT || 3000;
-app.use(cors());
-app.use(express.json());
-// Middleware to parse JSON bodies
+const app = express();                      // Create an express app (handler function)
+const port = process.env.PORT || 3000;      // Set the port number              ######### not done yet    
 
-app.get('/getmap', async (req, res) => {
-    try {
-        const data = await readFile('mapAllInOne.json', 'utf-8');
-        let mapdata = JSON.parse(data);
-        console.log(":::: map sent ::::");
-        res.status(200).json({
-            "status": 'success',
-            "data": mapdata
+app.use(cors());                            // Middleware to enable CORS
+app.use(express.json());                    // Middleware to parse JSON bodies        
 
-        });
-    } catch (err) {
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-});
-
-
-let curr_slot_data = [];
-const g = new jsgraphs.WeightedGraph(7000);
-const loadMap1 = () => {
+const g = new jsgraphs.WeightedGraph(7000); // Create a graph with 7000 nodes
+const loadMap1 = () => {                        // Load the coordinates of the nodes and creates the graph 
     return new Promise((resolve, reject) => {
         fs.readFile('assets/map_coordinates.json', 'utf8', (err, data) => {
+            if (err){
+                console.log("XXXX Map Load 2/2 incompleted XXXX");
+            }
             let edges = JSON.parse(data);
             edges.forEach(edgeObj => {
                 g.addEdge(new jsgraphs.Edge(edgeObj.start, edgeObj.end, edgeObj.len));
@@ -48,9 +33,12 @@ const loadMap1 = () => {
         });
     });
 };
-const loadMap2 = () => {
+const loadMap2 = () => {                        // Load the labels of the nodes and updates the graph nodes with the labels
     return new Promise((resolve, reject) => {
         fs.readFile('assets/map_coordinates_label_updated.json', 'utf8', (err, data) => {
+            if (err){
+                console.log("XXXX Map Load 2/2 incompleted XXXX");
+            }
             let labels = JSON.parse(data);
             labels.forEach(classObj => {
                 let node = classObj.node;
@@ -59,10 +47,10 @@ const loadMap2 = () => {
             });
             console.log(":::: Map Loaded 2/2 completed ::::");
             resolve();
-        });
+        })
     });
 };
-const dijfunc = (src, des) => {
+const dijfunc = (src, des) => {                 // Dijkstra's Algorithm :: findS the shortest path RETURNS: Array of Arrays of Coordinates
     var dijkstra = new jsgraphs.Dijkstra(g, src);
     let e;
     console.log("src, des :: ", src, des);
@@ -110,8 +98,32 @@ const dijfunc = (src, des) => {
         return null;
     }
 };
-const nearest_amenity = (src, keyword) => {
+const segregate_aminity = (src, keyword) => {   // Segregate the washrooms based on the keyword(1999:Gents 1998:Ladies) RETURNS: Array of Destinations
+    try{
+        src = Math.floor(eval(src));
+        keyword = Math.floor(eval(keyword));
+        let totalToilet = (keyword == 1999) ? 
+        [1083,1051,2083,2051,3083,3051,4083,4051,5083,5051,6083,6051] :     // Gents Toilet
+        [1099,1029,2099,2029,3099,3029,4099,4029,5099,5029,6099,6029]       // Ladies Toilet
+        if(Math.floor(eval(src/1000)) == 0) {
+            src = eval(src) + 1000;
+        }
+        let des = [];
+        for (let i = 0; i < totalToilet.length; i++) {
+            if (Math.floor(eval(src/1000)) == Math.floor(eval(totalToilet[i])/1000)) {
+                des.push(totalToilet[i]);
+            }
+        } 
+        return des;
+    }
+    catch(err){
+        console.log("Error: Could not find suitable destination.");
+        return null;
+    }
+};
+const nearest_amenity = (src, keyword) => {     // Find the nearest washroom based on the keyword(1999:Gents 1998:Ladies) RETURNS: Array of Arrays of Coordinates of closest washroom
     let des = segregate_aminity(src, keyword);
+    console.log("despacito"+des);
     if (des !== null) {
         var dijkstra = new jsgraphs.Dijkstra(g, src);
         let distance = 9999;
@@ -122,56 +134,24 @@ const nearest_amenity = (src, keyword) => {
                 distance = dijkstra.distanceTo(des[i]);
             }
         }
-        return dijfunc(src, distance_index);
+        return distance_index;
     } else {
         console.log('Error: Could not find suitable destination.');
         return null;
     }
 };
-const segregate_aminity = (src, keyword) => {
-    // let totalToilet = keyword == 999 ? [83, 51,1083, 1051,2083, 2051,3083, 3051,4083, 4051,5083, 5051] : [99, 29,1099, 1029,2099, 2029,3099, 3029,4099, 4029,5099, 5029]
-    // let des = [];
-    // for (let i = 0; i < totalToilet.length; i++) {
-    //     if (src%1000 == totalToilet[i]%1000) {
-    //         des.push(totalToilet[i]);
-    //     }
-    // } // imporve for undergroung floor
-    // return des;
-    if (keyword == 999) { // gents washroom
-        if (src > 0 && src < 1000 || src >= 6000 && src < 7000) return [83, 51];
-        else if (src >= 1000 && src < 2000) return [1083, 1051];
-        else if (src >= 2000 && src < 3000) return [2083, 2051];
-        else if (src >= 3000 && src < 4000) return [3083, 3051];
-        else if (src >= 4000 && src < 5000) return [4083, 4051];
-        else if (src >= 5000 && src < 6000) return [5083, 5051];
-    }
-    else if (keyword == 998) {// ladies washroom
-        if (src > 0 && src < 1000 || src >= 6000 && src < 7000) return [99, 29];
-        else if (src >= 1000 && src < 2000) return [1099, 1029];
-        else if (src >= 2000 && src < 3000) return [2099, 2029];
-        else if (src >= 3000 && src < 4000) return [3099, 3029];
-        else if (src >= 4000 && src < 5000) return [4099, 4029];
-        else if (src >= 5000 && src < 6000) return [5099, 5029];
-    }
-    else {
-        console.log('Error: Arey Bhaisab kis line me aa gaye aap.');
-    }
-};
-// Route to handle POST requests from the HTML page
-app.get('/getCoordinates', (req, res) => {
+app.get('/getCoordinates', (req, res) => {      // Get the coordinates of the any path RETURNS: Array of Arrays of Coordinates for antpaths
     let src = req.query.src;
     let des = req.query.des;
     console.log(`:::: Source:${src} => Destination:${des} ::::`);
-    let aminity = [999, 998];
+    let AmenityArr = ["1999", "1998"];
     let coordinates;
-    // if (aminity.includes(des)) {
-    //     coordinates = nearest_amenity(src, des);
-    // } else {
-    // }
+    if (AmenityArr.includes(des)) {
+        des = nearest_amenity(src, des);
+    }
     coordinates = dijfunc(src, des);
     console.log("coordinates :: ", coordinates);    
     if (coordinates) {
-        // coordinates = JSON.parse(coordinates);
         res.status(200).json({
             "status": 'success',
             "data": coordinates
@@ -182,20 +162,21 @@ app.get('/getCoordinates', (req, res) => {
         });
     }
 });
-app.post('/getstatus', async (req, res) => {    //  it return the status of the room
+app.get('/getmap', async (req, res) => {        // Return an array of objects(document) representing floor of the map data
     try {
-        if (curr_slot_data) {
-            // console.log(curr_slot_data);
-            console.log("curr_slot_data :: sent");
-            res.json(curr_slot_data);
-        } else {
-            res.status(404).json({ error: 'curr_slot_data :: [not sent] data unavailable.' });
-        }
+        const data = await readFile('mapAllInOne.json', 'utf-8');
+        let mapdata = JSON.parse(data);
+        console.log(":::: map sent ::::");
+        res.status(200).json({
+            "status": 'success',
+            "data": mapdata
+
+        });
     } catch (err) {
-        console.error("Error:", err);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
 await loadMap1()
 await loadMap2()
 // console.log(dijfunc(1,41))

@@ -1,114 +1,41 @@
-const map = L.map(('map'), {
-    center: [30.2734504, 77.9997427],
-    zoomAnimation: true,
-    maxZoom: 22,
-    minZoom: 18,
-    zoomControl: false
-});
-// let map = L.map(('map'), {}).setView(latling, 18);
-const tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <p><a href="https://github.com/ayush-saklani"><img src="https://flagcdn.com/in.svg" width="15" alt="India"> Tempest</a></p>'
-}).addTo(map);
-//base map from open streetmap added 
-
-let source, destination;
+let floorMap;
 let points = [[], [], [], [], [], [], []]
+let source, destination;
 let floor = 0, temp_point = 0, pathfloorindex = 0;
 let curr_slot_data = [];
 let curr_floor_geojson = {};
+// L.geoJSON(data, {
+//     style: { color: 'cadetblue', weight: 1, opacity: 1 },
+// }).addTo(map);
+// map.fitBounds(L.geoJSON(data).getBounds()).setView([30.27332, 77.99979], 18);
 
 // intitialize  the map with default view and zoom level
-const Load_geoJSON = () => {
-    fetch(`./assets/mapgeoJSON/floor${floor}.geojson`)
-        .then(response => response.json())
-        .then(data => {
-            L.geoJSON(data, {
-                style: { color: 'cadetblue', weight: 1, opacity: 1 },
-            }).addTo(map);
-            map.fitBounds(L.geoJSON(data).getBounds()).setView([30.27332, 77.99979], 18);
-        })
-        .catch(error => console.error('out of service.. ~_~  @_@', error));
-}
-Load_geoJSON()
+
 
 const calculate_antpath = () => {
-    source = document.getElementById("Start").value;
-    destination = document.getElementById("destination").value;
-    if (source >= 6000 && source < 7000){
-        floor = -1;
-    }
-    else{
+    return new Promise((resolve,reject) => {
+        source = document.getElementById("Start").value;
+        destination = document.getElementById("destination").value;
         floor = Math.floor(source / 1000);
-    }
-    console.log(`${source}  => ${destination}`);
-    
-    fetch('http://127.0.0.1:3000/getCoordinates', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            src: source,
-            des: destination
-        })
-    }).then(response => response.json())
-    .then(data => {
-        points = data;
-        temp_point = floor;
-        if (floor == -1) {
-            temp_point = 6;
-        }
-        Load_geoJSON_Event(floor, temp_point);
-        let go_active_id = floor;
-        if (floor == 0) {
-            go_active_id = "G";
-        }
-        active(document.getElementById(go_active_id));
-    }).catch(error => console.error('Error hai bhaisaab:', error));
-};
-const Load_geoJSON_Event = (mapfloor, pathfloor) => {
-    map.eachLayer((layer) => {
-        if (!!layer.toGeoJSON) { map.removeLayer(layer); }
-    });
-    fetch(`./assets/mapgeoJSON/floor${mapfloor}.geojson`).then(response => response.json()).then(data => {
-        L.geoJSON(data, {
-            style: { color: 'cadetblue', weight: 1, opacity: 1 }, //  ,fillOpacity: 0.5 // fill : bool
-        }).addTo(map);
-    }).catch(error => console.error('out of service.. ~_~  @_@', error));
-    
-    L.polyline.antPath(points[pathfloor], {
-        "delay": 600,
-        "dashArray": [1, 46],
-        "weight": 5,
-        "color": '#327174',
-        "pulseColor": "#000000",
-    }).addTo(map);
-    setTimeout(() => {
-        render_slot_detail();
-    }, 500);
-};
-const add_GeoJSON_EventListener = () => {
-    let circular_buttons = document.querySelectorAll(".circular_button");
-    circular_buttons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            let mapfloor;
-            let pathfloor;
-            if (btn.id === 'G') {
-                mapfloor = temp_point = pathfloor = pathfloorindex = 0
+        console.log(`${source}  => ${destination}`);
+        
+        fetch(`http://localhost:3000/getCoordinates?src=${source}&des=${destination}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
             }
-            else if (btn.id == '-1') {
-                mapfloor = -1;
-                temp_point = pathfloor = pathfloorindex = 6;
-            }
-            else {
-                mapfloor = temp_point = pathfloor = pathfloorindex = btn.id;
-            }
-            floor = mapfloor;
-            Load_geoJSON_Event(mapfloor, pathfloor);
+        }).then(response => response.json())
+        .then(data => {
+            points = data;
+            active(document.getElementById(go_active_id));
+            resolve();
+        }).catch(error => {
+            console.error('Error fetching path coordinates:', error);
+            reject(error);
         });
     });
 };
-add_GeoJSON_EventListener();
+
 
 let getcustommarkings = (room_id) => {
     let coordinates = [];
@@ -138,27 +65,7 @@ const highlightroom = (req_room_id) => {
         }
     });
 }
-const preloadFloorGeoJSON = async () => {
-    try {
-        for (let i = 0; i <= 6; i++) {
-            if(i < 6){
-                const response = await fetch(`./assets/mapgeoJSON/floor${i}.geojson`);
-                const data = await response.json();
-                curr_floor_geojson[i] = data;
-            }
-            else if(i===6){
-                const response = await fetch('./assets/mapgeoJSON/floor-1.geojson');
-                const data = await response.json();
-                curr_floor_geojson[i] = data;
-            }
-        }
-        console.log("=================== all map reading finish successfully =================")
-        console.log(curr_floor_geojson)
-    } catch (error) {
-        console.error('Error preloading floor GeoJSON data:', error);
-    }
-};
-preloadFloorGeoJSON();
+
 const render_aminities = () => {
     const aminities = [ "51",  "29",  "99",  "83",
                         "1051","1029","1099","1083",
@@ -231,3 +138,8 @@ const fetch_curr_slot_details = () => {
 };
 fetch_curr_slot_details();
 setInterval(() => { fetch_curr_slot_details(); }, 60000);
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    Load_geoJSON(floor);
+});

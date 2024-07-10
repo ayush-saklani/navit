@@ -105,3 +105,22 @@
     padding-left: 6px;
 }
 /* leaflet logo removed from bottom right*/
+
+
+.under-development {
+    position: relative;
+}
+.under-development::before {
+    content: "";        
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;                                 
+    height: 100%;
+    background-color: rgba(161, 161, 161, 0.199);      
+    background-image: url('/frontend/assets/images/under-development.png');     
+    background-size:contain ;                   
+    background-position: center ;               
+    background-repeat: no-repeat;
+    z-index: 2000; 
+}

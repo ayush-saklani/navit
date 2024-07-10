@@ -1,5 +1,6 @@
-{
-    "-1":{
+[
+    {
+        "floor":"-1",
         "type": "FeatureCollection",
         "generator": "JOSM",
         "features": [
@@ -2774,7 +2775,8 @@
             }
         ]
     },
-    "0": {
+    {
+        "floor":"0",
         "type": "FeatureCollection",
         "generator": "JOSM",
         "features": [
@@ -9977,7 +9979,8 @@
             }
         ]
     },
-    "1":{
+    {
+        "floor":"1",
         "type": "FeatureCollection",
         "generator": "JOSM",
         "features": [
@@ -14957,7 +14960,8 @@
             }
         ]
     },
-    "2":{
+    {
+        "floor":"2",
         "type": "FeatureCollection",
         "generator": "JOSM",
         "features": [
@@ -19875,7 +19879,8 @@
             }
         ]
     },
-    "3":{
+    {
+        "floor":"3",
         "type": "FeatureCollection",
         "generator": "JOSM",
         "features": [
@@ -24762,7 +24767,8 @@
             }
         ]
     },
-    "4":{
+    {
+        "floor":"4",
         "type": "FeatureCollection",
         "generator": "JOSM",
         "features": [
@@ -29722,7 +29728,8 @@
             }
         ]
     },
-    "5":{
+    {
+        "floor":"5",
         "type": "FeatureCollection",
         "generator": "JOSM",
         "features": [
@@ -34108,4 +34115,4 @@
             }
         ]
     }
-}
+]

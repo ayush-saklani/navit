@@ -2,16 +2,35 @@
 import jsgraphs from 'js-graph-algorithms';
 import cors from 'cors'; // Import the cors middleware
 import express from 'express'
-import { readFile } from 'fs';
+import { readFile } from 'fs/promises';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import { ok } from 'assert';
 // import navitmodel from 'model/navit-models.model.js';
 
+dotenv.config();
+
 const app = express();   // Create an express app (handler function)
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 // Middleware to parse JSON bodies
+
+app.get('/getmap', async (req, res) => {
+    try {
+        const data = await readFile('mapAllInOne.json', 'utf-8');
+        let mapdata = JSON.parse(data);
+        console.log(":::: map sent ::::");
+        res.status(200).json({
+            "status": 'success',
+            "data": mapdata
+
+        });
+    } catch (err) {
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 
 let curr_slot_data = [];
 const g = new jsgraphs.WeightedGraph(7000);
@@ -39,23 +58,6 @@ const loadMap = () => {
                     g.node(node).label = classObj.lat + "," + classObj.long + "," + classObj.floor;
                 });
                 resolve();
-            }
-        });
-    });
-};
-let load_slot = () => {
-    return new Promise((resolve, reject) => {
-        readFile('roomid_status.json', 'utf8', (err, data) => {
-            if (err) {
-                reject(err); // Reject the promise if there's an error
-            }
-            else {
-                try {
-                    curr_slot_data = JSON.parse(data);
-                    resolve(curr_slot_data); // Resolve the promise with the data
-                } catch (error) {
-                    reject(error); // Reject the promise if there's an error parsing JSON data
-                }
             }
         });
     });
@@ -155,25 +157,16 @@ const segregate_aminity = (src, keyword) => {
         console.log('Error: Arey Bhaisab kis line me aa gaye aap.');
     }
 };
-const fetchGeoJSON = async () => {
-    let mapGeoJSON = [];
-    for (let i = -1; i < 6; i++) {
-        const data = readFile(`assets/mapgeoJSON/floor${i}.geojson`).JSON.parse(data);
-        mapGeoJSON.push(data);
-    }
-    console.log("=================== All map reading finish successfully =================");
-    return mapGeoJSON;
-};
-
 // Route to handle POST requests from the HTML page
 app.post('/getCoordinates', (req, res) => {
     const { src, des } = req.body;
     console.log(src, des);
     let coordinates;
-    if (des == 999 || des == 998) {
+    let aminity = [999, 998];
+    console.log(`:::: Source:${src} => Destination:${des} ::::`);
+    if (aminity.includes(des)) {
         coordinates = nearest_amenity(src, des);
     } else {
-        console.log("src, des :: ", src, des);
         coordinates = dijfunc(src, des);
     }
     if (coordinates) {
@@ -181,9 +174,6 @@ app.post('/getCoordinates', (req, res) => {
     } else {
         res.status(404).json({ error: 'No path found.' });
     }
-});
-app.get('/', (req, res) => {
-    return res.send('Hello World!');
 });
 app.post('/getstatus', async (req, res) => {    //  it return the status of the room
     try {
@@ -199,28 +189,8 @@ app.post('/getstatus', async (req, res) => {    //  it return the status of the 
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
-app.get('/fetch', async (req, res) => {   //  it return the GeoJSON data
-    try {
-        res.json(await fetchGeoJSON());
-    }
-    catch (err) {
-        console.error("Error:", err);
-        res.status(500).json({ error: 'Internal Server Eroor' });
-    }
+app.listen(port, () => {
+    console.log(`:::: Server listening http://localhost:${port} ::::`)
+    console.log(process.env.DBURI);
 });
-mongoose.connect(process.env.MONGODB_URI || DBURL)
-    .then(() => {
-        console.log(':::: Mongo_DB Connected ::::')
-    }).then(() => {
-        loadMap();
-        load_slot();
-    })
-    .then(() => {
-        app.listen(port, () => {
-            console.log(`:::: Server listening http://localhost:${port} ::::`)
-            console.log(process.env.DBURI);
-        });
-    })
-    .catch(err => {
-        console.error(":::: Error Connecting to Database ::::", err);
-    });
+//old code is stored in .env file

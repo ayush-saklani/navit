@@ -37,24 +37,45 @@ const fetchGeoJSON = () => {
         });
     });
 }
-const Load_geoJSON_Event = (currFloorData) => {
+const calculate_antpath = () => {
+    return new Promise((resolve,reject) => {
+        source = document.getElementById("Start").value;
+        destination = document.getElementById("destination").value;
+        console.log(`source:${source} => destination:${destination}`);
+        
+        fetch(`http://localhost:3000/getCoordinates?src=${source}&des=${destination}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => response.json())
+        .then(data => {
+            console.log(data.data);
+            points = data.data;
+            document.getElementById(0).click();
+            resolve();
+        }).catch(error => {
+            console.error('Error fetching path coordinates:', error);
+            reject(error);
+        });
+    });
+};
+const Load_geoJSON_Event = (currFloorData,floor) => {
     map.eachLayer((layer) => {
         if (!!layer.toGeoJSON) { map.removeLayer(layer); }
     });
     L.geoJSON(currFloorData, {
         style: { color: 'cadetblue', weight: 1, opacity: 1 }, //  ,fillOpacity: 0.5 // fill : bool
     }).addTo(map);
-    
-    // L.polyline.antPath(points[pathfloor], {
-    //     "delay": 600,
-    //     "dashArray": [1, 46],
-    //     "weight": 5,
-    //     "color": '#327174',
-    //     "pulseColor": "#000000",
-    // }).addTo(map);
-    // setTimeout(() => {
-    //     render_slot_detail();
-    // }, 500);
+    console.log(floor)
+    console.log(points[floor]);
+    L.polyline.antPath(points[floor], {
+        "delay": 600,
+        "dashArray": [1, 46],
+        "weight": 5,
+        "color": '#327174',
+        "pulseColor": "#000000",
+    }).addTo(map);
 };
 const circularButtonEventListener = () => {
     let circular_buttons = document.querySelectorAll(".circular_button");
@@ -68,7 +89,7 @@ const circularButtonEventListener = () => {
                     console.log(currfloormap);
                 }
             }
-            Load_geoJSON_Event(currfloormap);
+            Load_geoJSON_Event(currfloormap,eval(btn.id)+1);
         });
     });
 };

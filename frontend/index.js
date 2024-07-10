@@ -12,29 +12,7 @@ let curr_floor_geojson = {};
 // intitialize  the map with default view and zoom level
 
 
-const calculate_antpath = () => {
-    return new Promise((resolve,reject) => {
-        source = document.getElementById("Start").value;
-        destination = document.getElementById("destination").value;
-        floor = Math.floor(source / 1000);
-        console.log(`${source}  => ${destination}`);
-        
-        fetch(`http://localhost:3000/getCoordinates?src=${source}&des=${destination}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(response => response.json())
-        .then(data => {
-            points = data;
-            active(document.getElementById(go_active_id));
-            resolve();
-        }).catch(error => {
-            console.error('Error fetching path coordinates:', error);
-            reject(error);
-        });
-    });
-};
+
 
 
 let getcustommarkings = (room_id) => {

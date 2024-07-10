@@ -3,6 +3,7 @@ import jsgraphs from 'js-graph-algorithms';
 import cors from 'cors'; // Import the cors middleware
 import express from 'express'
 import { readFile } from 'fs/promises';
+import fs from 'fs';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { ok } from 'assert';
@@ -34,31 +35,30 @@ app.get('/getmap', async (req, res) => {
 
 let curr_slot_data = [];
 const g = new jsgraphs.WeightedGraph(7000);
-const loadMap = () => {
+const loadMap1 = () => {
     return new Promise((resolve, reject) => {
-        readFile('assets/map_coordinates.json', 'utf8', (err, data) => {
-            if (err) {
-                reject(err);
-            } else {
-                let edges = JSON.parse(data);
-                edges.forEach(edgeObj => {
-                    g.addEdge(new jsgraphs.Edge(edgeObj.start, edgeObj.end, edgeObj.len));
-                    g.addEdge(new jsgraphs.Edge(edgeObj.end, edgeObj.start, edgeObj.len));
-                });
-            }
+        fs.readFile('assets/map_coordinates.json', 'utf8', (err, data) => {
+            let edges = JSON.parse(data);
+            edges.forEach(edgeObj => {
+                g.addEdge(new jsgraphs.Edge(edgeObj.start, edgeObj.end, edgeObj.len));
+                g.addEdge(new jsgraphs.Edge(edgeObj.end, edgeObj.start, edgeObj.len));
+            });
+            console.log(":::: Map Loaded 1/2 completed ::::");
+            resolve();
         });
-        readFile('assets/map_coordinates_label_updated.json', 'utf8', (err, data) => {
-            if (err) {
-                reject(err);
-            } else {
-                let labels = JSON.parse(data);
-                labels.forEach(classObj => {
-                    let node = classObj.node;
-                    let label = classObj.label;
-                    g.node(node).label = classObj.lat + "," + classObj.long + "," + classObj.floor;
-                });
-                resolve();
-            }
+    });
+};
+const loadMap2 = () => {
+    return new Promise((resolve, reject) => {
+        fs.readFile('assets/map_coordinates_label_updated.json', 'utf8', (err, data) => {
+            let labels = JSON.parse(data);
+            labels.forEach(classObj => {
+                let node = classObj.node;
+                let label = classObj.label;
+                g.node(node).label = classObj.lat + "," + classObj.long + "," + classObj.floor;
+            });
+            console.log(":::: Map Loaded 2/2 completed ::::");
+            resolve();
         });
     });
 };
@@ -70,25 +70,25 @@ const dijfunc = (src, des) => {
     if (dijkstra.hasPathTo(des)) {
         let res = [[], [], [], [], [], [], []];
         var path = dijkstra.pathTo(des);
-        let curr_floor = 0;
+        let curr_floor ;
         let temp_con = [];
         for (var i = 0; i < path.length; ++i) {
             e = path[i];
             let temp = (g.node(e.from()).label).split(',');
             if (i == 0) {
-                curr_floor = temp[2];
+                curr_floor = eval(temp[2])+1;
             }
             let temparr = [];
             if (i != path.length - 1) {
                 temparr.push(Number(temp[0]));
                 temparr.push(Number(temp[1]));
-                if (temp[2] == curr_floor) {
+                if ((eval(temp[2])+1) == curr_floor) {
                     temp_con.push(temparr);
                 } else {
                     res[curr_floor].push(temp_con);
                     temp_con = [];
                     temp_con.push(temparr);
-                    curr_floor = temp[2];
+                    curr_floor = (eval(temp[2])+1);
                 }
             } else if (i == path.length - 1) {
                 let temp = (g.node(e.from()).label).split(',');
@@ -158,21 +158,28 @@ const segregate_aminity = (src, keyword) => {
     }
 };
 // Route to handle POST requests from the HTML page
-app.post('/getCoordinates', (req, res) => {
-    const { src, des } = req.body;
-    console.log(src, des);
-    let coordinates;
-    let aminity = [999, 998];
+app.get('/getCoordinates', (req, res) => {
+    let src = req.query.src;
+    let des = req.query.des;
     console.log(`:::: Source:${src} => Destination:${des} ::::`);
-    if (aminity.includes(des)) {
-        coordinates = nearest_amenity(src, des);
-    } else {
-        coordinates = dijfunc(src, des);
-    }
+    let aminity = [999, 998];
+    let coordinates;
+    // if (aminity.includes(des)) {
+    //     coordinates = nearest_amenity(src, des);
+    // } else {
+    // }
+    coordinates = dijfunc(src, des);
+    console.log("coordinates :: ", coordinates);    
     if (coordinates) {
-        res.json(coordinates);
+        // coordinates = JSON.parse(coordinates);
+        res.status(200).json({
+            "status": 'success',
+            "data": coordinates
+        });
     } else {
-        res.status(404).json({ error: 'No path found.' });
+        res.status(404).json({
+            "error": 'No path found.'
+        });
     }
 });
 app.post('/getstatus', async (req, res) => {    //  it return the status of the room
@@ -189,8 +196,10 @@ app.post('/getstatus', async (req, res) => {    //  it return the status of the 
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+await loadMap1()
+await loadMap2()
+// console.log(dijfunc(1,41))
 app.listen(port, () => {
     console.log(`:::: Server listening http://localhost:${port} ::::`)
-    console.log(process.env.DBURI);
 });
 //old code is stored in .env file

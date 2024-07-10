@@ -1,6 +1,6 @@
 const map = L.map(('map'), {
     center: [30.2734504, 77.9997427],
-    zoom: 18,
+    zoom: 19,
     zoomAnimation: true,
     maxZoom: 22,
     minZoom: 18,
@@ -170,7 +170,7 @@ const render_slot_detail = (floordata) => {
             floordata.features.forEach(feature => {
                 if (feature.properties && feature.properties.room_id && feature.properties.room_id == room_status_data[room].roomid) {
                     let cc = getcustommarkings(floordata,room_status_data[room].roomid);      // returns the coordinates of the room RETURNS: [lat,lng] format of the room (helper function)
-                    L.polygon(cc, { "color": 'red', weight: 1, opacity: 0.5 }).addTo(map);
+                    L.polygon(cc, { "color": "#cc2412", weight: 0.8, opacity: 10 }).addTo(map);
                 } 
             });
         }
@@ -179,7 +179,7 @@ const render_slot_detail = (floordata) => {
                 // console.log("asdas");
                 if (feature.properties && feature.properties.room_id && feature.properties.room_id == room_status_data[room].roomid) {
                     let cc = getcustommarkings(floordata,room_status_data[room].roomid);      // returns the coordinates of the room RETURNS: [lat,lng] format of the room (helper function)
-                    L.polygon(cc, { "color": 'green', weight: 0.5, opacity: 0.5 }).addTo(map);
+                    L.polygon(cc, { "color": "#457c46", weight: 0.8, opacity: 10 }).addTo(map);
                 }
             });
         }
@@ -195,7 +195,7 @@ const render_slot_detail = (floordata) => {
         ]
         if (feature.properties && feature.properties.room_id && aminities.includes(feature.properties.room_id)) {
             let cc = getcustommarkings(floordata,feature.properties.room_id);      
-            L.polygon(cc, { "color": 'blue', weight: 0.5, opacity: 0.5 }).addTo(map);   
+            L.polygon(cc, { "color": 'blue', weight: 0.8, opacity: 10 }).addTo(map);   
         }        
     });
 };

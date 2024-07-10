@@ -15,26 +15,7 @@ let curr_floor_geojson = {};
 
 
 
-let getcustommarkings = (room_id) => {
-    let coordinates = [];
-    curr_floor_geojson[temp_point].features.forEach(feature => {
-        if (feature.properties && feature.properties.room_id && feature.properties.room_id === room_id) {
-            if(feature.geometry.type === "Polygon"){
-                coordinates.push(feature.geometry.coordinates[0]);
-            }
-            else{
-                coordinates.push(feature.geometry.coordinates);
-            }
-        }
-    });
-    let latLngs = [];
-    coordinates.forEach(coordinates => {
-        coordinates.forEach(coord => {
-            latLngs.push([coord[1], coord[0]]); // Leaflet uses [lat, lng] format not [lng, lat] so this
-        });
-    });
-    return latLngs;
-}
+
 const highlightroom = (req_room_id) => {
     curr_floor_geojson[btn.id].features.forEach(feature => {
         if (feature.properties && feature.properties.room_id && feature.properties.room_id == req_room_id) {
@@ -58,47 +39,7 @@ const render_aminities = () => {
         L.polygon(latLng, { "color": 'blue', weight: 0.5, opacity: 0.5 }).addTo(map);
     });
 }
-const render_slot_detail = () => {
-    let today = new Date();
-    const weekdays = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
-    let day_slot = weekdays[today.getDay()];
-    let hours = today.getHours();
-    let houre = hours + 1;
-    hours = (hours > 12) ? String(hours - 12).padStart(2, "0") : String(hours).padStart(2, "0");
-    houre = (houre > 12) ? String(houre - 12).padStart(2, "0") : String(houre).padStart(2, "0");
-    let time_slot = hours + "-" + houre;
-    time_slot = (time_slot).toString();
-    // return [time_slot, day_slot]
-    fetch('http://127.0.0.1:3000/getstatus', { method: 'POST', headers: { 'Content-Type': 'application/json' } })
-    .then(response => response.json()).then(data => {
-        curr_slot_data = data;
-    })
-    .catch(error => console.error('Data about Classes unavailable:', error));
-    
-    console.log(time_slot)
-    render_aminities();
-    time_slot = "08-09"
-    day_slot = 'mon'                     //for tesing purpose should be deleted lator 
-    curr_slot_data.forEach(slot => {
-        if (slot.schedule[day_slot][time_slot].teacher_ID != null) {
-            curr_floor_geojson[temp_point].features.forEach(feature => {
-                if (feature.properties && feature.properties.room_id && feature.properties.room_id == slot.room_id) {
-                    let cc = getcustommarkings(slot.room_id);
-                    L.polygon(cc, { "color": 'red', weight: 1, opacity: 0.5 }).addTo(map);
-                } 
-            });
-        }
-        else if (slot.schedule[day_slot][time_slot].teacher_ID == null) {
-            console.log("asdas")
-            curr_floor_geojson[temp_point].features.forEach(feature => {
-                if (feature.properties && feature.properties.room_id && feature.properties.room_id == slot.room_id) {
-                    let cc = getcustommarkings(slot.room_id);
-                    L.polygon(cc, { "color": 'green', weight: 0.5, opacity: 0.5 }).addTo(map);
-                }
-            });
-        }
-    });
-};
+
 const fetch_curr_slot_details = () => {
     fetch('http://127.0.0.1:3000/getstatus', {
         method: 'POST',

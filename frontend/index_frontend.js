@@ -14,6 +14,9 @@ let addEventListenertobutton = () => {
 }
 addEventListenertobutton();
 document.getElementById('go').addEventListener('click', () => { calculate_antpath(); });
+document.getElementById('Start').addEventListener('change', () => { calculate_antpath(); });
+document.getElementById('destination').addEventListener('change', () => { calculate_antpath(); });
+
 let down = false;
 
 document.getElementById('foldup').addEventListener('click', () => {

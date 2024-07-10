@@ -11,7 +11,7 @@ import dotenv from 'dotenv';                // Import the dotenv library
 dotenv.config();                            // Configure the dotenv library     ######### not done yet        
 
 const app = express();                      // Create an express app (handler function)
-const port = process.env.PORT || 3000;      // Set the port number              ######### not done yet    
+const port = process.env.PORT || 3001;      // Set the port number              ######### not done yet    
 
 app.use(cors());                            // Middleware to enable CORS
 app.use(express.json());                    // Middleware to parse JSON bodies        

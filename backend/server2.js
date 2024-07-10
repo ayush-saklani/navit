@@ -123,7 +123,6 @@ const segregate_aminity = (src, keyword) => {   // Segregate the washrooms based
 };
 const nearest_amenity = (src, keyword) => {     // Find the nearest washroom based on the keyword(1999:Gents 1998:Ladies) RETURNS: Array of Arrays of Coordinates of closest washroom
     let des = segregate_aminity(src, keyword);
-    console.log("despacito"+des);
     if (des !== null) {
         var dijkstra = new jsgraphs.Dijkstra(g, src);
         let distance = 9999;
@@ -173,7 +172,7 @@ app.get('/getmap', async (req, res) => {        // Return an array of objects(do
     try {
         const data = await readFile('./assets/mapAllInOne.json', 'utf-8');
         let mapdata = JSON.parse(data);
-        console.log(":::: map sent ::::");
+        // console.log(":::: map sent ::::");
         res.status(200).json({
             "status": 'success',
             "data": mapdata

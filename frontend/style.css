@@ -101,8 +101,9 @@
     display: flex;
 }
 .leaflet-control-attribution>p{
+    /* height: 100px; */
+    /* width: 100px;; */
     margin-bottom: 2px;
-    padding-left: 6px;
 }
 /* leaflet logo removed from bottom right*/
 

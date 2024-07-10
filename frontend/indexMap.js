@@ -8,7 +8,8 @@ const map = L.map(('map'), {
 });
 // let map = L.map(('map'), {}).setView(latling, 18);
 const tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <p><a href="https://github.com/ayush-saklani"><img src="https://flagcdn.com/in.svg" width="15" alt="India"> Tempest</a></p>'
+    attribution: `<p><a href="https://github.com/ayush-saklani"><img src="https://flagcdn.com/in.svg" width="15" alt="India"><b> Made by Ayush Saklani</b></a>
+    <br>Co-powered by <a href="https://github.com/ayush-saklani/classsync"><b>Classsync</b></a></p>`,
 }).addTo(map);
 //base map from open streetmap added 
 
@@ -68,8 +69,8 @@ const renderMapAndPath = (currFloorData,floor) => {
     L.geoJSON(currFloorData, {
         style: { color: 'cadetblue', weight: 1, opacity: 1 }, //  ,fillOpacity: 0.5 // fill : bool
     }).addTo(map);
-    console.log(floor)
-    console.log(pathPoints[floor]);
+    // console.log(floor)
+    // console.log(pathPoints[floor]);
     L.polyline.antPath(pathPoints[floor], {
         "delay": 600,
         "dashArray": [1, 46],
@@ -95,6 +96,7 @@ const circularButtonEventListener = () => {         // event listener for circul
     });
 };
 const fetch_room_status = () => {		// fetches the room list from the server
+    document.getElementById("loader").style.display = "flex";
 	fetch(`http://localhost:3000/room/getall`, {            // fetches the room list from the CLASSSYNC API
 		method: 'GET',
 		headers: {
@@ -106,8 +108,18 @@ const fetch_room_status = () => {		// fetches the room list from the server
         room_status_data = data;
 		console.log(data);
         document.getElementById(0).click();         // auto click on the ground floor
+        document.getElementById("loader").classList.replace("text-secondary","text-success");
+        setTimeout(() => {
+            document.getElementById("loader").classList.replace("text-success","text-secondary");
+            document.getElementById("loader").style.display = "none";
+        }, 2000);
 	}).catch(error => {
-		console.error(':::: Room Data not available (SERVER ERROR) :::: ', error)
+        document.getElementById("loader").classList.replace("text-secondary","text-danger");
+        setTimeout(() => {
+            document.getElementById("loader").classList.replace("text-danger","text-secondary");
+            document.getElementById("loader").style.display = "none";
+        }, 2000);
+		console.error(':::: Room Data not available (SERVER ERROR) :::: ')
 	});
 };	
 
@@ -138,19 +150,15 @@ const render_slot_detail = (floordata) => {
     let today = new Date();
     const weekdays = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
     let day_slot = weekdays[today.getDay()];
-    // let hours = today.getHours();
-    let hours = 9;                          // for testing purpose should be deleted later
+    let hours = today.getHours();
+    if(hours == 0) hours = 12;          // 12 am is 0 in js
     let houre = hours + 1;
     hours = (hours > 12) ? String(hours - 12).padStart(2, "0") : String(hours).padStart(2, "0");
     houre = (houre > 12) ? String(houre - 12).padStart(2, "0") : String(houre).padStart(2, "0");
     let time_slot = hours + "-" + houre;
     time_slot = (time_slot).toString();
-    console.log(time_slot)
-    console.log(day_slot)
-    // render_aminities();                  // add later ############################## 
-    // time_slot = "08-09"
-    // day_slot = 'mon'                     //for tesing purpose should be deleted lator
-    // fetch_room_status();                 //for tesing purpose should be deleted lator
+    // console.log(time_slot)
+    // console.log(day_slot)
     for(room in room_status_data){
         // console.log(room_status_data[room].schedule[day_slot][time_slot].section.length)
         // console.log(room_status_data[room].roomid)
@@ -173,6 +181,20 @@ const render_slot_detail = (floordata) => {
             });
         }
     };
+    floordata.features.forEach(feature => {             // for aminities like washroom etc
+        const aminities = [
+            "1051","1029","1099","1083",
+            "2051","2029","2099","2083",
+            "3051","3029","3099","3083",
+            "4051","4029","4099","4083",
+            "5051","5029","5099","5083",
+            "6051","6029","6099","6083"
+        ]
+        if (feature.properties && feature.properties.room_id && aminities.includes(feature.properties.room_id)) {
+            let cc = getcustommarkings(floordata,feature.properties.room_id);      
+            L.polygon(cc, { "color": 'blue', weight: 0.5, opacity: 0.5 }).addTo(map);   
+        }        
+    });
 };
 document.addEventListener("DOMContentLoaded",()=>{
     circularButtonEventListener();    

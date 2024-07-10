@@ -12,7 +12,10 @@ const tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     <br>Co-powered by <a href="https://github.com/ayush-saklani/classsync"><b>Classsync</b></a></p>`,
 }).addTo(map);
 //base map from open streetmap added 
-
+// const serverlink = "http://localhost:3001";                     // navit local server link
+// const serverlink2 = "http://localhost:3000";                    // classsync local server link
+const serverlink = "https://navit.onrender.com";             // navit online render server link
+const serverlink2 = "https://classsync-25hj.onrender.com";    // classsync online render server link
 let floorMap;
 let pathPoints = [[], [], [], [], [], [], []] // defined because it looks for floors o n start 
 let curr_slot_data = [];
@@ -21,7 +24,7 @@ let room_status_data;
 
 const fetchGeoJSON = () => {
     return new Promise((resolve, reject) => {
-        fetch(`http://localhost:3001/getmap`,{
+        fetch(`${serverlink}/getmap`,{
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -45,7 +48,7 @@ const calculate_antpath = () => {
         console.log(`source:${source} => destination:${destination}`);
         let floor = Math.floor(source/1000)-1 ; 
         
-        fetch(`http://localhost:3001/getCoordinates?src=${source}&des=${destination}`, {
+        fetch(`${serverlink}/getCoordinates?src=${source}&des=${destination}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -97,7 +100,7 @@ const circularButtonEventListener = () => {         // event listener for circul
 };
 const fetch_room_status = () => {		// fetches the room list from the server
     document.getElementById("loader").style.display = "flex";
-	fetch(`http://localhost:3000/room/getall`, {            // fetches the room list from the CLASSSYNC API
+	fetch(`${serverlink2}/room/getall`, {            // fetches the room list from the CLASSSYNC API
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'

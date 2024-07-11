@@ -41,7 +41,7 @@ const fetchGeoJSON = () => {
         });
     });
 }
-const calculate_antpath = () => {
+const fetch_calculate_antpath = () => {
     return new Promise((resolve,reject) => {
         source = document.getElementById("Start").value;
         destination = document.getElementById("destination").value;
@@ -94,40 +94,33 @@ const circularButtonEventListener = () => {         // event listener for circul
                 }
             }
             renderMapAndPath(currfloormap,eval(btn.id)+1); // +1 because floor starts from 1 UG = 0 ,G = 1 ...
-            render_slot_detail(currfloormap);
+            renderRoomStatusAndDetail(currfloormap);
         });
     });
 };
 const fetch_room_status = () => {		// fetches the room list from the server
-    document.getElementById("loader").style.display = "flex";
-	fetch(`${serverlink2}/room/getall`, {            // fetches the room list from the CLASSSYNC API
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json'
-		}
-	}).then(response => response.json())
-	.then(data => {
-		data = data.data;
-        room_status_data = data;
-		console.log(data);
-        document.getElementById(0).click();         // auto click on the ground floor
-        document.getElementById("loader").classList.replace("text-secondary","text-success");
-        setTimeout(() => {
-            document.getElementById("loader").classList.replace("text-success","text-secondary");
-            document.getElementById("loader").style.display = "none";
-        }, 2000);
-	}).catch(error => {
-        document.getElementById("loader").classList.replace("text-secondary","text-danger");
-        setTimeout(() => {
-            document.getElementById("loader").classList.replace("text-danger","text-secondary");
-            document.getElementById("loader").style.display = "none";
-        }, 2000);
-		console.error(':::: Room Data not available (SERVER ERROR) :::: ')
-	});
+    return new Promise((resolve, reject) => {
+        fetch(`${serverlink2}/room/getall`, {            // fetches the room list from the CLASSSYNC API
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => response.json())
+        .then(data => {
+            data = data.data;
+            room_status_data = data;
+            console.log(data);
+            document.getElementById(0).click();         // auto click on the ground floor
+            resolve(data);
+        }).catch(error => {
+            console.error(':::: Room Data not available (SERVER ERROR) :::: ');
+            reject(error);
+        });
+    });        
 };	
 
 
-let getcustommarkings = (floordata,room_id) => {      // returns the coordinates of the room RETURNS: [lat,lng] format of the room (helper function)
+let getSpecificRoomCoordinates = (floordata,room_id) => {      // returns the coordinates of the room RETURNS: [lat,lng] format of the room (helper function)
     let coordinates = [];
     floordata.features.forEach(feature => {
         if (feature.properties && feature.properties.room_id ){
@@ -149,7 +142,7 @@ let getcustommarkings = (floordata,room_id) => {      // returns the coordinates
     });
     return latLngs;
 }
-const render_slot_detail = (floordata) => {
+const renderRoomStatusAndDetail = (floordata) => {
     let today = new Date();
     const weekdays = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
     let day_slot = weekdays[today.getDay()];
@@ -173,7 +166,7 @@ const render_slot_detail = (floordata) => {
             // console.log("asdas")
             floordata.features.forEach(feature => {
                 if (feature.properties && feature.properties.room_id && feature.properties.room_id == room_status_data[room].roomid) {
-                    let cc = getcustommarkings(floordata,room_status_data[room].roomid);      // returns the coordinates of the room RETURNS: [lat,lng] format of the room (helper function)
+                    let cc = getSpecificRoomCoordinates(floordata,room_status_data[room].roomid);      // returns the coordinates of the room RETURNS: [lat,lng] format of the room (helper function)
                     let polygon = L.polygon(cc, { "color": "#cc2412", weight: 0.8, opacity: 10 }).addTo(map);
                     let center = polygon.getBounds().getCenter();
                     let textIcon = L.divIcon({
@@ -191,7 +184,7 @@ const render_slot_detail = (floordata) => {
             floordata.features.forEach(feature => {
                 // console.log("asdas");
                 if (feature.properties && feature.properties.room_id && feature.properties.room_id == room_status_data[room].roomid) {
-                    let cc = getcustommarkings(floordata,room_status_data[room].roomid);      // returns the coordinates of the room RETURNS: [lat,lng] format of the room (helper function)
+                    let cc = getSpecificRoomCoordinates(floordata,room_status_data[room].roomid);      // returns the coordinates of the room RETURNS: [lat,lng] format of the room (helper function)
                     let polygon = L.polygon(cc, { "color": "#457c46", weight: 0.8, opacity: 10 }).addTo(map);
                     let center = polygon.getBounds().getCenter();
                     let textIcon = L.divIcon({
@@ -216,7 +209,7 @@ const render_slot_detail = (floordata) => {
             "6051","6029","6099","6083"
         ]
         if (feature.properties && feature.properties.room_id && aminities.includes(feature.properties.room_id)) {
-            let cc = getcustommarkings(floordata,feature.properties.room_id);      
+            let cc = getSpecificRoomCoordinates(floordata,feature.properties.room_id);      
             let polygon = L.polygon(cc, { "color": 'blue', weight: 0.8, opacity: 10 }).addTo(map);  
             let center = polygon.getBounds().getCenter();
             let textIcon = L.divIcon({
@@ -230,10 +223,17 @@ const render_slot_detail = (floordata) => {
         }        
     });
 };
-document.addEventListener("DOMContentLoaded",()=>{
+document.getElementById('go').addEventListener('click', () => { fetch_calculate_antpath(); });
+document.getElementById('Start').addEventListener('change', () => { fetch_calculate_antpath(); });
+document.getElementById('destination').addEventListener('change', () => { fetch_calculate_antpath(); });
+document.addEventListener("DOMContentLoaded",async ()=>{
+    document.getElementById("loader").style.display = "flex";
     circularButtonEventListener();    
-    fetch_room_status();
-    fetchGeoJSON();
+    fetchGeoJSON();    
+    await fetch_room_status();
+    setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+    }, 2000);
 })
 setTimeout(() => {
     fetch_room_status();

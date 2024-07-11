@@ -228,9 +228,9 @@ document.getElementById('Start').addEventListener('change', () => { fetch_calcul
 document.getElementById('destination').addEventListener('change', () => { fetch_calculate_antpath(); });
 document.addEventListener("DOMContentLoaded",async ()=>{
     document.getElementById("loader").style.display = "flex";
+    await fetchGeoJSON();    
+    fetch_room_status();
     circularButtonEventListener();    
-    fetchGeoJSON();    
-    await fetch_room_status();
     setTimeout(() => {
         document.getElementById("loader").style.display = "none";
     }, 2000);

@@ -1,3 +1,5 @@
+// Extracts and preprocesses the data from the geojson file to be used in the graph
+// extracts nodes and edges from the geojsons
 import {readFile,readFileSync,write,writeFile} from 'fs';
 
 let currnode = 1 ;
@@ -5,7 +7,27 @@ let node =  [];
 let edges = [];
 let ans = []
 
-let assignnode = () => {
+const save = () => {
+    const reconstructedJson = JSON.stringify(ans, null, 2);
+    writeFile('preprocessing/test1.json', reconstructedJson, 'utf8', err => {
+        if (err){
+            console.error("Error writing file:", err);
+            return;
+        } else {
+            console.log("File saved.");
+        }
+    });
+    const reconstructedJson2 = JSON.stringify(node, null, 2);
+    writeFile('preprocessing/test2.json', reconstructedJson2, 'utf8', err => {
+        if (err){
+            console.error("Error writing file:", err);
+            return;
+        } else {
+            console.log("File saved.");
+        }
+    });
+}
+const assignnode = () => {
     edges.forEach(element => {
         for(let i = 0;i<element.length-1;i++){
             // ans.push({ "start": element[i], "end": element[i+1]});
@@ -61,23 +83,3 @@ readFile('preprocessing/Ground floor test_plan.geojson', 'utf8',(err,data,floor=
     // console.log(node);
     assignnode();
 });
-function save(){
-    const reconstructedJson = JSON.stringify(ans, null, 2);
-    writeFile('preprocessing/aaaaaaaaaaaaaaaaaaaaaa.json', reconstructedJson, 'utf8', err => {
-        if (err){
-            console.error("Error writing file:", err);
-            return;
-        } else {
-            console.log("File saved.");
-        }
-    });
-    const reconstructedJson2 = JSON.stringify(node, null, 2);
-    writeFile('preprocessing/aaaaaaaaaaaaaaaaaaaaaa2.json', reconstructedJson2, 'utf8', err => {
-        if (err){
-            console.error("Error writing file:", err);
-            return;
-        } else {
-            console.log("File saved.");
-        }
-    });
-}

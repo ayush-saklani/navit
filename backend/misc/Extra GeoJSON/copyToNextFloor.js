@@ -1,6 +1,7 @@
+//script for coping floor map to another floor
 import {readFile,writeFile} from 'fs';
 let gg;
-const writeing = () =>{
+const saveGeoJsonFile = () =>{
     const reconstructedJson = JSON.stringify(gg, null, 2);
     writeFile('test.geojson', reconstructedJson, 'utf8', err => {
         if (err) {
@@ -11,7 +12,7 @@ const writeing = () =>{
         }
     });
 }
-const plusone = () =>{
+const readGeoJsonFile = () =>{
     readFile('floor3.geojson','utf8',(error,data)=>{
         if(error) console.log(error);
         else{
@@ -19,16 +20,13 @@ const plusone = () =>{
             let temp = gg.features;
             temp.forEach(element => {
                 if(element.properties && element.properties.room_id){
-                    if(element.properties.room_id === "999" || element.properties.room_id === "998"){
-
-                    }
-                    else{
-                        element.properties.room_id = eval(element.properties.room_id) + 2000;
+                    if(!(element.properties.room_id === "999" || element.properties.room_id === "998")){
+                        element.properties.room_id = eval(element.properties.room_id) + 1000;
                     }
                 }
             });
         }
-        writeing()       
+        saveGeoJsonFile()       
     })
 }
-plusone();
+readGeoJsonFile();

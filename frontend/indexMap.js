@@ -29,8 +29,10 @@ const LoaderManager = (plus) => {        // loader counter 0 = decrease  1 = inc
     }
     if (loaderCounter > 0) {
         document.getElementById("loader").style.display = "flex";
+        document.getElementById("currtime").style.display = "none";
     } else if (loaderCounter == 0) {
         document.getElementById("loader").style.display = "none";
+        document.getElementById("currtime").style.display = "flex";
     }
 }
 
@@ -183,6 +185,7 @@ const renderRoomStatusAndDetail = (floordata) => {
     time_slot = (time_slot).toString();
     // console.log(time_slot)
     // console.log(day_slot)
+    document.getElementById("currtime").innerHTML = `${time_slot}`;
     let timeslots = ["08-09", "09-10", "10-11", "11-12", "12-01", "01-02", "02-03", "03-04", "04-05", "05-06"]
     if (!timeslots.includes(time_slot)) {
         time_slot = "08-09";

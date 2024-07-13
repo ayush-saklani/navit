@@ -12,10 +12,10 @@ const tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     <br>Co-powered by <a href="https://github.com/ayush-saklani/classsync"><b>Classsync</b></a></p>`,
 }).addTo(map);
 //base map from open streetmap added 
-// const serverlink = "http://localhost:3001";                     // navit local server link
-// const serverlink2 = "http://localhost:3000";                    // classsync local server link
-const serverlink = "https://navit.onrender.com";             // navit online render server link
-const serverlink2 = "https://classsync-25hj.onrender.com";    // classsync online render server link
+// const serverlink = "http://localhost:3001";                      // navit local server link
+// const serverlink2 = "http://localhost:3000";                     // classsync local server link
+const serverlink = "https://navit.onrender.com";                    // navit online render server link
+const serverlink2 = "https://classsync-3ht1.onrender.com";          // classsync online render server link
 let floorMap;
 let pathPoints = [[], [], [], [], [], [], []] // defined because it looks for floors o n start 
 let room_status_data;
@@ -48,7 +48,6 @@ const fetchGeoJSON = () => {
             .then(data => {
                 console.log(data.data);
                 floorMap = data.data;
-                document.getElementById(0).click();         // auto click on the ground floor
                 LoaderManager(0);
                 resolve(data);
             }).catch(error => {
@@ -135,7 +134,6 @@ const fetch_room_status = () => {		// fetches the room list from the server
                 data = data.data;
                 room_status_data = data;
                 console.log(data);
-                document.getElementById(0).click();         // auto click on the ground floor
                 LoaderManager(0);
                 resolve(data);
             }).catch(error => {
@@ -261,9 +259,7 @@ document.getElementById('destination').addEventListener('change', () => { fetch_
 document.addEventListener("DOMContentLoaded", async () => {
     await fetchGeoJSON();
     circularButtonEventListener();
+    document.getElementById(0).click();         // auto click on the ground floor
     await fetch_room_status();
     document.getElementById(0).click();         // auto click on the ground floor
 })
-setTimeout(() => {
-    fetch_room_status();
-}, 1000 * 60 * 45); // 45 minutes 

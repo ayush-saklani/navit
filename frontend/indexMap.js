@@ -21,6 +21,7 @@ let pathPoints = [[], [], [], [], [], [], []] // defined because it looks for fl
 let room_status_data;
 let loaderCounter = 0;
 const LoaderManager = (plus) => {        // loader counter 0 = decrease  1 = increase
+    // console.log("counter"+loaderCounter);
     if (plus == 1) {
         loaderCounter++;
     } else if (plus == 0) {
@@ -29,9 +30,7 @@ const LoaderManager = (plus) => {        // loader counter 0 = decrease  1 = inc
     if (loaderCounter > 0) {
         document.getElementById("loader").style.display = "flex";
     } else if (loaderCounter == 0) {
-        setTimeout(() => {
-            document.getElementById("loader").style.display = "none";
-        }, 2000);
+        document.getElementById("loader").style.display = "none";
     }
 }
 
@@ -258,8 +257,8 @@ document.getElementById('Start').addEventListener('change', () => { fetch_calcul
 document.getElementById('destination').addEventListener('change', () => { fetch_calculate_antpath(); });
 document.addEventListener("DOMContentLoaded", async () => {
     await fetchGeoJSON();
-    fetch_room_status();
     circularButtonEventListener();
+    await fetch_room_status();
     document.getElementById(0).click();         // auto click on the ground floor
 })
 setTimeout(() => {

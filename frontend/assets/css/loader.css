@@ -1,0 +1,145 @@
+.loaderdiv{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1500;
+    backdrop-filter: blur(5px);
+    background : #061f25ef;  
+    /* background : #000000dc;   */
+    zoom: 1.1;   
+    height: 100vh;
+    width: 100vw;
+}
+logodiv{
+    width: 100vb;
+}
+logodiv>h1{
+    font-size: 3em;
+    color: white;
+    text-shadow: 5px 5px 5px  #000;
+}
+logodiv>h5{
+    position: absolute;
+    bottom: 30vh;
+    font-size: 1.2em;
+    color: white;
+}
+
+
+.dots-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.dot {
+  height: 20px;
+  width:  20px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: #b3dbfc;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.dot:last-child {
+  margin-right: 0;
+}
+
+.dot:nth-child(1) {
+  animation-delay: -0.3s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: -0.1s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    background-color: #b3f1fc;
+    box-shadow: 0 0 0 0 rgba(178, 212, 252, 0.7);
+  }
+
+  50% {
+    transform: scale(1.2);
+    background-color: #67d8fb;
+    box-shadow: 0 0 0 10px rgba(178, 212, 252, 0);
+  }
+
+  100% {
+    transform: scale(0.8);
+    background-color: #b3d4fc;
+    box-shadow: 0 0 0 0 rgba(178, 212, 252, 0.7);
+  }
+}
+
+@media only screen and (max-width: 900px) {
+    logodiv>h1{
+        font-size: 2em;
+    }
+    logodiv>h5{
+        position: absolute;
+        bottom: 35vh;
+        font-size: 0.9em;
+    }
+    logodiv > h1::before ,logodiv > h1::after {
+        height: 7px;
+        box-shadow: 1px 1px 7px  #000000;
+    }
+    .dot {
+        height: 15px;
+        width:  15px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    logodiv>h1{
+        font-size: 1.5em;
+    }
+    logodiv>h5{
+        position: absolute;
+        bottom: 38vh;
+        font-size: 0.7em;
+    }
+    logodiv > h1::before ,logodiv > h1::after {
+        height: 6px;
+    }
+    .dot {
+        height: 15px;
+        width:  15px;
+    }
+}
+@media only screen and (max-width: 460px) {
+    logodiv>h1{
+        font-size: 1.2em;
+    }
+    logodiv>h5{
+        font-size: 0.6em;
+    }
+    logodiv > h1::before ,logodiv > h1::after {
+        height: 5px;
+    }
+    .dot {
+        height: 12px;
+        width:  12px;
+    }
+}
+@media only screen and (max-width: 350px) {
+    .loaderdiv{
+        display: none;
+    }
+    logodiv>h1{
+        font-size: 1em;
+    }
+}

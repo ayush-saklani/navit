@@ -271,7 +271,8 @@ document.getElementById('destination').addEventListener('change', () => { fetch_
 document.addEventListener("DOMContentLoaded", async () => {
     await circularButtonEventListener();
     fetchGeoJSON();
-    // document.getElementById(0).click();         // auto click on the ground floor
-    fetch_room_status();
-    // document.getElementById(0).click();         // auto click on the ground floor
+    await fetch_room_status();
+    setTimeout(() => {
+        document.getElementById('navitloader').style.display = "none";
+    }, 3000);
 })

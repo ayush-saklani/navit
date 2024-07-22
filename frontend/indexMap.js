@@ -49,6 +49,7 @@ const fetchGeoJSON = () => {
                 console.log(data.data);
                 floorMap = data.data;
                 LoaderManager(0);
+                document.getElementById(0).click();         // auto click on the ground floor
                 resolve(data);
             }).catch(error => {
                 console.error('out of service.. ~_~  @_@', error);
@@ -104,22 +105,32 @@ const renderMapAndPath = (currFloorData, floor) => {
     LoaderManager(0);
 };
 const circularButtonEventListener = () => {         // event listener for circular floor buttons
-    LoaderManager(1);
-    let circular_buttons = document.querySelectorAll(".circular_button");
-    circular_buttons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            let currfloormap;
-            for (ele in floorMap) {
-                if (floorMap[ele].floor === btn.id) {
-                    currfloormap = floorMap[ele]
-                    console.log(currfloormap);
-                }
-            }
-            renderMapAndPath(currfloormap, eval(btn.id) + 1); // +1 because floor starts from 1 UG = 0 ,G = 1 ...
-            renderRoomStatusAndDetail(currfloormap);
-        });
+    return new Promise((resolve, reject) => {
+        try{
+            LoaderManager(1);
+            let circular_buttons = document.querySelectorAll(".circular_button");
+            circular_buttons.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    let currfloormap;
+                    for (ele in floorMap) {
+                        if (floorMap[ele].floor === btn.id) {
+                            currfloormap = floorMap[ele]
+                            console.log(currfloormap);
+                        }
+                    }
+                    renderMapAndPath(currfloormap, eval(btn.id) + 1); // +1 because floor starts from 1 UG = 0 ,G = 1 ...
+                    renderRoomStatusAndDetail(currfloormap);
+                });
+            });
+            LoaderManager(0);
+            resolve();
+        }
+        catch(error){
+            console.error('Error in circularButtonEventListener:', error);
+            LoaderManager(0);
+            reject(error);
+        }
     });
-    LoaderManager(0);
 };
 const fetch_room_status = () => {		// fetches the room list from the server
     return new Promise((resolve, reject) => {
@@ -135,6 +146,7 @@ const fetch_room_status = () => {		// fetches the room list from the server
                 room_status_data = data;
                 console.log(data);
                 LoaderManager(0);
+                document.getElementById(0).click();         // auto click on the ground floor
                 resolve(data);
             }).catch(error => {
                 console.error(':::: Room Data not available (SERVER ERROR) :::: ');
@@ -257,9 +269,9 @@ document.getElementById('go').addEventListener('click', () => { fetch_calculate_
 document.getElementById('Start').addEventListener('change', () => { fetch_calculate_antpath(); });
 document.getElementById('destination').addEventListener('change', () => { fetch_calculate_antpath(); });
 document.addEventListener("DOMContentLoaded", async () => {
-    await fetchGeoJSON();
-    circularButtonEventListener();
-    document.getElementById(0).click();         // auto click on the ground floor
-    await fetch_room_status();
-    document.getElementById(0).click();         // auto click on the ground floor
+    await circularButtonEventListener();
+    fetchGeoJSON();
+    // document.getElementById(0).click();         // auto click on the ground floor
+    fetch_room_status();
+    // document.getElementById(0).click();         // auto click on the ground floor
 })

@@ -210,9 +210,10 @@ const renderRoomStatusAndDetail = (floordata) => {
                     let cc = getSpecificRoomCoordinates(floordata, room_status_data[room].roomid);      // returns the coordinates of the room RETURNS: [lat,lng] format of the room (helper function)
                     let polygon = L.polygon(cc, { "color": "#cc2412", weight: 0.8, opacity: 10 }).addTo(map);
                     let center = polygon.getBounds().getCenter();
+                    let temproomdata = room_status_data[room].schedule[day_slot][time_slot];
                     let textIcon = L.divIcon({
                         className: 'text-icon',
-                        html: room_status_data[room].name,
+                        html: room_status_data[room].name +" "+ temproomdata.course +" Section:" +temproomdata.section + " " + temproomdata.subjectcode + " " ,
                         iconSize: [0, 0],
                         iconAnchor: [0, 0]
                     });

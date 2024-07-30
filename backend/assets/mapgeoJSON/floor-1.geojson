@@ -61,7 +61,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "7190"
+                "room_id": "190"
             },
             "geometry": {
                 "type": "LineString",
@@ -288,7 +288,7 @@
             "properties": {
                 "indoor": "room",
                 "level": "0",
-                "room_id": "7006"
+                "room_id": "6"
             },
             "geometry": {
                 "type": "LineString",
@@ -389,7 +389,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "7177"
+                "room_id": "177"
             },
             "geometry": {
                 "type": "LineString",
@@ -645,7 +645,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "7122"
+                "room_id": "122"
             },
             "geometry": {
                 "type": "LineString",
@@ -788,7 +788,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "7015"
+                "room_id": "15"
             },
             "geometry": {
                 "type": "LineString",
@@ -932,7 +932,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "7073"
+                "room_id": "73"
             },
             "geometry": {
                 "type": "LineString",
@@ -980,7 +980,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "7017"
+                "room_id": "17"
             },
             "geometry": {
                 "type": "LineString",
@@ -1047,7 +1047,7 @@
             "properties": {
                 "indoor": "room",
                 "level": "0",
-                "room_id": "7085"
+                "room_id": "85"
             },
             "geometry": {
                 "type": "LineString",
@@ -1539,7 +1539,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "7091"
+                "room_id": "91"
             },
             "geometry": {
                 "type": "LineString",
@@ -1589,7 +1589,7 @@
             "properties": {
                 "indoor": "room",
                 "level": "0",
-                "room_id": "7004"
+                "room_id": "4"
             },
             "geometry": {
                 "type": "LineString",
@@ -2161,7 +2161,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "7191"
+                "room_id": "191"
             },
             "geometry": {
                 "type": "LineString",
@@ -2410,7 +2410,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "7173"
+                "room_id": "173"
             },
             "geometry": {
                 "type": "LineString",

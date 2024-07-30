@@ -416,7 +416,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "56",
+                "room_id": "1056",
                 "indoor": "room",
                 "level": "0"
             },
@@ -1162,7 +1162,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "101",
+                "room_id": "1101",
                 "indoor": "room",
                 "level": "0"
             },
@@ -1726,7 +1726,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "69",
+                "room_id": "1069",
                 "indoor": "room",
                 "level": "0"
             },
@@ -1805,7 +1805,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "1"
+                "room_id": "1001"
             },
             "geometry": {
                 "type": "LineString",
@@ -1949,7 +1949,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "31",
+                "room_id": "1031",
                 "indoor": "room",
                 "name": "lt 101",
                 "level": "0"
@@ -2101,7 +2101,7 @@
             "properties": {
                 "indoor": "room",
                 "level": "0",
-                "room_id": "73"
+                "room_id": "1073"
             },
             "geometry": {
                 "type": "LineString",
@@ -2287,7 +2287,7 @@
             "type": "Feature",
             "properties": {
                 "indoor": "room",
-                "room_id": "105",
+                "room_id": "1105",
                 "level": "0"
             },
             "geometry": {
@@ -2791,7 +2791,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "75"
+                "room_id": "1075"
             },
             "geometry": {
                 "type": "LineString",
@@ -3268,7 +3268,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "87"
+                "room_id": "1087"
             },
             "geometry": {
                 "type": "LineString",
@@ -3301,7 +3301,7 @@
             "properties": {
                 "male": "yes",
                 "amenity": "toilets",
-                "room_id": "83",
+                "room_id": "1083",
                 "level": "0"
             },
             "geometry": {
@@ -3465,7 +3465,7 @@
             "type": "Feature",
             "properties": {
                 "indoor": "room",
-                "room_id": "91",
+                "room_id": "1091",
                 "level": "0"
             },
             "geometry": {
@@ -3801,7 +3801,7 @@
             "type": "Feature",
             "properties": {
                 "amenity": "toilets",
-                "room_id": "99",
+                "room_id": "1099",
                 "level": "0"
             },
             "geometry": {
@@ -3896,7 +3896,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "36",
+                "room_id": "1036",
                 "indoor": "room",
                 "level": "0"
             },
@@ -3929,7 +3929,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "89"
+                "room_id": "1089"
             },
             "geometry": {
                 "type": "LineString",
@@ -3961,7 +3961,7 @@
             "type": "Feature",
             "properties": {
                 "indoor": "room",
-                "room_id": "28",
+                "room_id": "1028",
                 "level": "0"
             },
             "geometry": {
@@ -4104,7 +4104,7 @@
             "type": "Feature",
             "properties": {
                 "indoor": "room",
-                "room_id": "6",
+                "room_id": "1006",
                 "level": "0"
             },
             "geometry": {
@@ -4235,7 +4235,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "54",
+                "room_id": "1054",
                 "level": "0",
                 "indoor": "area"
             },
@@ -4332,7 +4332,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "25",
+                "room_id": "1025",
                 "indoor": "room",
                 "level": "0"
             },
@@ -4524,7 +4524,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "3"
+                "room_id": "1003"
             },
             "geometry": {
                 "type": "LineString",
@@ -4673,7 +4673,7 @@
             "properties": {
                 "indoor": "room",
                 "level": "0",
-                "room_id": "41"
+                "room_id": "1041"
             },
             "geometry": {
                 "type": "LineString",
@@ -5463,7 +5463,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "85"
+                "room_id": "1085"
             },
             "geometry": {
                 "type": "LineString",
@@ -5615,7 +5615,7 @@
             "type": "Feature",
             "properties": {
                 "amenity": "toilets",
-                "room_id": "51",
+                "room_id": "1051",
                 "level": "0"
             },
             "geometry": {
@@ -5930,7 +5930,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "71"
+                "room_id": "1071"
             },
             "geometry": {
                 "type": "LineString",
@@ -5963,7 +5963,7 @@
             "properties": {
                 "indoor": "room",
                 "level": "0",
-                "room_id": "52"
+                "room_id": "1052"
             },
             "geometry": {
                 "type": "LineString",
@@ -6579,7 +6579,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "57",
+                "room_id": "1057",
                 "indoor": "room",
                 "level": "0"
             },
@@ -6970,7 +6970,7 @@
             "type": "Feature",
             "properties": {
                 "amenity": "toilets",
-                "room_id": "29",
+                "room_id": "1029",
                 "level": "0"
             },
             "geometry": {
@@ -7152,7 +7152,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "33",
+                "room_id": "1033",
                 "indoor": "room",
                 "level": "0"
             },

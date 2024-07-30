@@ -90,7 +90,7 @@
             "type": "Feature",
             "properties": {
                 "amenity": "toilets",
-                "room_id": "4099",
+                "room_id": "5099",
                 "level": "0"
             },
             "geometry": {
@@ -381,7 +381,7 @@
             "type": "Feature",
             "properties": {
                 "indoor": "room",
-                "room_id": "4057",
+                "room_id": "5057",
                 "level": "0"
             },
             "geometry": {
@@ -440,7 +440,7 @@
             "properties": {
                 "male": "yes",
                 "amenity": "toilets",
-                "room_id": "4083",
+                "room_id": "5083",
                 "level": "0"
             },
             "geometry": {
@@ -483,7 +483,7 @@
             "type": "Feature",
             "properties": {
                 "amenity": "toilets",
-                "room_id": "4051",
+                "room_id": "5051",
                 "level": "0"
             },
             "geometry": {
@@ -535,7 +535,7 @@
             "type": "Feature",
             "properties": {
                 "amenity": "toilets",
-                "room_id": "4029",
+                "room_id": "5029",
                 "level": "0"
             },
             "geometry": {
@@ -2051,7 +2051,7 @@
             "properties": {
                 "indoor": "room",
                 "level": "0",
-                "room_id": "4091"
+                "room_id": "5091"
             },
             "geometry": {
                 "type": "LineString",
@@ -2099,7 +2099,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "4089"
+                "room_id": "5089"
             },
             "geometry": {
                 "type": "LineString",
@@ -3179,7 +3179,7 @@
             "type": "Feature",
             "properties": {
                 "indoor": "room",
-                "room_id": "4036",
+                "room_id": "5036",
                 "level": "0"
             },
             "geometry": {
@@ -3248,7 +3248,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "4085"
+                "room_id": "5085"
             },
             "geometry": {
                 "type": "LineString",
@@ -3473,7 +3473,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "4031",
+                "room_id": "5031",
                 "indoor": "room",
                 "name": "lt 101",
                 "level": "0"
@@ -3539,7 +3539,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "4075"
+                "room_id": "5075"
             },
             "geometry": {
                 "type": "LineString",
@@ -3701,7 +3701,7 @@
             "type": "Feature",
             "properties": {
                 "indoor": "room",
-                "room_id": "4069",
+                "room_id": "5069",
                 "level": "0"
             },
             "geometry": {
@@ -3831,7 +3831,7 @@
             "type": "Feature",
             "properties": {
                 "indoor": "room",
-                "room_id": "4025",
+                "room_id": "5025",
                 "level": "0"
             },
             "geometry": {
@@ -4002,7 +4002,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "4033",
+                "room_id": "5033",
                 "indoor": "room",
                 "level": "0"
             },
@@ -4037,7 +4037,7 @@
             "properties": {
                 "indoor": "room",
                 "level": "0",
-                "room_id": "4028"
+                "room_id": "5028"
             },
             "geometry": {
                 "type": "LineString",
@@ -4121,7 +4121,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "4056",
+                "room_id": "5056",
                 "indoor": "room",
                 "level": "0"
             },
@@ -4197,7 +4197,7 @@
             "type": "Feature",
             "properties": {
                 "indoor": "room",
-                "room_id": "4101",
+                "room_id": "5101",
                 "level": "0"
             },
             "geometry": {
@@ -4233,7 +4233,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "4054",
+                "room_id": "5054",
                 "level": "0",
                 "indoor": "area"
             },
@@ -4355,7 +4355,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "4087"
+                "room_id": "5087"
             },
             "geometry": {
                 "type": "LineString",
@@ -4407,7 +4407,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "4073",
+                "room_id": "5073",
                 "indoor": "room",
                 "level": "0"
             },
@@ -4602,7 +4602,7 @@
             "type": "Feature",
             "properties": {
                 "indoor": "room",
-                "room_id": "4006",
+                "room_id": "5006",
                 "level": "0"
             },
             "geometry": {
@@ -4682,7 +4682,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "4052",
+                "room_id": "5052",
                 "indoor": "room",
                 "level": "0"
             },
@@ -4785,7 +4785,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "4041",
+                "room_id": "5041",
                 "indoor": "room",
                 "level": "0"
             },
@@ -4890,7 +4890,7 @@
         {
             "type": "Feature",
             "properties": {
-                "room_id": "4017"
+                "room_id": "5017"
             },
             "geometry": {
                 "type": "LineString",

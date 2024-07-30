@@ -1,4 +1,5 @@
 {
+    "floor": "-1",
     "type": "FeatureCollection",
     "generator": "JOSM",
     "features": [

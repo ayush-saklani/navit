@@ -91,7 +91,13 @@ const renderMapAndPath = (currFloorData, floor) => {
         if (!!layer.toGeoJSON) { map.removeLayer(layer); }
     });
     L.geoJSON(currFloorData, {
-        style: { color: 'cadetblue', weight: 1, opacity: 1 }, //  ,fillOpacity: 0.5 // fill : bool
+        style: {
+            color: "var(--Dim-Blue)",
+            weight: 1.5, 
+            opacity: 1,
+            fillColor: "var(--Dim-Blue)",
+            // fillOpacity: 0.1,
+        }, //  ,fillOpacity: 0.5 // fill : bool
     }).addTo(map);
     // console.log(floor)
     // console.log(pathPoints[floor]);
@@ -208,7 +214,12 @@ const renderRoomStatusAndDetail = (floordata) => {
             floordata.features.forEach(feature => {
                 if (feature.properties && feature.properties.room_id && feature.properties.room_id == room_status_data[room].roomid) {
                     let cc = getSpecificRoomCoordinates(floordata, room_status_data[room].roomid);      // returns the coordinates of the room RETURNS: [lat,lng] format of the room (helper function)
-                    let polygon = L.polygon(cc, { "color": "#cc2412", weight: 0.8, opacity: 10 }).addTo(map);
+                    let polygon = L.polygon(cc, { 
+                        color : "var(--Hard-Background)",
+                        opacity: 0.1,
+                        fillColor: "var(--Red)",
+                        fillOpacity: 0.5,
+                    }).addTo(map);
                     let center = polygon.getBounds().getCenter();
                     let temproomdata = room_status_data[room].schedule[day_slot][time_slot];
                     let textIcon = L.divIcon({
@@ -227,7 +238,12 @@ const renderRoomStatusAndDetail = (floordata) => {
                 // console.log("asdas");
                 if (feature.properties && feature.properties.room_id && feature.properties.room_id == room_status_data[room].roomid) {
                     let cc = getSpecificRoomCoordinates(floordata, room_status_data[room].roomid);      // returns the coordinates of the room RETURNS: [lat,lng] format of the room (helper function)
-                    let polygon = L.polygon(cc, { "color": "#457c46", weight: 0.8, opacity: 10 }).addTo(map);
+                    let polygon = L.polygon(cc, {
+                        color : "var(--Hard-Background)",
+                        opacity: 0.1,
+                        fillColor: "var(--Aqua)",
+                        fillOpacity: 0.5,
+                    }).addTo(map);
                     let center = polygon.getBounds().getCenter();
                     let textIcon = L.divIcon({
                         className: 'text-icon',
@@ -252,7 +268,13 @@ const renderRoomStatusAndDetail = (floordata) => {
         ]
         if (feature.properties && feature.properties.room_id && aminities.includes(feature.properties.room_id)) {
             let cc = getSpecificRoomCoordinates(floordata, feature.properties.room_id);
-            let polygon = L.polygon(cc, { "color": 'blue', weight: 0.8, opacity: 10 }).addTo(map);
+            let polygon = L.polygon(cc, { 
+                color : "var(--Hard-Background)",
+                opacity: 0.1,
+                fillColor: "DarkCyan",
+                fillOpacity: 0.5,
+
+            }).addTo(map);
             let center = polygon.getBounds().getCenter();
             let textIcon = L.divIcon({
                 className: 'text-icon',
@@ -271,9 +293,11 @@ document.getElementById('Start').addEventListener('change', () => { fetch_calcul
 document.getElementById('destination').addEventListener('change', () => { fetch_calculate_antpath(); });
 document.addEventListener("DOMContentLoaded", async () => {
     await circularButtonEventListener();
-    fetchGeoJSON();
-    await fetch_room_status();
+    await fetchGeoJSON();
     setTimeout(() => {
         document.getElementById('navitloader').style.display = "none";
     }, 3000);
+    LoaderManager(1);
+    await fetch_room_status();
+    LoaderManager(0);
 })

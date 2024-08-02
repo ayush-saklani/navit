@@ -314,7 +314,7 @@ setInterval(() => {
             throw new Error('Handshake failed');
         }
     }).then(() => {
-        console.log("response");
+        console.log("Still up and kicking Boi 🏃🏻‍♂️...💨");
     }).catch(error => {
         console.error('Handshake failed:', error);
     });

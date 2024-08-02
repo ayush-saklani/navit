@@ -301,3 +301,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     await fetch_room_status();
     LoaderManager(0);
 })
+setInterval(() => {
+    fetch(`${serverlink}/keepmeawake`, {            // keeps the server awake by sending a request every 1 minute
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response => {
+        if(response.ok){
+            return response.json();
+        }else{
+            throw new Error('Handshake failed');
+        }
+    }).then(() => {
+        console.log("response");
+    }).catch(error => {
+        console.error('Handshake failed:', error);
+    });
+}, 60000);  // 1 minute

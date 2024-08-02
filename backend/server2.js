@@ -182,7 +182,9 @@ app.get('/getmap', async (req, res) => {        // Return an array of objects(do
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
-
+app.get('/keepmeawake', (req, res) => {          // Keep the server awake
+    res.status(200).json({ "status": 'Up and Running Boi' });
+});
 await loadMap1()
 await loadMap2()
 app.listen(port, () => {

@@ -145,6 +145,17 @@ logodiv>h5{
         height: 12px;
         width:  12px;
     }
+    nav>h1{
+      display: none;
+    }
+    nav::after{
+        font-size: xx-large;
+        font-family: anta;
+        padding-left: 2px;
+        content: "Navit";
+        color: var(--brand-primary-dark);
+        font-weight: bold;
+    }
 }
 @media only screen and (max-width: 350px) {
     .loaderdiv{

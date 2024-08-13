@@ -301,7 +301,7 @@ const renderRoomStatusAndDetail = (floordata) => {
                 // Add a marker with the text icon at the center of the polygon 
             }
         });
-        document.getElementById("currtime").innerHTML = `<i class="bi bi-moon-stars-fill pe-2"></i> Campus closed`;
+        document.getElementById("currtime").innerHTML = `<i class="bi bi-moon-stars-fill pe-2"></i> Campus<br>Closed`;
         LoaderManager(0);
         return ;
     }

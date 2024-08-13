@@ -20,7 +20,7 @@ const loader_loading = ()=>{
     let delay_warning = document.createElement('h5');
     delay_warning.classList.add('mx-3', 'my-3', 'text');
     delay_warning.style.display = 'none';
-    delay_warning.innerHTML = `Server is doing a cold Restart, Please Wait...`;
+    delay_warning.innerHTML = `Server is doing a cold Restart it may take 40-50 Sec to start, Please Wait...`;
     document.getElementById("navitloader").appendChild(delay_warning);
 }
 loader_loading();

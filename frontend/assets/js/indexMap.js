@@ -3,8 +3,33 @@ const map = L.map(('map'), {
     zoom: 20,
     zoomAnimation: true,
     maxZoom: 22,
-    minZoom: 18,
+    minZoom: 16,
     zoomControl: false
+});
+map.on('zoomend', function() {
+    console.log(map.getZoom());
+    let currzoom = map.getZoom();
+    if(currzoom < 18){
+        document.querySelectorAll('.text-icon-size').forEach(element => {
+            element.style.fontSize = '0px';
+        });
+    }else if(currzoom >= 18 && currzoom < 20){
+        document.querySelectorAll('.text-icon-size').forEach(element => {
+            element.style.fontSize = 'smaller';
+        });
+    }else if(currzoom >= 20 && currzoom < 21){
+        document.querySelectorAll('.text-icon-size').forEach(element => {
+            element.style.fontSize = 'small';
+        });
+    }else if(currzoom >= 21 && currzoom < 22){
+        document.querySelectorAll('.text-icon-size').forEach(element => {
+            element.style.fontSize = 'large';
+        });
+    }else if(currzoom >= 22){
+        document.querySelectorAll('.text-icon-size').forEach(element => {
+            element.style.fontSize = 'x-large';
+        });
+    }
 });
 // let map = L.map(('map'), {}).setView(latling, 18);
 const tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -193,6 +218,7 @@ const renderRoomStatusAndDetail = (floordata) => {
     const weekdays = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
     let day_slot = weekdays[today.getDay()];
     let hours = today.getHours();
+    hours = 10;  // for testing
     if (hours == 0) hours = 12;          // 12 am is 0 in js
     let houre = hours + 1;
     hours = (hours > 12) ? String(hours - 12).padStart(2, "0") : String(hours).padStart(2, "0");
@@ -203,8 +229,35 @@ const renderRoomStatusAndDetail = (floordata) => {
     // console.log(day_slot)
     document.getElementById("currtime").innerHTML = `${time_slot}`;
     let timeslots = ["08-09", "09-10", "10-11", "11-12", "12-01", "01-02", "02-03", "03-04", "04-05", "05-06"]
+    document.getElementById("currtime").innerHTML = `${day_slot.toLocaleUpperCase()} ${time_slot}`;
     if (!timeslots.includes(time_slot)) {
         time_slot = "08-09";
+    }
+    if((hours >= 18 && hours <= 23) || (hours >= 0 && hours <= 7)){
+        for (room in room_status_data) {
+            floordata.features.forEach(feature => {
+                if (feature.properties && feature.properties.room_id && feature.properties.room_id == room_status_data[room].roomid) {
+                    let cc = getSpecificRoomCoordinates(floordata, room_status_data[room].roomid);      // returns the coordinates of the room RETURNS: [lat,lng] format of the room (helper function)
+                    let polygon = L.polygon(cc, { 
+                        color : "var(--Hard-Background)",
+                        opacity: 0.2,
+                        fillColor: "var(--Dim-Blue)",
+                        fillOpacity: 0.5,
+                    }).addTo(map);
+                    let center = polygon.getBounds().getCenter();
+                    let textIcon = L.divIcon({
+                        className: 'text-icon-white text-icon-size',
+                        html: room_status_data[room].name,
+                        iconSize: [0, 0],
+                        iconAnchor: [0, 0]
+                    });
+                    L.marker(center, { icon: textIcon }).addTo(map);
+                    // Add a marker with the text icon at the center of the polygon
+                }
+            });
+        }
+        LoaderManager(0);
+        return ;
     }
     for (room in room_status_data) {
         // console.log(room_status_data[room].schedule[day_slot][time_slot].section.length)
@@ -223,7 +276,7 @@ const renderRoomStatusAndDetail = (floordata) => {
                     let center = polygon.getBounds().getCenter();
                     let temproomdata = room_status_data[room].schedule[day_slot][time_slot];
                     let textIcon = L.divIcon({
-                        className: 'text-icon',
+                        className: 'text-icon text-icon-size',
                         html: room_status_data[room].name +" "+ temproomdata.course +" Section:" +temproomdata.section + " " + temproomdata.subjectcode + " " ,
                         iconSize: [0, 0],
                         iconAnchor: [0, 0]
@@ -246,7 +299,7 @@ const renderRoomStatusAndDetail = (floordata) => {
                     }).addTo(map);
                     let center = polygon.getBounds().getCenter();
                     let textIcon = L.divIcon({
-                        className: 'text-icon',
+                        className: 'text-icon text-icon-size',
                         html: room_status_data[room].name,
                         iconSize: [0, 0],
                         iconAnchor: [0, 0]
@@ -277,7 +330,7 @@ const renderRoomStatusAndDetail = (floordata) => {
             }).addTo(map);
             let center = polygon.getBounds().getCenter();
             let textIcon = L.divIcon({
-                className: 'text-icon',
+                className: 'text-icon text-icon-size',
                 html: "WC",
                 iconSize: [0, 0],
                 iconAnchor: [0, 0]

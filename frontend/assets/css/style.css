@@ -164,13 +164,29 @@
     background-repeat: no-repeat;
     z-index: 2000; 
 }
+.text-icon-size{
+    font-size: small;
+    transition: ease-in-out 0.4s;
+}
 .text-icon {
     background: none;
     border: 3px solid black;
+    text-shadow: 2px 2px 2px var(--Foreground-1);
+    text-shadow: -1px -1px 0 var(--Foreground-1), 1px -1px 0 var(--Foreground-1), -1px 1px 0 var(--Foreground-1), 1px 1px 0 var(--Foreground-1);
     border-radius: 50%;
-    font-weight: bold; 
+    font-weight: bolder; 
     font-family: anta;
-    font-size: small;
+}
+.text-icon-white {
+    color: var(--Foreground);
+    border: 3px solid black;
+    text-shadow: 5px 5px 3px black;
+    border-radius: 50%;
+    /* font-weight: ;  */
+    font-family: anta;
+}
+.text-icon-white:hover {
+    font-weight: bolder;
 }
 
 .text-icon div {

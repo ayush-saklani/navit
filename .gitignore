@@ -3,3 +3,4 @@ test.js
 map.js
 .env
 node_modules
+.vscode

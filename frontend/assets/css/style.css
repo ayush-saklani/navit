@@ -32,7 +32,8 @@
     --Foreground-2 : #d5c4a1;
     --Foreground-3 : #bdae93;
     --Foreground-4 : #a89984;
-
+    --pulseColor : var(--Dim-Yellow);
+    --pulseColor2 : var(--Dim-Red);
 }
 .text{
     font-family: anta;

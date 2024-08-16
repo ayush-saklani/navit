@@ -144,11 +144,12 @@ const renderMapAndPath = (currFloorData, floor) => {
     // console.log(floor)
     // console.log(pathPoints[floor]);
     L.polyline.antPath(pathPoints[floor], {
-        "delay": 600,
+        opacity: 0.8,
+        "delay": 800,
         "dashArray": [1, 46],
-        "weight": 5,
-        "color": '#327174',
-        "pulseColor": "#000000",
+        "weight": 6,
+        "color": 'var(--pulseColor)',
+        "pulseColor": "var(--pulseColor2)",
     }).addTo(map);
     LoaderManager(0);
 };

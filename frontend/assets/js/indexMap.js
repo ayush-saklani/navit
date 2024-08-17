@@ -60,6 +60,7 @@ const serverlink =  "https://navit.azurewebsites.net";              // navit azu
 const serverlink2 = "https://class-sync-azure.azurewebsites.net";   // classsync azure server link
 let floorMap;
 let pathPoints = [[], [], [], [], [], [], []] // defined because it looks for floors o n start 
+let pathDistance = 0;
 let room_status_data;
 let loaderCounter = 0;
 const LoaderManager = (plus) => {        // loader counter 0 = decrease  1 = increase
@@ -116,7 +117,8 @@ const fetch_calculate_antpath = () => {
         }).then(response => response.json())
             .then(data => {
                 console.log(data.data);
-                pathPoints = data.data;
+                pathPoints = data.data.antpath;
+                pathDistance = data.data.distance;
                 document.getElementById(floor).click();
                 LoaderManager(0);
                 resolve();

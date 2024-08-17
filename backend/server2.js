@@ -92,7 +92,10 @@ const dijfunc = (src, des) => {                 // Dijkstra's Algorithm :: findS
                 res[curr_floor].push(temp_con);
             }
         }
-        return res;
+        return {
+            "distance": dijkstra.distanceTo(des),
+            "antpath": res
+        };
     } else {
         console.log('Error: Destination is unreachable from the source.');
         return null;

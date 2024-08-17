@@ -119,6 +119,14 @@ const fetch_calculate_antpath = () => {
                 console.log(data.data);
                 pathPoints = data.data.antpath;
                 pathDistance = data.data.distance;
+                let tempTime = Math.round(pathDistance)/2;
+                let message = `<b class="h4 fw-bold">Go</b>`
+                if(tempTime < 60){
+                    message = "~1 min";
+                }else{
+                    message = `${Math.ceil(tempTime/60)+1}min`;
+                }
+                document.getElementById("go").innerHTML = `<b class="h4 fw-bold"><i class="bi bi-person-walking"></i>${message}</b>`;
                 document.getElementById(floor).click();
                 LoaderManager(0);
                 resolve();

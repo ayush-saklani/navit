@@ -52,11 +52,11 @@ const tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     <br>Co-powered by <a href="https://github.com/ayush-saklani/classsync"><b>Classsync</b></a></p>`,
 }).addTo(map);
 //base map from open streetmap added 
-const serverlink = "http://localhost:3001";                         // navit local server link
+// const serverlink = "http://localhost:3001";                         // navit local server link
 // const serverlink2 = "http://localhost:3000";                        // classsync local server link
 // const serverlink = "https://navit.onrender.com";                    // navit online render server link
 // const serverlink2 = "https://classsync-3ht1.onrender.com";          // classsync online render server link
-// const serverlink =  "https://navit.azurewebsites.net";              // navit azure server link 
+const serverlink =  "https://navit.azurewebsites.net";              // navit azure server link 
 const serverlink2 = "https://class-sync-azure.azurewebsites.net";   // classsync azure server link
 let floorMap;
 let pathPoints = [[], [], [], [], [], [], []] // defined because it looks for floors o n start 
@@ -89,7 +89,8 @@ const fetchGeoJSON = () => {
             }
         }).then(response => response.json())
             .then(data => {
-                console.log(data.data);
+                document.getElementById("hitcount").innerHTML = `${data.hitcount}`;
+                console.log(data);
                 floorMap = data.data;
                 LoaderManager(0);
                 document.getElementById(0).click();         // auto click on the ground floor

@@ -183,7 +183,7 @@ app.get('/getmap', async (req, res) => {        // Return an array of objects(do
         res.status(200).json({
             "status": 'success',
             "data": mapdata,
-            "count": serverhitcount
+            "hitcount": serverhitcount
         });
     } catch (err) {
         res.status(500).json({ error: 'Internal Server Error' });

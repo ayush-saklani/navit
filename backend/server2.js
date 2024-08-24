@@ -9,6 +9,9 @@ import dotenv from 'dotenv';                // Import the dotenv library
 // import navitmodel from 'model/navit-models.model.js';
 import nodeModel from './models/nodeModel.js';
 import edgeModel from './models/edgeModel.js';
+import map from './models/mapModel.js';
+
+let serverhitcount = 0;                     // Variable to keep track of the number of times the server is hit
 
 dotenv.config();                            // Configure the dotenv library     ######### not done yet        
 
@@ -21,12 +24,12 @@ app.use(express.json());                    // Middleware to parse JSON bodies
 const g = new jsgraphs.WeightedGraph(7000); // Create a graph with 7000 nodes
 const loadMap1 = () => {                        // Load the coordinates of the nodes and creates the graph 
     return new Promise((resolve, reject) => {
-        fs.readFile('assets/map_coordinates.json', 'utf8', (err, data) => {
+        edgeModel.find({}).then((data, err) => {
             if (err){
-                console.log("XXXX Map Load 2/2 incompleted XXXX");
+                console.log("XXXX Map Load 1/2 incompleted XXXX");
+                reject();
             }
-            let edges = JSON.parse(data);
-            edges.forEach(edgeObj => {
+            data.forEach(edgeObj => {
                 g.addEdge(new jsgraphs.Edge(edgeObj.start, edgeObj.end, edgeObj.len));
                 g.addEdge(new jsgraphs.Edge(edgeObj.end, edgeObj.start, edgeObj.len));
             });
@@ -37,19 +40,19 @@ const loadMap1 = () => {                        // Load the coordinates of the n
 };
 const loadMap2 = () => {                        // Load the labels of the nodes and updates the graph nodes with the labels
     return new Promise((resolve, reject) => {
-        fs.readFile('assets/map_coordinates_label_updated.json', 'utf8', (err, data) => {
+        nodeModel.find({}).then((data, err) => {
             if (err){
                 console.log("XXXX Map Load 2/2 incompleted XXXX");
+                reject();
             }
-            let labels = JSON.parse(data);
-            labels.forEach(classObj => {
+            data.forEach(classObj => {
                 let node = classObj.node;
                 let label = classObj.label;
                 g.node(node).label = classObj.lat + "," + classObj.long + "," + classObj.floor;
             });
             console.log(":::: Map Loaded 2/2 completed ::::");
             resolve();
-        })
+        });
     });
 };
 const dijfunc = (src, des) => {                 // Dijkstra's Algorithm :: findS the shortest path RETURNS: Array of Arrays of Coordinates
@@ -175,13 +178,12 @@ app.get('/getCoordinates', (req, res) => {      // Get the coordinates of the an
 });
 app.get('/getmap', async (req, res) => {        // Return an array of objects(document) representing floor of the map data
     try {
-        const data = await readFile('./assets/mapAllInOne.json', 'utf-8');
-        let mapdata = JSON.parse(data);
-        // console.log(":::: map sent ::::");
+        serverhitcount++;
+        const mapdata = await map.find({});
         res.status(200).json({
             "status": 'success',
-            "data": mapdata
-
+            "data": mapdata,
+            "count": serverhitcount
         });
     } catch (err) {
         res.status(500).json({ error: 'Internal Server Error' });
@@ -190,11 +192,12 @@ app.get('/getmap', async (req, res) => {        // Return an array of objects(do
 app.get('/keepmeawake', (req, res) => {          // Keep the server awake
     res.status(200).json({ "status": 'Up and Running Boi' });
 });
-await loadMap1()
-await loadMap2()
 app.listen(port, async () => {
     await mongoose.connect(process.env.MONGODB_URI)
     console.log(':::: Mongo_DB Connected ::::')
+    await loadMap1()
+    await loadMap2()
     console.log(`:::: Server listening http://localhost:${port} ::::`)
+    console.log(`:::: Go on , I'm listening ::::`)
 });
 //old code is stored in .env file

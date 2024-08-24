@@ -1,31 +1,31 @@
 import mongoose from "mongoose";
 
 const nodeSchema = mongoose.Schema({
-    "node": {
+    "node": {                   // node number in the graph (0 to 6999) (alloted in the geojson file)
+        type: Number,
+        required: true
+    },
+    "lat": {                    // latitude 
         type: String,
         required: true
     },
-    "lat": {
-        type: String,
+    "long": {                   // longitude
+        type: String,          
         required: true
     },
-    "long": {
-        type: String,
+    "floor": {                  // "0", "1", "2", "3", "4", "5", "6"
+        type: String,          
         required: true
     },
-    "floor": {
-        type: String,
+    "type": {                   // "classroom", "lecturetheater", "elevator", "staircase", "node"
+        type: String,          
         required: true
     },
-    "type": {
-        type: String,
-        required: true
-    },
-    "label": {
+    "label": {                  // label to be displayed on the map (name of the classroom, lecture theater, etc.)
         type: String,
         required: false
     }
 });
 
-const nodeModel = mongoose.model("map_node_model", nodeSchema);
-model.export(nodeModel);
+const node = mongoose.model("node", nodeSchema);
+export default node;

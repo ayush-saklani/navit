@@ -7,6 +7,8 @@ import fs from 'fs';                        // Import the fs library
 import mongoose from 'mongoose';            // Import the mongoose library
 import dotenv from 'dotenv';                // Import the dotenv library
 // import navitmodel from 'model/navit-models.model.js';
+import nodeModel from './models/nodeModel.js';
+import edgeModel from './models/edgeModel.js';
 
 dotenv.config();                            // Configure the dotenv library     ######### not done yet        
 
@@ -190,7 +192,9 @@ app.get('/keepmeawake', (req, res) => {          // Keep the server awake
 });
 await loadMap1()
 await loadMap2()
-app.listen(port, () => {
+app.listen(port, async () => {
+    await mongoose.connect(process.env.MONGODB_URI)
+    console.log(':::: Mongo_DB Connected ::::')
     console.log(`:::: Server listening http://localhost:${port} ::::`)
 });
 //old code is stored in .env file

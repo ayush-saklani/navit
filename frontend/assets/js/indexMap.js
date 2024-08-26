@@ -6,7 +6,7 @@ const map = L.map(('map'), {
     minZoom: 16,
     zoomControl: false
 });
-map.on('zoomend', function() {
+const fontadjuster = () => {
     console.log(map.getZoom());
     let currzoom = map.getZoom();
     if(currzoom < 18){
@@ -45,7 +45,8 @@ map.on('zoomend', function() {
             element.style.display = 'block';
         });
     }
-});
+};
+map.on('zoomend', fontadjuster);
 // let map = L.map(('map'), {}).setView(latling, 18);
 const tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: `<p><a href="https://github.com/ayush-saklani"><img src="https://flagcdn.com/in.svg" width="15" alt="India"><b> Made by Ayush Saklani</b></a>
@@ -180,6 +181,7 @@ const circularButtonEventListener = () => {         // event listener for circul
                     }
                     renderMapAndPath(currfloormap.map, eval(btn.id) + 1); // +1 because floor starts from 1 UG = 0 ,G = 1 ...
                     renderRoomStatusAndDetail(currfloormap.map);
+                    fontadjuster();
                 });
             });
             LoaderManager(0);
@@ -273,7 +275,7 @@ const renderRoomStatusAndDetail = (floordata) => {
                         opacity: 0.2,
                         fillColor: "var(--Dim-Blue)",
                         fillOpacity: 0.5,
-                    }).addTo(map);
+                    }).addTo(map).addTo(map).bindPopup(`${room_status_data[room].name}`,{closeButton:false,className:"popup-content"});
                     let center = polygon.getBounds().getCenter();
                     let textIcon = L.divIcon({
                         className: 'text-icon-white text-icon-size',
@@ -327,14 +329,14 @@ const renderRoomStatusAndDetail = (floordata) => {
             floordata.features.forEach(feature => {
                 if (feature.properties && feature.properties.room_id && feature.properties.room_id == room_status_data[room].roomid) {
                     let cc = getSpecificRoomCoordinates(floordata, room_status_data[room].roomid);      // returns the coordinates of the room RETURNS: [lat,lng] format of the room (helper function)
+                    let temproomdata = room_status_data[room].schedule[day_slot][time_slot];
                     let polygon = L.polygon(cc, { 
                         color : "var(--Hard-Background)",
                         opacity: 0.1,
                         fillColor: "var(--Red)",
                         fillOpacity: 0.5,
-                    }).addTo(map);
+                    }).addTo(map).bindPopup(`${room_status_data[room].name}<br>${temproomdata.course.toLocaleUpperCase()} <br> Section: ${temproomdata.section} <br> ${temproomdata.subjectcode} `,{closeButton:false,className:"popup-content"});
                     let center = polygon.getBounds().getCenter();
-                    let temproomdata = room_status_data[room].schedule[day_slot][time_slot];
                     let textIcon = L.divIcon({
                         className: 'text-icon text-icon-size',
                         html: room_status_data[room].name,
@@ -342,14 +344,14 @@ const renderRoomStatusAndDetail = (floordata) => {
                         iconAnchor: [0, 0]
                     });
                     L.marker(center, { icon: textIcon }).addTo(map);
-                    temproomdata = room_status_data[room].schedule[day_slot][time_slot];
-                    textIcon = L.divIcon({
-                        className: 'text-icon text-icon-size text-icon-hide',
-                        html: room_status_data[room].name +" "+ temproomdata.course +" Section:" +temproomdata.section + " " + temproomdata.subjectcode + " " ,
-                        iconSize: [0, 0],
-                        iconAnchor: [0, 0]
-                    });
-                    L.marker(center, { icon: textIcon }).addTo(map);
+                    // temproomdata = room_status_data[room].schedule[day_slot][time_slot];
+                    // textIcon = L.divIcon({
+                    //     className: 'text-icon text-icon-size text-icon-hide',
+                    //     html: room_status_data[room].name +" "+ temproomdata.course +" Section:" +temproomdata.section + " " + temproomdata.subjectcode + " " ,
+                    //     iconSize: [0, 0],
+                    //     iconAnchor: [0, 0]
+                    // });
+                    // L.marker(center, { icon: textIcon }).addTo(map);
                     // Add a marker with the text icon at the center of the polygon
                 }
             });
@@ -364,7 +366,7 @@ const renderRoomStatusAndDetail = (floordata) => {
                         opacity: 0.1,
                         fillColor: "var(--Aqua)",
                         fillOpacity: 0.5,
-                    }).addTo(map);
+                    }).addTo(map).addTo(map).bindPopup(`${room_status_data[room].name}`,{closeButton:false,className:"popup-content"});
                     let center = polygon.getBounds().getCenter();
                     let textIcon = L.divIcon({
                         className: 'text-icon text-icon-size',

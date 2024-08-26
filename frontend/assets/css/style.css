@@ -233,3 +233,14 @@
 #go{
     height: 57px;
 }
+.popup-content,.leaflet-popup-content{
+    font-family: "anta";
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--brand-primary-dark);
+}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{
+    background-color: var(--bg2);
+    /* box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.767); */
+}

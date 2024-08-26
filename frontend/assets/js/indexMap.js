@@ -53,11 +53,11 @@ const tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     <br>Co-powered by <a href="https://github.com/ayush-saklani/classsync"><b>Classsync</b></a></p>`,
 }).addTo(map);
 //base map from open streetmap added 
-// const serverlink = "http://localhost:3001";                         // navit local server link
+const serverlink = "http://localhost:3001";                         // navit local server link
 // const serverlink2 = "http://localhost:3000";                        // classsync local server link
 // const serverlink = "https://navit.onrender.com";                    // navit online render server link
 // const serverlink2 = "https://classsync-3ht1.onrender.com";          // classsync online render server link
-const serverlink =  "https://navit.azurewebsites.net";              // navit azure server link 
+// const serverlink =  "https://navit.azurewebsites.net";              // navit azure server link 
 const serverlink2 = "https://class-sync-azure.azurewebsites.net";   // classsync azure server link
 let floorMap;
 let pathPoints = [[], [], [], [], [], [], []] // defined because it looks for floors o n start 
@@ -305,7 +305,7 @@ const renderRoomStatusAndDetail = (floordata) => {
                     fillColor: "DarkCyan",
                     fillOpacity: 0.5,
     
-                }).addTo(map);
+                }).addTo(map).addTo(map).bindPopup(`Washroom`,{closeButton:false,className:"popup-content"});
                 let center = polygon.getBounds().getCenter();
                 let textIcon = L.divIcon({
                     className: 'text-icon-white text-icon-size',
@@ -397,7 +397,7 @@ const renderRoomStatusAndDetail = (floordata) => {
                 fillColor: "DarkCyan",
                 fillOpacity: 0.5,
 
-            }).addTo(map);
+            }).addTo(map).addTo(map).bindPopup(`Washroom`,{closeButton:false,className:"popup-content"});
             let center = polygon.getBounds().getCenter();
             let textIcon = L.divIcon({
                 className: 'text-icon text-icon-size',

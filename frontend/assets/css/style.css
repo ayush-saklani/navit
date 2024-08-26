@@ -34,6 +34,36 @@
     --Foreground-4 : #a89984;
     --pulseColor : var(--Dim-Yellow);
     --pulseColor2 : var(--Dim-Red);
+    
+    /* new colours */
+    --bg0: #FFFBEF;
+    --bg1: #F8F5E4;
+    --bg2: #F2EFDF;
+    --bg3: #EDEADA;
+    --bg4: #E8E5D5;
+    --bg5: #BEC5B2;
+
+    --bg-tint-red: #FFE7DE;
+    --bg-tint-yellow: #FEF2D5;
+    --bg-tint-green: #F3F5D9;
+    --bg-tint-blue: #ECF5ED;
+    --bg-tint-visual: #F0F2D4;
+
+    --red: #F85552;
+    --orange: #F57D26;
+    --yellow: #DFA000;
+    --green: #8DA101;
+    --blue: #3A94C5;
+    --aqua: #35A77C;
+    --purple: #DF69BA;
+
+    --fg: #5C6A72;
+    --statusline1: #93B259;
+    --statusline2: #708089;
+    --statusline3: #E66868;
+    --gray1: #A6B0A0;
+    --gray2: #939F91;
+    --gray3: #829181;
 }
 .text{
     font-family: anta;
@@ -126,7 +156,7 @@
     transition: ease-in-out 0.5s;
 }
 .social-links:hover{
-    background-color: var(--brand-primary-dark);
+    background-color: var(--brand-primary-light);
     transition: ease-in-out 0.5s;
 }
 .social-links>a>i:hover{

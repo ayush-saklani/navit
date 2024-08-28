@@ -72,8 +72,8 @@
     color: var(--brand-primary-dark) !important;
 }
 #map{
-    height: 100vh;
-    width: 100vw;
+    height: 100lvh;
+    width: 100lvw;
     position: relative;
     z-index: 0;
 }

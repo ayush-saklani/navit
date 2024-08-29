@@ -19,7 +19,6 @@ const options = `<optgroup label="Ground floor (checking pending)">
                             <option value="1056">Staff room G2</option>
                             <option value="1069">Lab 1</option>
                             <option value="1101">Lab 9</option>
-                            <!-- <option value="1083">Gents Washroom</option> -->
                             <option value="1073">Teacher office(Teacher name)</option>
                             <option value="1075">CR102</option>
                             <option value="1071">CR103</option>
@@ -33,8 +32,8 @@ const options = `<optgroup label="Ground floor (checking pending)">
                             <option value="1165">Gate no 3</option>
                             <option value="1166">Canteen</option>
                             <option value="1171">GEHU bus stop</option>
-                            <option value="1105">Library</option>
-                            <!-- <option value="1099">Ladies Washroom</option> -->
+                            <option value="1105">Library (Sitting Area)</option>
+                            <option value="2119">Library (Book Area)</option>
                         </optgroup>
                         <optgroup label="1st floor">
                             <option value="2119">Main Library</option>
@@ -44,18 +43,15 @@ const options = `<optgroup label="Ground floor (checking pending)">
                             <option value="2122">CR209</option>
                             <option value="2017">CR211</option>
                             <option value="2025">Dr Kamal Ghanshala(President)</option>
-                            <!-- <option value="2028">Ladies Washroom</option> -->
                             <option value="2031">LT202</option>
                             <option value="2033">CR206</option>
                             <option value="2036">CR207</option>
                             <option value="2041">LT201</option>
-                            <!-- <option value="2051">Gents Washroom</option> -->
                             <option value="2052">Teacher office</option>
                             <option value="2057">Server Room</option>
                             <option value="2056">Staff room 21</option>
                             <option value="2069">Lab 2</option>
                             <option value="2101">Lab 8</option>
-                            <!-- <option value="2083">Gents Washroom</option> -->
                             <option value="2073">Faculty of School of Pharmacy</option>
                             <option value="2075">CR201</option>
                             <option value="2071">CR202</option>

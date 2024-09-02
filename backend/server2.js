@@ -10,8 +10,9 @@ import dotenv from 'dotenv';                // Import the dotenv library
 import nodeModel from './models/nodeModel.js';
 import edgeModel from './models/edgeModel.js';
 import map from './models/mapModel.js';
+import metadataschema from './models/metadataModel.js';
+import metadata from './models/metadataModel.js';
 
-let serverhitcount = 0;                     // Variable to keep track of the number of times the server is hit
 
 dotenv.config();                            // Configure the dotenv library     ######### not done yet        
 
@@ -178,7 +179,22 @@ app.get('/getCoordinates', (req, res) => {      // Get the coordinates of the an
 });
 app.get('/getmap', async (req, res) => {        // Return an array of objects(document) representing floor of the map data
     try {
-        serverhitcount++;
+        let serverhitcount;
+        await metadata.find({}).then((data, err) => {
+            if (err){
+                console.log("Server Hit Count Fetching Error");
+                reject();
+            }
+            serverhitcount = data[0].serverhitcount;
+            // console.log(data[0].serverhitcount);
+            metadata.updateOne({serverhitcount: serverhitcount+1}).then((data, err) => {
+                if (err){
+                    console.log("Server Hit Count increment Error");
+                    reject();
+                }
+            });
+            serverhitcount%10==0?console.log(":::: Server Hit + 10 ::::"):"";
+        });
         const mapdata = await map.find({});
         res.status(200).json({
             "status": 'success',

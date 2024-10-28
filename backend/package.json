@@ -11,11 +11,13 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "body-parser": "^1.20.3",
     "braces": "^3.0.3",
+    "cookie": "^1.0.1",
     "cors": "^2.8.5",
     "data-structure-typed": "^1.36.5",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2",
+    "express": "^4.21.1",
     "express-session": "^1.17.3",
     "js-graph-algorithms": "^1.0.18",
     "leaflet": "^1.9.4",
@@ -23,6 +25,11 @@
     "mongoose": "^8.5.0",
     "nodemon": "^3.0.3",
     "passport": "^0.6.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "path-to-regexp": "^8.2.0",
+    "rollup": "^4.24.2",
+    "send": "^1.1.0",
+    "serve-static": "^1.16.2",
+    "vite": "^5.4.10"
   }
 }

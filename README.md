@@ -1,6 +1,6 @@
-# **Indoor Mapping - *Navit* ( v1.0 )** <img src="assets/images/logo.png" height="110" align="left"/>
+# **Indoor Mapping - *Navit* ( v2.0 )** <img src="assets/images/logo.png" height="110" align="left"/>
 
-**Navit is an indoor mapping solution made for University campuses. _(currently, more than proof of concept but a little less than completed)_**
+**Navit is an indoor mapping solution made for University or any other big campus. _(currently, in final integration phase)_**
 
 ---
 # **Languages, Frameworks and Tools**
@@ -27,7 +27,7 @@
 - **Frontend -** Open `frontend/index.html` ***( home page )*** or <a class="link-danger" href="https://navit.vercel.app/"><b>Navit</b></a>
 
 ---
-## ⭐ Ideas and features to work and figure out right now
+# ⭐ Current Ideas and Features for Development
 
 ## Version 1.0  ✅
 - [x] Started with a problem in mind and the problem unvealed and changes the significant app fundamental approches to solve the problem and new approches were used. 
@@ -40,16 +40,17 @@ ___~~(Floor numbering: 0 for ground floor, 1 for first floor and 6 for undergrou
 - [x] Complete Map were Designed in GeoJSON and later improvements were made.
 - [x] Complete Routes were Designed in GeoJSON and later improvements were made.
 - [x] Utilize the Leaflet library to draw routes on the map with polylines, dynamically using coordinates as an array of strings input.
----
-## Version 1.8 ⌛ *( under development )*
+## Version 1.8 ✅
 - [x] Fetch Requests - Move all fetch requests to `server.js` for privacy and security.
 - [x] Basic API Design and Implementation.
 - [x] Automate direction finding and identify idle classrooms and labs by storing timetables in the database _**(Possible API integration with class-sync)**_.
 - [x] ___Floor numbering changed for ease: 0 for underground floor, 1 for ground floor and so on.___ 🟢
-- [ ] Dynamic Centering - setting dynamic center by using cookies to add coordinates to center. Use the last coordinate to determine the center.
-- [ ] Database Integration - Introduce a database to store custom maps and routes.
-- [ ] Authentication and Security - Implement authentication for students to verify users.
-- [ ] Possibly restrict mapping functionalities to within the campus IP or network for safety concerns.
-
----
+- [x] Dynamic Centering - setting dynamic center by using cookies to add coordinates to center. Use the last coordinate to determine the center.
+- [x] Database Integration - Introduce a database to store custom maps and routes.
+- [ ] _~~Authentication and Security - Implement authentication for students to verify users~~_ **_(cancelled)_**
+- [ ] _~~Possibly restrict mapping functionalities to within the campus IP or network for safety concerns~~_ **_(cancelled)_**
+## Version 2.0 ⌛ *( under development )*
+- [x] Classsync - Integration of Class-sync APIs with Navit.
+- [ ] Code Migration - Migration of code into ReactJS completely 
+- [ ] React Native - Analyze the benefits and scope of code Migration in React Native. 
 ## **Keep Coding, Keep Smiling!, Have Fun!** 💻🚀

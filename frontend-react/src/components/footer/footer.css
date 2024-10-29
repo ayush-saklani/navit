@@ -1,0 +1,24 @@
+footer {
+    z-index: 1000;
+}
+
+.social-links {
+    background-color: var(--brand-primary-transparent);
+    transition: ease-in-out 0.5s;
+}
+
+.social-links>a {
+    text-decoration: none;
+    color: #f0efef;
+    transition: ease-in-out 0.5s;
+}
+
+.social-links:hover {
+    background-color: var(--brand-primary-dark);
+    transition: ease-in-out 0.5s;
+}
+
+.social-links>a>i:hover {
+    color: white;
+    transition: ease-in-out 0.5s;
+}

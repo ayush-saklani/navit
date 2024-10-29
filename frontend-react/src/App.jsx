@@ -4,10 +4,8 @@ import Header from './components/header/header'
 import Footer from './components/footer/footer'
 import FloorButton from './components/floorbutton/floorbutton'
 import Bottombar from './components/bottombar/bottombar'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
-import { MapContainer } from 'https://cdn.esm.sh/react-leaflet/MapContainer'
-import { TileLayer } from 'https://cdn.esm.sh/react-leaflet/TileLayer'
-import { useMap } from 'https://cdn.esm.sh/react-leaflet/hooks'
 function App() {
 
 	return (
@@ -16,17 +14,21 @@ function App() {
 			<Footer />
 			<FloorButton />
 			<Bottombar />
-			
-			<MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+
+			<MapContainer
+				center={[30.2734504, 77.9997427]}
+				zoom={18}
+				maxZoom={22}
+				minZoom={16}
+				zoomControl={false}
+				scrollWheelZoom={true}
+				style={{ height: "100vh", width: "100%"}}
+				id='map'
+			>
 				<TileLayer
-					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+					attribution='<p><a href="https://github.com/ayush-saklani"><img src="https://flagcdn.com/in.svg" width="15" alt="India"><b> Made by Ayush Saklani</b></a> <br>Co-powered by <a href="https://github.com/ayush-saklani/classsync"><b>Classsync</b></a></p>'
+					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" 
 				/>
-				<Marker position={[51.505, -0.09]}>
-					<Popup>
-						A pretty CSS3 popup. <br /> Easily customizable.
-					</Popup>
-				</Marker>
 			</MapContainer>
 		</>
 	)

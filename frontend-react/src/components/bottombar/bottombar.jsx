@@ -1,6 +1,7 @@
 import React from 'react'
 import Option1 from './option1'
 import Option2 from './option2'
+import './bottombar.css'
 const bottombar = () => {
   return (
     <div className="bottom-bar ">

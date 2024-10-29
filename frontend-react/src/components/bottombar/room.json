@@ -1,0 +1,626 @@
+{
+    "rooms": [
+        {
+            "floor_label": "Ground floor (checking pending)",
+            "room_data": [
+                {
+                    "roomid": "1001",
+                    "room_name": "Ubuntu Lab1"
+                },
+                {
+                    "roomid": "1003",
+                    "room_name": "Ubuntu Lab2 "
+                },
+                {
+                    "roomid": "1033",
+                    "room_name": "Bosch Lab"
+                },
+                {
+                    "roomid": "1006",
+                    "room_name": "Mac lab"
+                },
+                {
+                    "roomid": "1015",
+                    "room_name": "Reception"
+                },
+                {
+                    "roomid": "1025",
+                    "room_name": "Main Office"
+                },
+                {
+                    "roomid": "1029",
+                    "room_name": "medical Room(check)"
+                },
+                {
+                    "roomid": "1031",
+                    "room_name": "Seminar Hall"
+                },
+                {
+                    "roomid": "1036",
+                    "room_name": "CR101"
+                },
+                {
+                    "roomid": "1041",
+                    "room_name": "meeting hall"
+                },
+                {
+                    "roomid": "1054",
+                    "room_name": "Open Auditorium"
+                },
+                {
+                    "roomid": "1057",
+                    "room_name": "Staff room G1"
+                },
+                {
+                    "roomid": "1056",
+                    "room_name": "Staff room G2"
+                },
+                {
+                    "roomid": "1069",
+                    "room_name": "Lab 1"
+                },
+                {
+                    "roomid": "1101",
+                    "room_name": "Lab 9"
+                },
+                {
+                    "roomid": "1073",
+                    "room_name": "Teacher office(Teacher name)"
+                },
+                {
+                    "roomid": "1075",
+                    "room_name": "CR102"
+                },
+                {
+                    "roomid": "1071",
+                    "room_name": "CR103"
+                },
+                {
+                    "roomid": "1085",
+                    "room_name": "CR104"
+                },
+                {
+                    "roomid": "1087",
+                    "room_name": "CR105"
+                },
+                {
+                    "roomid": "1089",
+                    "room_name": "CR106"
+                },
+                {
+                    "roomid": "1091",
+                    "room_name": "HOD office"
+                },
+                {
+                    "roomid": "191",
+                    "room_name": "workshop"
+                },
+                {
+                    "roomid": "1148",
+                    "room_name": "Gate no 1"
+                },
+                {
+                    "roomid": "1127",
+                    "room_name": "Gate no 2"
+                },
+                {
+                    "roomid": "1165",
+                    "room_name": "Gate no 3"
+                },
+                {
+                    "roomid": "1166",
+                    "room_name": "Canteen"
+                },
+                {
+                    "roomid": "1171",
+                    "room_name": "GEHU bus stop"
+                },
+                {
+                    "roomid": "1105",
+                    "room_name": "Library"
+                }
+            ]
+        },
+        {
+            "floor_label": "1st floor",
+            "room_data": [
+                {
+                    "roomid": "2119",
+                    "room_name": "Main Library"
+                },
+                {
+                    "roomid": "2001",
+                    "room_name": "Round Room R"
+                },
+                {
+                    "roomid": "2003",
+                    "room_name": "Round Room L"
+                },
+                {
+                    "roomid": "2006",
+                    "room_name": "Dr Sanjay Jasola(vice chancellor)"
+                },
+                {
+                    "roomid": "2122",
+                    "room_name": "CR209"
+                },
+                {
+                    "roomid": "2017",
+                    "room_name": "CR211"
+                },
+                {
+                    "roomid": "2025",
+                    "room_name": "Dr Kamal Ghanshala(President)"
+                },
+                {
+                    "roomid": "2031",
+                    "room_name": "LT202"
+                },
+                {
+                    "roomid": "2033",
+                    "room_name": "CR206"
+                },
+                {
+                    "roomid": "2036",
+                    "room_name": "CR207"
+                },
+                {
+                    "roomid": "2041",
+                    "room_name": "LT201"
+                },
+                {
+                    "roomid": "2052",
+                    "room_name": "Teacher office"
+                },
+                {
+                    "roomid": "2057",
+                    "room_name": "Server Room"
+                },
+                {
+                    "roomid": "2056",
+                    "room_name": "Staff room 21"
+                },
+                {
+                    "roomid": "2069",
+                    "room_name": "Lab 2"
+                },
+                {
+                    "roomid": "2101",
+                    "room_name": "Lab 8"
+                },
+                {
+                    "roomid": "2073",
+                    "room_name": "Faculty of School of Pharmacy"
+                },
+                {
+                    "roomid": "2075",
+                    "room_name": "CR201"
+                },
+                {
+                    "roomid": "2071",
+                    "room_name": "CR202"
+                },
+                {
+                    "roomid": "2085",
+                    "room_name": "CR203"
+                },
+                {
+                    "roomid": "2087",
+                    "room_name": "CR204"
+                },
+                {
+                    "roomid": "2089",
+                    "room_name": "CR205"
+                },
+                {
+                    "roomid": "2091",
+                    "room_name": "Erp Cell"
+                },
+                {
+                    "roomid": "2127",
+                    "room_name": "Gate no 3 ke upar"
+                }
+            ]
+        },
+        {
+            "floor_label": "2nd floor",
+            "room_data": [
+                {
+                    "roomid": "3119",
+                    "room_name": "Department of Fine Arts"
+                },
+                {
+                    "roomid": "3001",
+                    "room_name": "Department of visual Art"
+                },
+                {
+                    "roomid": "3006",
+                    "room_name": "CR304"
+                },
+                {
+                    "roomid": "3017",
+                    "room_name": "CR302"
+                },
+                {
+                    "roomid": "3122",
+                    "room_name": "New Hall"
+                },
+                {
+                    "roomid": "3025",
+                    "room_name": "CR303"
+                },
+                {
+                    "roomid": "3031",
+                    "room_name": "LT302"
+                },
+                {
+                    "roomid": "3033",
+                    "room_name": "CR301"
+                },
+                {
+                    "roomid": "3036",
+                    "room_name": "CR305"
+                },
+                {
+                    "roomid": "3041",
+                    "room_name": "LT301"
+                },
+                {
+                    "roomid": "3052",
+                    "room_name": "Dr Mahesh Manchanda"
+                },
+                {
+                    "roomid": "3057",
+                    "room_name": "Staff room 31"
+                },
+                {
+                    "roomid": "3056",
+                    "room_name": "Staff room 32"
+                },
+                {
+                    "roomid": "3069",
+                    "room_name": "Lab 3"
+                },
+                {
+                    "roomid": "3101",
+                    "room_name": "Lab 7"
+                },
+                {
+                    "roomid": "3073",
+                    "room_name": "Teacher office"
+                },
+                {
+                    "roomid": "3075",
+                    "room_name": "Pharmaceutical Analysis Lab"
+                },
+                {
+                    "roomid": "3071",
+                    "room_name": "Pharmaceutical chemistry I Lab"
+                },
+                {
+                    "roomid": "3085",
+                    "room_name": "Pharmaceutics I Lab"
+                },
+                {
+                    "roomid": "3087",
+                    "room_name": "Pharmaceutics I Lab"
+                },
+                {
+                    "roomid": "3089",
+                    "room_name": "Pharmacognosy I Lab"
+                }
+            ]
+        },
+        {
+            "floor_label": "3rd floor",
+            "room_data": [
+                {
+                    "roomid": "4002",
+                    "room_name": "Department of english"
+                },
+                {
+                    "roomid": "4006",
+                    "room_name": "CR405"
+                },
+                {
+                    "roomid": "4025",
+                    "room_name": "CR404"
+                },
+                {
+                    "roomid": "4033",
+                    "room_name": "CR403"
+                },
+                {
+                    "roomid": "4036",
+                    "room_name": "CR406"
+                },
+                {
+                    "roomid": "4031",
+                    "room_name": "LT401"
+                },
+                {
+                    "roomid": "4041",
+                    "room_name": "LT402"
+                },
+                {
+                    "roomid": "4122",
+                    "room_name": "Conference Hall"
+                },
+                {
+                    "roomid": "4057",
+                    "room_name": "Staff room 41"
+                },
+                {
+                    "roomid": "4056",
+                    "room_name": "Staff room 42"
+                },
+                {
+                    "roomid": "4119",
+                    "room_name": "Staff room 43(CSE RR)"
+                },
+                {
+                    "roomid": "4069",
+                    "room_name": "Lab 4"
+                },
+                {
+                    "roomid": "4101",
+                    "room_name": "IOT Lab"
+                },
+                {
+                    "roomid": "4073",
+                    "room_name": "Department of Mathematics"
+                },
+                {
+                    "roomid": "4075",
+                    "room_name": "CR401"
+                },
+                {
+                    "roomid": "4071",
+                    "room_name": "Electronic engg Lab I"
+                },
+                {
+                    "roomid": "4085",
+                    "room_name": "Logic Design Microprocessor Lab"
+                },
+                {
+                    "roomid": "4087",
+                    "room_name": "Electronic engg Lab II"
+                },
+                {
+                    "roomid": "4089",
+                    "room_name": "CR402"
+                },
+                {
+                    "roomid": "4091",
+                    "room_name": "Dean Acadamics"
+                }
+            ]
+        },
+        {
+            "floor_label": "4th floor",
+            "room_data": [
+                {
+                    "roomid": "5052",
+                    "room_name": "Teacher office"
+                },
+                {
+                    "roomid": "5006",
+                    "room_name": "Fashion class I"
+                },
+                {
+                    "roomid": "5025",
+                    "room_name": "Fashion class II"
+                },
+                {
+                    "roomid": "5017",
+                    "room_name": "Fashion Studio"
+                },
+                {
+                    "roomid": "5031",
+                    "room_name": "LT501"
+                },
+                {
+                    "roomid": "5041",
+                    "room_name": "LT502"
+                },
+                {
+                    "roomid": "5033",
+                    "room_name": "CR503"
+                },
+                {
+                    "roomid": "5036",
+                    "room_name": "CR504"
+                },
+                {
+                    "roomid": "5075",
+                    "room_name": "CR501"
+                },
+                {
+                    "roomid": "5085",
+                    "room_name": "Physics Lab"
+                },
+                {
+                    "roomid": "5087",
+                    "room_name": "IAPT asian physics olypiyad lab"
+                },
+                {
+                    "roomid": "5089",
+                    "room_name": "CR502"
+                },
+                {
+                    "roomid": "5069",
+                    "room_name": "Lab 5"
+                },
+                {
+                    "roomid": "5101",
+                    "room_name": "chemistry Lab"
+                },
+                {
+                    "roomid": "5057",
+                    "room_name": "Staff room 51"
+                },
+                {
+                    "roomid": "5056",
+                    "room_name": "Staff room 52"
+                }
+            ]
+        },
+        {
+            "floor_label": "5th floor",
+            "room_data": [
+                {
+                    "roomid": "6119",
+                    "room_name": "Manual Drawing lab"
+                },
+                {
+                    "roomid": "6003",
+                    "room_name": "Dr K P Nautiyal Auditorium"
+                },
+                {
+                    "roomid": "6006",
+                    "room_name": "reachers scholer room (room beside audi)"
+                },
+                {
+                    "roomid": "6017",
+                    "room_name": "moot court"
+                },
+                {
+                    "roomid": "6025",
+                    "room_name": "Nss Unit Office"
+                },
+                {
+                    "roomid": "6031",
+                    "room_name": "LT601"
+                },
+                {
+                    "roomid": "6041",
+                    "room_name": "LT602"
+                },
+                {
+                    "roomid": "6033",
+                    "room_name": "CR605"
+                },
+                {
+                    "roomid": "6075",
+                    "room_name": "CR601"
+                },
+                {
+                    "roomid": "6071",
+                    "room_name": "CR602"
+                },
+                {
+                    "roomid": "6085",
+                    "room_name": "CR603"
+                },
+                {
+                    "roomid": "6087",
+                    "room_name": "Fashion Design (studio and theory room)"
+                },
+                {
+                    "roomid": "6089",
+                    "room_name": "CR604"
+                },
+                {
+                    "roomid": "6069",
+                    "room_name": "Lab 6"
+                },
+                {
+                    "roomid": "6101",
+                    "room_name": "Library II(Top floor)"
+                },
+                {
+                    "roomid": "6057",
+                    "room_name": "Staff room 61"
+                },
+                {
+                    "roomid": "6056",
+                    "room_name": "Staff room 62"
+                },
+                {
+                    "roomid": "6036",
+                    "room_name": "Staff room 63"
+                },
+                {
+                    "roomid": "6073",
+                    "room_name": "Teacher office"
+                }
+            ]
+        },
+        {
+            "floor_label": "Underground floor",
+            "room_data": [
+                {
+                    "roomid": "4",
+                    "room_name": "Exam Controller"
+                },
+                {
+                    "roomid": "6",
+                    "room_name": "CCTV Room"
+                },
+                {
+                    "roomid": "122",
+                    "room_name": "Degree and Certficates"
+                },
+                {
+                    "roomid": "15",
+                    "room_name": "Registerar Office"
+                },
+                {
+                    "roomid": "17",
+                    "room_name": "Fee Cell"
+                },
+                {
+                    "roomid": "118",
+                    "room_name": "Basement Class"
+                },
+                {
+                    "roomid": "191",
+                    "room_name": "workshop"
+                },
+                {
+                    "roomid": "190",
+                    "room_name": "Civil Engineering Lab"
+                },
+                {
+                    "roomid": "73",
+                    "room_name": "Teacher Dining Area"
+                },
+                {
+                    "roomid": "173",
+                    "room_name": "Tuck Shop"
+                },
+                {
+                    "roomid": "91",
+                    "room_name": "Mess"
+                },
+                {
+                    "roomid": "85",
+                    "room_name": "Cafeteria"
+                },
+                {
+                    "roomid": "177",
+                    "room_name": "Parking"
+                }
+            ]
+        }
+    ],
+    "amenities": [
+        {
+            "floor_label": "Amenities",
+            "room_data": [
+                {
+                    "roomid": "1999",
+                    "room_name": "Nearest Mens Washroom"
+                },
+                {
+                    "roomid": "1998",
+                    "room_name": "Nearest Ladies Washroom"
+                },
+                {
+                    "roomid": "1171",
+                    "room_name": "GEHU Bus Stop"
+                }
+            ]
+        }
+    ]
+}

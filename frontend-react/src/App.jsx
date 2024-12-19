@@ -13,6 +13,29 @@ function App() {
     const [activeFloor, setActiveFloor] = useState(0)
     const floors = [-1, 0, 1, 2, 3, 4, 5]
     const [timevar, setTimevar] = useState(null)
+    const [down, setDown] = useState(false);
+
+    const handleClick = () => {
+        setDown((prevDown) => !prevDown);
+    };
+
+    
+    const [loaderCounter, setloaderCounter] = useState(0);
+    const LoaderManager = (plus) => {        // loader counter 0 = decrease  1 = increase
+        // console.log("counter"+loaderCounter);
+        if (plus == 1) {
+            setloaderCounter(loaderCounter + 1);
+        } else if (plus == 0) {
+            setloaderCounter(loaderCounter - 1);
+        }
+        if (loaderCounter > 0) {
+            document.getElementById("loader").style.display = "flex";
+            document.getElementById("currtime").style.display = "none";
+        } else if (loaderCounter == 0) {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("currtime").style.display = "flex";
+        }
+    }
     return (
         <div>
             <div className="position-fixed bottom-0 fw-bold left-0 text-lg text-brand-primary-dark px-2 fw-bold z-[1]">Hits</div>
@@ -43,44 +66,60 @@ function App() {
                 ))}
             </floorbutton>
 
-            <bottombar className="bottom-bar ">
-                <button className="countboxi" id="foldup">
-                    <i id="foldup-icon" className="bi bi-caret-down-fill h3"></i>
+            <bottombar className={`bottom-bar ${down ? 'bottom-bar-down' : ''}`}>
+                <button className="countboxi" onClick={handleClick}>
+                    <i id="foldup-icon" className={`bi ${down ? 'bi-caret-up-fill' : 'bi-caret-down-fill'} h3`}></i>
                 </button>
-                <div className="container row justify-content-center mb-2">
+                <div className="container row justify-content-center mb-2 w-[80%]">
                     <div className="form-floating col-lg-5 col-md-5 col-sm-12 pb-1 text">
                         <select className="form-select" id="Start">
                             {roomData.rooms.map((room, index) => (
                                 <optgroup label={room.floor_label} key={index}>
                                     {room.room_data.map((subroom, subindex) => (
-                                        <option key={subindex} value={subroom.roomid}>{subroom.room_name}</option>
+                                        <option key={subindex} value={subroom.roomid}>
+                                            {subroom.room_name}
+                                        </option>
                                     ))}
                                 </optgroup>
                             ))}
                         </select>
-                        <label className="ms-2 text coloring"><b>Start</b></label>
+                        <label className="ms-2 text coloring">
+                            <b>Start</b>
+                        </label>
                     </div>
                     <div className="form-floating col-lg-5 col-md-4 col-sm-12 pb-1 text">
                         <select className="form-select" id="destination">
                             {roomData.amenities.map((room, index) => (
                                 <optgroup label={room.floor_label} key={index}>
                                     {room.room_data.map((subroom, subindex) => (
-                                        <option key={subindex} value={subroom.roomid}>{subroom.room_name}</option>
+                                        <option key={subindex} value={subroom.roomid}>
+                                            {subroom.room_name}
+                                        </option>
                                     ))}
                                 </optgroup>
                             ))}
                             {roomData.rooms.map((room, index) => (
                                 <optgroup label={room.floor_label} key={index}>
                                     {room.room_data.map((subroom, subindex) => (
-                                        <option key={subindex} value={subroom.roomid}>{subroom.room_name}</option>
+                                        <option key={subindex} value={subroom.roomid}>
+                                            {subroom.room_name}
+                                        </option>
                                     ))}
                                 </optgroup>
                             ))}
                         </select>
-                        <label className="ms-2 text coloring"><b>Destination</b></label>
+                        <label className="ms-2 text coloring">
+                            <b>Destination</b>
+                        </label>
                     </div>
                     <div className="col-lg-2 col-md-3 col-sm-12 pb-1 align-items-center justify-content-center d-flex">
-                        <button type="button" className="btn btn-lg btn-light coloring rounded-pill col-12 px-2" id="go"><b className="h4 fw-bold">Go</b></button>
+                        <button
+                            type="button"
+                            className="btn btn-lg btn-light coloring rounded-pill col-12 px-2"
+                            id="go"
+                        >
+                            <b className="h4 fw-bold">Go</b>
+                        </button>
                     </div>
                 </div>
             </bottombar>

@@ -3,13 +3,14 @@ import './App.css'
 import './globals.css'
 import './assets/css/floorbutton.css'
 import './assets/css/bottombar.css'
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap, GeoJSON, Polyline } from 'react-leaflet';
 import navitlogo from '/src/assets/images/logo.png'
 import roomData from './room.json'
+import tempstat from './tempstat.json'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { FaLinkedinIn } from 'react-icons/fa6'
-import L from 'leaflet'; // Import leaflet for map handling
 import 'leaflet-ant-path'; // If you are using leaflet-ant-path for animated polylines
+import AnimatedPolyline from './animatedpolyline'
 
 function App() {
     const mapRef = useRef(null);
@@ -29,7 +30,7 @@ function App() {
     const [destination, setdestination] = useState(roomData.amenities[0].room_data[0].roomid);
 
     const [floorMap, setfloorMap] = useState(null);
-    const [room_status_data, set_room_status_data] = useState(null);
+    const [room_status_data, set_room_status_data] = useState(tempstat);
     const [pathPoints, setpathPoints] = useState([[], [], [], [], [], [], []]);
 
     const handleClick = () => { setDown((prevDown) => !prevDown); };
@@ -41,11 +42,6 @@ function App() {
 
 
 
-
-
-
-
-
     const fetchGeoJSON = () => {
         return new Promise((resolve, reject) => {
             LoaderManager(1);
@@ -54,12 +50,15 @@ function App() {
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            }).then(response => response.json())
+            })
+                .then(response => response.json())
                 .then(data => {
+                    console.log(data);
                     setHitcount(data.hitcount);
                     setfloorMap(data.data);
                     LoaderManager(0);
                     setActiveFloor(0);
+                    resolve();
                 }).catch(error => {
                     console.error('out of service.. ~_~  @_@', error);
                     LoaderManager(0);
@@ -67,14 +66,9 @@ function App() {
                 });
         });
     }
-    useEffect(() => {
-        fetchGeoJSON();
-    }, []);
-
     const fetch_calculate_antpath = () => {
         return new Promise((resolve, reject) => {
             LoaderManager(1);
-            // console.log(`source:${source} => destination:${destination}`);
             let floor = Math.floor(source / 1000) - 1;
             fetch(`${serverlink}/getCoordinates?src=${source}&des=${destination}`, {
                 method: 'GET',
@@ -83,7 +77,7 @@ function App() {
                 }
             }).then(response => response.json())
                 .then(data => {
-                    console.log(data.data);
+                    console.log(data.data.antpath);
                     setpathPoints(data.data.antpath);
                     setpathDistance(data.data.distance);
                     let tempTime = Math.round(pathDistance) / 2;
@@ -98,69 +92,7 @@ function App() {
                     reject(error);
                 });
         });
-    };
-    useEffect(() => {
-        fetch_calculate_antpath();
-    }, [source, destination]);
-
-    const renderMapAndPath = (currFloorData, floor) => {
-        LoaderManager(1);
-        if (!currFloorData) return;
-        console.log(currFloorData);
-        const map = mapRef.current;
-        map.eachLayer((layer) => {
-            if (!!layer.toGeoJSON) { map.removeLayer(layer); }
-        });
-        L.geoJSON(currFloorData, {
-            style: {
-                color: "var(--Dim-Blue)",
-                weight: 1.5,
-                opacity: 1,
-                fillColor: "var(--Dim-Blue)",
-                // fillOpacity: 0.1,
-            }, //  ,fillOpacity: 0.5 // fill : bool
-        }).addTo(map);
-        // console.log(floor)
-        // console.log(pathPoints[floor]);
-        L.polyline.antPath(pathPoints[floor], {
-            opacity: 0.8,
-            "delay": 800,
-            "dashArray": [1, 46],
-            "weight": 6,
-            "color": 'var(--pulseColor)',
-            "pulseColor": "var(--pulseColor2)",
-        }).addTo(map);
-        LoaderManager(0);
-    };
-    const circularButtonEventListener = () => {         // event listener for circular floor buttons
-        return new Promise((resolve, reject) => {
-            try {
-                LoaderManager(1);
-                let circular_buttons = document.querySelectorAll(".circular_button");
-                circular_buttons.forEach(btn => {
-                    btn.addEventListener("click", () => {
-                        let currfloormap;
-                        for (ele in floorMap) {
-                            if (floorMap[ele].floor === btn.id) {
-                                currfloormap = floorMap[ele]
-                                console.log(currfloormap);
-                            }
-                        }
-                        renderMapAndPath(currfloormap.map, eval(btn.id) + 1); // +1 because floor starts from 1 UG = 0 ,G = 1 ...
-                        renderRoomStatusAndDetail(currfloormap.map);
-                        fontadjuster();
-                    });
-                });
-                LoaderManager(0);
-                resolve();
-            }
-            catch (error) {
-                console.error('Error in circularButtonEventListener:', error);
-                LoaderManager(0);
-                reject(error);
-            }
-        });
-    };
+    }
     const fetch_room_status = () => {		// fetches the room list from the server
         return new Promise((resolve, reject) => {
             LoaderManager(1);
@@ -176,6 +108,7 @@ function App() {
                     set_room_status_data(data);
                     LoaderManager(0);
                     setActiveFloor(0);
+                    resolve();
                 }).catch(error => {
                     console.error(':::: Room Data not available (SERVER ERROR) :::: ');
                     LoaderManager(0);
@@ -183,18 +116,223 @@ function App() {
                 });
         });
     };
-   
-    // document.addEventListener("DOMContentLoaded", async () => {
-    //     await circularButtonEventListener();
-    //     await fetchGeoJSON();
-    //     setTimeout(() => {
-    //         document.getElementById('navitloader').style.display = "none";
-    //     }, 3000);
-    //     LoaderManager(1);
-    //     await fetch_room_status();
-    //     LoaderManager(0);
-    // })
+    
 
+
+
+
+
+
+
+
+
+    const getSpecificRoomCoordinates = (floordata, room_id) => {      // returns the coordinates of the room RETURNS: [lat,lng] format of the room (helper function)
+        LoaderManager(1)
+        let coordinates = [];
+        floordata.features.forEach(feature => {
+            if (feature.properties && feature.properties.room_id) {
+                if (feature.properties.room_id === room_id) {
+                    if (feature.geometry.type === "Polygon") {
+                        coordinates.push(feature.geometry.coordinates[0]);
+                    }
+                    else {
+                        coordinates.push(feature.geometry.coordinates);
+                    }
+                }
+            }
+        });
+        let latLngs = [];
+        coordinates.forEach(coordinates => {
+            coordinates.forEach(coord => {
+                latLngs.push([coord[1], coord[0]]); // Leaflet uses [lat, lng] format not [lng, lat] so this
+            });
+        });
+        LoaderManager(0);
+        return latLngs;
+    }
+const renderRoomStatusAndDetail = (floordata) => {
+    LoaderManager(1);
+    let today = new Date();
+    const weekdays = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+    let day_slot = weekdays[today.getDay()];
+    let hours = today.getHours();
+    // hours = 10;                          // for testing
+    if (hours == 0) hours = 12;             // 12 am is 0 in js
+    let houre = hours + 1;
+    hours = (hours > 12) ? String(hours - 12).padStart(2, "0") : String(hours).padStart(2, "0");
+    houre = (houre > 12) ? String(houre - 12).padStart(2, "0") : String(houre).padStart(2, "0");
+    let time_slot = hours + "-" + houre;
+    time_slot = (time_slot).toString();
+    // console.log(time_slot)
+    // console.log(day_slot)
+    document.getElementById("currtime").innerHTML = `${time_slot}`;
+    let timeslots = ["08-09", "09-10", "10-11", "11-12", "12-01", "01-02", "02-03", "03-04", "04-05", "05-06"]
+    document.getElementById("currtime").innerHTML = `${day_slot.toLocaleUpperCase()} ${time_slot}`;
+    if (!timeslots.includes(time_slot)) {
+        time_slot = "08-09";
+    }
+    // if((hours >= 18 && hours <= 23) || (hours >= 0 && hours <= 7)){     // for testing only
+    if ((today.getHours() >= 18 && today.getHours() <= 23) || (today.getHours() >= 0 && today.getHours() <= 7)) {
+        for (room in room_status_data) {
+            floordata.features.forEach(feature => {
+                if (feature.properties && feature.properties.room_id && feature.properties.room_id == room_status_data[room].roomid) {
+                    let cc = getSpecificRoomCoordinates(floordata, room_status_data[room].roomid);      // returns the coordinates of the room RETURNS: [lat,lng] format of the room (helper function)
+                    let polygon = L.polygon(cc, {
+                        color: "var(--Hard-Background)",
+                        opacity: 0.2,
+                        fillColor: "var(--Dim-Blue)",
+                        fillOpacity: 0.5,
+                    }).addTo(map).addTo(map).bindPopup(`${room_status_data[room].name}`, { closeButton: false, className: "popup-content" });
+                    let center = polygon.getBounds().getCenter();
+                    let textIcon = L.divIcon({
+                        className: 'text-icon-white text-icon-size',
+                        html: room_status_data[room].name,
+                        iconSize: [0, 0],
+                        iconAnchor: [0, 0]
+                    });
+                    L.marker(center, { icon: textIcon }).addTo(map);
+                    // Add a marker with the text icon at the center of the polygon
+                }
+            });
+        }
+        floordata.features.forEach(feature => {             // for aminities like washroom etc
+            const aminities = [
+                "1051", "1029", "1099", "1083",
+                "2051", "2029", "2099", "2083",
+                "3051", "3029", "3099", "3083",
+                "4051", "4029", "4099", "4083",
+                "5051", "5029", "5099", "5083",
+                "6051", "6029", "6099", "6083"
+            ]
+            if (feature.properties && feature.properties.room_id && aminities.includes(feature.properties.room_id)) {
+                let cc = getSpecificRoomCoordinates(floordata, feature.properties.room_id);
+                let polygon = L.polygon(cc, {
+                    color: "var(--Hard-Background)",
+                    opacity: 0.1,
+                    fillColor: "DarkCyan",
+                    fillOpacity: 0.5,
+
+                }).addTo(map).addTo(map).bindPopup(`Washroom`, { closeButton: false, className: "popup-content" });
+                let center = polygon.getBounds().getCenter();
+                let textIcon = L.divIcon({
+                    className: 'text-icon-white text-icon-size',
+                    html: "WC",
+                    iconSize: [0, 0],
+                    iconAnchor: [0, 0]
+                });
+                L.marker(center, { icon: textIcon }).addTo(map);
+                // Add a marker with the text icon at the center of the polygon 
+            }
+        });
+        setTimevar(`Closed`);
+        // document.getElementById("currtime").innerHTML = ;
+        LoaderManager(0);
+        return;
+    }
+    for (room in room_status_data) {
+        // console.log(room_status_data[room].schedule[day_slot][time_slot].section.length)
+        // console.log(room_status_data[room].roomid)
+        if (room_status_data[room].schedule[day_slot][time_slot].section.length > 0) {
+            // console.log("asdas")
+            floordata.features.forEach(feature => {
+                if (feature.properties && feature.properties.room_id && feature.properties.room_id == room_status_data[room].roomid) {
+                    let cc = getSpecificRoomCoordinates(floordata, room_status_data[room].roomid);      // returns the coordinates of the room RETURNS: [lat,lng] format of the room (helper function)
+                    let temproomdata = room_status_data[room].schedule[day_slot][time_slot];
+                    let polygon = L.polygon(cc, {
+                        color: "var(--Hard-Background)",
+                        opacity: 0.1,
+                        fillColor: "var(--Red)",
+                        fillOpacity: 0.5,
+                    }).addTo(map).bindPopup(`${room_status_data[room].name}<br>${temproomdata.course.toLocaleUpperCase()} <br> Section: ${temproomdata.section} <br> ${temproomdata.subjectcode} `, { closeButton: false, className: "popup-content" });
+                    let center = polygon.getBounds().getCenter();
+                    let textIcon = L.divIcon({
+                        className: 'text-icon text-icon-size',
+                        html: room_status_data[room].name,
+                        iconSize: [0, 0],
+                        iconAnchor: [0, 0]
+                    });
+                    L.marker(center, { icon: textIcon }).addTo(map);
+                    // temproomdata = room_status_data[room].schedule[day_slot][time_slot];
+                    // textIcon = L.divIcon({
+                    //     className: 'text-icon text-icon-size text-icon-hide',
+                    //     html: room_status_data[room].name +" "+ temproomdata.course +" Section:" +temproomdata.section + " " + temproomdata.subjectcode + " " ,
+                    //     iconSize: [0, 0],
+                    //     iconAnchor: [0, 0]
+                    // });
+                    // L.marker(center, { icon: textIcon }).addTo(map);
+                    // Add a marker with the text icon at the center of the polygon
+                }
+            });
+        }
+        else if (room_status_data[room].schedule[day_slot][time_slot].section.length == 0) {
+            floordata.features.forEach(feature => {
+                // console.log("asdas");
+                if (feature.properties && feature.properties.room_id && feature.properties.room_id == room_status_data[room].roomid) {
+                    let cc = getSpecificRoomCoordinates(floordata, room_status_data[room].roomid);      // returns the coordinates of the room RETURNS: [lat,lng] format of the room (helper function)
+                    let polygon = L.polygon(cc, {
+                        color: "var(--Hard-Background)",
+                        opacity: 0.1,
+                        fillColor: "var(--Aqua)",
+                        fillOpacity: 0.5,
+                    }).addTo(map).addTo(map).bindPopup(`${room_status_data[room].name}`, { closeButton: false, className: "popup-content" });
+                    let center = polygon.getBounds().getCenter();
+                    let textIcon = L.divIcon({
+                        className: 'text-icon text-icon-size',
+                        html: room_status_data[room].name,
+                        iconSize: [0, 0],
+                        iconAnchor: [0, 0]
+                    });
+                    L.marker(center, { icon: textIcon }).addTo(map);
+                    // Add a marker with the text icon at the center of the polygon
+                }
+            });
+        }
+    };
+    floordata.features.forEach(feature => {             // for aminities like washroom etc
+        const aminities = [
+            "1051", "1029", "1099", "1083",
+            "2051", "2029", "2099", "2083",
+            "3051", "3029", "3099", "3083",
+            "4051", "4029", "4099", "4083",
+            "5051", "5029", "5099", "5083",
+            "6051", "6029", "6099", "6083"
+        ]
+        if (feature.properties && feature.properties.room_id && aminities.includes(feature.properties.room_id)) {
+            let cc = getSpecificRoomCoordinates(floordata, feature.properties.room_id);
+            let polygon = L.polygon(cc, {
+                color: "var(--Hard-Background)",
+                opacity: 0.1,
+                fillColor: "DarkCyan",
+                fillOpacity: 0.5,
+
+            }).addTo(map).addTo(map).bindPopup(`Washroom`, { closeButton: false, className: "popup-content" });
+            let center = polygon.getBounds().getCenter();
+            let textIcon = L.divIcon({
+                className: 'text-icon text-icon-size',
+                html: "WC",
+                iconSize: [0, 0],
+                iconAnchor: [0, 0]
+            });
+            L.marker(center, { icon: textIcon }).addTo(map);
+            // Add a marker with the text icon at the center of the polygon 
+        }
+    });
+    LoaderManager(0);
+};
+
+
+
+    useEffect(() => {
+        fetchGeoJSON();
+    }, []);
+    useEffect(() => {
+        fetch_calculate_antpath();
+    }, [source, destination]);
+
+    useEffect(() => {
+        // fetch_room_status();
+    }, []);
+  
     return (
         <div>
             <div className="position-fixed bottom-0 fw-bold left-0 text-lg text-brand-primary-dark px-2 fw-bold z-[1]">{hitcount}</div>
@@ -219,6 +357,33 @@ function App() {
                     attribution='<p><a href="https://github.com/ayush-saklani"><img src="https://flagcdn.com/in.svg" width="15" alt="India"><b> Made by Ayush Saklani</b></a> <br>Co-powered by <a href="https://github.com/ayush-saklani/classsync"><b>Classsync</b></a></p>'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
+                {
+                    floorMap && floorMap.map((floor, index) => (
+                        (floor.floor === activeFloor.toString()) &&
+                        <GeoJSON key={index} attribution="&copy; credits due..." data={floor.map}
+                            style={{
+                                color: "var(--Dim-Blue)",
+                                weight: 1.5,
+                                opacity: 1,
+                                fillColor: "var(--Dim-Blue)",
+                            }}
+                        />
+                    ))
+                }
+                {
+                    pathPoints[activeFloor + 1] && (pathPoints[activeFloor + 1].length > 0) &&
+                    <AnimatedPolyline
+                        positions={pathPoints[activeFloor + 1]}
+                        options={{
+                            opacity: 0.8,
+                            "delay": 800,
+                            "dashArray": [1, 46],
+                            "weight": 6,
+                            "color": 'var(--pulseColor)',
+                            "pulseColor": "var(--pulseColor2)",
+                        }}
+                    />
+                }
             </MapContainer>
 
             {/* floorbutton */}
@@ -290,7 +455,7 @@ function App() {
                             onClick={() => { fetch_calculate_antpath(); }}
                         >
                             <b className="h4 fw-bold text">{Gobuttontext}
-                                {Gobuttontext !== "Go" && <i class="bi bi-person-walking"></i>}
+                                {Gobuttontext !== "Go" && <i className="bi bi-person-walking"></i>}
                             </b>
                         </button>
                     </div>

@@ -1,79 +1,118 @@
-:root{
+:root {
   --brand-primary: #043a45;
   --brand-primary-light: #327174;
   --brand-primary-dark: #032f3a;
   --brand-primary-transparent: #055160ab;
-  
-  --Red : #fb4934;
-  --Green : #b8bb26;
-  --Yellow : #fabd2f;
-  --Blue : #83a598;
-  --Purple : #d3869b;
-  --Aqua : #8ec07c;
-  --Orange : #fe8019;
-  --Gray : rgb(145, 130, 115);
-  --Dim-Red : #cc2412;
-  --Dim-Green : #98971a;
-  --Dim-Yellow : #d79921;
-  --Dim-Blue : #458588;
-  --Dim-Purple : #b16286;
-  --Dim-Aqua : #699d6a;
-  --Dim-Orange : #d65d0e;
-  --Dim-Gray : #a89984;
-  --Hard-Background : #1d2021;
-  --Medium-Background : #282828;
-  --Soft-Background : #323027;
-  --Background-1 : #3c3836;
-  --Background-2 : #504945;
-  --Background-3 : #665c54;
-  --Background-4 : #7c6764;
-  --Foreground : #fbf1c7;
-  --Foreground-1 : #ebdbb2;
-  --Foreground-2 : #d5c4a1;
-  --Foreground-3 : #bdae93;
-  --Foreground-4 : #a89984;
-  --pulseColor : var(--Dim-Yellow);
-  --pulseColor2 : var(--Dim-Red);
+
+  --Red: #fb4934;
+  --Green: #b8bb26;
+  --Yellow: #fabd2f;
+  --Blue: #83a598;
+  --Purple: #d3869b;
+  --Aqua: #8ec07c;
+  --Orange: #fe8019;
+  --Gray: rgb(145, 130, 115);
+  --Dim-Red: #cc2412;
+  --Dim-Green: #98971a;
+  --Dim-Yellow: #d79921;
+  --Dim-Blue: #458588;
+  --Dim-Purple: #b16286;
+  --Dim-Aqua: #699d6a;
+  --Dim-Orange: #d65d0e;
+  --Dim-Gray: #a89984;
+  --Hard-Background: #1d2021;
+  --Medium-Background: #282828;
+  --Soft-Background: #323027;
+  --Background-1: #3c3836;
+  --Background-2: #504945;
+  --Background-3: #665c54;
+  --Background-4: #7c6764;
+  --Foreground: #fbf1c7;
+  --Foreground-1: #ebdbb2;
+  --Foreground-2: #d5c4a1;
+  --Foreground-3: #bdae93;
+  --Foreground-4: #a89984;
+  --pulseColor: var(--Dim-Yellow);
+  --pulseColor2: var(--Dim-Red);
+
+  /* new colours */
+  --bg0: #FFFBEF;
+  --bg1: #F8F5E4;
+  --bg2: #F2EFDF;
+  --bg3: #EDEADA;
+  --bg4: #E8E5D5;
+  --bg5: #BEC5B2;
+
+  --bg-tint-red: #FFE7DE;
+  --bg-tint-yellow: #FEF2D5;
+  --bg-tint-green: #F3F5D9;
+  --bg-tint-blue: #ECF5ED;
+  --bg-tint-visual: #F0F2D4;
+
+  --red: #F85552;
+  --orange: #F57D26;
+  --yellow: #DFA000;
+  --green: #8DA101;
+  --blue: #3A94C5;
+  --aqua: #35A77C;
+  --purple: #DF69BA;
+
+  --fg: #5C6A72;
+  --statusline1: #93B259;
+  --statusline2: #708089;
+  --statusline3: #E66868;
+  --gray1: #A6B0A0;
+  --gray2: #939F91;
+  --gray3: #829181;
 }
-.text{
+
+.text {
   font-family: anta;
 }
-.coloring{
+
+.coloring {
   color: var(--brand-primary-dark) !important;
 }
-#map{
+
+#map {
   z-index: 0 !important;
 }
 
 
 /* leaflet logo removed from bottom right*/
-.leaflet-control-attribution>a,.leaflet-control-attribution>span{
+.leaflet-control-attribution>a,
+.leaflet-control-attribution>span {
   display: none;
 }
-.leaflet-control-attribution{
+
+.leaflet-control-attribution {
   display: flex;
 }
-.leaflet-control-attribution>p{
+
+.leaflet-control-attribution>p {
   /* height: 100px; */
   /* width: 100px;; */
   margin-bottom: 2px;
 }
+
 /* leaflet logo removed from bottom right*/
 
 
-.text-icon-size{
+.text-icon-size {
   font-size: small;
   transition: ease-in-out 0.4s;
 }
+
 .text-icon {
   background: none;
   border: 3px solid black;
   text-shadow: 2px 2px 2px var(--Foreground-1);
   text-shadow: -1px -1px 0 var(--Foreground-1), 1px -1px 0 var(--Foreground-1), -1px 1px 0 var(--Foreground-1), 1px 1px 0 var(--Foreground-1);
   border-radius: 50%;
-  font-weight: bolder; 
+  font-weight: bolder;
   font-family: anta;
 }
+
 .text-icon-white {
   color: var(--Foreground);
   border: 3px solid black;
@@ -82,13 +121,16 @@
   /* font-weight: ;  */
   font-family: anta;
 }
+
 .text-icon-white:hover {
   font-weight: bolder;
 }
-.text-icon-hide{
+
+.text-icon-hide {
   visibility: hidden;
   transition: ease-in-out 0.4s;
 }
+
 .text-icon div {
   font-size: 16px;
   font-weight: bold;

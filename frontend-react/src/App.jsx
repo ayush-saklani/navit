@@ -12,6 +12,7 @@ import { FaLinkedinIn } from 'react-icons/fa6'
 import 'leaflet-ant-path'; // If you are using leaflet-ant-path for animated polylines
 import AnimatedPolyline from './animatedpolyline'
 import L from "leaflet";
+import { RiResetLeftFill } from 'react-icons/ri'
 
 function App() {
     const mapRef = useRef(null);
@@ -78,6 +79,9 @@ function App() {
     }
     const fetch_calculate_antpath = () => {
         return new Promise((resolve, reject) => {
+            if (source == 0 || destination == 0) {
+                return;
+            }
             LoaderManager(1);
             let floor = Math.floor(source / 1000) - 1;
             fetch(`${serverlink}/getCoordinates?src=${source}&des=${destination}`, {
@@ -149,7 +153,7 @@ function App() {
         });
         return latLngs;
     }
-    const renderRoomStatusAndDetail = (floordata) => {
+    const fetch_time_detail = (floordata) => {
         LoaderManager(1);
         let today = new Date();
         const weekdays = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
@@ -175,12 +179,15 @@ function App() {
         LoaderManager(0);
     };
 
-
+    const handledata = async () => {
+        fetch_time_detail();
+        await fetchGeoJSON();
+        await fetch_room_status();
+    }
 
 
     useEffect(() => {
-        fetchGeoJSON();
-        renderRoomStatusAndDetail();
+        handledata();
     }, []);
     useEffect(() => {
         fetch_calculate_antpath();
@@ -384,7 +391,7 @@ function App() {
                         </label>
                     </div>
                     <div className="form-floating col-lg-5 col-md-4 col-sm-12 pb-1 text">
-                        <select className="form-select" id="destination"
+                        <select className="form-select  h-full" id="destination"
                             onChange={() => { setdestination(document.getElementById("destination").value); }}
                             value={destination}
                         >
@@ -417,7 +424,7 @@ function App() {
                     <div className="col-lg-2 col-md-3 col-sm-12 pb-1 align-items-center justify-content-center d-flex">
                         <button
                             type="button"
-                            className="btn btn-lg btn-light coloring rounded-pill col-12 px-2"
+                            className="btn btn-lg btn-light coloring col-12 px-2 h-full"
                             id="go"
                             onClick={() => { fetch_calculate_antpath(); }}
                         >
@@ -442,6 +449,17 @@ function App() {
                 <a href="https://www.linkedin.com/in/ayush-saklani/" target="_blank">
                     <FaLinkedinIn size={44} className='bg-brand-primary rounded-xl p-2 hover:bg-brand-primary-light text-foreground-1' />
                 </a>
+                <div href="https://www.linkedin.com/in/ayush-saklani/" target="_blank">
+                    <RiResetLeftFill size={44} className='bg-brand-primary rounded-xl p-2 hover:bg-brand-primary-light text-foreground-1'
+                        onClick={() => {
+                            setGobuttontext("Go");
+                            setsource(0);
+                            setpathPoints([[], [], [], [], [], [], []]);
+                            setActiveFloor("0");
+                            setdestination(0);
+                        }}
+                    />
+                </div>
             </footer >
         </div>
     )

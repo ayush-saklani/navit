@@ -81,12 +81,13 @@
 
 /* leaflet logo removed from bottom right*/
 .leaflet-control-attribution>a,
-.leaflet-control-attribution>span {
+.leaflet-control-attribution>span,
+.leaflet-control-attribution{
   display: none;
 }
 
 .leaflet-control-attribution {
-  display: flex;
+  display: none;
 }
 
 .leaflet-control-attribution>p {

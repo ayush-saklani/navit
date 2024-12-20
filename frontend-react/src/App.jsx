@@ -375,7 +375,7 @@ function App() {
                 <button className="countboxi" onClick={handleClick}>
                     <i id="foldup-icon" className={`bi ${down ? 'bi-caret-up-fill' : 'bi-caret-down-fill'} h3`}></i>
                 </button>
-                <div className="container row justify-content-center mb-2 w-[80%]">
+                <div className="container row justify-content-center mb-2 ">
                     <div className="form-floating col-lg-5 col-md-5 col-sm-12 pb-1 text">
                         <select className="form-select" id="Start"
                             onChange={() => { setsource(document.getElementById("Start").value); }}

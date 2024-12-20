@@ -13,7 +13,7 @@ import 'leaflet-ant-path'; // If you are using leaflet-ant-path for animated pol
 import AnimatedPolyline from './animatedpolyline'
 import L from "leaflet";
 import { RiResetLeftFill } from 'react-icons/ri'
-import Loader from './loader'
+import Loader from './Loader'
 
 function App() {
     const mapRef = useRef(null);

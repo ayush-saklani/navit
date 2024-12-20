@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  purge: [ './src/**/*.{js,jsx,ts,tsx}', './public/index.html' ],
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
 
@@ -40,6 +40,7 @@ export default {
         'foreground-4': '#a89984',
         'pulse-color': 'var(--Dim-Yellow)',
         'pulse-color2': 'var(--Dim-Red)',
+        'bg-blur': '#72727259;'
       }
     },
   },

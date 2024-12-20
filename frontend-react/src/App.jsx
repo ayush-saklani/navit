@@ -13,6 +13,7 @@ import 'leaflet-ant-path'; // If you are using leaflet-ant-path for animated pol
 import AnimatedPolyline from './animatedpolyline'
 import L from "leaflet";
 import { RiResetLeftFill } from 'react-icons/ri'
+import Loader from './loader'
 
 function App() {
     const mapRef = useRef(null);
@@ -23,6 +24,7 @@ function App() {
     const [activeFloor, setActiveFloor] = useState("0")
     const [timevar, setTimevar] = useState(`Closed`);
     const [loading, setLoading] = useState(true)
+    const [Globalloading, setGlobalLoading] = useState(true)
     const [down, setDown] = useState(false);
     const [hitcount, setHitcount] = useState(0);
     const [Gobuttontext, setGobuttontext] = useState("Go");
@@ -34,7 +36,7 @@ function App() {
     const [destination, setdestination] = useState(0);
 
     const [floorMap, setfloorMap] = useState(null);
-    const [room_status_data, set_room_status_data] = useState(tempstat);
+    const [room_status_data, set_room_status_data] = useState();
     const [pathPoints, setpathPoints] = useState([[], [], [], [], [], [], []]);
 
     const handleClick = () => { setDown((prevDown) => !prevDown); };
@@ -68,7 +70,6 @@ function App() {
                     setHitcount(data.hitcount);
                     setfloorMap(data.data);
                     LoaderManager(0);
-                    setActiveFloor(0);
                     resolve();
                 }).catch(error => {
                     console.error('out of service.. ~_~  @_@', error);
@@ -121,7 +122,6 @@ function App() {
                     console.log(data);
                     set_room_status_data(data);
                     LoaderManager(0);
-                    setActiveFloor(0);
                     resolve();
                 }).catch(error => {
                     console.error(':::: Room Data not available (SERVER ERROR) :::: ');
@@ -180,8 +180,10 @@ function App() {
     };
 
     const handledata = async () => {
+        setGlobalLoading(true);
         fetch_time_detail();
         await fetchGeoJSON();
+        setGlobalLoading(false);
         await fetch_room_status();
     }
 
@@ -196,6 +198,12 @@ function App() {
 
     return (
         <div>
+            {
+                Globalloading &&
+                <div className="z-[1001] backdrop-blur-sm position-fixed w-screen h-screen bg-bg-blur bg-opacity-90 flex justify-center align-items-center">
+                    <Loader />
+                </div>
+            }
             <div className="position-fixed bottom-0 fw-bold left-0 text-lg text-brand-primary-dark px-2 fw-bold z-[1]">{hitcount}</div>
             <nav className="flex align-items-center p-2 position-fixed z-[1]">
                 <img className="h-[80px]" src={navitlogo} height="70px" />

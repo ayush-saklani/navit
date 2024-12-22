@@ -6,6 +6,7 @@ export default {
 
     extend: {
       colors: {
+
         'brand-primary': {
           DEFAULT: '#043a45',
           light: '#043a45',
@@ -180,13 +181,58 @@ export default {
           DEFAULT: 'var(--Dim-Red)',
           light: 'var(--Dim-Red)',
           dark: 'var(--Dim-Red)',
-        }
+        },
+        'bg0': {
+          DEFAULT: "#FFFBEF",
+          light: "#FFFBEF",
+          dark: '#FFFBEF'
+        },
+        'bg1': {
+          DEFAULT: "#F8F5E4",
+          light: "#F8F5E4",
+          dark: '#F8F5E4'
+        },
+        'bg2': {
+          DEFAULT: "#F2EFDF",
+          light: "#F2EFDF",
+          dark: '#F2EFDF'
+        },
+        'bg3': {
+          DEFAULT: "#EDEADA",
+          light: "#EDEADA",
+          dark: '#EDEADA'
+        },
+        'bg4': {
+          DEFAULT: "#E8E5D5",
+          light: "#E8E5D5",
+          dark: '#E8E5D5'
+        },
+        'bg5': {
+          DEFAULT: "#BEC5B2",
+          light: "#BEC5B2",
+          dark: '#BEC5B2'
+        },
+        'gray1': {
+          DEFAULT: "#A6B0A0",
+          light: "#A6B0A0",
+          dark: '#A6B0A0'
+        },
+        'gray2': {
+          DEFAULT: "#939F91",
+          light: "#939F91",
+          dark: '#939F91'
+        },
+        'gray3': {
+          DEFAULT: "#829181",
+          light: "#829181",
+          dark: '#829181'
+        },
       }
     },
   },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
+variants: {
+  extend: { },
+},
+plugins: [],
 }
 

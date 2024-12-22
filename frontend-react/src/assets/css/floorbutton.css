@@ -1,19 +1,13 @@
-.floorbutton {
-    z-index: 1000;
-}
-
 .circular_button {
-    background-color: var(--brand-primary-light);
-    color: rgb(255, 255, 255);
-    font-family: "anta";
+    /* background-color: var(--brand-primary-light); */
+    /* color: rgb(255, 255, 255); */
     font-size: x-large;
     height: 60px;
     width: 60px;
     border-radius: 50%;
-    z-index: 10;
     margin-bottom: 5px;
     transition: ease-in-out 0.5s;
-    border: var(--brand-primary) 3px solid;
+    /* border: var(--brand-primary) 3px solid; */
 }
 
 .circular_button:hover,

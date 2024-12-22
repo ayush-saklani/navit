@@ -6,13 +6,10 @@ import './assets/css/bottombar.css'
 import { MapContainer, TileLayer, Marker, Popup, useMap, GeoJSON, Polyline, Polygon } from 'react-leaflet';
 import navitlogo from '/src/assets/images/logo.png'
 import roomData from './room.json'
-import tempstat from './tempstat.json'
-import { FaGithub, FaLinkedin } from 'react-icons/fa'
-import { FaArrowRotateLeft, FaArrowRotateRight, FaArrowsRotate, FaLinkedinIn } from 'react-icons/fa6'
+import { FaArrowRotateRight, FaLinkedinIn, FaGithub } from 'react-icons/fa6'
 import 'leaflet-ant-path'; // If you are using leaflet-ant-path for animated polylines
 import AnimatedPolyline from './animatedpolyline'
 import L from "leaflet";
-import { RiResetLeftFill } from 'react-icons/ri'
 import Loader from './Loader'
 import FontAdjuster from './fontadjuster'
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
@@ -54,8 +51,10 @@ function App() {
     );
     useEffect(() => {
         if (isDarkMode) {
+            document.documentElement.classList.add("dark"); // Add the Tailwind 'dark' class
             localStorage.setItem("theme", "dark");
         } else {
+            document.documentElement.classList.remove("dark"); // Remove the 'dark' class
             localStorage.setItem("theme", "light");
         }
     }, [isDarkMode]);
@@ -215,12 +214,12 @@ function App() {
 
     return (
         <div>
-            {
+            {/* {
                 Globalloading &&
                 <div className="z-[1001] backdrop-blur-sm position-fixed w-screen h-screen bg-bg-blur bg-opacity-90 flex justify-center align-items-center">
                     <Loader />
                 </div>
-            }
+            } */}
             <Toaster />
             <div className="position-fixed bottom-0 fw-bold left-0 text-lg text-brand-primary-dark px-2 fw-bold z-[1]">{hitcount}</div>
             <nav className="flex align-items-center p-2 position-fixed z-[1]">
@@ -384,14 +383,15 @@ function App() {
             {/* floorbutton */}
             <div className="floorbutton mx-3 flex gap-1 justify-content-center align-items-center z-[1] flex-column position-fixed  left-0 top-[14%]" >
                 {floors.map((floor, index) => (
-                    <button key={index} className={`circular_button aspect-square ${activeFloor === floor ? 'active' : ''}`} id={floor} onClick={() => setActiveFloor(floor)}><b>{floor === -1 ? 'B' : floor === 0 ? 'G' : floor}</b></button>
+                    <button key={index} className={`bg-brand-primary-light text-white dark:bg-brand-primary-dark dark:text-white border-3 border-brand-primary-dark ${activeFloor === floor && 'dark:bg-brand-primary-light dark:border-brand-primary-dark' } dark:border-brand-primary-light
+                        circular_button aspect-square ${activeFloor === floor ? 'active' : ''}`} id={floor} onClick={() => setActiveFloor(floor)}><b>{floor === -1 ? 'B' : floor === 0 ? 'G' : floor}</b></button>
                 ))}
             </div>
             {/* floorbutton */}
 
             {/* bottombar */}
             <div className={`bottom-bar p-0 ${down ? 'bottom-bar-down' : ''}`}>
-                <button className="countboxi" onClick={handleClick}>
+                <button className="countboxi text-brand-primary-dark" onClick={handleClick}>
                     <i id="foldup-icon" className={`bi ${down ? 'bi-caret-up-fill' : 'bi-caret-down-fill'} h3`}></i>
                 </button>
                 <div className="container row justify-content-center my-auto">
@@ -485,11 +485,13 @@ function App() {
                 <a href="https://www.linkedin.com/in/ayush-saklani/" target="_blank">
                     <FaLinkedinIn size={44} className='bg-brand-primary rounded-xl p-2 hover:bg-brand-primary-light text-foreground-1' />
                 </a>
+                {/* 
                 <div href="https://www.linkedin.com/in/ayush-saklani/" target="_blank">
                     <FaArrowsRotate size={44} className='bg-brand-primary rounded-xl p-2 hover:bg-brand-primary-light text-foreground-1 cursor-pointer text-3xl'
                         onClick={() => handledata()}
                     />
                 </div>
+                */}
                 {/* <div href="https://www.linkedin.com/in/ayush-saklani/" target="_blank" >
                     <div className='bg-brand-primary rounded-xl  hover:bg-brand-primary-light text-foreground-1'>
                         <DarkModeSwitch

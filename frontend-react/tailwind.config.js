@@ -167,7 +167,7 @@ export default {
           dark: '#a89984',
         },
         'bg-blur': {
-          DEFAULT: '#72727259',
+          DEFAULT: 'rgba(19, 46, 42, 0.45)',
           light: '#72727259',
           dark: '#72727259',
         },

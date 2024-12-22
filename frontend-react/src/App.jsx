@@ -8,7 +8,7 @@ import navitlogo from '/src/assets/images/logo.png'
 import roomData from './room.json'
 import tempstat from './tempstat.json'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
-import { FaArrowRotateLeft, FaArrowRotateRight, FaLinkedinIn } from 'react-icons/fa6'
+import { FaArrowRotateLeft, FaArrowRotateRight, FaArrowsRotate, FaLinkedinIn } from 'react-icons/fa6'
 import 'leaflet-ant-path'; // If you are using leaflet-ant-path for animated polylines
 import AnimatedPolyline from './animatedpolyline'
 import L from "leaflet";
@@ -16,6 +16,7 @@ import { RiResetLeftFill } from 'react-icons/ri'
 import Loader from './Loader'
 import FontAdjuster from './fontadjuster'
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
+import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
     const mapRef = useRef(null);
@@ -53,11 +54,11 @@ function App() {
     );
     useEffect(() => {
         if (isDarkMode) {
-          localStorage.setItem("theme", "dark");
+            localStorage.setItem("theme", "dark");
         } else {
-          localStorage.setItem("theme", "light");
+            localStorage.setItem("theme", "light");
         }
-      }, [isDarkMode]);
+    }, [isDarkMode]);
     const toggleDarkMode = (checked) => {
         setDarkMode(checked);
     };
@@ -214,12 +215,13 @@ function App() {
 
     return (
         <div>
-            {/* {
+            {
                 Globalloading &&
                 <div className="z-[1001] backdrop-blur-sm position-fixed w-screen h-screen bg-bg-blur bg-opacity-90 flex justify-center align-items-center">
                     <Loader />
                 </div>
-            } */}
+            }
+            <Toaster />
             <div className="position-fixed bottom-0 fw-bold left-0 text-lg text-brand-primary-dark px-2 fw-bold z-[1]">{hitcount}</div>
             <nav className="flex align-items-center p-2 position-fixed z-[1]">
                 <img className="h-[80px]" src={navitlogo} height="70px" />
@@ -228,9 +230,9 @@ function App() {
 
             <MapContainer
                 center={[30.2734504, 77.9997427]}
-                zoom={18}
+                zoom={19}
                 maxZoom={22}
-                minZoom={16}
+                minZoom={19}
                 zoomControl={false}
                 scrollWheelZoom={true}
                 zoomAnimation={true}
@@ -451,7 +453,16 @@ function App() {
                             type="button"
                             className="btn btn-lg btn-light col-12 px-2 h-full text-brand-primary-dark"
                             id="go"
-                            onClick={() => { fetch_calculate_antpath(); }}
+                            onClick={() => {
+                                if (source == 0 || destination == 0) {
+                                    toast.error("Please select source and destination", {
+                                        duration: 2000,
+                                        position: 'top-center',
+                                    });
+                                    return;
+                                }
+                                fetch_calculate_antpath();
+                            }}
                         >
                             <b className="h4 fw-bold text">{Gobuttontext}
                                 {Gobuttontext !== "Go" && <i className="bi bi-person-walking"></i>}
@@ -475,17 +486,11 @@ function App() {
                     <FaLinkedinIn size={44} className='bg-brand-primary rounded-xl p-2 hover:bg-brand-primary-light text-foreground-1' />
                 </a>
                 <div href="https://www.linkedin.com/in/ayush-saklani/" target="_blank">
-                <FaArrowRotateRight size={44} className='bg-brand-primary rounded-xl p-2 hover:bg-brand-primary-light text-foreground-1 cursor-pointer text-3xl'
-                        onClick={() => {
-                            setGobuttontext("Go");
-                            setsource(0);
-                            setpathPoints([[], [], [], [], [], [], []]);
-                            setActiveFloor("0");
-                            setdestination(0);
-                        }}
+                    <FaArrowsRotate size={44} className='bg-brand-primary rounded-xl p-2 hover:bg-brand-primary-light text-foreground-1 cursor-pointer text-3xl'
+                        onClick={() => handledata()}
                     />
                 </div>
-                <div href="https://www.linkedin.com/in/ayush-saklani/" target="_blank" >
+                {/* <div href="https://www.linkedin.com/in/ayush-saklani/" target="_blank" >
                     <div className='bg-brand-primary rounded-xl  hover:bg-brand-primary-light text-foreground-1'>
                         <DarkModeSwitch
                             checked={isDarkMode}
@@ -494,6 +499,17 @@ function App() {
                             className=' p-2 text-foreground-1'
                         />
                     </div>
+                </div> */}
+                <div href="https://www.linkedin.com/in/ayush-saklani/" target="_blank">
+                    <FaArrowRotateRight size={44} className='bg-brand-primary rounded-xl p-2 hover:bg-brand-primary-light text-foreground-1 cursor-pointer text-3xl'
+                        onClick={() => {
+                            setGobuttontext("Go");
+                            setsource(0);
+                            setpathPoints([[], [], [], [], [], [], []]);
+                            setActiveFloor("0");
+                            setdestination(0);
+                        }}
+                    />
                 </div>
             </footer >
         </div>

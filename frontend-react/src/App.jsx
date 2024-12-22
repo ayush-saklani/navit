@@ -3,7 +3,7 @@ import './App.css'
 import './globals.css'
 import './assets/css/floorbutton.css'
 import './assets/css/bottombar.css'
-import { MapContainer, TileLayer, Marker, Popup, useMap, GeoJSON, Polyline, Polygon } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap, GeoJSON, Polyline, Polygon, Circle, CircleMarker } from 'react-leaflet';
 import navitlogo from '/src/assets/images/logo.png'
 import roomData from './room.json'
 import { FaArrowRotateRight, FaLinkedinIn, FaGithub } from 'react-icons/fa6'
@@ -211,6 +211,36 @@ function App() {
         fetch_calculate_antpath();
     }, [source, destination]);
 
+    const [coordinates, setCoordinates] = useState(null);
+    useEffect(() => {
+        if (navigator.geolocation) {
+            const watchId = navigator.geolocation.watchPosition(
+                (position) => {
+                    if (position.coords.accuracy < 30) {
+                        setCoordinates([position.coords.latitude, position.coords.longitude]);
+                    }
+                    else {
+                        toast.error("Location accuracy is low", {
+                            duration: 2000,
+                            position: 'top-center',
+                        });
+                        return () => navigator.geolocation.clearWatch(watchId);
+                    }
+                },
+                (error) => {
+                    toast.error("Error fetching location", {
+                        duration: 2000,
+                        position: 'top-center',
+                    });
+                    console.error('Error watching location:', error);
+                },
+                { enableHighAccuracy: true } // Optional: use high accuracy for better location updates
+            );
+            return () => navigator.geolocation.clearWatch(watchId);
+        } else {
+            console.error('Geolocation not supported by this browser.');
+        }
+    }, []); // Empty dependency array ensures it runs once on mount
 
     return (
         <div>
@@ -231,7 +261,7 @@ function App() {
                 center={[30.2734504, 77.9997427]}
                 zoom={19}
                 maxZoom={22}
-                minZoom={19}
+                minZoom={1}
                 zoomControl={false}
                 scrollWheelZoom={true}
                 zoomAnimation={true}
@@ -269,6 +299,16 @@ function App() {
                             "color": 'var(--pulseColor)',
                             "pulseColor": "var(--pulseColor2)",
                         }}
+                    />
+                }
+                {coordinates &&
+                    <Circle center={coordinates}
+                        radius={2}
+                        className='leaflet-wave'
+                        fillColor='var(--brand-primary-dark)'
+                        color="var(--Blue)"
+                        fillOpacity={0.5}
+                        fill={true}
                     />
                 }
                 { // ammenities
@@ -383,7 +423,7 @@ function App() {
             {/* floorbutton */}
             <div className="floorbutton mx-3 flex gap-1 justify-content-center align-items-center z-[1] flex-column position-fixed  left-0 top-[14%]" >
                 {floors.map((floor, index) => (
-                    <button key={index} className={`bg-brand-primary-light text-white dark:bg-brand-primary-dark dark:text-white border-3 border-brand-primary-dark ${activeFloor === floor && 'dark:bg-brand-primary-light dark:border-brand-primary-dark' } dark:border-brand-primary-light
+                    <button key={index} className={`bg-brand-primary-light text-white dark:bg-brand-primary-dark dark:text-white border-3 border-brand-primary-dark ${activeFloor === floor && 'dark:bg-brand-primary-light dark:border-brand-primary-dark'} dark:border-brand-primary-light
                         circular_button aspect-square ${activeFloor === floor ? 'active' : ''}`} id={floor} onClick={() => setActiveFloor(floor)}><b>{floor === -1 ? 'B' : floor === 0 ? 'G' : floor}</b></button>
                 ))}
             </div>

@@ -15,6 +15,7 @@ import L from "leaflet";
 import { RiResetLeftFill } from 'react-icons/ri'
 import Loader from './Loader'
 import FontAdjuster from './fontadjuster'
+import { DarkModeSwitch } from 'react-toggle-dark-mode';
 
 function App() {
     const mapRef = useRef(null);
@@ -22,7 +23,7 @@ function App() {
     const serverlink2 = "https://class-sync-azure.azurewebsites.net";   // classsync azure server link
 
     const floors = [-1, 0, 1, 2, 3, 4, 5]
-    const [activeFloor, setActiveFloor] = useState("0")
+    const [activeFloor, setActiveFloor] = useState(0)
     const [timevar, setTimevar] = useState(`Closed`);
     const [loading, setLoading] = useState(true)
     const [Globalloading, setGlobalLoading] = useState(true)
@@ -46,6 +47,20 @@ function App() {
         setloaderCounter((plus == 1) ? (loaderCounter + 1) : (loaderCounter - 1));
         setLoading(loaderCounter > 0 ? true : false);
     }
+
+    const [isDarkMode, setDarkMode] = useState(
+        localStorage.getItem("theme") === "dark" || false
+    );
+    useEffect(() => {
+        if (isDarkMode) {
+          localStorage.setItem("theme", "dark");
+        } else {
+          localStorage.setItem("theme", "light");
+        }
+      }, [isDarkMode]);
+    const toggleDarkMode = (checked) => {
+        setDarkMode(checked);
+    };
 
     const aminities = [
         "1051", "1029", "1099", "1083",
@@ -469,6 +484,16 @@ function App() {
                             setdestination(0);
                         }}
                     />
+                </div>
+                <div href="https://www.linkedin.com/in/ayush-saklani/" target="_blank" >
+                    <div className='bg-brand-primary rounded-xl  hover:bg-brand-primary-light text-foreground-1'>
+                        <DarkModeSwitch
+                            checked={isDarkMode}
+                            onChange={toggleDarkMode}
+                            size={44}
+                            className=' p-2 text-foreground-1'
+                        />
+                    </div>
                 </div>
             </footer >
         </div>

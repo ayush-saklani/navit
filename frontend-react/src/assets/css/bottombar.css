@@ -32,15 +32,6 @@
     transition: ease-in-out 1s;
 }
 
-.countboxi:hover {
-    color: var(--brand-primary-dark);
-    transition: ease-in-out 1s;
-}
-
-#go {
-    height: 57px;
-}
-
 @media only screen and (max-width: 768px) {
     .bottom-bar {
         height: 30%;

@@ -224,7 +224,8 @@ function App() {
                             duration: 2000,
                             position: 'top-center',
                         });
-                        return () => navigator.geolocation.clearWatch(watchId);
+                        setCoordinates([position.coords.latitude, position.coords.longitude]);
+                        navigator.geolocation.clearWatch(watchId);
                     }
                 },
                 (error) => {

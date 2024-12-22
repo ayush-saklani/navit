@@ -71,10 +71,6 @@
   font-family: anta;
 }
 
-.coloring {
-  color: var(--brand-primary-dark) !important;
-}
-
 #map {
   z-index: 0 !important;
 }

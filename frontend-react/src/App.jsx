@@ -411,7 +411,7 @@ function App() {
                                 </optgroup>
                             ))}
                         </select>
-                        <label className="ms-2 text coloring" name="Start">
+                        <label className="ms-2 text text-brand-primary-dark" name="Start">
                             <b>Start</b>
                         </label>
                     </div>
@@ -442,14 +442,14 @@ function App() {
                                 </optgroup>
                             ))}
                         </select>
-                        <label className="ms-2 text coloring">
+                        <label className="ms-2 text text-brand-primary-dark" name="destination">
                             <b>Destination</b>
                         </label>
                     </div>
                     <div className="col-lg-2 col-md-3 col-sm-12 pb-1 align-items-center justify-content-center d-flex">
                         <button
                             type="button"
-                            className="btn btn-lg btn-light coloring col-12 px-2 h-full"
+                            className="btn btn-lg btn-light col-12 px-2 h-full text-brand-primary-dark"
                             id="go"
                             onClick={() => { fetch_calculate_antpath(); }}
                         >

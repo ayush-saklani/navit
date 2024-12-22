@@ -14,6 +14,7 @@ import AnimatedPolyline from './animatedpolyline'
 import L from "leaflet";
 import { RiResetLeftFill } from 'react-icons/ri'
 import Loader from './Loader'
+import FontAdjuster from './fontadjuster'
 
 function App() {
     const mapRef = useRef(null);
@@ -66,7 +67,7 @@ function App() {
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                     setHitcount(data.hitcount);
                     setfloorMap(data.data);
                     LoaderManager(0);
@@ -92,7 +93,7 @@ function App() {
                 }
             }).then(response => response.json())
                 .then(data => {
-                    console.log(data.data.antpath);
+                    // console.log(data.data.antpath);
                     setpathPoints(data.data.antpath);
                     setpathDistance(data.data.distance);
                     let tempTime = Math.round(pathDistance) / 2;
@@ -119,7 +120,7 @@ function App() {
             }).then(response => response.json())
                 .then(data => {
                     data = data.data;
-                    console.log(data);
+                    // console.log(data);
                     set_room_status_data(data);
                     LoaderManager(0);
                     resolve();
@@ -222,6 +223,7 @@ function App() {
                 id="map"
                 whenCreated={(map) => (mapRef.current = map)}
             >
+                <FontAdjuster />
                 <TileLayer
                     attribution='<p><a href="https://github.com/ayush-saklani"><img src="https://flagcdn.com/in.svg" width="15" alt="India"><b> Made by Ayush Saklani</b></a> <br>Co-powered by <a href="https://github.com/ayush-saklani/classsync"><b>Classsync</b></a></p>'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -258,7 +260,7 @@ function App() {
                         if (floordata.floor === activeFloor.toString()) {
                             return floordata.map.features.map((feature) => {
                                 if (feature.properties && feature.properties.room_id && aminities.includes(feature.properties.room_id)) {
-                                    console.log("Rendering polygon for room_id:", feature.properties.room_id);
+                                    // console.log("Rendering polygon for room_id:", feature.properties.room_id);
                                     return (
                                         <Polygon
                                             key={feature.properties.room_id} // Ensure a unique key for each Polygon

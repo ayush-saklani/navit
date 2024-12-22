@@ -247,7 +247,7 @@ function App() {
         <div>
             {
                 Globalloading &&
-                <div className="z-[1001] backdrop-blur-sm position-fixed w-screen h-screen bg-bg-blur bg-opacity-90 flex justify-center align-items-center">
+                <div className="z-[1001] backdrop-blur-sm position-fixed w-full h-full bg-bg-blur flex justify-center align-items-center">
                     <Loader />
                 </div>
             }

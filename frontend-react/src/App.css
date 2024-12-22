@@ -165,3 +165,7 @@
   background-color: var(--bg2);
   /* box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.767); */
 }
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}

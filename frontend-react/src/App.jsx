@@ -8,7 +8,7 @@ import navitlogo from '/src/assets/images/logo.png'
 import roomData from './room.json'
 import tempstat from './tempstat.json'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
-import { FaLinkedinIn } from 'react-icons/fa6'
+import { FaArrowRotateLeft, FaArrowRotateRight, FaLinkedinIn } from 'react-icons/fa6'
 import 'leaflet-ant-path'; // If you are using leaflet-ant-path for animated polylines
 import AnimatedPolyline from './animatedpolyline'
 import L from "leaflet";
@@ -465,7 +465,7 @@ function App() {
             <footer className="fixed top-0 right-0 m-1 z-[1] flex flex-col gap-1 align-items-end justify-content-center">
                 <div className="text-3xl px-1 text-brand-primary-dark fw-bold">
                     {loading == false ?
-                        <div className="text-3xl text-brand-primary-dark py-1">{timevar}</div> :
+                        <div className="text-2xl text-brand-primary-dark py-1">{timevar}</div> :
                         <div className="spinner-border text-3xl text-brand-primary-dark p-[12px]"></div>}
                 </div>
                 <a href="https://github.com/ayush-saklani" target="_blank">
@@ -475,7 +475,7 @@ function App() {
                     <FaLinkedinIn size={44} className='bg-brand-primary rounded-xl p-2 hover:bg-brand-primary-light text-foreground-1' />
                 </a>
                 <div href="https://www.linkedin.com/in/ayush-saklani/" target="_blank">
-                    <RiResetLeftFill size={44} className='bg-brand-primary rounded-xl p-2 hover:bg-brand-primary-light text-foreground-1'
+                <FaArrowRotateRight size={44} className='bg-brand-primary rounded-xl p-2 hover:bg-brand-primary-light text-foreground-1 cursor-pointer text-3xl'
                         onClick={() => {
                             setGobuttontext("Go");
                             setsource(0);

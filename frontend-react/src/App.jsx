@@ -214,6 +214,21 @@ function App() {
     const [coordinates, setCoordinates] = useState(null);
     useEffect(() => {
         if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    if (position.coords.accuracy > 30) {
+                        toast.dismiss();
+                        toast.error("Location accuracy low", {
+                            duration: 2000,
+                            position: 'top-center',
+                        });
+                    }
+                },
+                (error) => {
+                    console.error("Error getting location:", error.message);
+                }
+            );
+
             const watchId = navigator.geolocation.watchPosition(
                 (position) => {
                     console.log(position.coords.accuracy);
@@ -221,14 +236,8 @@ function App() {
                         setCoordinates([position.coords.latitude, position.coords.longitude]);
                     }
                     else {
-                        toast.dismiss();
-                        toast.error("Location accuracy low", {
-                            duration: 1000,
-                            position: 'top-center',
-                        });
                         setCoordinates([position.coords.latitude, position.coords.longitude]);
-                        // setCoordinates([30.2734504, 77.9997427]);
-                        navigator.geolocation.clearWatch(watchId);
+                        // navigator.geolocation.clearWatch(watchId);
                     }
                 },
                 (error) => {

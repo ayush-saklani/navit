@@ -227,7 +227,7 @@ function App() {
                             position: 'top-center',
                         });
                         setCoordinates([position.coords.latitude, position.coords.longitude]);
-                        setCoordinates([30.2734504, 77.9997427]);
+                        // setCoordinates([30.2734504, 77.9997427]);
                         navigator.geolocation.clearWatch(watchId);
                     }
                 },

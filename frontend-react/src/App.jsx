@@ -216,15 +216,18 @@ function App() {
         if (navigator.geolocation) {
             const watchId = navigator.geolocation.watchPosition(
                 (position) => {
+                    console.log(position.coords.accuracy);
                     if (position.coords.accuracy < 30) {
                         setCoordinates([position.coords.latitude, position.coords.longitude]);
                     }
                     else {
-                        toast.error("Location accuracy is low", {
-                            duration: 2000,
+                        toast.dismiss();
+                        toast.error("Location accuracy low", {
+                            duration: 1000,
                             position: 'top-center',
                         });
                         setCoordinates([position.coords.latitude, position.coords.longitude]);
+                        setCoordinates([30.2734504, 77.9997427]);
                         navigator.geolocation.clearWatch(watchId);
                     }
                 },
@@ -240,6 +243,10 @@ function App() {
             return () => navigator.geolocation.clearWatch(watchId);
         } else {
             console.error('Geolocation not supported by this browser.');
+            toast.error('Geolocation not supported', {
+                duration: 2000,
+                position: 'top-center',
+            });
         }
     }, []); // Empty dependency array ensures it runs once on mount
 

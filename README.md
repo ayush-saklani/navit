@@ -1,6 +1,6 @@
-# **Indoor Mapping - *Navit* ( v2.0 )** <img src="assets/images/logo.png" height="110" align="left"/>
+# **Indoor Mapping - *Navit* ( v2.2 )** <img src="assets/images/logo.png" height="110" align="left"/>
 
-**Navit is an indoor mapping solution made for University or any other big campus. _(currently, in final integration phase)_**
+**Navit is an indoor mapping solution made for University or any other big campus.**
 
 ---
 # **Languages, Frameworks and Tools**
@@ -25,10 +25,21 @@
 </p>
 
 # How to run this project
-- **Backend ( Server ) -** `/backend` `npm install` `npm start` ***( starts the server )***
-- **Frontend -** Open `frontend/index.html` ***( home page )*** or <a class="link-danger" href="https://navit.vercel.app/"><b>Navit</b></a>
+- **Backend ( NodeJS ) -** `/backend` `npm install` `npm start` ***( starts the server )***
+- **Frontend ( ReactJS ) -** `/frontend-react` `npm install` `npm run dev` or <a class="link-danger" href="https://navit.vercel.app/"><b>Navit</b></a>
 
----
+# License
+**This project is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).**
+
+If you would like to use this project for commercial purposes, please contact the author for permission.
+
+# Contributing
+Contributions are welcome! If you'd like to contribute to this project, please fork the repository, create a pull request, and ensure your changes align with the non-commercial intent of the license.
+
+# Disclaimer
+This software is provided "as-is," without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and non-infringement. Use at your own risk.
+
+
 # ⭐ Current Ideas and Features for Development
 
 ## Version 1.0  ✅
@@ -51,8 +62,9 @@ ___~~(Floor numbering: 0 for ground floor, 1 for first floor and 6 for undergrou
 - [x] Database Integration - Introduce a database to store custom maps and routes.
 - [ ] _~~Authentication and Security - Implement authentication for students to verify users~~_ **_(cancelled)_**
 - [ ] _~~Possibly restrict mapping functionalities to within the campus IP or network for safety concerns~~_ **_(cancelled)_**
-## Version 2.0 ⌛ *( under development )*
+## Version 2.0 ✅
 - [x] Classsync - Integration of Class-sync APIs with Navit.
-- [ ] Code Migration - Migration of code into ReactJS completely 
+- [x] Code Migration - Migration of code into ReactJS completely 
+## Version 2.2 ⌛ *( under development )*
 - [ ] React Native - Analyze the benefits and scope of code Migration in React Native. 
 ## **Keep Coding, Keep Smiling!, Have Fun!** 💻🚀

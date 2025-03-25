@@ -14,6 +14,9 @@ import Loader from './Loader'
 import FontAdjuster from './fontadjuster'
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import toast, { Toaster } from 'react-hot-toast';
+import profilepicture from './assets/images/bbz.jpg'
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
+import ProfilePictureMenu from './ProfilePictureMenu'
 
 function App() {
     const mapRef = useRef(null);
@@ -535,6 +538,16 @@ function App() {
                     {loading == false ?
                         <div className="text-2xl text-brand-primary-dark py-1">{timevar}</div> :
                         <div className="spinner-border text-3xl text-brand-primary-dark p-[12px]"></div>}
+                </div>
+                <div>
+                    <Popover className="relative">
+                        <PopoverButton>
+                            <img src={profilepicture} alt="" size={44} className='h-12 w-12 rounded-full p-0 cursor-pointer' />
+                        </PopoverButton>
+                        <PopoverPanel anchor="bottom" className="flex flex-col bg-brand-primary-light rounded-xl z-10">
+                            <ProfilePictureMenu profilepicture={profilepicture} />
+                        </PopoverPanel>
+                    </Popover>
                 </div>
                 <a href="https://github.com/ayush-saklani" target="_blank">
                     <FaGithub size={44} className='bg-brand-primary rounded-xl p-2 hover:bg-brand-primary-light text-foreground-1' />

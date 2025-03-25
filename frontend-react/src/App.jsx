@@ -407,7 +407,7 @@ function App() {
                                                 <Popup closeButton={false} className="popup-content">
                                                     {
                                                         room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section.length > 0 ?
-                                                            <div className='block flex flex-col'>
+                                                            <div className='flex flex-col'>
                                                                 <span>{room_talking_about.name}</span>
                                                                 <span>{room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].course.toLocaleUpperCase()}</span>
                                                                 <span>{"Section: " + room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section}</span>

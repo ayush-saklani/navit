@@ -6,4 +6,3 @@ node_modules
 .vscode
 /backend/misc/
 /backend/assets/
-users.controller.js

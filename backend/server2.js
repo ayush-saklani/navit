@@ -26,7 +26,7 @@ const g = new jsgraphs.WeightedGraph(7000); // Create a graph with 7000 nodes
 const loadMap1 = () => {                        // Load the coordinates of the nodes and creates the graph 
     return new Promise((resolve, reject) => {
         edgeModel.find({}).then((data, err) => {
-            if (err){
+            if (err) {
                 console.log("XXXX Map Load 1/2 incompleted XXXX");
                 reject();
             }
@@ -42,7 +42,7 @@ const loadMap1 = () => {                        // Load the coordinates of the n
 const loadMap2 = () => {                        // Load the labels of the nodes and updates the graph nodes with the labels
     return new Promise((resolve, reject) => {
         nodeModel.find({}).then((data, err) => {
-            if (err){
+            if (err) {
                 console.log("XXXX Map Load 2/2 incompleted XXXX");
                 reject();
             }
@@ -64,25 +64,25 @@ const dijfunc = (src, des) => {                 // Dijkstra's Algorithm :: findS
     if (dijkstra.hasPathTo(des)) {
         let res = [[], [], [], [], [], [], []];
         var path = dijkstra.pathTo(des);
-        let curr_floor ;
+        let curr_floor;
         let temp_con = [];
         for (var i = 0; i < path.length; ++i) {
             e = path[i];
             let temp = (g.node(e.from()).label).split(',');
             if (i == 0) {
-                curr_floor = eval(temp[2])+1;
+                curr_floor = eval(temp[2]) + 1;
             }
             let temparr = [];
             if (i != path.length - 1) {
                 temparr.push(Number(temp[0]));
                 temparr.push(Number(temp[1]));
-                if ((eval(temp[2])+1) == curr_floor) {
+                if ((eval(temp[2]) + 1) == curr_floor) {
                     temp_con.push(temparr);
                 } else {
                     res[curr_floor].push(temp_con);
                     temp_con = [];
                     temp_con.push(temparr);
-                    curr_floor = (eval(temp[2])+1);
+                    curr_floor = (eval(temp[2]) + 1);
                 }
             } else if (i == path.length - 1) {
                 let temp = (g.node(e.from()).label).split(',');
@@ -108,24 +108,24 @@ const dijfunc = (src, des) => {                 // Dijkstra's Algorithm :: findS
     }
 };
 const segregate_aminity = (src, keyword) => {   // Segregate the washrooms based on the keyword(1999:Gents 1998:Ladies) RETURNS: Array of Destinations
-    try{
+    try {
         src = Math.floor(eval(src));
         keyword = Math.floor(eval(keyword));
-        let totalToilet = (keyword == 1999) ? 
-        [1083,1051,2083,2051,3083,3051,4083,4051,5083,5051,6083,6051] :     // Gents Toilet
-        [1099,1029,2099,2029,3099,3029,4099,4029,5099,5029,6099,6029]       // Ladies Toilet
-        if(Math.floor(eval(src/1000)) == 0) {
+        let totalToilet = (keyword == 1999) ?
+            [1083, 1051, 2083, 2051, 3083, 3051, 4083, 4051, 5083, 5051, 6083, 6051] :     // Gents Toilet
+            [1099, 1029, 2099, 2029, 3099, 3029, 4099, 4029, 5099, 5029, 6099, 6029]       // Ladies Toilet
+        if (Math.floor(eval(src / 1000)) == 0) {
             src = eval(src) + 1000;
         }
         let des = [];
         for (let i = 0; i < totalToilet.length; i++) {
-            if (Math.floor(eval(src/1000)) == Math.floor(eval(totalToilet[i])/1000)) {
+            if (Math.floor(eval(src / 1000)) == Math.floor(eval(totalToilet[i]) / 1000)) {
                 des.push(totalToilet[i]);
             }
-        } 
+        }
         return des;
     }
-    catch(err){
+    catch (err) {
         // console.log("Error: Could not find suitable destination.");
         return null;
     }
@@ -156,9 +156,9 @@ app.get('/getCoordinates', (req, res) => {      // Get the coordinates of the an
     let coordinates;
     if (AmenityArr.includes(des)) {
         des = nearest_amenity(src, des);
-        if(des == null){
+        if (des == null) {
             res.status(404).json({
-                "status" : 'error', 
+                "status": 'error',
                 "error": 'No path found.'
             });
         }
@@ -172,7 +172,7 @@ app.get('/getCoordinates', (req, res) => {      // Get the coordinates of the an
         });
     } else {
         res.status(404).json({
-            "status" : 'error',
+            "status": 'error',
             "error": 'No path found.'
         });
     }
@@ -181,19 +181,19 @@ app.get('/getmap', async (req, res) => {        // Return an array of objects(do
     try {
         let serverhitcount;
         await metadata.find({}).then((data, err) => {
-            if (err){
+            if (err) {
                 console.log("Server Hit Count Fetching Error");
                 reject();
             }
             serverhitcount = data[0].serverhitcount;
             // console.log(data[0].serverhitcount);
-            metadata.updateOne({serverhitcount: serverhitcount+1}).then((data, err) => {
-                if (err){
+            metadata.updateOne({ serverhitcount: serverhitcount + 1 }).then((data, err) => {
+                if (err) {
                     console.log("Server Hit Count increment Error");
                     reject();
                 }
             });
-            serverhitcount%10==0?console.log(":::: Server Hit + 10 ::::"):"";
+            serverhitcount % 10 == 0 ? console.log(":::: Server Hit + 10 ::::") : "";
         });
         const mapdata = await map.find({});
         res.status(200).json({
@@ -208,6 +208,16 @@ app.get('/getmap', async (req, res) => {        // Return an array of objects(do
 app.get('/keepmeawake', (req, res) => {          // Keep the server awake
     res.status(200).json({ "status": 'Up and Running Boi' });
 });
+
+import { signup, verifyotp, signin, resendotp, resetpassword, resetpasswordverify } from './users.controller.js';
+
+app.post('/signup', signup);
+app.post('/verifyotp', verifyotp);
+app.post('/signin', signin);
+app.post('/resendotp', resendotp);
+app.post('/resetpassword', resetpassword);
+app.post('/resetpasswordverify', resetpasswordverify);
+
 app.listen(port, async () => {
     await mongoose.connect(process.env.MONGODB_URI)
     console.log(':::: Mongo_DB Connected ::::')
@@ -216,4 +226,3 @@ app.listen(port, async () => {
     console.log(`:::: Server listening http://localhost:${port} ::::`)
     console.log(`:::: Go on , I'm listening ::::`)
 });
-//old code is stored in .env file

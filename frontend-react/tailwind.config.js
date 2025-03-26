@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}",],
   darkMode: 'class', // Enable class-based dark mode
   theme: {
 
@@ -230,9 +231,9 @@ export default {
       }
     },
   },
-variants: {
-  extend: { },
-},
-plugins: [],
+  variants: {
+    extend: {},
+  },
+  plugins: [],
 }
 

@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './globals.css'
 
-import Home from './pages/Home.jsx'
-import Login from "./pages/Login.jsx";
-import SignUp from "./pages/SignUp.jsx";
-import Otp from "./pages/Otp.jsx";
-import ResetPassword from "./pages/ResetPassword.jsx";
+import Home from './pages/Home'
+import Login from "./pages/Login"
+import SignUp from "./pages/SignUp"
+import Otp from "./pages/Otp"
+import ResetPassword from "./pages/ResetPassword"
 
 function App() {
     return (

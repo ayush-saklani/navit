@@ -1,11 +1,7 @@
-import gif from "./assets/images/logo.gif";
-
 const Test = () => {
   return (
-    <div className="flex flex-col lg:flex-row w-full h-screen">
-      <div className="hidden lg:block w-full relative">
-        <img src={gif} className=" w-full h-full object-contain p-20" alt="Cover Photo" />
-      </div>
+    <div className="flex items-center justify-center min-h-screen">
+      <h1 className="text-4xl font-bold text-gray-800" alt="Cover Photo">Navit Test</h1>
     </div>
   );
 };

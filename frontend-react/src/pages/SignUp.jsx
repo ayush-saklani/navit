@@ -1,10 +1,5 @@
-"use client";
-// import Image from "next/image";
 import { useState } from "react";
-// import Link from "next/link";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-// import { apiAdminUrl } from "../constants/contant";
-// import { useRouter } from "next/navigation";
 import { Toaster, toast } from "react-hot-toast";
 import Loader from "./components/Loader";
 import logo from "./assets/images/logo.png";

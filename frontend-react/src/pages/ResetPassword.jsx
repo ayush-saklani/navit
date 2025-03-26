@@ -1,4 +1,3 @@
-"use client";
 import { useState, useEffect, KeyboardEvent } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";

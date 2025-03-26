@@ -1,4 +1,3 @@
-"use client";
 import { KeyboardEvent, useEffect, useState } from "react";
 import { HiOutlineMail } from "react-icons/hi";
 import { LuSend } from "react-icons/lu";

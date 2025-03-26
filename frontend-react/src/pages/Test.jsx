@@ -1,4 +1,3 @@
-"use client";
 import gif from "./assets/images/logo.gif";
 
 const Test = () => {

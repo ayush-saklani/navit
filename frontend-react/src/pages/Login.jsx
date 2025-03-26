@@ -1,4 +1,3 @@
-"use client";
 import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { HiLogin } from "react-icons/hi";

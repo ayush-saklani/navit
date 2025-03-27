@@ -184,7 +184,7 @@ const Signin = () => {
               <a href="/signup">
                 <span className="text-primary font-bold">Sign up now</span>
               </a>
-              <div className="text-center text-md gap-1 flex">
+              <div className="text-center text-md gap-1 flex relative">
                 <span className="font-bold">|</span>
                 <span className="text-primary font-bold cursor-pointer" onClick={
                   () => {
@@ -206,6 +206,23 @@ const Signin = () => {
                   }
                 }>
                   Guest Login
+                  {/* Shining star */}
+                  <span className="absolute -top-2 -right-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                      stroke="currentColor"
+                      className="w-4 h-4 text-blue-800 animate-ping"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 2v4m0 12v4m10-10h-4M6 12H2m15.9-6.9l-2.8 2.8m-6.2 6.2l-2.8 2.8m13.8 0l-2.8-2.8m-6.2-6.2L6.1 5.1"
+                      />
+                    </svg>
+                  </span>
                 </span>
               </div>
             </div>

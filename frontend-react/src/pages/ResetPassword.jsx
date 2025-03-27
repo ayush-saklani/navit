@@ -128,7 +128,7 @@ const ResetPassword = () => {
                 localStorage.removeItem("email"); // Clear email from local storage
                 setError("");
                 setTimeout(() => {
-                    router.push("/login");
+                    router.push("/signin");
                 }, 2000);
             } else {
                 setError(response.message || "Failed to reset password. Please try again.");
@@ -267,11 +267,11 @@ const ResetPassword = () => {
                             </button>
                         </div>
 
-                        {/* Back to Login */}
+                        {/* Back to signin */}
                         <div className="text-center text-md">
                             <span>Entered the wrong email?</span>{" "}
-                            <a href="/login">
-                                <span className="text-primary font-bold">Go back to login</span>
+                            <a href="/signin">
+                                <span className="text-primary font-bold">Go back to Sign In page</span>
                             </a>
                         </div>
                     </div>

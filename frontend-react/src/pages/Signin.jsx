@@ -6,7 +6,7 @@ import Loader from "./components/Loader";
 import logo from "./assets/images/logo.png";
 import gif from "./assets/images/signin.gif";
 
-const Login = () => {
+const Signin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -64,7 +64,7 @@ const Login = () => {
       setError("");
       toast.success(response.message);
       setTimeout(() => {
-        router.push("/login/resetpass");
+        router.push("/signin/resetpass");
       }, 2000);
     } else {
       setError(response.message || "An error occurred");
@@ -81,7 +81,7 @@ const Login = () => {
     });
 
     if (response.success) {
-      toast.success("Login successful");
+      toast.success("Sign In successful");
       setJwt(response.data.data.token);
       setPlayerId(response.data.data.playerid);
       setRole(response.data.role);
@@ -210,4 +210,4 @@ const Login = () => {
     </div>
   );
 };
-export default Login;
+export default Signin;

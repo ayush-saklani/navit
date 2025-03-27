@@ -129,7 +129,7 @@ const Otp = () => {
             setError("");
             localStorage.removeItem("email"); // Clear email from local storage
             setTimeout(() => {
-              window.location.href = "/login";
+              window.location.href = "/signin";
             }, 2000);
           } else {
             setError(data.errors || "Failed to verify OTP. Re-Check you OTP.");
@@ -228,14 +228,14 @@ const Otp = () => {
               </button>
             </div>
 
-            {/* Back to Login */}
+            {/* Back to signup */}
             <div className="text-center text-md flex justify-center items-center gap-2 cursor-pointer">
               <span>Entered wrong email?</span>{" "}
               <div onClick={() => {
                 localStorage.removeItem("email")
                 window.location.href = "/signup"
               }}>
-                <span className="text-primary font-bold">Go back to login</span>
+                <span className="text-primary font-bold">Go back to Sign Up</span>
               </div>
             </div>
           </div>

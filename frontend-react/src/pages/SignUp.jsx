@@ -264,7 +264,7 @@ const SignUp = () => {
             {/* Sign Up Link */}
             <div className="text-center text-md">
               <span>Already have an account?</span>{" "}
-              <a href="/login">
+              <a href="/signin">
                 <span className="text-primary font-bold">Sign In</span>
               </a>
             </div>

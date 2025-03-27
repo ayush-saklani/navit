@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 
-import profilepicture from './assets/images/bbz.jpg'
+import profilepicture from './assets/images/doof.png'
 import './assets/css/floorbutton.css'
 import './assets/css/bottombar.css'
 import navitlogo from './assets/images/logo.png'
 import roomData from './assets/room.json'
+import gif from "./assets/images/logo.gif";
 
 import AnimatedPolyline from './components/animatedpolyline'
 import Loader from './components/Loader'
@@ -18,8 +19,19 @@ import 'leaflet-ant-path'; // If you are using leaflet-ant-path for animated pol
 import L from "leaflet";
 
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
+import { FaUserCircle } from 'react-icons/fa'
 
 function Home() {
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+        const userexists = localStorage.getItem('user');
+        if (userexists) {
+            setUser(JSON.parse(localStorage.getItem('user')));
+        } else {
+            window.location.href = '/signin';
+        }
+    }, []);
+
     const mapRef = useRef(null);
     const serverlink = "https://navit.azurewebsites.net";               // navit azure server link 
     const serverlink2 = "https://class-sync-azure.azurewebsites.net";   // classsync azure server link
@@ -246,7 +258,16 @@ function Home() {
             });
         }
     }, []); // Empty dependency array ensures it runs once on mount
-
+    if (!user) {
+        return <div className="position-fixed w-full h-full flex justify-center align-items-center">
+            <div className="flex flex-col items-center justify-center">
+                <img src={gif} alt="Loading animation" className="h-50 w-50" />
+                <p className="text-xl text-brand-primary-dark mt-2 fw-bold animate-pulse">Signing in
+                    <span className="animate-ping">...</span>
+                </p>
+            </div>
+        </div>
+    }
     return (
         <div>
             {
@@ -525,12 +546,16 @@ function Home() {
                         <div className="spinner-border text-3xl text-brand-primary-dark p-[12px]"></div>}
                 </div>
                 <div>
-                    <Popover className="relative">
+                    <Popover className="relative center flex flex-col gap-1">
                         <PopoverButton>
-                            <img src={profilepicture} alt="" size={44} className='h-12 w-12 rounded-full p-0 cursor-pointer' />
+                            {
+                                user.guest ?
+                                    <FaUserCircle size={44} className='bg-brand-primary rounded-xl p-2 hover:bg-brand-primary-light text-foreground-1 cursor-pointer text-3xl' /> :
+                                    <img src={profilepicture} alt="" size={44} className='h-12 w-12 rounded-full p-0 cursor-pointer' />
+                            }
                         </PopoverButton>
                         <PopoverPanel anchor="bottom" className="flex flex-col bg-brand-primary-light rounded-xl z-10">
-                            <ProfilePictureMenu profilepicture={profilepicture} />
+                            <ProfilePictureMenu profilepicture={profilepicture} user={user} />
                         </PopoverPanel>
                     </Popover>
                 </div>

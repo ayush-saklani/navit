@@ -2,10 +2,9 @@ import { useState, useEffect, KeyboardEvent } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { LuSend } from "react-icons/lu";
-// import { useRouter } from "next/navigation";
 import { Toaster, toast } from "react-hot-toast";
-import logo from "./assets/images/logo.png";
 import gif from "./assets/images/logo.gif";
+import { serverlink } from "./utils/constant";
 
 const ResetPassword = () => {
     const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -64,19 +63,29 @@ const ResetPassword = () => {
         }
 
         try {
-            const response = await fetchData({
-                method: "POST",
-                url: "/api/auth/resetPassword/resendotp",
-                baseUrl: apiAdminUrl,
-                data: { email },
-            });
-
-            if (response.success) {
-                toast.success("OTP Resent successfully.");
-                setTimer(300); // Start 5-minute timer (300 seconds)
-            } else {
-                setError(response.message || "Failed to resend OTP. Please try again.");
-            }
+            fetch(`${serverlink}/resendotp`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    if (data.success) {
+                        setError("");
+                        toast.success("OTP Resent successfully.");
+                        setTimer(300); // Start 5-minute timer (300 seconds)
+                    } else {
+                        setError(data.errors || "Failed to resend OTP. Please try again.");
+                        setTimer(20);
+                    }
+                }).catch(error => {
+                    console.error('out of service.. ~_~  @_@', error);
+                });
         } catch (err) {
             console.error(err);
             setError("An error occurred while resending OTP. Please try again.");
@@ -116,23 +125,34 @@ const ResetPassword = () => {
         }
 
         try {
-            const response = await fetchData({
-                method: "PATCH",
-                url: "/api/auth/resetPassword",
-                baseUrl: apiAdminUrl,
-                data: { email, password, otp: enteredOtp },
-            });
-
-            if (response.success) {
-                toast.success("Password reset successfully.");
-                localStorage.removeItem("email"); // Clear email from local storage
-                setError("");
-                setTimeout(() => {
-                    router.push("/signin");
-                }, 2000);
-            } else {
-                setError(response.message || "Failed to reset password. Please try again.");
-            }
+            fetch(`${serverlink}/resetpasswordverify`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    otp: enteredOtp,
+                    email: email,
+                    password: password,
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(otp.join(""), localStorage.getItem("email"),);
+                    console.log('Success:', data);
+                    if (data.success) {
+                        toast.success("OTP verified successfully.");
+                        localStorage.removeItem("email"); // Clear email from local storage
+                        setError("");
+                        setTimeout(() => {
+                            window.location.href = "/signin";
+                        }, 2000);
+                    } else {
+                        setError(data.errors || "Failed to reset password. Please try again.");
+                    }
+                }).catch(error => {
+                    console.error('out of service.. ~_~  @_@', error);
+                });
         } catch (err) {
             console.error(err);
             setError("An error occurred while resetting the password. Please try again.");
@@ -145,13 +165,6 @@ const ResetPassword = () => {
     const toggleConfirmPasswordVisibility = () => setShowConfirmPassword((prev) => !prev);
 
 
-    if (error) {
-        return (
-            <div className="w-full flex justify-center items-center">
-                <p className="text-red-500">SOME ERROR OCCURED!,{error}</p>
-            </div>
-        );
-    }
     if (loading) {
         return (
             <div className="w-full h-[100vh] flex justify-center items-center">
@@ -175,7 +188,7 @@ const ResetPassword = () => {
                             Enter the 6-digit code sent to your email and reset your password.
                         </p>
 
-                        {error && <p className="text-sm text-red-500 text-center">{error}</p>}
+                        {<p className="text-sm text-red-500 text-center h-2 font-semibold">{error}</p>}
 
                         {/* OTP Input */}
                         <div className="flex justify-between gap-3">

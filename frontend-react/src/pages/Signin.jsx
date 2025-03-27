@@ -4,6 +4,7 @@ import { HiLogin } from "react-icons/hi";
 import { Toaster, toast } from "react-hot-toast";
 import Loader from "./components/Loader";
 import logo from "./assets/images/logo.png";
+import jingle from "./assets/images/doof.mp3";
 import gif from "./assets/images/signin.gif";
 import { serverlink } from "./utils/constant";
 
@@ -113,10 +114,10 @@ const Signin = () => {
             />
           </div>
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-center">Sign In</h2>
-            {error && (
-              <div className="text-red-500 text-center mb-4">{error}</div>
-            )}
+            <h2 className="text-2xl font-bold text-center my-2">Sign In</h2>
+            {
+              <div className="text-red-500 text-center m-0 h-2">{error}</div>
+            }
             <div className="flex flex-col">
               <label
                 htmlFor="emailorphone"
@@ -178,11 +179,35 @@ const Signin = () => {
                 <span>Sign In</span>
               </button>
             </div>
-            <div className="text-center text-md">
-              <span>Don’t have an account?</span>{" "}
+            <div className="text-center text-md gap-1 flex w-full justify-center items-center">
+              <span>Don’t have an account?</span>
               <a href="/signup">
                 <span className="text-primary font-bold">Sign up now</span>
               </a>
+              <div className="text-center text-md gap-1 flex">
+                <span className="font-bold">|</span>
+                <span className="text-primary font-bold cursor-pointer" onClick={
+                  () => {
+                    localStorage.setItem("user", JSON.stringify(
+                      {
+                        "_id": "",
+                        "first_name": "Doofinator",
+                        "last_name": "",
+                        "email": "doofenshmirtz@evilincorp.com",
+                        "guest": true
+                      }
+                    ));
+                    toast.success("Guest Login successful");
+                    var audio = new Audio(jingle);
+                    audio.play();
+                    setTimeout(() => {
+                      window.location.href = "/home";
+                    }, 5000);
+                  }
+                }>
+                  Guest Login
+                </span>
+              </div>
             </div>
           </div>
         </div>

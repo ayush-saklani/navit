@@ -48,26 +48,26 @@ const ProfilePictureMenu = ({ profilepicture, user }) => {
 
             {/* Logout Option */}
             <ul className="list-none flex flex-col gap-2">
-                {user.guest ?
+                {user.guest &&
                     <li className="flex items-center gap-2 text-gray-400 hover:bg-indigo-800 hover:text-white transition-all duration-300 p-2 rounded-md cursor-pointer"
                         onClick={() => {
                             localStorage.removeItem("token");
                             localStorage.removeItem("user");
                             window.location.replace("/signup");
                         }}>
-                        <GiExitDoor size={22} />
+                        <GiExitDoor size={24} />
                         <p className="font-semibold">Sign Up</p>
-                    </li> :
-                    <li className="flex items-center gap-3 text-gray-400 hover:bg-red-800 hover:text-white transition-all duration-300 p-2 rounded-md cursor-pointer"
-                        onClick={() => {
-                            localStorage.removeItem("token");
-                            localStorage.removeItem("user");
-                            window.location.replace("/");
-                        }}>
-                        <HiLogout size={20} />
-                        <p className="font-semibold">Logout</p>
                     </li>
                 }
+                <li className="flex items-center gap-2 text-gray-400 hover:bg-red-800 hover:text-white transition-all duration-300 p-2 rounded-md cursor-pointer"
+                    onClick={() => {
+                        localStorage.removeItem("token");
+                        localStorage.removeItem("user");
+                        window.location.replace("/");
+                    }}>
+                    <HiLogout size={24} />
+                    <p className="font-semibold">Logout</p>
+                </li>
             </ul>
         </div>
     );

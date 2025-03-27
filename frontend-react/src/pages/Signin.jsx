@@ -5,6 +5,7 @@ import { Toaster, toast } from "react-hot-toast";
 import Loader from "./components/Loader";
 import logo from "./assets/images/logo.png";
 import gif from "./assets/images/signin.gif";
+import { serverlink } from "./utils/constant";
 
 const Signin = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -16,100 +17,77 @@ const Signin = () => {
     setShowPassword(!showPassword);
   };
 
-  const asyncfunction = async (playerid) => {
-    const response = await fetchData({
-      method: "GET",
-      url: `/api/player?id=${playerid}`,
-      baseUrl: apiAdminUrl,
-    });
-
-    if (response.success) {
-      setRole(response.data.data.rank);
-      if (response.data.data.rank === "admin") {
-        console.log("Player is admin");
-        router.push("/admin/addteam");
-      } else if (
-        response.data.data.rank === "captain" ||
-        response.data.data.rank === "co-captain"
-      ) {
-        console.log("Player has captain privilege");
-        router.push("/captain/myteam");
-      } else {
-        alert(
-          "Players are not authorized to login. Contact admin. Redirecting to homepage!!"
-        );
-        router.push("/");
-      }
-    }
-    else {
-      alert(
-        "You are not authorized to login. Contact admin. Redirecting to homepage!!"
-      );
-      router.push("/");
-    }
-  };
-
   const handleForgotPassword = async () => {
     if (!email) {
       setError("Email is required");
       return;
     }
-    const response = await fetchData({
-      method: "POST",
-      url: "/api/auth/resetPassword",
-      baseUrl: apiAdminUrl,
-      data: { email },
-    });
-    if (response.success) {
-      setError("");
-      toast.success(response.message);
-      setTimeout(() => {
-        router.push("/signin/resetpass");
-      }, 2000);
-    } else {
-      setError(response.message || "An error occurred");
-    }
+    fetch(`${serverlink}/resetpassword`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        if (data.success) {
+          toast.success("OTP sent to your email");
+          setError("");
+          setTimeout(() => {
+            window.location.href = "/reset-password";
+          }, 2000);
+        } else {
+          setError(data.errors || "Something went wrong.");
+        }
+      }).catch(error => {
+        setSendButtonFreeze(false);
+        console.error('out of service.. ~_~  @_@', error);
+      });
   };
-
+  const [sendButtonFreeze, setSendButtonFreeze] = useState(false);
   const handleLogin = async (e) => {
     e.preventDefault();
-    const response = await fetchData({
-      method: "POST",
-      url: "/api/auth/signin",
-      baseUrl: apiAdminUrl,
-      data: { email, password },
-    });
-
-    if (response.success) {
-      toast.success("Sign In successful");
-      setJwt(response.data.data.token);
-      setPlayerId(response.data.data.playerid);
-      setRole(response.data.role);
-      setError("");
-      asyncfunction(response.data.data.playerid);
-    } else {
-      setError(response.message || "An error occurred");
-      router.push("/register");
+    if (!email || !password) {
+      setError("All fields are required");
+      return;
     }
+    setSendButtonFreeze(true);
+    fetch(`${serverlink}/signin`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        setSendButtonFreeze(false);
+        console.log('Success:', data);
+        if (data.success) {
+          console.log(data.data.user);
+          localStorage.setItem("user", JSON.stringify(data.data.user));
+          toast.success("Sign In successful");
+          setError("");
+          setTimeout(() => {
+            window.location.href = "/home";
+          }, 2000);
+        } else {
+          setError(data.errors || "Something went wrong.");
+        }
+      }).catch(error => {
+        setSendButtonFreeze(false);
+        console.error('out of service.. ~_~  @_@', error);
+      });
   };
 
-  useEffect(() => {
-    // Check if window is defined before accessing localStorage
-    if (typeof window !== "undefined") {
-      const storedEmail = localStorage.getItem("email");
-      if (storedEmail) {
-        setEmail(storedEmail);
-      }
-    }
-  }, []);
 
-  if (error) {
-    return (
-      <div className="w-full flex justify-center items-center">
-        <p className="text-red-500">SOME ERROR OCCURED!, {error}</p>
-      </div>
-    );
-  }
   if (loading) {
     return (
       <div className="w-full h-[100vh] flex justify-center items-center">
@@ -183,7 +161,7 @@ const Signin = () => {
             </div>
             <div className="flex text-sm">
               <button
-                className="text-primary font-medium"
+                className="text-primary font-semibold"
                 onClick={handleForgotPassword}
               >
                 Forgot password?
@@ -192,7 +170,9 @@ const Signin = () => {
             <div className="space-y-4">
               <button
                 onClick={handleLogin}
-                className="flex w-full justify-center items-center bg-primary hover:bg-primary-dark py-3 px-4 rounded-full gap-2 text-white font-bold"
+                disabled={sendButtonFreeze}
+                className={`flex w-full justify-center items-center  hover:bg-primary-dark py-3 px-4 rounded-full gap-2 text-white font-bold
+                ${sendButtonFreeze ? "cursor-not-allowed bg-gray-500" : "bg-primary hover:bg-primary-dark"}`}
               >
                 <HiLogin className="h-5 w-5" />
                 <span>Sign In</span>
@@ -200,7 +180,7 @@ const Signin = () => {
             </div>
             <div className="text-center text-md">
               <span>Don’t have an account?</span>{" "}
-              <a href="/register">
+              <a href="/signup">
                 <span className="text-primary font-bold">Sign up now</span>
               </a>
             </div>

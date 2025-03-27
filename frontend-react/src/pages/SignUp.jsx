@@ -110,18 +110,9 @@ const SignUp = () => {
       {/* Right Section */}
       <div className="flex flex-grow justify-center items-center bg-white rounded-l-3xl p-6">
         <div className="w-full max-w-md">
-          {/* Logo */}
-          <div className="flex justify-center mb-6">
-            <img
-              src={logo}
-              className="hover:cursor-pointer w-25 h-25"
-              alt="Logo"
-            />
-          </div>
-
           {/* Register Form */}
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-center">Register</h2>
+            <h2 className="text-2xl font-bold text-center">{"Register to Navit™"}</h2>
 
             <form
               onSubmit={handleSubmit}

@@ -229,11 +229,14 @@ const Otp = () => {
             </div>
 
             {/* Back to Login */}
-            <div className="text-center text-md">
-              <span>Entered the wrong email?</span>{" "}
-              <a href="/login">
+            <div className="text-center text-md flex justify-center items-center gap-2 cursor-pointer">
+              <span>Entered wrong email?</span>{" "}
+              <div onClick={() => {
+                localStorage.removeItem("email")
+                window.location.href = "/signup"
+              }}>
                 <span className="text-primary font-bold">Go back to login</span>
-              </a>
+              </div>
             </div>
           </div>
         </div>

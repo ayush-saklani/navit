@@ -1,0 +1,2 @@
+export const serverlink = "https://navit.azurewebsites.net";               // navit azure server link 
+export const serverlink2 = "https://class-sync-azure.azurewebsites.net";   // classsync azure server link

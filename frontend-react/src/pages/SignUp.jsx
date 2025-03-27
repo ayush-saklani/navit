@@ -4,6 +4,7 @@ import { Toaster, toast } from "react-hot-toast";
 import Loader from "./components/Loader";
 import logo from "./assets/images/logo.png";
 import gif from "./assets/images/signup.gif";
+import { serverlink } from "./utils/constant";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -29,75 +30,74 @@ const SignUp = () => {
 
   const validateForm = () => {
     const { firstname, lastname, email, password, confirmPassword } = formData;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@(gehu|geu)\.ac\.in$/;
 
     if (!firstname || !lastname || !email || !password || !confirmPassword) {
-      return "All fields are required.";
+      setError("All fields are required.");
+      return false;
     }
-
+    if (!emailRegex.test(email)) {
+      setError("Please enter a valid gehu/geu email ID.");
+      return false;
+    }
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters long.");
+      return false;
+    }
     if (password !== confirmPassword) {
-      return "Passwords do not match.";
+      setError("Passwords do not match.");
+      return false;
     }
 
     // Add more validations as needed
-    return "";
+    return true;
   };
-
+  const [sendbuttonfreeze, setSendButtonFreeze] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const errorMessage = validateForm();
-    if (errorMessage) {
-      setError(errorMessage);
+    if (!validateForm()) {
       return;
     }
+    setSendButtonFreeze(true);
 
     try {
-      // const response = await fetchData({
-      //   method: "POST",
-      //   url: "/api/auth/signup",
-      //   baseUrl: apiAdminUrl,
-      //   data: {
-      //     first_name: formData.firstname,
-      //     last_name: formData.lastname,
-      //     email: formData.email,
-      //     password: formData.password,
-      //   },
-      // });
-
-      // if (response.success) {
-      //   // console.log(response);
-      //   // localStorage.setItem("token", response.data.token);
-      //   localStorage.setItem("email", formData.email);
-      //   setError("");
-      //   toast.success(response.message);
-      //   setTimeout(() => {
-      //     router.push("/otp");
-      //   }, 2000);
-
-      //   // router.push("/otp");
-      // } else {
-      //   setError(response.message || "Something went wrong.");
-      // }
+      fetch(`${serverlink}/signup`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          first_name: formData.firstname,
+          last_name: formData.lastname,
+          email: formData.email,
+          password: formData.password,
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          // console.log('Success:', data);
+          if (data.success) {
+            setSendButtonFreeze(false);
+            setError("");
+            localStorage.setItem("email", formData.email);
+            setSuccessMessage("User Created, Email not verified. OTP sent to your email.");
+            toast.success(data.message);
+            setTimeout(() => {
+              window.location.href = "/otp";
+            }, 2000);
+          } else {
+            setSendButtonFreeze(false);
+            setSuccessMessage("");
+            setError(data.errors || "Something went wrong.");
+          }
+        }).catch(error => {
+          setSendButtonFreeze(false);
+          console.error('out of service.. ~_~  @_@', error);
+        });
     } catch (err) {
       setError("Failed to register. Please try again later.");
     }
   };
-
-
-  if (error) {
-    return (
-      <div className="w-full flex justify-center items-center">
-        <p className="text-red-500">SOME ERROR OCCURED!,{error}</p>
-      </div>
-    );
-  }
-  if (loading) {
-    return (
-      <div className="w-full h-[100vh] flex justify-center items-center">
-        <Loader />
-      </div>
-    );
-  }
 
   return (
     <div className="flex flex-col lg:flex-row w-full h-screen">
@@ -169,7 +169,8 @@ const SignUp = () => {
                   htmlFor="email"
                   className="text-sm font-semibold block mb-1"
                 >
-                  Email
+                  Email <span className="text-xs text-gray-500
+                  ">{"gehu & geu email ID only"}</span>
                 </label>
                 <input
                   className="border border-gray-300 rounded-md py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-primary"
@@ -243,15 +244,18 @@ const SignUp = () => {
               </div>
 
               {/* Error/Success Messages */}
-              {error && <p className="text-red-500 text-sm">{error}</p>}
-              {successMessage && (
-                <p className="text-green-500 text-sm">{successMessage}</p>
-              )}
+              <div className="h-4 font-semibold">
+                {<p className="text-red-500 text-sm">{error}</p>}
+                {(
+                  <p className="text-green-500 text-sm">{successMessage}</p>
+                )}
+              </div>
 
               {/* Buttons */}
               <button
                 type="submit"
-                className="flex w-full justify-center items-center bg-primary hover:bg-primary-dark py-3 px-4 rounded-full gap-2 text-white font-bold"
+                disabled={sendbuttonfreeze}
+                className={`flex w-full justify-center items-center py-3 px-4 rounded-full gap-2 text-white font-bold ${sendbuttonfreeze ? "cursor-not-allowed bg-gray-400" : "bg-primary hover:cursor-pointer hover:bg-primary-dark"}`}
               >
                 <span>Sign Up</span>
               </button>

@@ -5,6 +5,7 @@ import { Toaster, toast } from "react-hot-toast";
 import Loader from "./components/Loader";
 import logo from "./assets/images/logo.png";
 import gif from "./assets/images/logo.gif";
+import { serverlink } from "./utils/constant";
 
 const Otp = () => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -29,7 +30,7 @@ const Otp = () => {
     };
   }, [timer]);
   // Fetch email from local storage
-  const email = typeof window !== "undefined" ? localStorage.getItem("email") : null;
+  const email = localStorage.getItem("email");
 
   const handleOtpChange = (value, index) => {
     const newOtp = [...otp];
@@ -59,19 +60,29 @@ const Otp = () => {
     }
 
     try {
-      const response = await fetchData({
-        method: "POST",
-        url: "/api/auth/signup/resendotp",
-        baseUrl: apiAdminUrl,
-        data: { email },
-      });
-
-      if (response.success) {
-        toast.success("OTP Resent successfully.");
-        setTimer(300); // Start 5-minute timer (300 seconds)
-      } else {
-        setError(response.message || "Failed to resend OTP. Please try again.");
-      }
+      fetch(`${serverlink}/resendotp`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: localStorage.getItem("email"),
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Success:', data);
+          if (data.success) {
+            setError("");
+            toast.success("OTP Resent successfully.");
+            setTimer(300); // Start 5-minute timer (300 seconds)
+          } else {
+            setError(data.errors || "Failed to resend OTP. Please try again.");
+            setTimer(20);
+          }
+        }).catch(error => {
+          console.error('out of service.. ~_~  @_@', error);
+        });
     } catch (err) {
       console.error(err);
       setError("An error occurred while resending OTP. Please try again.");
@@ -99,26 +110,34 @@ const Otp = () => {
     }
 
     try {
-      const response = await fetchData({
-        method: "PATCH",
-        url: "/api/auth/signup",
-        baseUrl: apiAdminUrl,
-        data: { email, otp: enteredOtp },
-      });
+      fetch(`${serverlink}/verifyotp`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          otp: otp.join(""),
+          email: localStorage.getItem("email"),
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(otp.join(""), localStorage.getItem("email"),);
+          console.log('Success:', data);
+          if (data.success) {
+            toast.success("OTP verified successfully.");
+            setError("");
+            localStorage.removeItem("email"); // Clear email from local storage
+            setTimeout(() => {
+              window.location.href = "/login";
+            }, 2000);
+          } else {
+            setError(data.errors || "Failed to verify OTP. Re-Check you OTP.");
+          }
+        }).catch(error => {
+          console.error('out of service.. ~_~  @_@', error);
+        });
 
-      if (response.success) {
-        toast.success("OTP verified successfully.");
-
-        localStorage.removeItem("email"); // Clear email from local storage
-        setError("");
-        setTimeout(() => {
-          router.push("/login");
-        }, 2000);
-
-        // Redirect to the next step or dashboard
-      } else {
-        setError(response.message || "Failed to verify OTP. Re-Check you OTP.");
-      }
     } catch (err) {
       console.error(err);
       setError("An error occurred while verifying OTP. Please try again.");
@@ -127,13 +146,7 @@ const Otp = () => {
     }
   };
 
-  if (error) {
-    return (
-      <div className="w-full flex justify-center items-center">
-        <p className="text-red-500">SOME ERROR OCCURED!,{error}</p>
-      </div>
-    );
-  }
+
   if (loading) {
     return (
       <div className="w-full h-[100vh] flex justify-center items-center">
@@ -170,8 +183,7 @@ const Otp = () => {
               Enter the 6-digit code sent to your email.
             </p>
 
-            {/* Error Message */}
-            {error && <p className="text-sm text-red-500 text-center">{error}</p>}
+            {<p className="text-sm text-red-500 text-center h-4 font-semibold">{error}</p>}
 
             {/* OTP Input */}
             <div className="flex justify-between gap-3">
@@ -189,7 +201,6 @@ const Otp = () => {
               ))}
             </div>
 
-            {/* Resend OTP */}
             {/* Resend OTP */}
             <div>
               <button

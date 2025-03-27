@@ -12,13 +12,13 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/home" element={<Home />} />
+                <Route path="/" element={<Home />} />           {/* done  */}
+                <Route path="/home" element={<Home />} />       {/* done  */}
                 <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="/otp" element={<Otp />} />
+                <Route path="/signup" element={<SignUp />} />   {/* done  */}
+                <Route path="/otp" element={<Otp />} />         {/* done  */}
                 <Route path="/reset-password" element={<ResetPassword />} />
-                <Route path="/test" element={<Test />} />
+                <Route path="/test" element={<Test />} />       {/* done  */}
             </Routes>
         </Router>
     )

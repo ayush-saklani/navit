@@ -56,12 +56,26 @@ const signup = async (req, res) => { // verified and working
 
         const existinguser = await user_model.findOne({ email: email });
         if (existinguser) {
-            await session.abortTransaction();
+            if (existinguser.email_verified) {
+                await session.abortTransaction();
+                session.endSession();
+                return res.status(400).json(
+                    new ApiError(400, {
+                        message: 'user already exists'
+                    }, 'user already exists')
+                );
+            }
+            const otp = await generateLongSecureOTP();
+            const otpExpiry = await generateOtpExpiry();
+            await existinguser.updateOne({ otp, otpExpiry }, { session: session });
+            await session.commitTransaction();
             session.endSession();
-            return res.status(400).json(
-                new ApiError(400, {
-                    message: 'user already exists'
-                }, 'user already exists')
+            const response = await sendotp(email, otp, "10", existinguser.first_name);
+
+            return res.status(200).json(
+                new ApiResponse(200, {
+                    response,
+                }, 'User already exists. OTP sent to Email.')
             );
         } else {
             console.log("signup");
@@ -87,7 +101,7 @@ const signup = async (req, res) => { // verified and working
 
             return res.status(201).json(
                 new ApiResponse(201, {
-                    // response,
+                    response,
                     token,
                 }, 'user created, Email not verified')
             );
@@ -190,7 +204,7 @@ const signin = async (req, res) => { // verified and working
             throw new Error('JWT_SECRET_KEY is not defined');
         }
         const token = jwt.sign({ userId }, secretKey);
-        const user = await user_model.findOne({ email }).select('-password -email_verified -phone -__v');
+        const user = await user_model.findOne({ email }).select('-password -email_verified -__v');
         return res.status(200).json(
             new ApiResponse(200, {
                 token,

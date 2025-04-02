@@ -20,6 +20,7 @@ import L from "leaflet";
 
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import { FaUserCircle } from 'react-icons/fa'
+import { BsQrCodeScan } from 'react-icons/bs'
 
 function Home() {
     const [user, setUser] = useState(null);
@@ -205,6 +206,7 @@ function Home() {
 
 
     useEffect(() => {
+        // setGlobalLoading(false); // for ui editing uncomment this line and comment the line below
         handledata();
     }, []);
     useEffect(() => {
@@ -482,6 +484,9 @@ function Home() {
                         <label className="ms-2 text text-brand-primary-dark" name="Start">
                             <b>Start</b>
                         </label>
+                        <a href="">
+                            <BsQrCodeScan className="position-absolute top-50 end-0 translate-middle-y mx-4 text-3xl cursor-pointer text-brand-primary-dark bg-white" />
+                        </a>
                     </div>
                     <div className="form-floating col-lg-5 col-md-4 col-sm-12 pb-1 text">
                         <select className="form-select  h-full" id="destination"

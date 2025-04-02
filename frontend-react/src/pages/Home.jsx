@@ -534,7 +534,7 @@ function Home() {
                                     setShowScanner(false);
                                 }, 10000);
                             }}>
-                            <BsQrCodeScan className="position-absolute top-50 end-0 translate-middle-y mx-4 text-3xl cursor-pointer text-brand-primary-dark bg-white" />
+                            <BsQrCodeScan className="position-absolute top-50 end-0 translate-middle-y mx-4 text-5xl p-2 cursor-pointer text-brand-primary-dark bg-white hover:bg-brand-primary-dark" />
                         </div>
                     </div>
                     <div className="form-floating col-lg-5 col-md-4 col-sm-12 pb-1 text">

@@ -22,6 +22,7 @@ import { Scanner } from '@yudiel/react-qr-scanner';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import { FaUserCircle } from 'react-icons/fa'
 import { BsQrCodeScan } from 'react-icons/bs'
+import { ImCross } from 'react-icons/im'
 
 function Home() {
     const [user, setUser] = useState(null);
@@ -284,6 +285,12 @@ function Home() {
                 showScanner &&
                 <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-[1001]">
                     <div className="w-3/4 max-w-lg flex shadow-2xl rounded-lg">
+                        <button
+                            onClick={() => setShowScanner(false)}
+                            className="absolute top-2 right-2 text-white rounded-full p-3 hover:bg-black hover:bg-opacity-50 transition"
+                        >
+                            <ImCross className="text-2xl" />
+                        </button>
                         <Scanner
                             onScan={(detectedCodes) => {
                                 if (detectedCodes.length > 0) {

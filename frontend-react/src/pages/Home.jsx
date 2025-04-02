@@ -17,6 +17,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap, GeoJSON, Polyline, Poly
 import { FaArrowRotateRight, FaLinkedinIn, FaGithub } from 'react-icons/fa6'
 import 'leaflet-ant-path'; // If you are using leaflet-ant-path for animated polylines
 import L from "leaflet";
+import { Scanner } from '@yudiel/react-qr-scanner';
 
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import { FaUserCircle } from 'react-icons/fa'
@@ -47,6 +48,7 @@ function Home() {
     const [Gobuttontext, setGobuttontext] = useState("Go");
     const [dayslot, setdayslot] = useState("08-09");
     const [hourslot, sethourslot] = useState("08-09");
+    const [showScanner, setShowScanner] = useState(false);
 
     const [pathDistance, setpathDistance] = useState(0);
     const [source, setsource] = useState(0);
@@ -272,9 +274,50 @@ function Home() {
     }
     return (
         <div>
+            {/* 
+                // this is the format of the data in the QR code - this is a json object
+                {
+                    "roomid": "1171"
+                }
+            */}
+            {
+                showScanner &&
+                <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-[1001]">
+                    <div className="w-3/4 max-w-lg flex shadow-2xl rounded-lg">
+                        <Scanner
+                            onScan={(detectedCodes) => {
+                                if (detectedCodes.length > 0) {
+                                    const scannedValue = detectedCodes[0].rawValue;
+                                    try {
+                                        let scanneddata = JSON.parse(scannedValue);
+                                        if (scanneddata.roomid) {
+                                            toast.success("QR code Scanned");
+                                            setsource(scanneddata.roomid);
+                                        } else {
+                                            toast.error("Invalid QR code");
+                                        }
+                                        setShowScanner(false);
+                                    } catch (error) {
+                                        toast.error("Invalid QR code");
+                                        setShowScanner(false);
+                                    }
+                                }
+                            }}
+                            onError={(error) => {
+                                console.error("Scanner Error:", error);
+                                toast.error("Error scanning QR code");
+                            }}
+                            constraints={{ facingMode: "environment" }} // Uses back camera
+                            scanDelay={5000} // Adjusts delay between scans
+                            allowMultiple={true} // Prevents duplicate scanning
+                            className="w-full h-full"
+                        />
+                    </div>
+                </div>
+            }
             {
                 Globalloading &&
-                <div className="z-[1001] backdrop-blur-sm position-fixed w-full h-full bg-bg-blur flex justify-center align-items-center">
+                <div className="z-[1002] backdrop-blur-sm position-fixed w-full h-full bg-bg-blur flex justify-center align-items-center">
                     <Loader />
                 </div>
             }
@@ -484,9 +527,15 @@ function Home() {
                         <label className="ms-2 text text-brand-primary-dark" name="Start">
                             <b>Start</b>
                         </label>
-                        <a href="">
+                        <div
+                            onClick={() => {
+                                setShowScanner(true);
+                                setTimeout(() => {
+                                    setShowScanner(false);
+                                }, 10000);
+                            }}>
                             <BsQrCodeScan className="position-absolute top-50 end-0 translate-middle-y mx-4 text-3xl cursor-pointer text-brand-primary-dark bg-white" />
-                        </a>
+                        </div>
                     </div>
                     <div className="form-floating col-lg-5 col-md-4 col-sm-12 pb-1 text">
                         <select className="form-select  h-full" id="destination"

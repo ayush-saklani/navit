@@ -51,7 +51,6 @@ function Home() {
     const [hourslot, sethourslot] = useState("08-09");
     const [showScanner, setShowScanner] = useState(false);
 
-    const [pathDistance, setpathDistance] = useState(0);
     const [source, setsource] = useState(0);
     const [destination, setdestination] = useState(0);
 
@@ -114,8 +113,7 @@ function Home() {
                 .then(data => {
                     // console.log(data.data.antpath);
                     setpathPoints(data.data.antpath);
-                    setpathDistance(data.data.distance);
-                    let tempTime = Math.round(pathDistance) / 2;
+                    let tempTime = Math.round(data.data.distance) / 2;
                     let message = (tempTime < 60) ? "~1 min" : `${Math.ceil(tempTime / 60) + 1} min`
                     setGobuttontext(message);
                     setActiveFloor(floor);

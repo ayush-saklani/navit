@@ -261,6 +261,21 @@ function Home() {
             });
         }
     }, []); // Empty dependency array ensures it runs once on mount
+    useEffect(() => {
+        try {
+            const url = new URL(window.location.href);
+            const src = url.searchParams.get("source");
+            const dest = url.searchParams.get("destination");
+
+            if (src || dest) {
+                if (src) setsource(src);
+                if (dest) setdestination(dest);
+                toast.success("Source and Destination set from URL");
+            }
+        } catch (err) {
+            console.error("URL Parse Error on load:", err);
+        }
+    }, []);
     if (!user) {
         return <div className="position-fixed w-full h-full flex justify-center align-items-center">
             <div className="flex flex-col items-center justify-center">
@@ -294,10 +309,17 @@ function Home() {
                                 if (detectedCodes.length > 0) {
                                     const scannedValue = detectedCodes[0].rawValue;
                                     try {
-                                        let scanneddata = JSON.parse(scannedValue);
-                                        if (scanneddata.roomid) {
+                                        let scanneddata = new URL(scannedValue);
+                                        const scannedSource = scanneddata.searchParams.get("source");
+                                        const scannedDestination = scanneddata.searchParams.get("destination");
+                                        if (scannedSource || scannedDestination) {
+                                            if (scannedSource) {
+                                                setsource(scannedSource);
+                                            }
+                                            if (scannedDestination) {
+                                                setdestination(scannedDestination);
+                                            }
                                             toast.success("QR code Scanned");
-                                            setsource(scanneddata.roomid);
                                         } else {
                                             toast.error("Invalid QR code");
                                         }

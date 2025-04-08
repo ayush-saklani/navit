@@ -1,4 +1,4 @@
-# **Indoor Mapping - *Navit* ( v2.2 )** <img src="assets/images/logo.png" height="110" align="left"/>
+# **Indoor Mapping - *Navit* ( v2.1 )** <img src="assets/images/logo.png" height="110" align="left"/>
 
 **Navit is an indoor mapping solution made for University or any other big campus.**
 
@@ -9,7 +9,7 @@
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" height="75"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original-wordmark.svg" height="75"/>
 <img src="https://static-00.iconduck.com/assets.00/node-js-icon-454x512-nztofx17.png"height="75"/>
-<img src="./assets/images/expressjs-logo.png"height="75"/>
+<img src="https://devicon-website.vercel.app/api/express/original.svg?color=%23FFFFFF"height="75"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" height="75"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" height="75"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" height="75"/>
@@ -43,12 +43,12 @@ This software is provided "as-is," without warranty of any kind, express or impl
 # ⭐ Current Ideas and Features for Development
 
 ## Version 1.0  ✅
-- [x] Started with a problem in mind and the problem unvealed and changes the significant app fundamental approches to solve the problem and new approches were used. 
+- [x] Started with a problem in mind and the problem unveiled and changes the significant app fundamental approaches to solve the problem and new approaches were used. 
 - [x] Route Management - Add routes using GeoJSON and calculate the shortest path using Dijkstra's algorithm and appropriate data structures.
 - [x] Dynamic Floor Polylines - Create an array of floors to show the polylines floor-wise. Each array element will contain coordinates for that specific floor to create the polyline accordingly.                
 ___~~(Floor numbering: 0 for ground floor, 1 for first floor and 6 for underground).~~___
 - [x] Implement basic functionality for routing.
-- [x] Data Structture design and Implementation
+- [x] Data Structure design and Implementation
 - [x] Complete UI Design and improvements.
 - [x] Complete Map were Designed in GeoJSON and later improvements were made.
 - [x] Complete Routes were Designed in GeoJSON and later improvements were made.
@@ -60,11 +60,12 @@ ___~~(Floor numbering: 0 for ground floor, 1 for first floor and 6 for undergrou
 - [x] ___Floor numbering changed for ease: 0 for underground floor, 1 for ground floor and so on.___ 🟢
 - [x] Dynamic Centering - setting dynamic center by using cookies to add coordinates to center. Use the last coordinate to determine the center.
 - [x] Database Integration - Introduce a database to store custom maps and routes.
-- [ ] _~~Authentication and Security - Implement authentication for students to verify users~~_ **_(cancelled)_**
-- [ ] _~~Possibly restrict mapping functionalities to within the campus IP or network for safety concerns~~_ **_(cancelled)_**
+- [ ] _~~Possibly restrict mapping functionalities to within the campus IP or network for safety concerns~~_ **_(cancelled or postponed indefinitely)_**
 ## Version 2.0 ✅
-- [x] Classsync - Integration of Class-sync APIs with Navit.
-- [x] Code Migration - Migration of code into ReactJS completely 
-## Version 2.2 ⌛ *( under development )*
-- [ ] React Native - Analyze the benefits and scope of code Migration in React Native. 
+- [x] *Code Migration* - Migration of code into ReactJS completely 
+- [x] **Class-sync** - Integration of Class-sync APIs with Navit.
+## Version 2.1 ⌛ *( Currently Under Development )*
+- [x] __Authentication and Security__ - Implement SigIn/SignUp authentication for students to verify users. _(temporary guest mode is also for project showcase)_
+- [x] __QR code support__ - Now QR codes can be set in the campus which can be used in the app. This can also be utilized by the clubs and department for event advertisement.
+- [ ] __React Native__ - Analyze the benefits and scope of code Migration in React Native. 
 ## **Keep Coding, Keep Smiling!, Have Fun!** 💻🚀

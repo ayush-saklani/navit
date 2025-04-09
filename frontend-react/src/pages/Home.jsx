@@ -207,8 +207,8 @@ function Home() {
 
 
     useEffect(() => {
-        // setGlobalLoading(false); // for ui editing uncomment this line and comment the line below
-        handledata();
+        setGlobalLoading(false); // for ui editing uncomment this line and comment the line below
+        // handledata();
     }, []);
     useEffect(() => {
         fetch_calculate_antpath();
@@ -551,8 +551,8 @@ function Home() {
                                 </optgroup>
                             ))}
                         </select>
-                        <label className="ms-2 text text-brand-primary-dark" name="Start">
-                            <b>Start</b>
+                        <label className="ms-2 text" name="Start">
+                            <b className={`${source != 0 ? "font-extrabold text-[#20a1a1] " : "text-[#919191]"}`}>Start</b>
                         </label>
                         <div
                             onClick={() => {
@@ -591,8 +591,8 @@ function Home() {
                                 </optgroup>
                             ))}
                         </select>
-                        <label className="ms-2 text text-brand-primary-dark" name="destination">
-                            <b>Destination</b>
+                        <label className="ms-2 text" name="destination">
+                            <b className={`${destination != 0 ? "font-extrabold text-[#20a1a1] " : "text-[#919191]"}`}>Destination</b>
                         </label>
                     </div>
                     <div className="col-lg-2 col-md-3 col-sm-12 pb-1 align-items-center justify-content-center d-flex">

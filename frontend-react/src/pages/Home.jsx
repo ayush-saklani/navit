@@ -207,8 +207,8 @@ function Home() {
 
 
     useEffect(() => {
-        setGlobalLoading(false); // for ui editing uncomment this line and comment the line below
-        // handledata();
+        // setGlobalLoading(false); // for ui editing uncomment this line and comment the line below
+        handledata();
     }, []);
     useEffect(() => {
         fetch_calculate_antpath();

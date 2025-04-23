@@ -37,6 +37,7 @@ const Signin = () => {
         console.log('Success:', data);
         if (data.success) {
           toast.success("OTP sent to your email");
+          localStorage.setItem('email', email);
           setError("");
           setTimeout(() => {
             window.location.href = "/reset-password";

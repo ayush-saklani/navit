@@ -164,6 +164,26 @@ function Home() {
                 });
         });
     };
+    
+    const [hour, setHour] = useState(new Date().getHours());
+    useEffect(() => {
+        const checkHour = () => {
+            const currentHour = new Date().getHours();
+            if (currentHour !== hour) {
+                setHour(currentHour);
+            }
+        }
+        const interval = setInterval(checkHour, 60 * 1000 * 5); // check every 5 minute
+        return () => clearInterval(interval); // cleanup on unmount
+    }, []);
+
+    useEffect(() => {
+        const update_room_status = async () => {
+            console.log("Hour changed! New hour:", hour);
+            await fetch_room_status();
+        };
+        update_room_status();
+    }, [hour]);
 
     const getSpecificRoomCoordinates = (floordata, room_id) => {      // returns the coordinates of the room RETURNS: [lat,lng] format of the room (helper function)
         let coordinates = [];

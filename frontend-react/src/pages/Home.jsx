@@ -77,6 +77,19 @@ function Home() {
     const fetchGeoJSON = () => {
         return new Promise((resolve, reject) => {
             LoaderManager(1);
+            let mapData = localStorage.getItem('mapData');
+            let mapsetdate = localStorage.getItem('mapsetdate');
+            if (mapData && mapsetdate && (Date.now() - mapsetdate < 24 * 60 * 60 * 1000)) { // 24 hours in milliseconds
+                setfloorMap(JSON.parse(mapData));
+                setHitcount(localStorage.getItem('hitcount'));
+                LoaderManager(0);
+                resolve();
+                return;
+            }
+            localStorage.removeItem('mapData');
+            localStorage.removeItem('hitcount');
+            localStorage.removeItem('mapsetdate');
+
             fetch(`${serverlink}/getmap`, {
                 method: 'GET',
                 headers: {
@@ -86,6 +99,9 @@ function Home() {
                 .then(response => response.json())
                 .then(data => {
                     // console.log(data);
+                    localStorage.setItem('mapData', JSON.stringify(data.data));
+                    localStorage.setItem('hitcount', JSON.stringify(data.hitcount));
+                    localStorage.setItem('mapsetdate', Date.now());
                     setHitcount(data.hitcount);
                     setfloorMap(data.data);
                     LoaderManager(0);

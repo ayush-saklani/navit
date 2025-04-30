@@ -147,7 +147,15 @@ function Home() {
     const fetch_room_status = async () => {
         try {
             let today = new Date();
-            if (((today.getHours() >= 18 && today.getHours() <= 23) || (today.getHours() >= 0 && today.getHours() <= 7)) && localStorage.getItem('roomstatus_infocache')) {
+            let stored_status = localStorage.getItem('roomstatus_infocache');
+            if (((today.getHours() >= 18 && today.getHours() <= 23) || (today.getHours() >= 0 && today.getHours() <= 7)) && stored_status) { // Campus is closed
+                return;
+            }
+            let roomstatus_setdate = localStorage.getItem('roomstatus_setdate');
+            let roomstatus_sethour = localStorage.getItem('roomstatus_sethour');
+            if (stored_status && roomstatus_setdate && roomstatus_sethour && (Date.now() == roomstatus_setdate) && (roomstatus_sethour == today.getHours())) { //
+                set_room_status_data(JSON.parse(stored_status));
+                setroomstatus_fresh(true);
                 return;
             }
             LoaderManager(1); // Start loading
@@ -159,17 +167,16 @@ function Home() {
             });
             const result = await response.json();
             const rooms = result.data || [];
-            const formattedRooms = rooms.map(room => ({
-                roomid: room.roomid,
-                name: room.name,
-                type: room.type,
-                capacity: room.capacity
-            }));
-
-            localStorage.setItem('roomstatus_infocache', JSON.stringify(formattedRooms));
+            
+            localStorage.setItem('roomstatus_infocache', JSON.stringify(rooms));
+            localStorage.setItem('roomstatus_setdate', Date.now());
+            localStorage.setItem('roomstatus_sethour', today.getHours());
             set_room_status_data(rooms);
             setroomstatus_fresh(true);
         } catch (error) {
+            if (e.name === 'QuotaExceededError') {
+                console.error("Storage limit exceeded!");
+            }
             console.error(':::: Room Data not available (SERVER ERROR) :::: ', error);
             throw error;
         } finally {

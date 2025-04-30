@@ -51,8 +51,9 @@ const ProfilePictureMenu = ({ profilepicture, user }) => {
                 {user.guest &&
                     <li className="flex items-center gap-2 text-gray-400 hover:bg-indigo-800 hover:text-white transition-all duration-300 p-2 rounded-md cursor-pointer"
                         onClick={() => {
-                            localStorage.removeItem("token");
-                            localStorage.removeItem("user");
+                            localStorage.clear();
+                            // localStorage.removeItem("token");
+                            // localStorage.removeItem("user");
                             window.location.replace("/signup");
                         }}>
                         <GiExitDoor size={24} />
@@ -61,8 +62,9 @@ const ProfilePictureMenu = ({ profilepicture, user }) => {
                 }
                 <li className="flex items-center gap-2 text-gray-400 hover:bg-red-800 hover:text-white transition-all duration-300 p-2 rounded-md cursor-pointer"
                     onClick={() => {
-                        localStorage.removeItem("token");
-                        localStorage.removeItem("user");
+                        localStorage.clear();
+                        // localStorage.removeItem("token");               // remove this commented line next time i see this line
+                        // localStorage.removeItem("user");
                         window.location.replace("/");
                     }}>
                     <HiLogout size={24} />

@@ -56,7 +56,8 @@ function Home() {
     const [destination, setdestination] = useState(0);
 
     const [floorMap, setfloorMap] = useState(null);
-    const [room_status_data, set_room_status_data] = useState();
+    const [room_status_data, set_room_status_data] = useState(localStorage.getItem('roomstatus_infocache') ? JSON.parse(localStorage.getItem('roomstatus_infocache')) : null);
+    const [roomstatus_fresh, setroomstatus_fresh] = useState(false);
     const [pathPoints, setpathPoints] = useState([[], [], [], [], [], [], []]);
 
     const handleClick = () => { setDown((prevDown) => !prevDown); };
@@ -143,28 +144,39 @@ function Home() {
                 });
         });
     }
-    const fetch_room_status = () => {		// fetches the room list from the server
-        return new Promise((resolve, reject) => {
-            LoaderManager(1);
-            fetch(`${serverlink2}/room/getall`, {            // fetches the room list from the CLASSSYNC API
+    const fetch_room_status = async () => {
+        try {
+            let today = new Date();
+            if (((today.getHours() >= 18 && today.getHours() <= 23) || (today.getHours() >= 0 && today.getHours() <= 7)) && localStorage.getItem('roomstatus_infocache')) {
+                return;
+            }
+            LoaderManager(1); // Start loading
+            const response = await fetch(`${serverlink2}/room/getall`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            }).then(response => response.json())
-                .then(data => {
-                    data = data.data;
-                    // console.log(data);
-                    set_room_status_data(data);
-                    LoaderManager(0);
-                    resolve();
-                }).catch(error => {
-                    console.error(':::: Room Data not available (SERVER ERROR) :::: ');
-                    LoaderManager(0);
-                    reject(error);
-                });
-        });
+            });
+            const result = await response.json();
+            const rooms = result.data || [];
+            const formattedRooms = rooms.map(room => ({
+                roomid: room.roomid,
+                name: room.name,
+                type: room.type,
+                capacity: room.capacity
+            }));
+
+            localStorage.setItem('roomstatus_infocache', JSON.stringify(formattedRooms));
+            set_room_status_data(rooms);
+            setroomstatus_fresh(true);
+        } catch (error) {
+            console.error(':::: Room Data not available (SERVER ERROR) :::: ', error);
+            throw error;
+        } finally {
+            LoaderManager(0); // Stop loading
+        }
     };
+
 
     const [hour, setHour] = useState(new Date().getHours());
     useEffect(() => {
@@ -495,7 +507,7 @@ function Home() {
                                 if (feature.properties?.room_id && room_status_data?.find(room => room.roomid === feature.properties.room_id)) {
                                     const room_talking_about = room_status_data?.find(room => room.roomid === feature.properties.room_id);
                                     let today = new Date();
-                                    return (today.getHours() >= 18 && today.getHours() <= 23) || (today.getHours() >= 0 && today.getHours() <= 7) ?
+                                    return (today.getHours() >= 18 && today.getHours() <= 23) || (today.getHours() >= 0 && today.getHours() <= 7 || roomstatus_fresh == false) ?
                                         (   // Campus is closed
                                             <Polygon
                                                 key={feature.properties.room_id} // Ensure a unique key for each Polygon
@@ -509,14 +521,9 @@ function Home() {
                                                     {
                                                         <Info_Card
                                                             roomname={room_talking_about.name}
-                                                            course={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].course.toLocaleUpperCase()}
-                                                            section={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section}
-                                                            subjectcode={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].subjectcode}
                                                             roomid={room_talking_about.roomid}
                                                             type={room_talking_about.type}
                                                             capacity={room_talking_about.capacity}
-                                                            semester={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].semester}
-                                                            infotype={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section.length > 0 ? "occupied" : "available"}
                                                             active={false}
                                                         />
                                                     }

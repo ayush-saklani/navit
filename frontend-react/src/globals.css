@@ -175,11 +175,13 @@ body {
   text-align: center;
   font-size: 16px;
   font-weight: bold;
-  color: var(--brand-primary-dark);
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 .leaflet-popup-content-wrapper,.leaflet-popup-tip{
-  background-color: var(--bg2);
-  /* box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.767); */
+  background-color: transparent;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0);
 }
 .vertical-text {
   writing-mode: vertical-rl;

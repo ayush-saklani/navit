@@ -23,6 +23,7 @@ import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import { FaUserCircle } from 'react-icons/fa'
 import { BsQrCodeScan } from 'react-icons/bs'
 import { ImCross } from 'react-icons/im'
+import Info_Card from './components/Info_Card'
 
 function Home() {
     const [user, setUser] = useState(null);
@@ -79,7 +80,7 @@ function Home() {
             LoaderManager(1);
             let mapData = localStorage.getItem('mapData');
             let mapsetdate = localStorage.getItem('mapsetdate');
-            if (mapData && mapsetdate && (Date.now() - mapsetdate < 24 * 60 * 60 * 1000)) { // 24 hours in milliseconds
+            if (mapData && mapsetdate && (Date.now() - mapsetdate < 24 * 60 * 60 * 1000 * 7)) { // 7 days 
                 setfloorMap(JSON.parse(mapData));
                 setHitcount(localStorage.getItem('hitcount'));
                 LoaderManager(0);
@@ -164,7 +165,7 @@ function Home() {
                 });
         });
     };
-    
+
     const [hour, setHour] = useState(new Date().getHours());
     useEffect(() => {
         const checkHour = () => {
@@ -451,6 +452,7 @@ function Home() {
                             return floordata.map.features.map((feature) => {
                                 if (feature.properties && feature.properties.room_id && aminities.includes(feature.properties.room_id)) {
                                     // console.log("Rendering polygon for room_id:", feature.properties.room_id);
+                                    let today = new Date();
                                     return (
                                         <Polygon
                                             key={feature.properties.room_id} // Ensure a unique key for each Polygon
@@ -461,7 +463,13 @@ function Home() {
                                             fillOpacity={0.5}
                                         >
                                             <Popup closeButton={false} className="popup-content">
-                                                Washroom
+                                                {
+                                                    <Info_Card
+                                                        roomname={"Washroom"}
+                                                        infotype={"washroom"}
+                                                        active={(today.getHours() >= 18 && today.getHours() <= 23) || (today.getHours() >= 0 && today.getHours() <= 7)}
+                                                    />
+                                                }
                                             </Popup>
                                             <Marker position={L.polygon(getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)).getBounds().getCenter()} icon={
                                                 L.divIcon({
@@ -498,7 +506,20 @@ function Home() {
                                                 fillOpacity={0.5}
                                             >
                                                 <Popup closeButton={false} className="popup-content">
-                                                    {room_talking_about.name}
+                                                    {
+                                                        <Info_Card
+                                                            roomname={room_talking_about.name}
+                                                            course={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].course.toLocaleUpperCase()}
+                                                            section={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section}
+                                                            subjectcode={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].subjectcode}
+                                                            roomid={room_talking_about.roomid}
+                                                            type={room_talking_about.type}
+                                                            capacity={room_talking_about.capacity}
+                                                            semester={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].semester}
+                                                            infotype={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section.length > 0 ? "occupied" : "available"}
+                                                            active={false}
+                                                        />
+                                                    }
                                                 </Popup>
                                                 <Marker position={L.polygon(getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)).getBounds().getCenter()}
                                                     icon={
@@ -523,13 +544,18 @@ function Home() {
                                             >
                                                 <Popup closeButton={false} className="popup-content">
                                                     {
-                                                        room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section.length > 0 ?
-                                                            <div className='flex flex-col'>
-                                                                <span>{room_talking_about.name}</span>
-                                                                <span>{room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].course.toLocaleUpperCase()}</span>
-                                                                <span>{"Section: " + room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section}</span>
-                                                                <span>{room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].subjectcode}</span>
-                                                            </div> : room_talking_about.name
+                                                        <Info_Card
+                                                            roomname={room_talking_about.name}
+                                                            course={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].course.toLocaleUpperCase()}
+                                                            section={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section}
+                                                            subjectcode={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].subjectcode}
+                                                            roomid={room_talking_about.roomid}
+                                                            type={room_talking_about.type}
+                                                            capacity={room_talking_about.capacity}
+                                                            semester={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].semester}
+                                                            infotype={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section.length > 0 ? "occupied" : "available"}
+                                                            active={true}
+                                                        />
                                                     }
                                                 </Popup>
                                                 <Marker position={L.polygon(getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)).getBounds().getCenter()} icon={

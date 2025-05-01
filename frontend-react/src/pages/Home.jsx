@@ -474,7 +474,8 @@ function Home() {
                         fill={true}
                     />
                 }
-                { // ammenities
+                {/* { // ammenities washroom integreated 
+                    false && // for testing purposes
                     floorMap && floorMap.map((floordata, index) => {
                         if (floordata.floor === activeFloor.toString()) {
                             return floordata.map.features.map((feature) => {
@@ -515,7 +516,7 @@ function Home() {
                         }
                         return null; // Return null if floor does not match activeFloor
                     })
-                }
+                } */}
                 { // room status
                     room_status_data && floorMap && floorMap.map((floordata, index) => {
                         if (floordata.floor === activeFloor.toString()) {
@@ -523,8 +524,40 @@ function Home() {
                                 if (feature.properties?.room_id && room_status_data?.find(room => room.roomid === feature.properties.room_id)) {
                                     const room_talking_about = room_status_data?.find(room => room.roomid === feature.properties.room_id);
                                     let today = new Date();
-                                    return (today.getHours() >= 18 && today.getHours() <= 23) || (today.getHours() >= 0 && today.getHours() <= 7 || roomstatus_fresh == false) ?
-                                        (   // Campus is closed
+                                    return (room_talking_about.type == 'gentswashroom' || room_talking_about.type == 'ladieswashroom') ?
+                                        // washroom amenities
+                                        <Polygon
+                                            key={feature.properties.room_id} // Ensure a unique key for each Polygon
+                                            positions={getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)}
+                                            color='var(--Hard-Background)'
+                                            opacity={0.1}
+                                            fillColor={(room_talking_about.type == "ladieswashroom" ? '#f04772' : 'DarkCyan')}
+                                            fillOpacity={0.5}
+                                        >
+                                            <Popup closeButton={false} className="popup-content">
+                                                {
+                                                    <Info_Card
+                                                        roomname={room_talking_about.name}
+                                                        type={room_talking_about.type}
+                                                        infotype={"washroom"}
+                                                        roomid={room_talking_about.roomid}
+                                                    />
+                                                }
+                                            </Popup>
+                                            <Marker position={L.polygon(getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)).getBounds().getCenter()}
+                                                icon={
+                                                    L.divIcon({
+                                                        className: 'text-icon text-icon-size',
+                                                        html: room_talking_about.name,
+                                                        iconSize: [0, 0],
+                                                        iconAnchor: [0, 0]
+                                                    })
+                                                }
+                                            />
+                                        </Polygon>
+                                        :
+                                        (today.getHours() >= 18 && today.getHours() <= 23) || (today.getHours() >= 0 && today.getHours() <= 7 || roomstatus_fresh == false) ?
+                                            // Campus is closed
                                             <Polygon
                                                 key={feature.properties.room_id} // Ensure a unique key for each Polygon
                                                 positions={getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)}
@@ -555,8 +588,8 @@ function Home() {
                                                     }
                                                 />
                                             </Polygon>
-                                        ) :
-                                        (// Campus is open
+                                            :
+                                            // Campus is open
                                             <Polygon
                                                 key={feature.properties.room_id} // Ensure a unique key for each Polygon
                                                 positions={getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)}
@@ -590,7 +623,7 @@ function Home() {
                                                     })
                                                 } />
                                             </Polygon>
-                                        );
+                                        ;
                                 }
                                 return null;
                             });

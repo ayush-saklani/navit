@@ -10,7 +10,7 @@ const Info_Card = ({ roomname, course, section, subjectcode, roomid, type, capac
         {
           <div className={`top-section bg-gradient-to-r 
             ${active == false ? "from-[#5bced4] to-[#4eb7bd]" :
-              infotype == "washroom" ? "from-[#499e9e] to-[#74e6e6]" :
+              infotype == "washroom" ? type == "ladieswashroom" ? "from-[#e75480] to-[#f7a1c4]" : "from-[#499e9e] to-[#74e6e6]" :
                 infotype == 'occupied' ? "from-[#d86060] to-[#d69288]" : "from-[#049fbb] to-[#50f6ff]"}`}>
             {
               infotype == "washroom" ?

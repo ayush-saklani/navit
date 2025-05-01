@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { VscTriangleUp } from 'react-icons/vsc';
 import { LuToilet } from 'react-icons/lu';
+import { PiOfficeChairBold } from 'react-icons/pi';
+import { HiDotsHorizontal } from 'react-icons/hi';
+import { FaPeopleGroup } from 'react-icons/fa6';
 
 const Info_Card = ({ roomname, course, section, subjectcode, roomid, type, capacity, semester, infotype, active = true }) => {
   return (
@@ -9,49 +12,63 @@ const Info_Card = ({ roomname, course, section, subjectcode, roomid, type, capac
       <div className="card">
         {
           <div className={`top-section bg-gradient-to-r 
-            ${active == false ? "from-[#5bced4] to-[#4eb7bd]" :
-              infotype == "washroom" ? type == "ladieswashroom" ? "from-[#e75480] to-[#f7a1c4]" : "from-[#499e9e] to-[#74e6e6]" :
-                infotype == 'occupied' ? "from-[#d86060] to-[#d69288]" : "from-[#049fbb] to-[#50f6ff]"}`}>
+            ${type == "staffroom" ? "from-[#eec555] to-[#fdde78]" :
+              type == "office" ? "from-[#e76666] to-[#b469d6]" :
+                type == "other" ? "from-[#cdcdcd] to-[#a09f9f]" :
+                  active == false ? "from-[#5bced4] to-[#4eb7bd]" :
+                    infotype == "washroom" ?
+                      type == "ladieswashroom" ? "from-[#e75480] to-[#f7a1c4]"
+                        : "from-[#499e9e] to-[#74e6e6]" :
+                      infotype == 'occupied' ? "from-[#d86060] to-[#d69288]"
+                        : "from-[#049fbb] to-[#50f6ff]"}`}>
             {
               infotype == "washroom" ?
                 <div className="bottom-section">
                   <LuToilet className='text-[#1b233d] mx-auto mt-2' size={30} />
                   <span className="title my-2">{roomname}</span>
                 </div>
-                :
-                <div className="bottom-section">
-                  <span className="title my-2">{roomname} {"|"} {roomid}</span>
-                  {
-                    (infotype == 'available' || active == false) &&
-                    <div className="row text-[#213a3f] grid grid-cols-2">
-                      <div className="item col-span-1">
-                        <span className="big-text">{capacity}</span>
-                        <span className="regular-text">Capacity</span>
+                : (type == "office" || type == "other" || type == "staffroom") ?
+                  <div className="bottom-section">
+                    {
+                      type == 'office' ? <PiOfficeChairBold className='text-[#1b233d] mx-auto mt-2' size={30} /> :
+                        type == 'staffroom' ? <FaPeopleGroup className='text-[#1b233d] mx-auto mt-2' size={30} /> :
+                          <HiDotsHorizontal className='text-[#1b233d] mx-auto mt-2' size={30} />
+                    }
+                    <span className="title my-2">{roomname} {"|"} {roomid}</span>
+                  </div> :
+                  <div className="bottom-section">
+                    <span className="title my-2">{roomname} {"|"} {roomid}</span>
+                    {
+                      (infotype == 'available' || active == false) &&
+                      <div className="row text-[#213a3f] grid grid-cols-2">
+                        <div className="item col-span-1">
+                          <span className="big-text">{capacity}</span>
+                          <span className="regular-text">Capacity</span>
+                        </div>
+                        <div className="item col-span-1">
+                          <span className="big-text">{type}</span>
+                          <span className="regular-text">Room Type</span>
+                        </div>
                       </div>
-                      <div className="item col-span-1">
-                        <span className="big-text">{type}</span>
-                        <span className="regular-text">Room Type</span>
+                    }
+                    {
+                      (infotype == 'occupied' && active == true) &&
+                      <div className="row text-[#213a3f] mt-1 grid grid-cols-3">
+                        <div className="item col-span-1">
+                          <span className="big-text">{section.join(', ')}</span>
+                          <span className="regular-text">Section</span>
+                        </div>
+                        <div className="item col-span-1">
+                          <span className="big-text">{subjectcode}</span>
+                          <span className="regular-text">Subject</span>
+                        </div>
+                        <div className="item col-span-1">
+                          <span className="big-text">{semester}</span>
+                          <span className="regular-text">Semester</span>
+                        </div>
                       </div>
-                    </div>
-                  }
-                  {
-                    (infotype == 'occupied' && active == true) &&
-                    <div className="row text-[#213a3f] mt-1 grid grid-cols-3">
-                      <div className="item col-span-1">
-                        <span className="big-text">{section.join(', ')}</span>
-                        <span className="regular-text">Section</span>
-                      </div>
-                      <div className="item col-span-1">
-                        <span className="big-text">{subjectcode}</span>
-                        <span className="regular-text">Subject</span>
-                      </div>
-                      <div className="item col-span-1">
-                        <span className="big-text">{semester}</span>
-                        <span className="regular-text">Semester</span>
-                      </div>
-                    </div>
-                  }
-                </div>
+                    }
+                  </div>
             }
           </div>
         }

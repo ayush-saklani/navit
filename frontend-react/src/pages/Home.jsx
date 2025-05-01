@@ -474,49 +474,6 @@ function Home() {
                         fill={true}
                     />
                 }
-                {/* { // ammenities washroom integreated 
-                    false && // for testing purposes
-                    floorMap && floorMap.map((floordata, index) => {
-                        if (floordata.floor === activeFloor.toString()) {
-                            return floordata.map.features.map((feature) => {
-                                if (feature.properties && feature.properties.room_id && aminities.includes(feature.properties.room_id)) {
-                                    // console.log("Rendering polygon for room_id:", feature.properties.room_id);
-                                    let today = new Date();
-                                    return (
-                                        <Polygon
-                                            key={feature.properties.room_id} // Ensure a unique key for each Polygon
-                                            positions={getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)}
-                                            color='var(--Hard-Background)'
-                                            opacity={0.1}
-                                            fillColor='DarkCyan'
-                                            fillOpacity={0.5}
-                                        >
-                                            <Popup closeButton={false} className="popup-content">
-                                                {
-                                                    <Info_Card
-                                                        roomname={"Washroom"}
-                                                        infotype={"washroom"}
-                                                        active={(today.getHours() >= 18 && today.getHours() <= 23) || (today.getHours() >= 0 && today.getHours() <= 7)}
-                                                    />
-                                                }
-                                            </Popup>
-                                            <Marker position={L.polygon(getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)).getBounds().getCenter()} icon={
-                                                L.divIcon({
-                                                    className: 'text-icon text-icon-size',
-                                                    html: "WC",
-                                                    iconSize: [0, 0],
-                                                    iconAnchor: [0, 0]
-                                                })
-                                            } />
-                                        </Polygon>
-                                    );
-                                }
-                                return null; // Return null if conditions aren't met
-                            });
-                        }
-                        return null; // Return null if floor does not match activeFloor
-                    })
-                } */}
                 { // room status
                     room_status_data && floorMap && floorMap.map((floordata, index) => {
                         if (floordata.floor === activeFloor.toString()) {
@@ -563,7 +520,10 @@ function Home() {
                                                 positions={getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)}
                                                 color='var(--Hard-Background)'
                                                 opacity={0.2}
-                                                fillColor={`var(--Dim-Blue)`}
+                                                fillColor={`
+                                                    ${room_talking_about.type == "staffroom" ? "var(--Dim-Yellow)" :
+                                                        room_talking_about.type == "office" ? "#4e6eb5" :
+                                                            "var(--Dim-Blue)"}`}
                                                 fillOpacity={0.5}
                                             >
                                                 <Popup closeButton={false} className="popup-content">

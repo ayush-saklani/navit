@@ -14,7 +14,7 @@ import ProfilePictureMenu from './components/ProfilePictureMenu'
 
 import toast, { Toaster } from 'react-hot-toast';
 import { MapContainer, TileLayer, Marker, Popup, useMap, GeoJSON, Polyline, Polygon, Circle, CircleMarker } from 'react-leaflet';
-import { FaArrowRotateRight, FaLinkedinIn, FaGithub } from 'react-icons/fa6'
+import { FaArrowRotateRight, FaLinkedinIn, FaGithub, FaCircle } from 'react-icons/fa6'
 import 'leaflet-ant-path'; // If you are using leaflet-ant-path for animated polylines
 import L from "leaflet";
 import { Scanner } from '@yudiel/react-qr-scanner';
@@ -22,8 +22,9 @@ import { Scanner } from '@yudiel/react-qr-scanner';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import { FaUserCircle } from 'react-icons/fa'
 import { BsQrCodeScan } from 'react-icons/bs'
-import { ImCross } from 'react-icons/im'
+import { ImCross, ImLocation } from 'react-icons/im'
 import Info_Card from './components/Info_Card'
+import { MdLocationOff } from 'react-icons/md'
 
 function Home() {
     const [user, setUser] = useState(null);
@@ -47,6 +48,7 @@ function Home() {
     const [Globalloading, setGlobalLoading] = useState(true)
     const [down, setDown] = useState(false);
     const [hitcount, setHitcount] = useState(0);
+    const [signalStrength, setSignalStrength] = useState(0); // 0 means no signal, 1 means weak signal, 2 means good signal, 3 means strong signal
     const [Gobuttontext, setGobuttontext] = useState("Go");
     const [dayslot, setdayslot] = useState("08-09");
     const [hourslot, sethourslot] = useState("08-09");
@@ -153,7 +155,8 @@ function Home() {
             }
             let roomstatus_setdate = localStorage.getItem('roomstatus_setdate');
             let roomstatus_sethour = localStorage.getItem('roomstatus_sethour');
-            if (stored_status && roomstatus_setdate && roomstatus_sethour && (Date.now() == roomstatus_setdate) && (roomstatus_sethour == today.getHours())) { //
+            let todayDate = today.toISOString().split('T')[0];
+            if (stored_status && roomstatus_setdate && roomstatus_sethour && (todayDate == roomstatus_setdate) && (roomstatus_sethour == today.getHours())) { //
                 set_room_status_data(JSON.parse(stored_status));
                 setroomstatus_fresh(true);
                 return;
@@ -167,14 +170,14 @@ function Home() {
             });
             const result = await response.json();
             const rooms = result.data || [];
-            
+
             localStorage.setItem('roomstatus_infocache', JSON.stringify(rooms));
-            localStorage.setItem('roomstatus_setdate', Date.now());
+            localStorage.setItem('roomstatus_setdate', todayDate);
             localStorage.setItem('roomstatus_sethour', today.getHours());
             set_room_status_data(rooms);
             setroomstatus_fresh(true);
         } catch (error) {
-            if (e.name === 'QuotaExceededError') {
+            if (error.name === 'QuotaExceededError') {
                 console.error("Storage limit exceeded!");
             }
             console.error(':::: Room Data not available (SERVER ERROR) :::: ', error);
@@ -276,11 +279,11 @@ function Home() {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
                     if (position.coords.accuracy > 30) {
-                        toast.dismiss();
-                        toast.error("Location accuracy low", {
-                            duration: 2000,
-                            position: 'top-center',
-                        });
+                        setSignalStrength(1);
+                    } else if (position.coords.accuracy > 10) {
+                        setSignalStrength(2);
+                    } else {
+                        setSignalStrength(3);
                     }
                 },
                 (error) => {
@@ -406,6 +409,12 @@ function Home() {
             }
             <Toaster />
             <div className="position-fixed bottom-0 fw-bold left-0 text-lg text-brand-primary-dark px-2 fw-bold z-[1]">{hitcount}</div>
+            <div className="position-fixed bottom-0 fw-bold right-0 text-lg text-brand-primary-dark p-1 fw-bold z-[1]">
+                {signalStrength === 0 ?
+                    <MdLocationOff className='text-xl' /> :
+                    <FaCircle className={`shadow-2xl drop-shadow-2xl text-md animate-pulse  ${signalStrength === 1 ? 'text-[red]' : signalStrength === 2 ? 'text-orange' : 'text-[green]'}`} />
+                }
+            </div>
             <nav className="flex align-items-center p-2 position-fixed z-[1]">
                 <img className="h-[80px]" src={navitlogo} height="70px" />
                 <h1 className="text text-brand-primary-dark mx-2 text-4xl"><b>Navit</b></h1>

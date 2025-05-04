@@ -555,7 +555,12 @@ function Home() {
                                                 positions={getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)}
                                                 color='var(--Hard-Background)'
                                                 opacity={0.1}
-                                                fillColor={`${room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section.length > 0 ? "var(--Red)" : "var(--Aqua)"}`}
+                                                fillColor={`
+                                                    ${room_talking_about.type == "staffroom" ? "var(--Dim-Yellow)" :
+                                                        room_talking_about.type == "office" ? "#4e6eb5" :
+                                                            room_talking_about.type == "other" ? "var(--Dim-Blue)" :
+                                                                room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section.length > 0 ? "var(--Red)" :
+                                                                    "var(--Aqua)"}`}
                                                 fillOpacity={0.5}
                                             >
                                                 <Popup closeButton={false} className="popup-content">

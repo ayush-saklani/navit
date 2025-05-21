@@ -12,14 +12,14 @@ const Info_Card = ({ roomname, course, section, subjectcode, roomid, type, capac
       <div className="card">
         {
           <div className={`top-section bg-gradient-to-r 
-            ${type == "staffroom" ? "from-[#eec555] to-[#fdde78]" :
+            ${type == "staffroom" ? `from-[#d97706] to-[#facc15]` :
               type == "office" ? "from-[#e76666] to-[#b469d6]" :
                 type == "other" ? "from-[#cdcdcd] to-[#a09f9f]" :
                   active == false ? "from-[#5bced4] to-[#4eb7bd]" :
                     infotype == "washroom" ?
                       type == "ladieswashroom" ? "from-[#e75480] to-[#f7a1c4]"
                         : "from-[#499e9e] to-[#74e6e6]" :
-                      infotype == 'occupied' ? "from-[#d86060] to-[#d69288]"
+                      infotype == 'occupied' ? `from-[#f14f4f] to-[#f78181]`
                         : "from-[#049fbb] to-[#50f6ff]"}`}>
             {
               infotype == "washroom" ?
@@ -40,7 +40,7 @@ const Info_Card = ({ roomname, course, section, subjectcode, roomid, type, capac
                     <span className="title my-2">{roomname} {"|"} {roomid}</span>
                     {
                       (infotype == 'available' || active == false) &&
-                      <div className="row text-[#213a3f] grid grid-cols-2">
+                      <div className="row text-[#1b233d] grid grid-cols-2">
                         <div className="item col-span-1">
                           <span className="big-text">{capacity}</span>
                           <span className="regular-text">Capacity</span>
@@ -53,7 +53,7 @@ const Info_Card = ({ roomname, course, section, subjectcode, roomid, type, capac
                     }
                     {
                       (infotype == 'occupied' && active == true) &&
-                      <div className="row text-[#213a3f] mt-1 grid grid-cols-3">
+                      <div className="row text-[#1b233d] mt-1 grid grid-cols-3">
                         <div className="item col-span-1">
                           <span className="big-text">{section.join(', ')}</span>
                           <span className="regular-text">Section</span>

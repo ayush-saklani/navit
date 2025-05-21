@@ -159,6 +159,7 @@ function Home() {
             if (stored_status && roomstatus_setdate && roomstatus_sethour && (todayDate == roomstatus_setdate) && (roomstatus_sethour == today.getHours())) { //
                 set_room_status_data(JSON.parse(stored_status));
                 setroomstatus_fresh(true);
+                toast.success("Room status updated from cache");
                 return;
             }
             LoaderManager(1); // Start loading
@@ -176,6 +177,8 @@ function Home() {
             localStorage.setItem('roomstatus_sethour', today.getHours());
             set_room_status_data(rooms);
             setroomstatus_fresh(true);
+            toast.success("Room status updated");
+            toast.success("Please change floor to see");
         } catch (error) {
             if (error.name === 'QuotaExceededError') {
                 console.error("Storage limit exceeded!");
@@ -202,7 +205,7 @@ function Home() {
 
     useEffect(() => {
         const update_room_status = async () => {
-            console.log("Hour changed! New hour:", hour);
+            // console.log("Hour changed! New hour:", hour);
             await fetch_room_status();
         };
         update_room_status();
@@ -261,7 +264,7 @@ function Home() {
         fetch_time_detail();
         await fetchGeoJSON();
         setGlobalLoading(false);
-        await fetch_room_status();
+        // await fetch_room_status();
     }
 
 

@@ -47,8 +47,13 @@ function Home() {
     useEffect(() => {
         const userexists = localStorage.getItem('user');
         if (userexists) {
+            if (!localStorage.getItem("faq")) {
+                setIsOpen(true);
+                localStorage.setItem("faq", "true");
+            }
             setUser(JSON.parse(localStorage.getItem('user')));
         } else {
+            localStorage.clear();
             window.location.href = '/signin';
         }
     }, []);

@@ -26,6 +26,8 @@ import { ImCross, ImLocation } from 'react-icons/im'
 import Info_Card from './components/Info_Card'
 import { MdLocationOff } from 'react-icons/md'
 
+import { weight, mapWeight, opacity, mapOpacity, fillOpacity, map_color_set } from './utils/color_set'
+
 function Home() {
     const [user, setUser] = useState(null);
     useEffect(() => {
@@ -445,10 +447,10 @@ function Home() {
                         (floor.floor === activeFloor.toString()) &&
                         <GeoJSON key={index} attribution="&copy; credits due..." data={floor.map}
                             style={{
-                                color: "var(--Dim-Blue)",
-                                weight: 1.5,
-                                opacity: 1,
-                                fillColor: "var(--Dim-Blue)",
+                                color: map_color_set["floormap"].color,
+                                weight: mapWeight,
+                                opacity: mapOpacity,
+                                fillColor: map_color_set["floormap"].fillColor,
                             }}
                         />
                     ))
@@ -484,23 +486,32 @@ function Home() {
                                 if (feature.properties?.room_id && room_status_data?.find(room => room.roomid === feature.properties.room_id)) {
                                     const room_talking_about = room_status_data?.find(room => room.roomid === feature.properties.room_id);
                                     let today = new Date();
-                                    return (room_talking_about.type == 'gentswashroom' || room_talking_about.type == 'ladieswashroom') ?
-                                        // washroom amenities
+                                    return (today.getHours() >= 18 && today.getHours() <= 23) || (today.getHours() >= 0 && today.getHours() <= 7 || roomstatus_fresh == false) ?
+                                        // Campus is closed
                                         <Polygon
                                             key={feature.properties.room_id} // Ensure a unique key for each Polygon
                                             positions={getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)}
                                             color='var(--Hard-Background)'
-                                            opacity={0.1}
-                                            fillColor={(room_talking_about.type == "ladieswashroom" ? '#f04772' : 'DarkCyan')}
+                                            opacity={0.2}
+                                            fillColor={`
+                                                    ${room_talking_about.type == "ladieswashroom" ? '#f04772' :
+                                                    room_talking_about.type == "gentswashroom" ? 'DarkCyan' :
+                                                        room_talking_about.type == "staffroom" ? "var(--Dim-Yellow)" :
+                                                            room_talking_about.type == "office" ? "#4e6eb5" :
+                                                                "var(--Dim-Blue)"
+                                                }
+                                                `}
                                             fillOpacity={0.5}
                                         >
                                             <Popup closeButton={false} className="popup-content">
                                                 {
                                                     <Info_Card
                                                         roomname={room_talking_about.name}
-                                                        type={room_talking_about.type}
-                                                        infotype={"washroom"}
                                                         roomid={room_talking_about.roomid}
+                                                        type={room_talking_about.type}
+                                                        capacity={room_talking_about.capacity}
+                                                        active={false}
+                                                        infotype={(room_talking_about.type == "ladieswashroom" || room_talking_about.type == "gentswashroom") ? "washroom" : "closed"}
                                                     />
                                                 }
                                             </Popup>
@@ -516,81 +527,49 @@ function Home() {
                                             />
                                         </Polygon>
                                         :
-                                        (today.getHours() >= 18 && today.getHours() <= 23) || (today.getHours() >= 0 && today.getHours() <= 7 || roomstatus_fresh == false) ?
-                                            // Campus is closed
-                                            <Polygon
-                                                key={feature.properties.room_id} // Ensure a unique key for each Polygon
-                                                positions={getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)}
-                                                color='var(--Hard-Background)'
-                                                opacity={0.2}
-                                                fillColor={`
-                                                    ${room_talking_about.type == "staffroom" ? "var(--Dim-Yellow)" :
-                                                        room_talking_about.type == "office" ? "#4e6eb5" :
-                                                            "var(--Dim-Blue)"}`}
-                                                fillOpacity={0.5}
-                                            >
-                                                <Popup closeButton={false} className="popup-content">
-                                                    {
-                                                        <Info_Card
-                                                            roomname={room_talking_about.name}
-                                                            roomid={room_talking_about.roomid}
-                                                            type={room_talking_about.type}
-                                                            capacity={room_talking_about.capacity}
-                                                            active={false}
-                                                        />
-                                                    }
-                                                </Popup>
-                                                <Marker position={L.polygon(getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)).getBounds().getCenter()}
-                                                    icon={
-                                                        L.divIcon({
-                                                            className: 'text-icon text-icon-size',
-                                                            html: room_talking_about.name,
-                                                            iconSize: [0, 0],
-                                                            iconAnchor: [0, 0]
-                                                        })
-                                                    }
-                                                />
-                                            </Polygon>
-                                            :
-                                            // Campus is open
-                                            <Polygon
-                                                key={feature.properties.room_id} // Ensure a unique key for each Polygon
-                                                positions={getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)}
-                                                color='var(--Hard-Background)'
-                                                opacity={0.1}
-                                                fillColor={`
-                                                    ${room_talking_about.type == "staffroom" ? "var(--Dim-Yellow)" :
-                                                        room_talking_about.type == "office" ? "#4e6eb5" :
-                                                            room_talking_about.type == "other" ? "var(--Dim-Blue)" :
-                                                                room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section.length > 0 ? "var(--Red)" :
-                                                                    "var(--Aqua)"}`}
-                                                fillOpacity={0.5}
-                                            >
-                                                <Popup closeButton={false} className="popup-content">
-                                                    {
-                                                        <Info_Card
-                                                            roomname={room_talking_about.name}
-                                                            course={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].course.toLocaleUpperCase()}
-                                                            section={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section}
-                                                            subjectcode={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].subjectcode}
-                                                            roomid={room_talking_about.roomid}
-                                                            type={room_talking_about.type}
-                                                            capacity={room_talking_about.capacity}
-                                                            semester={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].semester}
-                                                            infotype={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section.length > 0 ? "occupied" : "available"}
-                                                            active={true}
-                                                        />
-                                                    }
-                                                </Popup>
-                                                <Marker position={L.polygon(getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)).getBounds().getCenter()} icon={
-                                                    L.divIcon({
-                                                        className: 'text-icon text-icon-size',
-                                                        html: room_talking_about.name,
-                                                        iconSize: [0, 0],
-                                                        iconAnchor: [0, 0]
-                                                    })
-                                                } />
-                                            </Polygon>
+                                        // Campus is open
+                                        <Polygon
+                                            key={feature.properties.room_id} // Ensure a unique key for each Polygon
+                                            positions={getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)}
+                                            color='var(--Hard-Background)'
+                                            opacity={0.1}
+                                            fillColor={`
+                                                    ${room_talking_about.type == "ladieswashroom" ? '#f04772' :
+                                                    room_talking_about.type == "gentswashroom" ? 'DarkCyan' :
+                                                        room_talking_about.type == "staffroom" ? "var(--Dim-Yellow)" :
+                                                            room_talking_about.type == "office" ? "#4e6eb5" :
+                                                                room_talking_about.type == "other" ? "var(--Dim-Blue)" :
+                                                                    room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section.length > 0 ? "var(--Red)" :
+                                                                        "var(--Aqua)"}`}
+                                            fillOpacity={0.5}
+                                        >
+                                            <Popup closeButton={false} className="popup-content">
+                                                {
+                                                    <Info_Card
+                                                        roomname={room_talking_about.name}
+                                                        course={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].course.toLocaleUpperCase()}
+                                                        section={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section}
+                                                        subjectcode={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].subjectcode}
+                                                        roomid={room_talking_about.roomid}
+                                                        type={room_talking_about.type}
+                                                        capacity={room_talking_about.capacity}
+                                                        semester={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].semester}
+                                                        infotype={
+                                                            (room_talking_about.type == "ladieswashroom" || room_talking_about.type == "gentswashroom") ? "washroom" :
+                                                                room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section.length > 0 ? "occupied" : "available"}
+                                                        active={true}
+                                                    />
+                                                }
+                                            </Popup>
+                                            <Marker position={L.polygon(getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)).getBounds().getCenter()} icon={
+                                                L.divIcon({
+                                                    className: 'text-icon text-icon-size',
+                                                    html: room_talking_about.name,
+                                                    iconSize: [0, 0],
+                                                    iconAnchor: [0, 0]
+                                                })
+                                            } />
+                                        </Polygon>
                                         ;
                                 }
                                 return null;

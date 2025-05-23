@@ -13,7 +13,7 @@ export const map_color_set = {
     },
     "staffroom": {
         "color": "var(--Hard-Background)",
-        "fillColor": "var(--Dim-Yellow)",
+        "fillColor": "#de8408",
     },
     "office": {
         "color": "var(--Hard-Background)",

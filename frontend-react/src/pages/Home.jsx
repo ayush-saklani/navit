@@ -4,7 +4,7 @@ import profilepicture from './assets/images/doof.png'
 import './assets/css/floorbutton.css'
 import './assets/css/bottombar.css'
 import navitlogo from './assets/images/logo.png'
-import roomData from './assets/room.json'
+import roomData_prelude from './assets/room.json'
 import gif from "./assets/images/logo.gif";
 
 import AnimatedPolyline from './components/animatedpolyline'
@@ -63,6 +63,7 @@ function Home() {
     const [room_status_data, set_room_status_data] = useState(localStorage.getItem('roomstatus_infocache') ? JSON.parse(localStorage.getItem('roomstatus_infocache')) : null);
     const [roomstatus_fresh, setroomstatus_fresh] = useState(false);
     const [pathPoints, setpathPoints] = useState([[], [], [], [], [], [], []]);
+    const [roomData, setRoomData] = useState(roomData_prelude);
 
     const handleClick = () => { setDown((prevDown) => !prevDown); };
     const [loaderCounter, setloaderCounter] = useState(0);
@@ -340,6 +341,71 @@ function Home() {
             console.error("URL Parse Error on load:", err);
         }
     }, []);
+    const convertRoomStatusDataToFloorList = (rooms) => {
+        const floorMap = {
+            "Ground floor": [],
+            "1st floor": [],
+            "2nd floor": [],
+            "3rd floor": [],
+            "4th floor": [],
+            "5th floor": [],
+            "Underground floor": [],
+        };
+
+        function getFloorLabel(roomid) {
+            const id = parseInt(roomid);
+            if (id < 1000) return "Underground floor";
+            if (id < 2000) return "Ground floor";
+            if (id < 3000) return "1st floor";
+            if (id < 4000) return "2nd floor";
+            if (id < 5000) return "3rd floor";
+            if (id < 6000) return "4th floor";
+            if (id < 7000) return "5th floor";
+            return null;
+        }
+
+        for (const room of rooms) {
+            const { roomid, name, type } = room;
+            if (!roomid || !name) continue;
+            if (type == "ladieswashroom" || type == "gentswashroom") continue;
+            const floorLabel = getFloorLabel(roomid);
+            if (!floorLabel) continue;
+
+            floorMap[floorLabel].push({
+                roomid: roomid,
+                room_name: name,
+                room_type: type || "unknown"
+            });
+        }
+
+        const finallist = {
+            rooms: [],
+            amenities: roomData_prelude.amenities
+        };
+
+        for (const floor in floorMap) {
+            if (floorMap[floor].length > 0) {
+                const sortedRooms = floorMap[floor].sort((a, b) => {
+                    if (a.room_type < b.room_type) return -1;
+                    if (a.room_type > b.room_type) return 1;
+                    return parseInt(a.roomid) - parseInt(b.roomid);
+                });
+
+                finallist.rooms.push({
+                    floor_label: floor,
+                    room_data: sortedRooms
+                });
+            }
+        }
+        setRoomData(finallist);
+        console.log("Room data updated:", finallist);
+    }
+    useEffect(() => {
+        if (room_status_data && Array.isArray(room_status_data)) {
+            convertRoomStatusDataToFloorList(room_status_data);
+        }
+    }, [room_status_data]);
+
     if (!user) {
         return <div className="position-fixed w-full h-full flex justify-center align-items-center">
             <div className="flex flex-col items-center justify-center">
@@ -571,7 +637,12 @@ function Home() {
                             {roomData.rooms.map((room, index) => (
                                 <optgroup label={room.floor_label} key={index}>
                                     {room.room_data.map((subroom, subindex) => (
-                                        <option key={subindex} value={subroom.roomid}>
+                                        <option key={subindex} value={subroom.roomid}
+                                            style={{
+                                                // fontWeight: subroom.room_type == "class" ? "bold" : subroom.room_type == "class" ? "" : "normal",
+                                                // color: map_color_set[subroom.room_type]?.fillColor ? map_color_set[subroom.room_type].fillColor : subroom.room_type == "class" ? "green" : "red",
+                                            }}
+                                        >
                                             {subroom.room_name}
                                         </option>
                                     ))}

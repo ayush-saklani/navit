@@ -14,7 +14,7 @@ import ProfilePictureMenu from './components/ProfilePictureMenu'
 
 import toast, { Toaster } from 'react-hot-toast';
 import { MapContainer, TileLayer, Marker, Popup, useMap, GeoJSON, Polyline, Polygon, Circle, CircleMarker } from 'react-leaflet';
-import { FaArrowRotateRight, FaLinkedinIn, FaGithub, FaCircle } from 'react-icons/fa6'
+import { FaArrowRotateRight, FaLinkedinIn, FaGithub, FaCircle, FaQuestion } from 'react-icons/fa6'
 import 'leaflet-ant-path'; // If you are using leaflet-ant-path for animated polylines
 import L, { map } from "leaflet";
 import { Scanner } from '@yudiel/react-qr-scanner';
@@ -24,6 +24,7 @@ import { FaUserCircle } from 'react-icons/fa'
 import { BsQrCodeScan } from 'react-icons/bs'
 import { ImCross, ImLocation } from 'react-icons/im'
 import Info_Card from './components/Info_Card'
+import FAQModal from './components/FAQModal'
 import { MdLocationOff } from 'react-icons/md'
 
 import { weight, mapWeight, opacity, mapOpacity, fillOpacity, map_color_set } from './utils/color_set'
@@ -77,6 +78,7 @@ function Home() {
     const [roomstatus_fresh, setroomstatus_fresh] = useState(false);
     const [pathPoints, setpathPoints] = useState([[], [], [], [], [], [], []]);
     const [roomData, setRoomData] = useState(roomData_prelude);
+    const [modalIsOpen, setIsOpen] = useState(false);
 
     const handleClick = () => { setDown((prevDown) => !prevDown); };
     const [loaderCounter, setloaderCounter] = useState(0);
@@ -797,7 +799,13 @@ function Home() {
                         }}
                     />
                 </div>
+                <div href="https://www.linkedin.com/in/ayush-saklani/" target="_blank">
+                    <FaQuestion size={44} className='bg-brand-primary rounded-xl p-2 hover:bg-brand-primary-light text-foreground-1 cursor-pointer text-3xl'
+                        onClick={() => { setIsOpen(true) }}
+                    />
+                </div>
             </footer >
+            <FAQModal modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} />
         </div>
     )
 }

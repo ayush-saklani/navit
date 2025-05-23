@@ -16,7 +16,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { MapContainer, TileLayer, Marker, Popup, useMap, GeoJSON, Polyline, Polygon, Circle, CircleMarker } from 'react-leaflet';
 import { FaArrowRotateRight, FaLinkedinIn, FaGithub, FaCircle } from 'react-icons/fa6'
 import 'leaflet-ant-path'; // If you are using leaflet-ant-path for animated polylines
-import L from "leaflet";
+import L, { map } from "leaflet";
 import { Scanner } from '@yudiel/react-qr-scanner';
 
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
@@ -491,17 +491,17 @@ function Home() {
                                         <Polygon
                                             key={feature.properties.room_id} // Ensure a unique key for each Polygon
                                             positions={getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)}
-                                            color='var(--Hard-Background)'
-                                            opacity={0.2}
+                                            color={
+                                                map_color_set[room_talking_about.type] ?
+                                                    map_color_set[room_talking_about.type].color : map_color_set["closed"].color
+                                            }
+                                            opacity={opacity}
                                             fillColor={`
-                                                    ${room_talking_about.type == "ladieswashroom" ? '#f04772' :
-                                                    room_talking_about.type == "gentswashroom" ? 'DarkCyan' :
-                                                        room_talking_about.type == "staffroom" ? "var(--Dim-Yellow)" :
-                                                            room_talking_about.type == "office" ? "#4e6eb5" :
-                                                                "var(--Dim-Blue)"
+                                                    ${map_color_set[room_talking_about.type] ?
+                                                    map_color_set[room_talking_about.type].fillColor : map_color_set["closed"].fillColor
                                                 }
                                                 `}
-                                            fillOpacity={0.5}
+                                            fillOpacity={fillOpacity}
                                         >
                                             <Popup closeButton={false} className="popup-content">
                                                 {
@@ -531,17 +531,18 @@ function Home() {
                                         <Polygon
                                             key={feature.properties.room_id} // Ensure a unique key for each Polygon
                                             positions={getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)}
-                                            color='var(--Hard-Background)'
-                                            opacity={0.1}
-                                            fillColor={`
-                                                    ${room_talking_about.type == "ladieswashroom" ? '#f04772' :
-                                                    room_talking_about.type == "gentswashroom" ? 'DarkCyan' :
-                                                        room_talking_about.type == "staffroom" ? "var(--Dim-Yellow)" :
-                                                            room_talking_about.type == "office" ? "#4e6eb5" :
-                                                                room_talking_about.type == "other" ? "var(--Dim-Blue)" :
-                                                                    room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section.length > 0 ? "var(--Red)" :
-                                                                        "var(--Aqua)"}`}
-                                            fillOpacity={0.5}
+                                            color={
+                                                map_color_set[room_talking_about.type] ? map_color_set[room_talking_about.type].color :
+                                                    room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section.length > 0 ?
+                                                        map_color_set["occupied"].color : map_color_set["available"].color
+                                            }
+                                            opacity= {opacity}
+                                            fillColor={
+                                                map_color_set[room_talking_about.type] ? map_color_set[room_talking_about.type].fillColor :
+                                                    room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section.length > 0 ?
+                                                        map_color_set["occupied"].fillColor : map_color_set["available"].fillColor
+                                            }
+                                            fillOpacity={fillOpacity}
                                         >
                                             <Popup closeButton={false} className="popup-content">
                                                 {

@@ -3,7 +3,7 @@ export const mapOpacity = 1;            // opacity of the line of the map
 export const mapFillOpacity = 0.5;      // opacity of the fill of the map
 
 export const weight = 1.5;              // weight of the line of the room
-export const opacity = 1;               // opacity of the line of the room
+export const opacity = 0.1;               // opacity of the line of the room
 export const fillOpacity = 0.5;         // opacity of the fill of the room
 
 export const map_color_set = {
@@ -12,31 +12,35 @@ export const map_color_set = {
         "fillColor": "var(--Dim-Blue)",
     },
     "staffroom": {
-        "color": "#f04772",
-        "fillColor": "#f04772",
+        "color": "var(--Hard-Background)",
+        "fillColor": "var(--Dim-Yellow)",
     },
     "office": {
-        "color": "#4e6eb5",
+        "color": "var(--Hard-Background)",
         "fillColor": "#4e6eb5",
     },
     "gentswashroom": {
-        "color": "#f04772",
-        "fillColor": "#f04772",
+        "color": "var(--Hard-Background)",
+        "fillColor": "DarkCyan",
     },
     "ladieswashroom": {
-        "color": "#f04772",
+        "color": "var(--Hard-Background)",
         "fillColor": "#f04772",
     },
     "other": {
-        "color": "var(--Dim-Blue)",
+        "color": "var(--Hard-Background)",
         "fillColor": "var(--Dim-Blue)",
     },
-    "classroom": {
-        "color": "var(--Aqua)",
+    "occupied": {
+        "color": "var(--Hard-Background)",
+        "fillColor": "var(--Red)",
+    },
+    "available": {
+        "color": "var(--Hard-Background)",
         "fillColor": "var(--Aqua)",
     },
-    "lab": {
-        "color": "var(--Red)",
-        "fillColor": "var(--Red)",
+    "closed": {
+        "color": "var(--Hard-Background)",
+        "fillColor": "var(--Dim-Blue)",
     },
 }

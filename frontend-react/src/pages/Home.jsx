@@ -29,6 +29,19 @@ import { MdLocationOff } from 'react-icons/md'
 import { weight, mapWeight, opacity, mapOpacity, fillOpacity, map_color_set } from './utils/color_set'
 
 function Home() {
+    // Disable browser context menu except for elements with 'allow-browser-menu' class
+    useEffect(() => {
+        const handleContextMenu = (e) => {
+            // Allow browser menu for elements with this class
+            if (e.target.closest('.allow-browser-menu')) return;
+            e.preventDefault();
+        };
+        document.addEventListener('contextmenu', handleContextMenu);
+        return () => {
+            document.removeEventListener('contextmenu', handleContextMenu);
+        };
+    }, []);
+
     const [user, setUser] = useState(null);
     useEffect(() => {
         const userexists = localStorage.getItem('user');
@@ -557,7 +570,7 @@ function Home() {
                                 if (feature.properties?.room_id && room_status_data?.find(room => room.roomid === feature.properties.room_id)) {
                                     const room_talking_about = room_status_data?.find(room => room.roomid === feature.properties.room_id);
                                     return <Polygon
-                                        key={feature.properties.room_id} // Ensure a unique key for each Polygon
+                                        key={feature.properties.room_id}
                                         positions={getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)}
                                         color={
                                             map_color_set[room_talking_about.type] ? map_color_set[room_talking_about.type].color :
@@ -573,6 +586,18 @@ function Home() {
                                                         map_color_set["occupied"].fillColor : map_color_set["available"].fillColor
                                         }
                                         fillOpacity={fillOpacity}
+                                        eventHandlers={{
+                                            contextmenu: (e) => {
+                                                e.originalEvent.preventDefault();
+                                                if (room_talking_about.type == "ladieswashroom") {
+                                                    setdestination(1998);
+                                                } else if (room_talking_about.type == "gentswashroom") {
+                                                    setdestination(1999);
+                                                } else {
+                                                    setdestination(room_talking_about.roomid);
+                                                }
+                                            }
+                                        }}
                                     >
                                         <Popup closeButton={false} className="popup-content">
                                             {

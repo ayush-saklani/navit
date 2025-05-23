@@ -603,13 +603,13 @@ function Home() {
                                             {
                                                 <Info_Card
                                                     roomname={room_talking_about.name}
-                                                    course={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].course.toLocaleUpperCase()}
-                                                    section={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section}
-                                                    subjectcode={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].subjectcode}
+                                                    course={!isActivehour() ? room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].course.toLocaleUpperCase() : ""}
+                                                    section={!isActivehour() ? room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section : ""}
+                                                    subjectcode={!isActivehour() ? room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].subjectcode : ""}
                                                     roomid={room_talking_about.roomid}
                                                     type={room_talking_about.type}
                                                     capacity={room_talking_about.capacity}
-                                                    semester={room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].semester}
+                                                    semester={!isActivehour() ? room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].semester : ""}
                                                     infotype={
                                                         (room_talking_about.type == "ladieswashroom" || room_talking_about.type == "gentswashroom") ? "washroom" :
                                                             isActivehour() ? "closed" :

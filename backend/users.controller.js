@@ -377,8 +377,58 @@ const resetpasswordverify = async (req, res) => {   // verified and working
         );
     }
 }
+const update_course_info = async (req, res) => { // verified and working
+    try {
+        const body = req.body;
+        const { password, course, semester, section } = body;
+        let { email } = body;
+        email = email.toLowerCase();
+        if (!email || typeof email !== 'string' || !email.includes('@')) {
+            throw new ApiError(400, 'Invalid email format');
+        }
 
-export { signup, verifyotp, signin, resendotp, resetpassword, resetpasswordverify };
+        const existingUser = await user_model.findOne({ email });
+        if (!existingUser) {
+            return res.status(400).json(
+                new ApiError(400, {
+                    message: 'User not found'
+                }, 'User not found')
+            );
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, existingUser.password);
+        if (!isPasswordValid) {
+            return res.status(400).json(
+                new ApiError(400, {
+                    message: 'Invalid password'
+                }, 'Invalid password')
+            );
+        }
+        if (!course || !semester || !section) {
+            return res.status(400).json(
+                new ApiError(400, {
+                    message: 'Course, semester, and section are required'
+                }, 'Course, semester, and section are required')
+            );
+        }
+        await existingUser.updateOne({ course, semester, section });
+        const user = await user_model.findOne({ email }).select('-password -email_verified -__v');
+        return res.status(200).json(
+            new ApiResponse(200, {
+                user,
+            }, 'User updated successfully')
+        );
+
+    } catch (error) {
+        return res.status(500).json(
+            new ApiError(500, {
+                message: 'Internal Server Error',
+                error: error
+            }, 'Internal Server Error')
+        );
+    }
+}
+export { signup, verifyotp, signin, resendotp, resetpassword, resetpasswordverify, update_course_info };
 
 
 

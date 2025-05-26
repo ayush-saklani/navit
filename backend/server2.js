@@ -209,7 +209,7 @@ app.get('/keepmeawake', (req, res) => {          // Keep the server awake
     res.status(200).json({ "status": 'Up and Running Boi' });
 });
 
-import { signup, verifyotp, signin, resendotp, resetpassword, resetpasswordverify } from './users.controller.js';
+import { signup, verifyotp, signin, resendotp, resetpassword, resetpasswordverify, update_course_info } from './users.controller.js';
 
 app.post('/signup', signup);
 app.post('/verifyotp', verifyotp);
@@ -217,6 +217,7 @@ app.post('/signin', signin);
 app.post('/resendotp', resendotp);
 app.post('/resetpassword', resetpassword);
 app.post('/resetpasswordverify', resetpasswordverify);
+app.post('/update_course_info', update_course_info);
 
 app.listen(port, async () => {
     await mongoose.connect(process.env.MONGODB_URI)

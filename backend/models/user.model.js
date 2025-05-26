@@ -23,6 +23,18 @@ const UserSchema = new mongoose.Schema({
         required: true,
         default: false,
     },
+    course: {
+        type: String,
+        required: false,
+    },
+    semester: {
+        type: String,
+        required: false,
+    },
+    section: {
+        type: String,
+        required: false,
+    },
     otp: {
         type: String,
         required: false,

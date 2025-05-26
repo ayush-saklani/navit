@@ -30,6 +30,7 @@ import { MdLocationOff } from 'react-icons/md'
 import { weight, mapWeight, opacity, mapOpacity, fillOpacity, map_color_set } from './utils/color_set'
 
 function Home() {
+    const debug = false; // set to true for debugging purpose
     // Disable browser context menu except for elements with 'allow-browser-menu' class
     useEffect(() => {
         const handleContextMenu = (e) => {
@@ -62,6 +63,8 @@ function Home() {
     const serverlink = "https://navit.azurewebsites.net";               // navit azure server link 
     const serverlink2 = "https://class-sync-azure.azurewebsites.net";   // classsync azure server link
 
+    const saved = JSON.parse(localStorage.getItem('profile_selection'));
+
     const floors = [-1, 0, 1, 2, 3, 4, 5]
     const [activeFloor, setActiveFloor] = useState(0)
     const [timevar, setTimevar] = useState(`Closed`);
@@ -92,83 +95,67 @@ function Home() {
         setLoading(loaderCounter > 0 ? true : false);
     }
 
-    const aminities = [
-        "1051", "1029", "1099", "1083",
-        "2051", "2029", "2099", "2083",
-        "3051", "3029", "3099", "3083",
-        "4051", "4029", "4099", "4083",
-        "5051", "5029", "5099", "5083",
-        "6051", "6029", "6099", "6083"
-    ]
-
-    const fetchGeoJSON = () => {
-        return new Promise((resolve, reject) => {
-            LoaderManager(1);
+    const fetchGeoJSON = async () => {
+        LoaderManager(1);
+        try {
             let mapData = localStorage.getItem('mapData');
             let mapsetdate = localStorage.getItem('mapsetdate');
             if (mapData && mapsetdate && (Date.now() - mapsetdate < 24 * 60 * 60 * 1000 * 7)) { // 7 days 
                 setfloorMap(JSON.parse(mapData));
                 setHitcount(localStorage.getItem('hitcount'));
-                LoaderManager(0);
-                resolve();
                 return;
             }
             localStorage.removeItem('mapData');
             localStorage.removeItem('hitcount');
             localStorage.removeItem('mapsetdate');
 
-            fetch(`${serverlink}/getmap`, {
+            const response = await fetch(`${serverlink}/getmap`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // console.log(data);
-                    localStorage.setItem('mapData', JSON.stringify(data.data));
-                    localStorage.setItem('hitcount', JSON.stringify(data.hitcount));
-                    localStorage.setItem('mapsetdate', Date.now());
-                    setHitcount(data.hitcount);
-                    setfloorMap(data.data);
-                    LoaderManager(0);
-                    resolve();
-                }).catch(error => {
-                    console.error('out of service.. ~_~  @_@', error);
-                    LoaderManager(0);
-                    reject(error);
-                });
-        });
+            });
+            const data = await response.json();
+            localStorage.setItem('mapData', JSON.stringify(data.data));
+            localStorage.setItem('hitcount', JSON.stringify(data.hitcount));
+            localStorage.setItem('mapsetdate', Date.now());
+            setHitcount(data.hitcount);
+            setfloorMap(data.data);
+        } catch (error) {
+            console.error('out of service.. ~_~  @_@', error);
+            throw error;
+        } finally {
+            LoaderManager(0);
+        }
     }
-    const fetch_calculate_antpath = () => {
-        return new Promise((resolve, reject) => {
-            if (source == 0 || destination == 0) {
-                return;
-            }
-            LoaderManager(1);
-            let floor = Math.floor(source / 1000) - 1;
-            fetch(`${serverlink}/getCoordinates?src=${source}&des=${destination}`, {
+
+    const fetch_calculate_antpath = async () => {
+        if (source == 0 || destination == 0) {
+            return;
+        }
+        LoaderManager(1);
+        let floor = Math.floor(source / 1000) - 1;
+        try {
+            const response = await fetch(`${serverlink}/getCoordinates?src=${source}&des=${destination}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            }).then(response => response.json())
-                .then(data => {
-                    // console.log(data.data.antpath);
-                    setpathPoints(data.data.antpath);
-                    let tempTime = Math.round(data.data.distance) / 2;
-                    let message = (tempTime < 60) ? "~1 min" : `${Math.ceil(tempTime / 60) + 1} min`
-                    setGobuttontext(message);
-                    setActiveFloor(floor);
-                    LoaderManager(0);
-                    resolve();
-                }).catch(error => {
-                    console.error('Error fetching path coordinates:', error);
-                    LoaderManager(0);
-                    reject(error);
-                });
-        });
+            });
+            const data = await response.json();
+            setpathPoints(data.data.antpath);
+            let tempTime = Math.round(data.data.distance) / 2;
+            let message = (tempTime < 60) ? "~1 min" : `${Math.ceil(tempTime / 60) + 1} min`;
+            setGobuttontext(message);
+            setActiveFloor(floor);
+        } catch (error) {
+            console.error('Error fetching path coordinates:', error);
+            throw error;
+        } finally {
+            LoaderManager(0);
+        }
     }
+
     const fetch_room_status = async () => {
         try {
             let today = new Date();
@@ -256,12 +243,14 @@ function Home() {
         });
         return latLngs;
     }
+
     const fetch_time_detail = (floordata) => {
         LoaderManager(1);
         let today = new Date();
         const weekdays = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
         let day_slot = weekdays[today.getDay()];
         setdayslot(day_slot.toString().toUpperCase());
+        if (debug) setdayslot("MON");                // for testing purpose
         let hours = today.getHours();
         if (hours == 0) hours = 12;             // 12 am is 0 in js
         let houre = hours + 1;
@@ -270,6 +259,7 @@ function Home() {
         let time_slot = hours + "-" + houre;
         time_slot = (time_slot).toString();
         sethourslot(time_slot.toString());
+        if (debug) sethourslot("08-09");             // for testing purpose
         setTimevar(`${time_slot}`)
         let timeslots = ["08-09", "09-10", "10-11", "11-12", "12-01", "01-02", "02-03", "03-04", "04-05", "05-06"]
         setTimevar(`${day_slot.toLocaleUpperCase()} ${time_slot}`);
@@ -289,7 +279,6 @@ function Home() {
         setGlobalLoading(false);
         // await fetch_room_status();
     }
-
 
     useEffect(() => {
         // setGlobalLoading(false); // for ui editing uncomment this line and comment the line below
@@ -437,6 +426,7 @@ function Home() {
         </div>
     }
     const isActivehour = () => { // check if the current hour is between 18:00 and 07:00 as the campus is closed active hour is  8am to 6 pm
+        if (debug) return false;
         const today = new Date();
         const currentHour = today.getHours();
         return (currentHour >= 18 && currentHour <= 23) || (currentHour >= 0 && currentHour <= 7 || roomstatus_fresh == false);
@@ -446,7 +436,7 @@ function Home() {
             {/* 
                 // this is the format of the data in the QR code - this is a json object
                 {
-                    "roomid": "1171"
+                    "roomid": "1171" // outdated
                 }
             */}
             {
@@ -576,64 +566,85 @@ function Home() {
                             return floordata.map.features.map((feature) => {
                                 if (feature.properties?.room_id && room_status_data?.find(room => room.roomid === feature.properties.room_id)) {
                                     const room_talking_about = room_status_data?.find(room => room.roomid === feature.properties.room_id);
-                                    return <Polygon
-                                        key={feature.properties.room_id}
-                                        positions={getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)}
-                                        color={
-                                            map_color_set[room_talking_about.type] ? map_color_set[room_talking_about.type].color :
-                                                isActivehour() ? map_color_set["closed"].color :
-                                                    room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section.length > 0 ?
-                                                        map_color_set["occupied"].color : map_color_set["available"].color
-                                        }
-                                        opacity={opacity}
-                                        fillColor={
-                                            map_color_set[room_talking_about.type] ? map_color_set[room_talking_about.type].fillColor :
-                                                isActivehour() ? map_color_set["closed"].fillColor :
-                                                    room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section.length > 0 ?
-                                                        map_color_set["occupied"].fillColor : map_color_set["available"].fillColor
-                                        }
-                                        fillOpacity={fillOpacity}
-                                        eventHandlers={{
-                                            contextmenu: (e) => {
-                                                e.originalEvent.preventDefault();
-                                                if (room_talking_about.type == "ladieswashroom") {
-                                                    setdestination(1998);
-                                                } else if (room_talking_about.type == "gentswashroom") {
-                                                    setdestination(1999);
-                                                } else {
-                                                    setdestination(room_talking_about.roomid);
+                                    const tempvar = room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()];
+                                    return <>
+                                        <Polygon
+                                            key={feature.properties.room_id}
+                                            positions={getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)}
+                                            color={
+                                                map_color_set[room_talking_about.type] ? map_color_set[room_talking_about.type].color :
+                                                    isActivehour() ? map_color_set["closed"].color :
+                                                        room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section.length > 0 ?
+                                                            map_color_set["occupied"].color : map_color_set["available"].color
+                                            }
+                                            opacity={opacity}
+                                            fillColor={
+                                                map_color_set[room_talking_about.type] ? map_color_set[room_talking_about.type].fillColor :
+                                                    isActivehour() ? map_color_set["closed"].fillColor :
+                                                        room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section.length > 0 ?
+                                                            map_color_set["occupied"].fillColor : map_color_set["available"].fillColor
+                                            }
+                                            fillOpacity={fillOpacity}
+                                            eventHandlers={{
+                                                contextmenu: (e) => {
+                                                    e.originalEvent.preventDefault();
+                                                    if (room_talking_about.type == "ladieswashroom") {
+                                                        setdestination(1998);
+                                                    } else if (room_talking_about.type == "gentswashroom") {
+                                                        setdestination(1999);
+                                                    } else {
+                                                        setdestination(room_talking_about.roomid);
+                                                    }
                                                 }
-                                            }
-                                        }}
-                                    >
-                                        <Popup closeButton={false} className="popup-content">
-                                            {
-                                                <Info_Card
-                                                    roomname={room_talking_about.name}
-                                                    course={!isActivehour() ? room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].course.toLocaleUpperCase() : ""}
-                                                    section={!isActivehour() ? room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section : ""}
-                                                    subjectcode={!isActivehour() ? room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].subjectcode : ""}
-                                                    roomid={room_talking_about.roomid}
-                                                    type={room_talking_about.type}
-                                                    capacity={room_talking_about.capacity}
-                                                    semester={!isActivehour() ? room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].semester : ""}
-                                                    infotype={
-                                                        (room_talking_about.type == "ladieswashroom" || room_talking_about.type == "gentswashroom") ? "washroom" :
-                                                            isActivehour() ? "closed" :
-                                                                room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section.length > 0 ? "occupied" : "available"}
-                                                    active={!isActivehour()}
-                                                />
-                                            }
-                                        </Popup>
-                                        <Marker position={L.polygon(getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)).getBounds().getCenter()} icon={
-                                            L.divIcon({
-                                                className: 'text-icon text-icon-size',
-                                                html: room_talking_about.name,
-                                                iconSize: [0, 0],
-                                                iconAnchor: [0, 0]
-                                            })
-                                        } />
-                                    </Polygon>
+                                            }}
+                                        >
+                                            <Popup closeButton={false} className="popup-content">
+                                                {
+                                                    <Info_Card
+                                                        roomname={room_talking_about.name}
+                                                        course={!isActivehour() ? room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].course.toLocaleUpperCase() : ""}
+                                                        section={!isActivehour() ? room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section : ""}
+                                                        subjectcode={!isActivehour() ? room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].subjectcode : ""}
+                                                        roomid={room_talking_about.roomid}
+                                                        type={room_talking_about.type}
+                                                        capacity={room_talking_about.capacity}
+                                                        semester={!isActivehour() ? room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].semester : ""}
+                                                        infotype={
+                                                            (room_talking_about.type == "ladieswashroom" || room_talking_about.type == "gentswashroom") ? "washroom" :
+                                                                isActivehour() ? "closed" :
+                                                                    room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()].section.length > 0 ? "occupied" : "available"}
+                                                        active={!isActivehour()}
+                                                    />
+                                                }
+                                            </Popup>
+                                            <Marker
+                                                position={L.polygon(getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)).getBounds().getCenter()}
+                                                icon={
+                                                    L.divIcon({
+                                                        className: 'text-icon text-icon-size',
+                                                        html: room_talking_about.name,
+                                                        iconSize: [0, 0],
+                                                        iconAnchor: [0, 0]
+                                                    })
+                                                }
+                                            />
+                                        </Polygon>
+                                        {
+                                            (saved && (tempvar.section.includes(saved.section) && tempvar.course == saved.course && tempvar.semester == saved.semester)) &&
+                                            <AnimatedPolyline
+                                                positions={getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)}
+                                                options={{
+                                                    opacity: 0.8,
+                                                    delay: 2500,
+                                                    dashArray: [50, 50],
+                                                    weight: 6,
+                                                    color: '#7bccc4', // Bright yellow for high visibility
+                                                    pulseColor: '#0769ad', // Bright orange-red for strong highlight
+
+                                                }}
+                                            />
+                                        }
+                                    </>
                                 }
                                 return null;
                             });

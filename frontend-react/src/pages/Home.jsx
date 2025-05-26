@@ -776,7 +776,7 @@ function Home() {
                                     <img src={profilepicture} alt="" size={44} className='h-12 w-12 rounded-full p-0 cursor-pointer' />
                             }
                         </PopoverButton>
-                        <PopoverPanel anchor="bottom" className="flex flex-col bg-brand-primary-light rounded-xl z-10">
+                        <PopoverPanel anchor="bottom" className="flex flex-col bg-brand-primary-light rounded-xl z-[1001]">
                             <ProfilePictureMenu profilepicture={profilepicture} user={user} />
                         </PopoverPanel>
                     </Popover>

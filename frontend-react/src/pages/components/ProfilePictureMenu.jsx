@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { GiExitDoor } from "react-icons/gi";
 import { HiLogout } from "react-icons/hi";
-// dynamic_options data (move to top of file) fetch from class-sync api when available currently only hardcoded is the way
-import { dynamic_options } from "../utils/constant";
+// data fetch from class-sync api when available currently only hardcoded is the way
+import { dynamic_options, serverlink } from "../utils/constant";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import toast from "react-hot-toast";
 
 const ProfilePictureMenu = ({ profilepicture, user }) => {
     const [selectedCourse, setSelectedCourse] = useState("");
@@ -11,7 +12,8 @@ const ProfilePictureMenu = ({ profilepicture, user }) => {
     const [selectedSemester, setSelectedSemester] = useState("");
     const [sectionOptions, setSectionOptions] = useState([]);
     const [selectedSection, setSelectedSection] = useState("");
-    const [dropdownExpanded, setDropdownExpanded] = useState(false); // New state for dropdown
+    const [dropdownExpanded, setDropdownExpanded] = useState(false);
+    const [password, setPassword] = useState("");
 
     useEffect(() => {           // Update semester dynamic_options when course or term changes
         const course = dynamic_options.courses.find(c => c.course_id === selectedCourse);
@@ -29,47 +31,71 @@ const ProfilePictureMenu = ({ profilepicture, user }) => {
         const course = dynamic_options.courses.find(c => c.course_id === selectedCourse);
         if (!course || !selectedSemester) {
             setSectionOptions([]);
-            // Only clear selectedSection if selectedSemester is being cleared
             if (!selectedSemester) setSelectedSection("");
             return;
         }
         const sectionList = course.sections[selectedSemester] || [];
         setSectionOptions(sectionList);
-        // Only clear selectedSection if the new semester doesn't contain the old section
         if (!sectionList.includes(selectedSection)) setSelectedSection("");
     }, [selectedCourse, selectedSemester]);
 
-    // On mount, fetch from localStorage and fill options if available
     useEffect(() => {
         if (!user.guest) {
-            const saved = localStorage.getItem('profile_selection');
-            if (saved) {
-                try {
-                    const parsed = JSON.parse(saved);
-                    if (parsed.course) setSelectedCourse(parsed.course);
-                    // Set semester and section after course options update
-                    setTimeout(() => {
-                        if (parsed.semester) setSelectedSemester(parsed.semester);
-                        if (parsed.section) setSelectedSection(parsed.section);
-                    }, 0);
-                } catch (e) {
-                    // ignore parse errors
-                }
-            }
+            if (user.course && user.course !== selectedCourse) setSelectedCourse(user.course);
         }
-    }, [semesterOptions, sectionOptions]);
+    }, [user.course]);
 
-    // Save values to localStorage as a single unit
-    const saveSelection = () => {
-        if (!user.guest && selectedCourse && selectedSemester && selectedSection) {
-            const profileSelection = {
+    useEffect(() => {
+        if (!user.guest) {
+            if (user.semester && semesterOptions.includes(user.semester) && user.semester !== selectedSemester) setSelectedSemester(user.semester);
+        }
+    }, [user.semester, semesterOptions]);
+
+    useEffect(() => {
+        if (!user.guest) {
+            if (user.section && sectionOptions.includes(user.section) && user.section !== selectedSection) setSelectedSection(user.section);
+        }
+    }, [user.section, sectionOptions]);
+
+    const update_course_info = async () => {
+        if (user.guest === true) {
+            toast.error("Guest users cannot update course information.");
+            return;
+        }
+
+        if (!password) {
+            toast.error("Password is required");
+            return;
+        }
+        if (!selectedCourse || !selectedSemester || !selectedSection) {
+            toast.error("Please select course, semester, and section.");
+            return;
+        }
+        fetch(`${serverlink}/update_course_info`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: user.email,
+                password: password,
                 course: selectedCourse,
                 semester: selectedSemester,
-                section: selectedSection
-            };
-            localStorage.setItem('profile_selection', JSON.stringify(profileSelection));
-        }
-    };
+                section: selectedSection,
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    localStorage.setItem("user", JSON.stringify(data.data.user));
+                    toast.success("Course information updated successfully.");
+                } else {
+                    toast.error("Something went wrong.");
+                }
+            }).catch(error => {
+                console.error('out of service.. ~_~  @_@', error);
+            });
+    }
     return (
         <div className="w-60 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg shadow-2xl p-4 flex flex-col gap-3">
             <ul className="list-none flex flex-col gap-3 w-full">
@@ -108,10 +134,13 @@ const ProfilePictureMenu = ({ profilepicture, user }) => {
 
                         {
                             !user.guest &&
-                            <div className="flex flex-col gap-2 w-full mt-2">
+                            <div className="flex flex-col gap-1 w-full mt-2">
                                 <div className="">
+                                    <span className="text-xs text-gray-300 font-semibold pl-1">
+                                        Spot your class by selecting 
+                                    </span>
                                     <button
-                                        className="focus:outline-none flex justify-between items-center mb-1 gap-1"
+                                        className="focus:outline-none flex justify-between items-center gap-1"
                                         onClick={() => setDropdownExpanded(prev => !prev)}
                                         aria-label="Toggle selection section"
                                         type="button"
@@ -126,9 +155,9 @@ const ProfilePictureMenu = ({ profilepicture, user }) => {
                                 </div>
                                 <div className={`overflow-hidden transition-all duration-300 ${dropdownExpanded ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'} w-full`}>
                                     <div className="flex flex-col gap-1">
-                                        <label htmlFor="course_option" className="text-xs text-gray-300 font-semibold mb-1 pl-1">Course</label>
+                                        <label htmlFor="course_option" className="text-xs text-gray-300 font-semibold mt-1 pl-1">Course</label>
                                         <select
-                                            className="bg-gray-800 text-gray-100 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition w-full"
+                                            className="bg-gray-800 text-gray-100 rounded-md px-3 py-2 focus:outline-none w-full"
                                             name="course"
                                             id="course_option"
                                             value={selectedCourse}
@@ -141,9 +170,9 @@ const ProfilePictureMenu = ({ profilepicture, user }) => {
                                         </select>
                                     </div>
                                     <div className="flex flex-col gap-1">
-                                        <label htmlFor="semester_option" className="text-xs text-gray-300 font-semibold mb-1 pl-1">Semester</label>
+                                        <label htmlFor="semester_option" className="text-xs text-gray-300 font-semibold mt-1 pl-1">Semester</label>
                                         <select
-                                            className="bg-gray-800 text-gray-100 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition w-full"
+                                            className="bg-gray-800 text-gray-100 rounded-md px-3 py-2 focus:outline-none w-full"
                                             name="semester"
                                             id="semester_option"
                                             value={selectedSemester}
@@ -156,9 +185,9 @@ const ProfilePictureMenu = ({ profilepicture, user }) => {
                                         </select>
                                     </div>
                                     <div className="flex flex-col gap-1">
-                                        <label htmlFor="section_option" className="text-xs text-gray-300 font-semibold mb-1 pl-1">Section</label>
+                                        <label htmlFor="section_option" className="text-xs text-gray-300 font-semibold mt-1 pl-1">Section</label>
                                         <select
-                                            className="bg-gray-800 text-gray-100 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition w-full"
+                                            className="bg-gray-800 text-gray-100 rounded-md px-3 py-2 focus:outline-none w-full"
                                             name="section"
                                             id="section_option"
                                             value={selectedSection}
@@ -169,9 +198,23 @@ const ProfilePictureMenu = ({ profilepicture, user }) => {
                                                 <option key={section} value={section}>{section}</option>
                                             ))}
                                         </select>
+                                    </div>
+                                    <div className="flex flex-col gap-1">
+                                        <label htmlFor="password_option" className="text-xs text-gray-300 font-semibold mt-1 pl-1">Password</label>
+                                        <input
+                                            type="password"
+                                            className="bg-gray-800 text-gray-100 rounded-md px-3 py-2 focus:outline-none w-full"
+                                            name="password"
+                                            id="password_option"
+                                            placeholder="Enter your password"
+                                            value={password}
+                                            onChange={e => setPassword(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="flex flex-col gap-1">
                                         <button
                                             className="mt-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition disabled:opacity-50"
-                                            onClick={saveSelection}
+                                            onClick={update_course_info}
                                             disabled={!(selectedCourse && selectedSemester && selectedSection)}
                                         >
                                             Save

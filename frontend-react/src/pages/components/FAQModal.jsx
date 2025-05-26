@@ -1,10 +1,10 @@
 import { BsQrCodeScan } from 'react-icons/bs';
 import { FaCircle, FaRegCompass } from 'react-icons/fa6';
 import { FiClock } from 'react-icons/fi';
-import { GiPathDistance } from 'react-icons/gi';
 import { GrResources } from 'react-icons/gr';
 import { ImCross } from 'react-icons/im';
 import { LuClipboardList, LuMousePointerClick } from 'react-icons/lu';
+import { MdOutlineSystemSecurityUpdateGood } from 'react-icons/md';
 import { PiPathBold } from 'react-icons/pi';
 import Modal from 'react-modal';
 
@@ -49,6 +49,10 @@ const FAQModal = ({ modalIsOpen, setIsOpen }) => {
                         minHeight: "1em"
                     }} />
                     <span>Other colors: staff, office, or misc types.</span>
+                </li>
+                <li className="flex items-center gap-3">
+                    <MdOutlineSystemSecurityUpdateGood className='text-purple-500 w-5 h-5 flex-shrink-0' />
+                    <span>Your current class is highlighted on the map. Only if you have selected your course, semester and section in the menu.</span>
                 </li>
                 <li className="flex items-start">
                     <LuClipboardList className='text-yellow-600 mr-3 mt-1 w-5 h-5' />

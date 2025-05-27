@@ -63,8 +63,6 @@ function Home() {
     const serverlink = "https://navit.azurewebsites.net";               // navit azure server link 
     const serverlink2 = "https://class-sync-azure.azurewebsites.net";   // classsync azure server link
 
-    const saved = JSON.parse(localStorage.getItem('profile_selection'));
-
     const floors = [-1, 0, 1, 2, 3, 4, 5]
     const [activeFloor, setActiveFloor] = useState(0)
     const [timevar, setTimevar] = useState(`Closed`);
@@ -164,9 +162,8 @@ function Home() {
                 return;
             }
             let roomstatus_setdate = localStorage.getItem('roomstatus_setdate');
-            let roomstatus_sethour = localStorage.getItem('roomstatus_sethour');
             let todayDate = today.toISOString().split('T')[0];
-            if (stored_status && roomstatus_setdate && roomstatus_sethour && (todayDate == roomstatus_setdate) && (roomstatus_sethour == today.getHours())) { //
+            if (stored_status && roomstatus_setdate && (todayDate == roomstatus_setdate)) { //
                 set_room_status_data(JSON.parse(stored_status));
                 setroomstatus_fresh(true);
                 toast.success("Room status updated from cache");
@@ -184,7 +181,6 @@ function Home() {
 
             localStorage.setItem('roomstatus_infocache', JSON.stringify(rooms));
             localStorage.setItem('roomstatus_setdate', todayDate);
-            localStorage.setItem('roomstatus_sethour', today.getHours());
             set_room_status_data(rooms);
             setroomstatus_fresh(true);
             toast.success("Room status updated");
@@ -630,7 +626,7 @@ function Home() {
                                             />
                                         </Polygon>
                                         {
-                                            (saved && (tempvar.section.includes(saved.section) && tempvar.course == saved.course && tempvar.semester == saved.semester)) &&
+                                            (!user.guest && user.section && user.course && user.semester && (tempvar.section.includes(user.section) && tempvar.course == user.course && tempvar.semester == user.semester)) &&
                                             <AnimatedPolyline
                                                 positions={getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)}
                                                 options={{

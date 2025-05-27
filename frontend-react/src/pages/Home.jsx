@@ -24,7 +24,7 @@ import { FaUserCircle } from 'react-icons/fa'
 import { BsQrCodeScan } from 'react-icons/bs'
 import { ImCross, ImLocation } from 'react-icons/im'
 import Info_Card from './components/Info_Card'
-import FAQModal from './components/FAQModal'
+import FeatureModal from './components/FeatureModal'
 import { MdLocationOff } from 'react-icons/md'
 
 import { weight, mapWeight, opacity, mapOpacity, fillOpacity, map_color_set } from './utils/color_set'
@@ -817,7 +817,7 @@ function Home() {
                     />
                 </div>
             </footer >
-            <FAQModal modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} />
+            <FeatureModal modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} />
         </div>
     )
 }

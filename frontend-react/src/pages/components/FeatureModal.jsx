@@ -8,28 +8,35 @@ import { MdOutlineSystemSecurityUpdateGood } from 'react-icons/md';
 import { PiPathBold } from 'react-icons/pi';
 import Modal from 'react-modal';
 import { useState } from 'react';
-import image from '../assets/images/logo.png'; // Adjust the path as necessary
-import occupied from '../assets/images/screenshots/occupied.png'; // Adjust the path as necessary
-import unoccupied from '../assets/images/screenshots/unoccupied.png'; // Adjust the path as necessary
+
+import occupied from '../assets/images/screenshots/occupied.png';
+import unoccupied from '../assets/images/screenshots/unoccupied.png';
+import singleclick from '../assets/images/screenshots/singleclick.gif';
+import doubleclick from '../assets/images/screenshots/doubleclick.gif';
+import antpath from '../assets/images/screenshots/antpath.gif';
+import highlight from '../assets/images/screenshots/highlight.gif';
+import infocard from '../assets/images/screenshots/infocard.png';
+import othercolor from '../assets/images/screenshots/othercolor.png';
+
 import { TbArrowBigLeftFilled, TbArrowBigRightFilled } from 'react-icons/tb';
 const faqSlides = [
     {
         icon: <PiPathBold className='text-orange-500 mr-3 mt-1 w-40 h-40' />,
         title: 'Set Destination',
         text: <span><strong>Long-press</strong> (mobile) or <strong>right-click</strong> (desktop) to set destination.</span>,
-        img: null // Add image path if available
+        img: doubleclick
     },
     {
         icon: <LuMousePointerClick className='text-gray-500 mr-3 mt-1 w-40 h-40' />,
-        title: 'View Room Info',
-        text: <span><strong>Single press</strong> (mobile) or <strong>left-click</strong> (desktop) to view room info.</span>,
-        img: null
+        title: 'View Info Card',
+        text: <span><strong>Single press</strong> (mobile) or <strong>left-click</strong> (desktop) to view Info Card. Shows course, section, subject etc..</span>,
+        img: singleclick
     },
     {
         icon: <MdOutlineSystemSecurityUpdateGood className='text-purple-500 w-40 h-40 flex-shrink-0' />,
         title: 'Current Class Highlight',
         text: <span>Your current class is highlighted if you have selected your course, semester and section in the menu.</span>,
-        img: null
+        img: highlight
     },
     {
         icon: <FaCircle className="text-[#fb4934] mr-3 mt-1 w-40 h-40" />,
@@ -46,31 +53,19 @@ const faqSlides = [
     {
         icon: <span className="mr-3 mt-1 w-40 h-40" style={{ background: "conic-gradient(red, orange, yellow, green, blue, indigo, violet, red)", borderRadius: "50%", display: "inline-block", minWidth: "2em", minHeight: "2em" }} />,
         title: 'Other Colors',
-        text: <span>Other colors: staff, office, etc.</span>,
-        img: null
-    },
-    {
-        icon: <LuClipboardList className='text-yellow-600 mr-3 mt-1 w-40 h-40' />,
-        title: 'Info Card',
-        text: <span>Shows course, section, subject etc..</span>,
-        img: null
+        text: <span>Other colors: staffrooms, offices, etc.</span>,
+        img: othercolor
     },
     {
         icon: <FaRegCompass className='text-blue-500 w-40 h-40 flex-shrink-0' />,
         title: 'Navigation',
         text: <span>Shows shortest indoor route.</span>,
-        img: null
+        img: antpath
     },
     {
         icon: <BsQrCodeScan className='text-blue-500 w-40 h-40 flex-shrink-0' />,
         title: 'QR Code Scanning',
         text: <span>QR comming soon around the campus.</span>,
-        img: null
-    },
-    {
-        icon: <FiClock className='text-gray-500 w-40 h-40 flex-shrink-0' />,
-        title: 'Best during scheduled hours',
-        text: <span>Limited after hours.</span>,
         img: null
     },
     {

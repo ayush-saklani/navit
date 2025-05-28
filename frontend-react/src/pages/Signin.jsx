@@ -77,9 +77,11 @@ const Signin = () => {
           localStorage.setItem("user", JSON.stringify(data.data.user));
           toast.success("Sign In successful");
           setError("");
+          var audio = new Audio(jingle);
+          audio.play();
           setTimeout(() => {
             window.location.href = "/home";
-          }, 2000);
+          }, 5000);
         } else {
           setError(data.errors || "Something went wrong.");
         }

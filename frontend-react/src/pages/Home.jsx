@@ -626,7 +626,7 @@ function Home() {
                                             />
                                         </Polygon>
                                         {
-                                            (!user.guest && user.section && user.course && user.semester && (tempvar.section.includes(user.section) && tempvar.course == user.course && tempvar.semester == user.semester)) &&
+                                            (!user.guest && !isActivehour() && user.section && user.course && user.semester && (tempvar.section.includes(user.section) && tempvar.course == user.course && tempvar.semester == user.semester)) &&
                                             <AnimatedPolyline
                                                 positions={getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)}
                                                 options={{

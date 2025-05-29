@@ -136,8 +136,8 @@ const ProfilePictureMenu = ({ profilepicture, user }) => {
                             !user.guest &&
                             <div className="flex flex-col gap-1 w-full mt-2">
                                 <div className="">
-                                    <span className="text-xs text-gray-300 font-semibold pl-1">
-                                        Spot your class by selecting 
+                                    <span className="text-xs text-gray-300 font-semibold">
+                                        Spot your class by selecting
                                     </span>
                                     <button
                                         className="focus:outline-none flex justify-between items-center gap-1"
@@ -145,7 +145,7 @@ const ProfilePictureMenu = ({ profilepicture, user }) => {
                                         aria-label="Toggle selection section"
                                         type="button"
                                     >
-                                        <span className="text-xs text-gray-300 font-semibold pl-1">Course/Semester/Section</span>
+                                        <span className="text-xs text-gray-300 font-semibold">Course/Semester/Section</span>
                                         {
                                             dropdownExpanded ?
                                                 <IoIosArrowDown className={`text-gray-300 w-5 h-5 transition-transform`} /> :
@@ -155,7 +155,7 @@ const ProfilePictureMenu = ({ profilepicture, user }) => {
                                 </div>
                                 <div className={`overflow-hidden transition-all duration-300 ${dropdownExpanded ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'} w-full`}>
                                     <div className="flex flex-col gap-1">
-                                        <label htmlFor="course_option" className="text-xs text-gray-300 font-semibold mt-1 pl-1">Course</label>
+                                        <label htmlFor="course_option" className="text-xs text-gray-300 font-semibold mt-1">Course</label>
                                         <select
                                             className="bg-gray-800 text-gray-100 rounded-md px-3 py-2 focus:outline-none w-full"
                                             name="course"
@@ -170,7 +170,7 @@ const ProfilePictureMenu = ({ profilepicture, user }) => {
                                         </select>
                                     </div>
                                     <div className="flex flex-col gap-1">
-                                        <label htmlFor="semester_option" className="text-xs text-gray-300 font-semibold mt-1 pl-1">Semester</label>
+                                        <label htmlFor="semester_option" className="text-xs text-gray-300 font-semibold mt-1">Semester</label>
                                         <select
                                             className="bg-gray-800 text-gray-100 rounded-md px-3 py-2 focus:outline-none w-full"
                                             name="semester"
@@ -185,7 +185,7 @@ const ProfilePictureMenu = ({ profilepicture, user }) => {
                                         </select>
                                     </div>
                                     <div className="flex flex-col gap-1">
-                                        <label htmlFor="section_option" className="text-xs text-gray-300 font-semibold mt-1 pl-1">Section</label>
+                                        <label htmlFor="section_option" className="text-xs text-gray-300 font-semibold mt-1">Section</label>
                                         <select
                                             className="bg-gray-800 text-gray-100 rounded-md px-3 py-2 focus:outline-none w-full"
                                             name="section"
@@ -200,7 +200,7 @@ const ProfilePictureMenu = ({ profilepicture, user }) => {
                                         </select>
                                     </div>
                                     <div className="flex flex-col gap-1">
-                                        <label htmlFor="password_option" className="text-xs text-gray-300 font-semibold mt-1 pl-1">Password</label>
+                                        <label htmlFor="password_option" className="text-xs text-gray-300 font-semibold mt-1">Password</label>
                                         <input
                                             type="password"
                                             className="bg-gray-800 text-gray-100 rounded-md px-3 py-2 focus:outline-none w-full"
@@ -221,6 +221,10 @@ const ProfilePictureMenu = ({ profilepicture, user }) => {
                                         </button>
                                     </div>
                                 </div>
+                                <a href="https://gehutimetable.vercel.app/view/students/" target="_blank" className="flex items-center gap-2 text-gray-400 hover:bg-blue-800 hover:text-white transition-all duration-300 px-2 mt-1 py-2 rounded-md cursor-pointer">
+                                    <img src="https://gehutimetable.vercel.app/assets/image/logo.png" alt="" className="h-10" />
+                                    <p className="font-semibold text-lg">See Timetable</p>
+                                </a>
                             </div>
                         }
 

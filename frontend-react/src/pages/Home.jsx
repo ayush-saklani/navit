@@ -574,6 +574,7 @@ function Home() {
                                                             map_color_set["occupied"].color : map_color_set["available"].color
                                             }
                                             opacity={opacity}
+                                            weight={weight}
                                             fillColor={
                                                 map_color_set[room_talking_about.type] ? map_color_set[room_talking_about.type].fillColor :
                                                     isActivehour() ? map_color_set["closed"].fillColor :

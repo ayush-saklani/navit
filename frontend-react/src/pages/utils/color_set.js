@@ -8,39 +8,39 @@ export const fillOpacity = 0.5;         // opacity of the fill of the room
 
 export const map_color_set = {
     "floormap": {
-        "color": "var(--Dim-Blue)",
-        "fillColor": "var(--Dim-Blue)",
+        "color": "#458588",
+        "fillColor": "#458588",
     },
     "staffroom": {
-        "color": "var(--Hard-Background)",
+        "color": "#1d2021",
         "fillColor": "#de8408",
     },
     "office": {
-        "color": "var(--Hard-Background)",
+        "color": "#1d2021",
         "fillColor": "#4e6eb5",
     },
     "gentswashroom": {
-        "color": "var(--Hard-Background)",
+        "color": "#1d2021",
         "fillColor": "DarkCyan",
     },
     "ladieswashroom": {
-        "color": "var(--Hard-Background)",
+        "color": "#1d2021",
         "fillColor": "#f04772",
     },
     "other": {
-        "color": "var(--Hard-Background)",
-        "fillColor": "var(--Dim-Blue)",
+        "color": "#1d2021",
+        "fillColor": "#458588",
     },
     "occupied": {
-        "color": "var(--Hard-Background)",
-        "fillColor": "var(--Red)",
+        "color": "#1d2021",
+        "fillColor": "#fb4934",
     },
     "available": {
-        "color": "var(--Hard-Background)",
-        "fillColor": "var(--Aqua)",
+        "color": "#1d2021",
+        "fillColor": "#8ec07c",
     },
     "closed": {
-        "color": "var(--Hard-Background)",
-        "fillColor": "var(--Dim-Blue)",
+        "color": "#1d2021",
+        "fillColor": "#458588",
     },
 }

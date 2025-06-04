@@ -219,7 +219,7 @@ app.post('/resendotp', resendotp);
 app.post('/resetpassword', resetpassword);
 app.post('/resetpasswordverify', resetpasswordverify);
 app.post('/update_course_info', update_course_info);
-app.get("/generateqrpdf", generateAndSendPDF);
+app.post("/generateqrpdf", generateAndSendPDF);
 
 app.listen(port, async () => {
     await mongoose.connect(process.env.MONGODB_URI)

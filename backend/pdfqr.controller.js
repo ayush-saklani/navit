@@ -5,27 +5,6 @@ import { toBuffer } from "qrcode";
 import { PDFDocument, rgb } from "pdf-lib";
 import fontkit from "@pdf-lib/fontkit";
 
-const serverlink2 = "https://class-sync-azure.azurewebsites.net";   // classsync azure server link
-
-const fetch_room_status = async () => {
-  try {
-    const response = await fetch(`${serverlink2}/room/getall`, {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' }
-    });
-    const result = await response.json();
-    const rooms = result.data;
-    if (!Array.isArray(rooms) || rooms.length === 0) {
-      throw new Error("No room data available");
-    } else {
-      return rooms;
-    }
-  } catch (error) {
-    console.error(':::: Room Data not available (SERVER ERROR) :::: ', error);
-    throw error;
-  }
-};
-
 const roomtypemap = {
   class: { name: "Classroom", fillcolor: "#01a154" },
   hall: { name: "Hall", fillcolor: "#dc1717" },
@@ -129,7 +108,11 @@ const generateQRpdf = async (roomdata) => {
 }
 export const generateAndSendPDF = async (req, res) => {
   try {
-    const roomdata = await fetch_room_status();
+    const body = req.body;
+    const { roomdata } = body;
+    if(!roomdata || !Array.isArray(roomdata) || roomdata.length === 0) {
+      return res.status(400).send("Invalid room data provided");
+    }
     const pdfBytes = await generateQRpdf(roomdata);
     res.set({
       "Content-Type": "application/pdf",

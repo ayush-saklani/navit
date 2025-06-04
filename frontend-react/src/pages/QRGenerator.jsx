@@ -13,7 +13,7 @@ const QRGenerator = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const [sendButtonFreeze, setSendButtonFreeze] = useState(true);
-    const [timer, setTimer] = useState(0); // 60 seconds timer
+    const [timer, setTimer] = useState(300); // 300 seconds timer
 
     useEffect(() => {
         let interval;
@@ -29,13 +29,17 @@ const QRGenerator = () => {
 
     const generateqrpdf = async () => {
         setSendButtonFreeze(true);
+        setTimer(300); // Reset timer to 60 seconds
         console.log("Generating QR Code PDF...");
         let roomdata = JSON.parse(localStorage.getItem("roomstatus_infocache"));
+        if(!roomdata || roomdata.length === 0) {
+            toast.error("No room data found. Please ensure you have room data available.");
+            window.location.replace("/");
+            return;
+        }
         for (let i = 0; i < roomdata.length; i++) {
             roomdata[i].schedule = {};
         }
-        console.log("Room Data:", roomdata);
-        // return;
         try {
             const response = await fetch(`${serverlink}/generateqrpdf`, {
                 method: 'POST',
@@ -66,9 +70,8 @@ const QRGenerator = () => {
 
             console.log("PDF download triggered!");
         } catch (error) {
+            setTimer(20)
             console.error('PDF generation failed:', error);
-        } finally {
-            setSendButtonFreeze(false);
         }
     };
 

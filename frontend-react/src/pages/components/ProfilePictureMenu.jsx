@@ -131,7 +131,16 @@ const ProfilePictureMenu = ({ profilepicture, user }) => {
                                 </span>
                             </div>
                         }
-
+                        <div className="w-full flex flex-col items-start gap-1 mt-2">
+                            <span className="text-xs text-gray-400 font-semibold tracking-wide">Room Data last updated on:</span>
+                            <span className={`text-xs px-2 py-1 rounded-md font-bold ${localStorage.getItem('roomstatus_setdate') ? 'bg-green-900 text-green-200' : 'bg-gray-700 text-gray-400'}`}
+                                title={localStorage.getItem('roomstatus_setdate') ? new Date(localStorage.getItem('roomstatus_setdate')).toLocaleString() : ''}
+                            >
+                                {localStorage.getItem('roomstatus_setdate')
+                                    ? new Date(localStorage.getItem('roomstatus_setdate')).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' })
+                                    : "N/A"}
+                            </span>
+                        </div>
                         {
                             !user.guest &&
                             <div className="flex flex-col gap-1 w-full mt-2">

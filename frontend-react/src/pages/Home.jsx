@@ -163,10 +163,13 @@ function Home() {
             }
             let roomstatus_setdate = localStorage.getItem('roomstatus_setdate');
             let todayDate = today.toISOString().split('T')[0];
-            if (stored_status && roomstatus_setdate && (todayDate == roomstatus_setdate)) { //
+            const msInDay = 24 * 60 * 60 * 1000;
+            if (stored_status && roomstatus_setdate && (Date.now() - new Date(roomstatus_setdate).getTime() < 7 * msInDay)) {
                 set_room_status_data(JSON.parse(stored_status));
                 setroomstatus_fresh(true);
                 toast.success("Room status updated from cache");
+                toast.success("Data is fresh for 7 days");
+                toast.success("Relogin to refresh data");
                 return;
             }
             LoaderManager(1); // Start loading
@@ -304,7 +307,7 @@ function Home() {
 
             const watchId = navigator.geolocation.watchPosition(
                 (position) => {
-                    console.log(position.coords.accuracy);
+                    console.log(position.coords.accuracy + " meters accuracy");
                     if (position.coords.accuracy < 30) {
                         setCoordinates([position.coords.latitude, position.coords.longitude]);
                     }
@@ -403,7 +406,7 @@ function Home() {
             }
         }
         setRoomData(finallist);
-        console.log("Room data updated:", finallist);
+        // console.log("Room data updated:", finallist);
     }
     useEffect(() => {
         if (room_status_data && Array.isArray(room_status_data)) {

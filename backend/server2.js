@@ -19,26 +19,7 @@ dotenv.config();                            // Configure the dotenv library     
 const app = express();                      // Create an express app (handler function)
 const port = process.env.PORT || 3001;      // Set the port number              ######### not done yet    
 
-// app.use(cors());                            // Middleware to enable CORS
-app.use(
-    cors({
-        origin: [
-            "http://localhost:5500",
-            "http://localhost:5501",
-            "http://localhost:3000",
-            "http://localhost:3001",
-            "https://classsync.vercel.app",
-            "https://gehutimetable.vercel.app",
-            "https://projectclasssync.vercel.app",
-            "https://navit.vercel.app",
-            "https://ayushsaklani.vercel.app",
-            "https://ayushsaklani.xyz",
-            "https://navit.azurewebsites.net",
-        ],
-        credentials: true,
-    })
-);
-app.options('*', cors());
+app.use(cors());                            // Middleware to enable CORS
 app.use(express.json());                    // Middleware to parse JSON bodies        
 
 const g = new jsgraphs.WeightedGraph(7000); // Create a graph with 7000 nodes

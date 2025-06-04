@@ -7,7 +7,7 @@ import SignUp from "./pages/SignUp"
 import Otp from "./pages/Otp"
 import ResetPassword from "./pages/ResetPassword"
 import Test from "./pages/Test";
-import QRGenerator from "./pages/qrgenerator";
+import QRGenerator from "./pages/QRGenerator";
 
 function App() {
     return (

@@ -38,6 +38,7 @@ app.use(
         credentials: true,
     })
 );
+app.options('*', cors());
 app.use(express.json());                    // Middleware to parse JSON bodies        
 
 const g = new jsgraphs.WeightedGraph(7000); // Create a graph with 7000 nodes

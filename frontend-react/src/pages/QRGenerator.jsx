@@ -1,17 +1,11 @@
 import { useEffect, useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { HiDownload, HiLogin } from "react-icons/hi";
+import { HiDownload } from "react-icons/hi";
 import { Toaster, toast } from "react-hot-toast";
-import Loader from "./components/Loader";
 import logo from "./assets/images/logo.png";
-import jingle from "./assets/images/doof.mp3";
 import gif from "./assets/images/qrgenerator.gif";
 import { serverlink } from "./utils/constant";
-import { BiDownload } from "react-icons/bi";
 
 const QRGenerator = () => {
-    const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
     const [sendButtonFreeze, setSendButtonFreeze] = useState(true);
     const [timer, setTimer] = useState(300); // 300 seconds timer
 
@@ -32,7 +26,7 @@ const QRGenerator = () => {
         setTimer(300); // Reset timer to 60 seconds
         console.log("Generating QR Code PDF...");
         let roomdata = JSON.parse(localStorage.getItem("roomstatus_infocache"));
-        if(!roomdata || roomdata.length === 0) {
+        if (!roomdata || roomdata.length === 0) {
             toast.error("No room data found. Please ensure you have room data available.");
             window.location.replace("/");
             return;
@@ -75,15 +69,6 @@ const QRGenerator = () => {
         }
     };
 
-
-    if (loading) {
-        return (
-            <div className="w-full h-[100vh] flex justify-center items-center">
-                <Loader />
-            </div>
-        );
-    }
-
     return (
         <div className="flex flex-col lg:flex-row w-full h-screen">
             <Toaster />
@@ -121,9 +106,6 @@ const QRGenerator = () => {
                                 These QR Codes are also used for quick source selection.
                             </li>
                         </ol>
-                        {
-                            <div className="text-red-500 text-center m-0 h-2">{error}</div>
-                        }
                         <div className="space-y-4">
                             <button
                                 disabled={sendButtonFreeze}

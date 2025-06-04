@@ -7,6 +7,7 @@ import logo from "./assets/images/logo.png";
 import jingle from "./assets/images/doof.mp3";
 import gif from "./assets/images/signin.gif";
 import { serverlink } from "./utils/constant";
+import { BsQrCodeScan } from "react-icons/bs";
 
 const Signin = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -103,6 +104,9 @@ const Signin = () => {
   return (
     <div className="flex flex-col lg:flex-row w-full h-screen">
       <Toaster />
+      <div className="absolute bottom-4 z-10 left-4 text-3xl text-grey-500 flex gap-3">
+        <a href="/qrgenerator"><BsQrCodeScan /></a>
+      </div>
       <div className="hidden lg:block lg:w-3/5 relative">
         <img src={gif} className=" w-full h-full object-contain p-20" alt="Cover Photo" />
       </div>

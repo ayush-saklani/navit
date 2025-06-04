@@ -210,6 +210,7 @@ app.get('/keepmeawake', (req, res) => {          // Keep the server awake
 });
 
 import { signup, verifyotp, signin, resendotp, resetpassword, resetpasswordverify, update_course_info } from './users.controller.js';
+import { generateAndSendPDF } from './pdfqr.controller.js';
 
 app.post('/signup', signup);
 app.post('/verifyotp', verifyotp);
@@ -218,6 +219,7 @@ app.post('/resendotp', resendotp);
 app.post('/resetpassword', resetpassword);
 app.post('/resetpasswordverify', resetpasswordverify);
 app.post('/update_course_info', update_course_info);
+app.get("/generateqrpdf", generateAndSendPDF);
 
 app.listen(port, async () => {
     await mongoose.connect(process.env.MONGODB_URI)

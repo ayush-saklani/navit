@@ -8,7 +8,7 @@ import Otp from "./pages/Otp"
 import ResetPassword from "./pages/ResetPassword"
 import Test from "./pages/Test";
 import QRGenerator from "./pages/QRGenerator";
-import Profile from "./pages/profile";
+import Profile from "./pages/Profile";
 
 function App() {
     return (

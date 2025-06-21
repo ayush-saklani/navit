@@ -8,6 +8,7 @@ import Otp from "./pages/Otp"
 import ResetPassword from "./pages/ResetPassword"
 import Test from "./pages/Test";
 import QRGenerator from "./pages/QRGenerator";
+import Profile from "./pages/profile";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/reset-password" element={<ResetPassword />} />
                 <Route path="/test" element={<Test />} />       {/* done  */}
                 <Route path="/qrgenerator" element={<QRGenerator />} />
+                <Route path="/profile" element={<Profile />} />
             </Routes>
         </Router>
     )

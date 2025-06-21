@@ -9,6 +9,7 @@ const Profile = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [sendbuttonfreeze, setSendButtonFreeze] = useState(false);
+  const [imageProcessing, setImageProcessing] = useState(false);
   const fileInputRef = useRef(null);
 
   const [user, setUser] = useState({});
@@ -100,49 +101,62 @@ const Profile = () => {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      setImageProcessing(true);
       const maxFileSize = 300 * 1024; // 300KB
-      const maxDim = 400; // max width or height in px
+      const maxDim = 400; // Resize to 400x400
+
       const reader = new FileReader();
       reader.onload = (event) => {
-        const img = new window.Image();
+        const img = new Image();
         img.onload = () => {
-          // Resize logic
-          let width = img.width;
-          let height = img.height;
-          if (width > maxDim || height > maxDim) {
-            if (width > height) {
-              height = Math.round((maxDim / width) * height);
-              width = maxDim;
-            } else {
-              width = Math.round((maxDim / height) * width);
-              height = maxDim;
-            }
-          }
+          // Calculate square crop from center
+          const side = Math.min(img.width, img.height);
+          const sx = (img.width - side) / 2;
+          const sy = (img.height - side) / 2;
+
+          // Prepare canvas
+          const canvas = document.createElement("canvas");
+          canvas.width = maxDim;
+          canvas.height = maxDim;
+          const ctx = canvas.getContext("2d");
+
+          // Draw cropped and resized image
+          ctx.drawImage(
+            img,
+            sx, sy, side, side,       // crop source
+            0, 0, maxDim, maxDim       // draw to canvas (resize)
+          );
+
+          // Compress to JPEG under 300KB
           let quality = 0.92;
-          let canvas = document.createElement('canvas');
-          canvas.width = width;
-          canvas.height = height;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0, width, height);
-          let dataUrl = canvas.toDataURL('image/jpeg', quality);
-          // Reduce quality until under 300KB or quality too low
+          let dataUrl = canvas.toDataURL("image/jpeg", quality);
           while (dataUrl.length > maxFileSize * 1.37 && quality > 0.4) {
             quality -= 0.07;
-            dataUrl = canvas.toDataURL('image/jpeg', quality);
+            dataUrl = canvas.toDataURL("image/jpeg", quality);
           }
+
           if (dataUrl.length > maxFileSize * 1.37) {
-            setError('Image is too large, please choose a smaller image.');
+            setError("Image is too large, please choose a smaller image.");
           } else {
             setUser((prev) => ({ ...prev, profile_picture: dataUrl }));
           }
+
+          setImageProcessing(false);
         };
-        img.onerror = () => setError('Invalid image file.');
+
+        img.onerror = () => {
+          setError("Invalid image file.");
+          setImageProcessing(false);
+        };
+
         img.src = event.target.result;
       };
+
       reader.readAsDataURL(file);
+      setError(""); // Clear error
     }
-    setError(""); // Clear error on input change
   };
+
 
   return (
     <div className="flex flex-col lg:flex-row w-full h-screen">
@@ -279,16 +293,17 @@ const Profile = () => {
 
               {/* Error/Success Messages */}
               <div className="h-2 font-semibold my-2">
+                {imageProcessing && <span className="text-blue-500 text-sm">Processing image...</span>}
                 {<p className="text-red-500 text-sm">{error}</p>}
               </div>
 
               {/* Buttons */}
               <button
                 type="submit"
-                disabled={sendbuttonfreeze}
-                className={`flex w-full justify-center items-center py-3 px-4 rounded-full gap-2 text-white font-bold ${sendbuttonfreeze ? "cursor-not-allowed bg-gray-400" : "bg-primary hover:cursor-pointer hover:bg-primary-dark"}`}
+                disabled={sendbuttonfreeze || imageProcessing}
+                className={`flex w-full justify-center items-center py-3 px-4 rounded-full gap-2 text-white font-bold ${sendbuttonfreeze || imageProcessing ? "cursor-not-allowed bg-gray-400" : "bg-primary hover:cursor-pointer hover:bg-primary-dark"}`}
               >
-                <span>Sign Up</span>
+                <span>{imageProcessing ? "Processing..." : "Sign Up"}</span>
               </button>
             </form>
 

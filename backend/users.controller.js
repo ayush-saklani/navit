@@ -28,10 +28,19 @@ const signup = async (req, res) => { // verified and working
         }
 
         const body = req.body; // Parse the request body
-        const { first_name, last_name, password } = body;
+        const { first_name, last_name, password, role } = body;
         let { email } = body;
         console.log(req.query);
         console.log(first_name, last_name, email, password);
+        if (!first_name || !last_name || !email || !password || !role) {
+            await session.abortTransaction();
+            session.endSession();
+            return res.status(400).json(
+                new ApiError(400, {
+                    message: 'All fields are required'
+                }, 'All fields are required')
+            );
+        }
         email = email.toLowerCase();
 
         if (!validatePasswordstructure(password)) {
@@ -87,6 +96,7 @@ const signup = async (req, res) => { // verified and working
                 first_name,
                 last_name,
                 email,
+                role,
                 password: hashedPassword.toString(),
                 otp,
                 otpExpiry
@@ -378,6 +388,8 @@ const resetpasswordverify = async (req, res) => {   // verified and working
     }
 }
 const update_course_info = async (req, res) => { // verified and working
+    const session = await mongoose.startSession();
+    session.startTransaction();
     try {
         const body = req.body;
         const { password, course, semester, section } = body;
@@ -389,6 +401,8 @@ const update_course_info = async (req, res) => { // verified and working
 
         const existingUser = await user_model.findOne({ email });
         if (!existingUser) {
+            await session.abortTransaction();
+            session.endSession();
             return res.status(400).json(
                 new ApiError(400, {
                     message: 'User not found'
@@ -398,6 +412,8 @@ const update_course_info = async (req, res) => { // verified and working
 
         const isPasswordValid = await bcrypt.compare(password, existingUser.password);
         if (!isPasswordValid) {
+            await session.abortTransaction();
+            session.endSession();
             return res.status(400).json(
                 new ApiError(400, {
                     message: 'Invalid password'
@@ -405,21 +421,26 @@ const update_course_info = async (req, res) => { // verified and working
             );
         }
         if (!course || !semester || !section) {
+            await session.abortTransaction();
+            session.endSession();
             return res.status(400).json(
                 new ApiError(400, {
                     message: 'Course, semester, and section are required'
                 }, 'Course, semester, and section are required')
             );
         }
-        await existingUser.updateOne({ course, semester, section });
+        await existingUser.updateOne({ course, semester, section }, { session: session });
         const user = await user_model.findOne({ email }).select('-password -email_verified -__v');
+        await session.commitTransaction();
+        session.endSession();
         return res.status(200).json(
             new ApiResponse(200, {
                 user,
             }, 'User updated successfully')
         );
-
     } catch (error) {
+        await session.abortTransaction();
+        session.endSession();
         return res.status(500).json(
             new ApiError(500, {
                 message: 'Internal Server Error',
@@ -428,7 +449,69 @@ const update_course_info = async (req, res) => { // verified and working
         );
     }
 }
-export { signup, verifyotp, signin, resendotp, resetpassword, resetpasswordverify, update_course_info };
+const update_info = async (req, res) => { // verified and working
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    try {
+        const body = req.body;
+        const { password, course, semester, section, role, profile_picture } = body;
+        let { email } = body;
+        email = email.toLowerCase();
+        if (!email || typeof email !== 'string' || !email.includes('@')) {
+            throw new ApiError(400, 'Invalid email format');
+        }
+
+        const existingUser = await user_model.findOne({ email });
+        if (!existingUser) {
+            await session.abortTransaction();
+            session.endSession();
+            return res.status(400).json(
+                new ApiError(400, {
+                    message: 'User not found'
+                }, 'User not found')
+            );
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, existingUser.password);
+        if (!isPasswordValid) {
+            await session.abortTransaction();
+            session.endSession();
+            return res.status(400).json(
+                new ApiError(400, {
+                    message: 'Invalid password'
+                }, 'Invalid password')
+            );
+        }
+        if (course && semester && section) {
+            await existingUser.updateOne({ course, semester, section }, { session: session });
+        }
+        if (role) {
+            await existingUser.updateOne({ role }, { session: session });
+        }
+        if (profile_picture) {
+            await existingUser.updateOne({ profile_picture }, { session: session });
+        }
+
+        const user = await user_model.findOne({ email }).select('-password -email_verified -__v');
+        await session.commitTransaction();
+        session.endSession();
+        return res.status(200).json(
+            new ApiResponse(200, {
+                user,
+            }, 'User updated successfully')
+        );
+    } catch (error) {
+        await session.abortTransaction();
+        session.endSession();
+        return res.status(500).json(
+            new ApiError(500, {
+                message: 'Internal Server Error',
+                error: error
+            }, 'Internal Server Error')
+        );
+    }
+}
+export { signup, verifyotp, signin, resendotp, resetpassword, resetpasswordverify, update_course_info, update_info };
 
 
 

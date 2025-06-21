@@ -209,7 +209,7 @@ app.get('/keepmeawake', (req, res) => {          // Keep the server awake
     res.status(200).json({ "status": 'Up and Running Boi' });
 });
 
-import { signup, verifyotp, signin, resendotp, resetpassword, resetpasswordverify, update_course_info } from './users.controller.js';
+import { signup, verifyotp, signin, resendotp, resetpassword, resetpasswordverify, update_course_info, update_info } from './users.controller.js';
 import { generateAndSendPDF } from './pdfqr.controller.js';
 
 app.post('/signup', signup);
@@ -219,6 +219,7 @@ app.post('/resendotp', resendotp);
 app.post('/resetpassword', resetpassword);
 app.post('/resetpasswordverify', resetpasswordverify);
 app.post('/update_course_info', update_course_info);
+app.post('/update_info', update_info);
 app.post("/generateqrpdf", generateAndSendPDF);
 
 app.listen(port, async () => {

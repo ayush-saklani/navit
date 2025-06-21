@@ -42,6 +42,17 @@ const UserSchema = new mongoose.Schema({
     otpExpiry: {
         type: Date,
         required: false,
+    },
+    role: {
+        type: String,
+        enum: ['student', 'faculty', 'admin'],
+        required: true,
+        default: 'student',
+    },
+    profile_picture: {
+        type: String,
+        required: false,
+        default: "https://placehold.co/200/EEE/31343C?font=montserrat&text=:)",
     }
 })
 const user_model = mongoose.models.users || mongoose.model('user', UserSchema);

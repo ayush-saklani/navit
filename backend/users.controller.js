@@ -430,9 +430,10 @@ const update_course_info = async (req, res) => { // verified and working
             );
         }
         await existingUser.updateOne({ course, semester, section }, { session: session });
-        const user = await user_model.findOne({ email }).select('-password -email_verified -__v');
         await session.commitTransaction();
         session.endSession();
+        
+        const user = await user_model.findOne({ email }).select('-password -email_verified -__v');
         return res.status(200).json(
             new ApiResponse(200, {
                 user,
@@ -491,16 +492,16 @@ const update_info = async (req, res) => { // verified and working
         if (profile_picture) {
             await existingUser.updateOne({ profile_picture }, { session: session });
         }
-        if( first_name) {
+        if (first_name) {
             await existingUser.updateOne({ first_name }, { session: session });
         }
-        if( last_name) {
+        if (last_name) {
             await existingUser.updateOne({ last_name }, { session: session });
         }
-
-        const user = await user_model.findOne({ email }).select('-password -email_verified -__v');
         await session.commitTransaction();
         session.endSession();
+
+        const user = await user_model.findOne({ email }).select('-password -email_verified -__v');
         return res.status(200).json(
             new ApiResponse(200, {
                 user,

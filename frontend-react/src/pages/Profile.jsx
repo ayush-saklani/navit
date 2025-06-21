@@ -4,6 +4,11 @@ import { Toaster, toast } from "react-hot-toast";
 import logo from "./assets/images/logo.png";
 import { serverlink } from "./utils/constant";
 import React, { useRef } from "react";
+import { GiExitDoor } from "react-icons/gi";
+import { HiLogout } from "react-icons/hi";
+// data fetch from class-sync api when available currently only hardcoded is the way
+import { dynamic_options } from "./utils/constant";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const Profile = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -158,8 +163,98 @@ const Profile = () => {
   };
 
 
+
+
+
+  const [selectedCourse, setSelectedCourse] = useState("");
+  const [semesterOptions, setSemesterOptions] = useState([]);
+  const [selectedSemester, setSelectedSemester] = useState("");
+  const [sectionOptions, setSectionOptions] = useState([]);
+  const [selectedSection, setSelectedSection] = useState("");
+
+  useEffect(() => {           // Update semester dynamic_options when course or term changes
+    const course = dynamic_options.courses.find(c => c.course_id === selectedCourse);
+    if (!course) return;
+    let firstSem = dynamic_options.curr_term === "odd" ? 1 : 2;
+    let sems = [];
+    for (let i = firstSem; i <= course.total_sem; i += 2) {
+      sems.push(i.toString());
+    }
+    setSemesterOptions(sems);
+    setSelectedSemester("");
+  }, [selectedCourse]);
+
+  useEffect(() => {        // Update section dynamic_options when semester or course changes
+    const course = dynamic_options.courses.find(c => c.course_id === selectedCourse);
+    if (!course || !selectedSemester) {
+      setSectionOptions([]);
+      if (!selectedSemester) setSelectedSection("");
+      return;
+    }
+    const sectionList = course.sections[selectedSemester] || [];
+    setSectionOptions(sectionList);
+    if (!sectionList.includes(selectedSection)) setSelectedSection("");
+  }, [selectedCourse, selectedSemester]);
+
+  useEffect(() => {
+    if (!user.guest) {
+      if (user.course && user.course !== selectedCourse) setSelectedCourse(user.course);
+    }
+  }, [user.course]);
+
+  useEffect(() => {
+    if (!user.guest) {
+      if (user.semester && semesterOptions.includes(user.semester) && user.semester !== selectedSemester) setSelectedSemester(user.semester);
+    }
+  }, [user.semester, semesterOptions]);
+
+  useEffect(() => {
+    if (!user.guest) {
+      if (user.section && sectionOptions.includes(user.section) && user.section !== selectedSection) setSelectedSection(user.section);
+    }
+  }, [user.section, sectionOptions]);
+
+  const update_course_info = async () => {
+    if (user.guest === true) {
+      toast.error("Guest users cannot update course information.");
+      return;
+    }
+
+    if (!user.password) {
+      toast.error("Password is required");
+      return;
+    }
+    if (!selectedCourse || !selectedSemester || !selectedSection) {
+      toast.error("Please select course, semester, and section.");
+      return;
+    }
+    fetch(`${serverlink}/update_course_info`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: user.email,
+        password: user.password,
+        course: selectedCourse,
+        semester: selectedSemester,
+        section: selectedSection,
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          localStorage.setItem("user", JSON.stringify(data.data.user));
+          toast.success("Course information updated successfully.");
+        } else {
+          toast.error("Something went wrong.");
+        }
+      }).catch(error => {
+        console.error('out of service.. ~_~  @_@', error);
+      });
+  }
   return (
-    <div className="flex flex-col lg:flex-row w-full h-screen">
+    <div className="flex flex-col lg:flex-row w-full ">
       <Toaster />
       {/* Right Section */}
       <div className="flex flex-grow justify-center items-center bg-white rounded-l-3xl p-6">
@@ -261,6 +356,66 @@ const Profile = () => {
                 </select>
               </div>
 
+
+              {
+                user.role === 'student' &&
+                <>
+                  <div className="">
+                    <label htmlFor="course_option" className="text-sm font-semibold block mb-1">Course</label>
+                    <select
+                      className="border border-gray-300 rounded-md py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-primary bg-white text-gray-900"
+                      name="course"
+                      id="course_option"
+                      value={selectedCourse}
+                      onChange={e => setSelectedCourse(e.target.value)}
+                    >
+                      <option value="">Select a course</option>
+                      {dynamic_options.courses.map(course => (
+                        <option key={course.course_id} value={course.course_id}>{course.course_name}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="">
+                    <label htmlFor="semester_option" className="text-sm font-semibold block mb-1">Semester</label>
+                    <select
+                      className="border border-gray-300 rounded-md py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-primary bg-white text-gray-900"
+                      name="semester"
+                      id="semester_option"
+                      value={selectedSemester}
+                      onChange={e => setSelectedSemester(e.target.value)}
+                    >
+                      <option value="">Select a semester</option>
+                      {semesterOptions.map(sem => (
+                        <option key={sem} value={sem}>{sem}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="">
+                    <label htmlFor="section_option" className="text-sm font-semibold block mb-1">Section</label>
+                    <select
+                      className="border border-gray-300 rounded-md py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-primary bg-white text-gray-900"
+                      name="section"
+                      id="section_option"
+                      value={selectedSection}
+                      onChange={e => setSelectedSection(e.target.value)}
+                    >
+                      <option value="">Select a section</option>
+                      {sectionOptions.map(section => (
+                        <option key={section} value={section}>{section}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <button
+                      className="mt-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition disabled:opacity-50"
+                      onClick={update_course_info}
+                      disabled={!(selectedCourse && selectedSemester && selectedSection)}
+                    >
+                      Save Course Info
+                    </button>
+                  </div>
+                </>
+              }
               {/* Password */}
               <div>
                 <label
@@ -303,15 +458,15 @@ const Profile = () => {
                 disabled={sendbuttonfreeze || imageProcessing}
                 className={`flex w-full justify-center items-center py-3 px-4 rounded-full gap-2 text-white font-bold ${sendbuttonfreeze || imageProcessing ? "cursor-not-allowed bg-gray-400" : "bg-primary hover:cursor-pointer hover:bg-primary-dark"}`}
               >
-                <span>{imageProcessing ? "Processing..." : "Sign Up"}</span>
+                <span>{imageProcessing ? "Processing..." : "Update Profile"}</span>
               </button>
             </form>
 
             {/* Sign Up Link */}
             <div className="text-center text-md">
-              <span>Already have an account?</span>{" "}
-              <a href="/signin">
-                <span className="text-primary font-bold">Sign In</span>
+              <span>Nothing to do here? Go </span>{" "}
+              <a href="/home">
+                <span className="text-primary font-bold">Home</span>
               </a>
             </div>
           </div>

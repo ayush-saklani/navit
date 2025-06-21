@@ -772,8 +772,8 @@ function Home() {
                         <PopoverButton>
                             {
                                 user.guest ?
-                                    <FaUserCircle size={44} className='bg-brand-primary rounded-xl p-2 hover:bg-brand-primary-light text-foreground-1 cursor-pointer text-3xl' /> :
-                                    <img src={profilepicture} alt="" size={44} className='h-12 w-12 rounded-full p-0 cursor-pointer' />
+                                    <img src={profilepicture} alt="" size={44} className='h-12 w-12 rounded-full p-0 cursor-pointer' /> :
+                                    <img src={user.profile_picture} alt="" size={44} className='h-12 w-12 rounded-full p-0 cursor-pointer' />
                             }
                         </PopoverButton>
                         <PopoverPanel anchor="bottom" className="flex flex-col bg-brand-primary-light rounded-xl z-[1001]">

@@ -201,3 +201,9 @@ body {
     opacity: 0;
   }
 }
+
+/* Slim and dark scrollbar styles */
+.slim-dark-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #192230 #626161; /* thumb color and track color */
+}

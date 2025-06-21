@@ -97,7 +97,7 @@ const ProfilePictureMenu = ({ profilepicture, user }) => {
             });
     }
     return (
-        <div className="w-60 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg shadow-2xl p-4 flex flex-col gap-3">
+        <div className="w-60 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg shadow-2xl p-4 flex flex-col gap-3 slim-dark-scrollbar" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
             <ul className="list-none flex flex-col gap-3 w-full">
                 <li className="flex items-center w-full">
                     <div className="flex flex-col w-full gap-1">
@@ -105,7 +105,7 @@ const ProfilePictureMenu = ({ profilepicture, user }) => {
                             user.guest ?
                                 // <div alt="profile pic" className='h-12 w-12 rounded-full p-0 cursor-pointer bg-slate-200 flex items-center justify-center text-slate-800 font-semibold text-3xl capitalize' >{user.first_name[0]}</div> :
                                 <img src={profilepicture} alt="x" size={44} className='h-12 w-12 rounded-full p-0 cursor-pointer ' /> :
-                                <img src={profilepicture} alt="x" size={44} className='h-12 w-12 rounded-full p-0 cursor-pointer ' />
+                                <img src={user.profile_picture} alt="x" size={44} className='h-12 w-12 rounded-full p-0 cursor-pointer ' />
                         }
                         <h1 className="text-lg text-white font-semibold">
                             {

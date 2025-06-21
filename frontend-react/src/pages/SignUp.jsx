@@ -14,6 +14,7 @@ const SignUp = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    role: "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -29,10 +30,10 @@ const SignUp = () => {
   };
 
   const validateForm = () => {
-    const { firstname, lastname, email, password, confirmPassword } = formData;
+    const { firstname, lastname, email, password, confirmPassword, role } = formData;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@(gehu|geu)\.ac\.in$/;
 
-    if (!firstname || !lastname || !email || !password || !confirmPassword) {
+    if (!firstname || !lastname || !email || !password || !confirmPassword || !role) {
       setError("All fields are required.");
       return false;
     }
@@ -71,6 +72,7 @@ const SignUp = () => {
           last_name: formData.lastname,
           email: formData.email,
           password: formData.password,
+          role: formData.role,
         })
       })
         .then(response => response.json())
@@ -173,6 +175,27 @@ const SignUp = () => {
                 />
               </div>
 
+              {/* Role Selection */}
+              <div>
+                <label
+                  htmlFor="role"
+                  className="text-sm font-semibold block mb-1"
+                >
+                  Role
+                </label>
+                <select
+                  id="role"
+                  className="border border-gray-300 rounded-md py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-primary"
+                  value={formData.role}
+                  onChange={handleChange}
+                >
+                  <option value="" disabled>Select your role</option>
+                  <option value="student">Student</option>
+                  <option value="faculty">Faculty</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+
               {/* Password */}
               <div>
                 <label
@@ -235,11 +258,9 @@ const SignUp = () => {
               </div>
 
               {/* Error/Success Messages */}
-              <div className="h-4 font-semibold">
+              <div className="h-2 font-semibold my-2">
                 {<p className="text-red-500 text-sm">{error}</p>}
-                {(
-                  <p className="text-green-500 text-sm">{successMessage}</p>
-                )}
+                {<p className="text-green-500 text-sm">{successMessage}</p>}
               </div>
 
               {/* Buttons */}

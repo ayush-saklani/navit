@@ -454,7 +454,7 @@ const update_info = async (req, res) => { // verified and working
     session.startTransaction();
     try {
         const body = req.body;
-        const { password, course, semester, section, role, profile_picture } = body;
+        const { first_name, last_name, password, course, semester, section, role, profile_picture } = body;
         let { email } = body;
         email = email.toLowerCase();
         if (!email || typeof email !== 'string' || !email.includes('@')) {
@@ -490,6 +490,12 @@ const update_info = async (req, res) => { // verified and working
         }
         if (profile_picture) {
             await existingUser.updateOne({ profile_picture }, { session: session });
+        }
+        if( first_name) {
+            await existingUser.updateOne({ first_name }, { session: session });
+        }
+        if( last_name) {
+            await existingUser.updateOne({ last_name }, { session: session });
         }
 
         const user = await user_model.findOne({ email }).select('-password -email_verified -__v');

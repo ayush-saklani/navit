@@ -76,6 +76,7 @@ const Signin = () => {
         if (data.success) {
           console.log(data.data.user);
           localStorage.setItem("user", JSON.stringify(data.data.user));
+          localStorage.setItem("token", data.data.token);
           toast.success("Sign In successful");
           setError("");
           var audio = new Audio(jingle);

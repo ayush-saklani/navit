@@ -387,75 +387,12 @@ const resetpasswordverify = async (req, res) => {   // verified and working
         );
     }
 }
-const update_course_info = async (req, res) => { // verified and working
-    const session = await mongoose.startSession();
-    session.startTransaction();
-    try {
-        const body = req.body;
-        const { password, course, semester, section } = body;
-        let { email } = body;
-        email = email.toLowerCase();
-        if (!email || typeof email !== 'string' || !email.includes('@')) {
-            throw new ApiError(400, 'Invalid email format');
-        }
-
-        const existingUser = await user_model.findOne({ email });
-        if (!existingUser) {
-            await session.abortTransaction();
-            session.endSession();
-            return res.status(400).json(
-                new ApiError(400, {
-                    message: 'User not found'
-                }, 'User not found')
-            );
-        }
-
-        const isPasswordValid = await bcrypt.compare(password, existingUser.password);
-        if (!isPasswordValid) {
-            await session.abortTransaction();
-            session.endSession();
-            return res.status(400).json(
-                new ApiError(400, {
-                    message: 'Invalid password'
-                }, 'Invalid password')
-            );
-        }
-        if (!course || !semester || !section) {
-            await session.abortTransaction();
-            session.endSession();
-            return res.status(400).json(
-                new ApiError(400, {
-                    message: 'Course, semester, and section are required'
-                }, 'Course, semester, and section are required')
-            );
-        }
-        await existingUser.updateOne({ course, semester, section }, { session: session });
-        await session.commitTransaction();
-        session.endSession();
-        
-        const user = await user_model.findOne({ email }).select('-password -email_verified -__v');
-        return res.status(200).json(
-            new ApiResponse(200, {
-                user,
-            }, 'User updated successfully')
-        );
-    } catch (error) {
-        await session.abortTransaction();
-        session.endSession();
-        return res.status(500).json(
-            new ApiError(500, {
-                message: 'Internal Server Error',
-                error: error
-            }, 'Internal Server Error')
-        );
-    }
-}
 const update_info = async (req, res) => { // verified and working
     const session = await mongoose.startSession();
     session.startTransaction();
     try {
         const body = req.body;
-        const { first_name, last_name, password, course, semester, section, role, profile_picture } = body;
+        const { first_name, last_name, course, semester, section, role, profile_picture } = body;
         let { email } = body;
         email = email.toLowerCase();
         if (!email || typeof email !== 'string' || !email.includes('@')) {
@@ -473,16 +410,6 @@ const update_info = async (req, res) => { // verified and working
             );
         }
 
-        const isPasswordValid = await bcrypt.compare(password, existingUser.password);
-        if (!isPasswordValid) {
-            await session.abortTransaction();
-            session.endSession();
-            return res.status(400).json(
-                new ApiError(400, {
-                    message: 'Invalid password'
-                }, 'Invalid password')
-            );
-        }
         if (course && semester && section) {
             await existingUser.updateOne({ course, semester, section }, { session: session });
         }
@@ -518,7 +445,31 @@ const update_info = async (req, res) => { // verified and working
         );
     }
 }
-export { signup, verifyotp, signin, resendotp, resetpassword, resetpasswordverify, update_course_info, update_info };
+const verifyJWT = async (req, res, next) => {   // verified and working
+    try {
+        const token = req.header("Authorization")?.replace("Bearer ", "");
+        if (!token) {
+            throw new ApiError(401, "Unauthorized");
+        }
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+        const user = await user_model.findById(decodedToken?.userId).select(
+            "-password -otp -otpExpiry"
+        );
+        if (!user) {
+            throw new ApiError(401, "Invalid Access Token");
+        }
+        next();
+    } catch (err) {
+        console.error("JWT verification error:");
+        return res.status(401).json(
+            new ApiError(401, {
+                message: 'Unauthorized',
+                error: err.message
+            }, 'Unauthorized')
+        );
+    }
+};
+export { signup, verifyotp, signin, resendotp, resetpassword, resetpasswordverify, update_info, verifyJWT };
 
 
 

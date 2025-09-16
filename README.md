@@ -7,12 +7,10 @@
 <div align="left" style="margin: 10px;">
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" height="75"/>     
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" height="75"/>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original-wordmark.svg" height="75"/>
-<img src="https://static-00.iconduck.com/assets.00/node-js-icon-454x512-nztofx17.png"height="75"/>
-<img src="https://devicon-website.vercel.app/api/express/original.svg?color=%23FFFFFF"height="75"/>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" height="75"/>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" height="75"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" height="75"/>
+<img src="https://devicon-website.vercel.app/api/nodejs/original.svg"height="75"/>
+<img src="https://devicon-website.vercel.app/api/express/original.svg?color=%23FFFFFF"height="75"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original-wordmark.svg" height="75"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg"height="75"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongoose/mongoose-original-wordmark.svg" height="75"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg" height="75"/>
@@ -53,7 +51,7 @@ ___~~(Floor numbering: 0 for ground floor, 1 for first floor and 6 for undergrou
 - [x] Complete Map were Designed in GeoJSON and later improvements were made.
 - [x] Complete Routes were Designed in GeoJSON and later improvements were made.
 - [x] Utilize the Leaflet library to draw routes on the map with polylines, dynamically using coordinates as an array of strings input.
-## Version 1.8 ✅
+## Version 1.1 ✅
 - [x] Fetch Requests - Move all fetch requests to `server.js` for privacy and security.
 - [x] Basic API Design and Implementation.
 - [x] Automate direction finding and identify idle classrooms and labs by storing timetables in the database _**(Possible API integration with class-sync)**_.

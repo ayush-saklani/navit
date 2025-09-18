@@ -94,6 +94,7 @@ function Home() {
     }
 
     const fetchGeoJSON = async () => {
+        const toastid = toast.loading("Fetching map data...");
         LoaderManager(1);
         try {
             let mapData = localStorage.getItem('mapData');
@@ -101,6 +102,7 @@ function Home() {
             if (mapData && mapsetdate && (Date.now() - mapsetdate < 24 * 60 * 60 * 1000 * 7)) { // 7 days 
                 setfloorMap(JSON.parse(mapData));
                 setHitcount(localStorage.getItem('hitcount'));
+                toast.success("Map data loaded from cache", { id: toastid });
                 return;
             }
             localStorage.removeItem('mapData');
@@ -119,7 +121,9 @@ function Home() {
             localStorage.setItem('mapsetdate', Date.now());
             setHitcount(data.hitcount);
             setfloorMap(data.data);
+            toast.success("Map data fetched", { id: toastid });
         } catch (error) {
+            toast.error("Failed to fetch map data", { id: toastid });
             console.error('out of service.. ~_~  @_@', error);
             throw error;
         } finally {
@@ -155,10 +159,12 @@ function Home() {
     }
 
     const fetch_room_status = async () => {
+        const toastid = toast.loading("Fetching room status...");
         try {
             let today = new Date();
             let stored_status = localStorage.getItem('roomstatus_infocache');
             if (((today.getHours() >= 18 && today.getHours() <= 23) || (today.getHours() >= 0 && today.getHours() <= 7)) && stored_status) { // Campus is closed
+                toast.success("Campus is closed. Showing last known data", { id: toastid });
                 return;
             }
             let roomstatus_setdate = localStorage.getItem('roomstatus_setdate');
@@ -167,8 +173,8 @@ function Home() {
             if (stored_status && roomstatus_setdate && (Date.now() - new Date(roomstatus_setdate).getTime() < 7 * msInDay)) {
                 set_room_status_data(JSON.parse(stored_status));
                 setroomstatus_fresh(true);
-                toast.success("Room status updated from cache");
-                toast.success("Data is fresh for 7 days");
+                toast.success("Room status updated from cache", { id: toastid });
+                // toast.success("Data is fresh for 7 days");
                 toast.success("Relogin to refresh data");
                 return;
             }
@@ -186,13 +192,14 @@ function Home() {
             localStorage.setItem('roomstatus_setdate', todayDate);
             set_room_status_data(rooms);
             setroomstatus_fresh(true);
-            toast.success("Room status updated");
-            toast.success("Please change floor to see");
+            toast.success("Room status updated", { id: toastid });
         } catch (error) {
             if (error.name === 'QuotaExceededError') {
                 console.error("Storage limit exceeded!");
+                // toast.error("Storage limit exceeded! Clear some space and try again.", { id: toastid });
             }
             console.error(':::: Room Data not available (SERVER ERROR) :::: ', error);
+            toast.error("Failed to fetch room status", { id: toastid });
             throw error;
         } finally {
             LoaderManager(0); // Stop loading
@@ -438,6 +445,7 @@ function Home() {
                     "roomid": "1171" // outdated
                 }
             */}
+            <Toaster />
             {
                 showScanner &&
                 <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-[1001]">
@@ -492,7 +500,6 @@ function Home() {
                     <Loader />
                 </div>
             }
-            <Toaster />
             <div className="position-fixed bottom-0 fw-bold left-0 text-lg text-brand-primary-dark px-2 fw-bold z-[1]">{hitcount}</div>
             <div className="position-fixed bottom-0 fw-bold right-0 text-lg text-brand-primary-dark p-1 fw-bold z-[1]">
                 {signalStrength === 0 ?
@@ -566,7 +573,7 @@ function Home() {
                                 if (feature.properties?.room_id && room_status_data?.find(room => room.roomid === feature.properties.room_id)) {
                                     const room_talking_about = room_status_data?.find(room => room.roomid === feature.properties.room_id);
                                     const tempvar = room_talking_about.schedule[dayslot.toLocaleLowerCase()][hourslot.toLocaleLowerCase()];
-                                    return <>
+                                    return <div key={feature.properties.room_id}>
                                         <Polygon
                                             key={feature.properties.room_id}
                                             positions={getSpecificRoomCoordinates(floordata.map, feature.properties.room_id)}
@@ -644,7 +651,7 @@ function Home() {
                                                 }}
                                             />
                                         }
-                                    </>
+                                    </div>
                                 }
                                 return null;
                             });

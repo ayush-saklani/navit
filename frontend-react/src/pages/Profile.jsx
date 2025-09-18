@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import logo from "./assets/images/logo.png";
 import { serverlink } from "./utils/constant";
-import React, { useRef } from "react";
+
 // data fetch from class-sync api when available currently only hardcoded is the way
 import { dynamic_options } from "./utils/constant";
 import navitlogo from './assets/images/logo.png'
@@ -104,7 +104,7 @@ const Profile = () => {
       toast.error("Guest users cannot update information.");
       return;
     }
-    if(!localStorage.getItem("token")){
+    if (!localStorage.getItem("token")) {
       toast.error("You are not logged in. Please log in to update your profile.");
       setSendButtonFreeze(false);
       return;
@@ -114,7 +114,7 @@ const Profile = () => {
       toast.error("Please select course, semester, and section.");
       return;
     }
-
+    const toastid = toast.loading("Updating profile...");
     try {
       fetch(`${serverlink}/update_info`, {
         method: 'POST',
@@ -127,9 +127,9 @@ const Profile = () => {
           last_name: user.last_name,
           email: user.email,
           role: user.role,
-          course: user.course,
-          semester: user.semester,
-          section: user.section,
+          course: selectedCourse,
+          semester: selectedSemester,
+          section: selectedSection,
           profile_picture: user.profile_picture
         })
       })
@@ -138,16 +138,18 @@ const Profile = () => {
           if (data.success) {
             localStorage.setItem("user", JSON.stringify(data.data.user));
             setUser(data.data.user);
-            toast.success("Profile updated successfully!");
+            toast.success("Profile updated successfully!", { id: toastid });
             setSendButtonFreeze(false);
             setError("");
           } else {
             setSendButtonFreeze(false);
             setError(data.errors || "Something went wrong.");
+            toast.error(data.errors || "Failed to update profile. Please try again later.", { id: toastid });
           }
         }).catch(error => {
           setSendButtonFreeze(false);
           setError("Failed to update profile. Please try again later.");
+          toast.error("Failed to update profile. Please try again later.", { id: toastid });
           console.error('out of service.. ~_~  @_@', error);
         });
     } catch (err) {
@@ -224,6 +226,23 @@ const Profile = () => {
         <div className="flex flex-grow justify-center items-center bg-white p-6">
           <div className="w-full max-w-md flex flex-col justify-center min-h-[80vh] mx-auto"> {/* Added vertical centering */}
             {/* Register Form */}
+            <button
+              type="button"
+              onClick={() => (window.location.href = "/home")}
+              className="flex items-center gap-2 mb-6 text-brand-primary-dark hover:text-primary-dark font-semibold"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+              Back
+            </button>
             <div className="space-y-6 flex flex-col items-center">
               <h2 className="text-2xl font-bold ">
                 <img

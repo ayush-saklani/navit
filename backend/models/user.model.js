@@ -53,7 +53,28 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: false,
         default: "https://placehold.co/200/EEE/31343C?font=montserrat&text=:)",
+    },
+    // Security & Identity for Face Recognition (attendance project uses this authentication)
+    face_descriptor: {
+        type: [Number], // face-api.js numeric embedding array
+        required: true,
+        default: [],
+    },
+    face_image: {
+        type: String,
+        required: true,
+        default: "",
+    },
+    face_verified: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    last_login_ip: {
+        type: String,
+        required: false,
+        default: "",
     }
-})
+}, { timestamps: true })
 const user_model = mongoose.models.users || mongoose.model('user', UserSchema);
 export { user_model };

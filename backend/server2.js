@@ -223,11 +223,19 @@ app.post("/generateqrpdf", generateAndSendPDF);
 
 // Face Recognition related endpoints (attendance project uses this)
 import { upload_face, get_face, verify_face, get_unverified_users, } from './users.face.controller.js';
+import { ApiResponse } from './utils/ApiResponse.js';
 
 app.post('/upload_face', verifyJWT, upload_face);
 app.post('/get_face', get_face);
 app.post('/verify_face', verifyJWT, verify_face);
 app.post('/get_unverified_users', verifyJWT, get_unverified_users);
+app.post('/verifyJWT', verifyJWT, (req, res) => {
+    res.status(200).json(
+        new ApiResponse(200, {
+            message: "Token is valid",
+        }, 'User updated successfully')
+    );
+});
 
 app.listen(port, async () => {
     await mongoose.connect(process.env.MONGODB_URI)

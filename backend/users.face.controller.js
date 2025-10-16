@@ -45,7 +45,6 @@ const upload_face = async (req, res) => {   // Test done
         return res.status(500).json(new ApiError(500, { message: 'Internal Server Error', error: err.message }, 'Internal Server Error'));
     }
 };
-
 // Get face info for a user (face_image + face_verified)
 const get_face = async (req, res) => {      // Test done
     try {
@@ -66,7 +65,6 @@ const get_face = async (req, res) => {      // Test done
         return res.status(500).json(new ApiError(500, { message: 'Internal Server Error', error: err.message }, 'Internal Server Error'));
     }
 };
-
 // Verify a user's face as admin will do the matching and set face_verified
 const verify_face = async (req, res) => {   // Test done
     const session = await mongoose.startSession();
@@ -116,7 +114,6 @@ const verify_face = async (req, res) => {   // Test done
         return res.status(500).json(new ApiError(500, { message: 'Internal Server Error', error: err.message }, 'Internal Server Error'));
     }
 };
-
 const get_unverified_users = async (req, res) => {  // Test done
     try {
         const body = req.body;
@@ -146,8 +143,6 @@ const get_unverified_users = async (req, res) => {  // Test done
         return res.status(500).json(new ApiError(500, { message: 'Internal Server Error', error: err.message }, 'Internal Server Error'));
     }
 };
-
-export { };
 
 export {
     upload_face,

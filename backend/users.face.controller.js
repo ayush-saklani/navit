@@ -38,7 +38,13 @@ const upload_face = async (req, res) => {   // Test done
         await session.commitTransaction();
         session.endSession();
 
-        return res.status(200).json(new ApiResponse(200, { message: 'Face data uploaded' }, 'Face data uploaded'));
+        const user2 = await user_model.findOne({ email }).select('-password -email_verified -__v');
+        return res.status(200).json(
+            new ApiResponse(200, {
+                user: user2,
+                message: 'Face data uploaded'
+            }, 'Face data uploaded')
+        );
     } catch (err) {
         await session.abortTransaction();
         session.endSession();

@@ -2,15 +2,12 @@
 import jsgraphs from 'js-graph-algorithms'; // Import the graph library
 import cors from 'cors';                    // Import the cors middleware
 import express from 'express'               // Import the express library
-import { readFile } from 'fs/promises';     // Import the fs promises library
-import fs from 'fs';                        // Import the fs library
+
 import mongoose from 'mongoose';            // Import the mongoose library
 import dotenv from 'dotenv';                // Import the dotenv library
-// import navitmodel from 'model/navit-models.model.js';
 import nodeModel from './models/nodeModel.js';
 import edgeModel from './models/edgeModel.js';
 import map from './models/mapModel.js';
-// import metadataschema from './models/metadataModel.js';
 import metadata from './models/metadataModel.js';
 
 

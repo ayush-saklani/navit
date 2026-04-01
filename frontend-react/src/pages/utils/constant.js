@@ -1,5 +1,6 @@
-export const serverlink = "https://navit.azurewebsites.net";               // navit azure server link 
-export const serverlink2 = "https://class-sync-azure.azurewebsites.net";   // classsync azure server link
+// export const serverlink = "https://navit.azurewebsites.net";                // navit azure server link 
+export const serverlink = "https://navit.onrender.com";                     // navit onrender server link 
+export const serverlink2 = "https://class-sync-azure.azurewebsites.net";    // classsync azure server link
 
 export const dynamic_options = { // options for courses, semesters, sections
     arr: ["08", "12"],

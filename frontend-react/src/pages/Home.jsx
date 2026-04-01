@@ -28,6 +28,7 @@ import FeatureModal from './components/FeatureModal'
 import { MdLocationOff } from 'react-icons/md'
 
 import { weight, mapWeight, opacity, mapOpacity, fillOpacity, map_color_set } from './utils/color_set'
+import { serverlink, serverlink2 } from './utils/constant'
 
 function Home() {
     const debug = false; // set to true for debugging purpose
@@ -60,8 +61,6 @@ function Home() {
     }, []);
 
     const mapRef = useRef(null);
-    const serverlink = "https://navit.azurewebsites.net";               // navit azure server link 
-    const serverlink2 = "https://class-sync-azure.azurewebsites.net";   // classsync azure server link
 
     const floors = [-1, 0, 1, 2, 3, 4, 5]
     const [activeFloor, setActiveFloor] = useState(0)

@@ -10,7 +10,7 @@ import dotenv from 'dotenv';                // Import the dotenv library
 import nodeModel from './models/nodeModel.js';
 import edgeModel from './models/edgeModel.js';
 import map from './models/mapModel.js';
-import metadataschema from './models/metadataModel.js';
+// import metadataschema from './models/metadataModel.js';
 import metadata from './models/metadataModel.js';
 
 
